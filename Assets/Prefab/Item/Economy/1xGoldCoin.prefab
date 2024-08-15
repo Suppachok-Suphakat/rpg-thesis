@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupAmout: 1
   pickUpType: 0
-  pickUpDistance: 1
+  pickUpDistance: 999
   accelartionRate: 0.2
   moveSpeed: 3
   animCurve:
