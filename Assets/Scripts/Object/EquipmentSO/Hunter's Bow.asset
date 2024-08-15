@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9a6f06be2a7904fa3544f71c97d1b0, type: 3}
+  m_Name: Hunter's Bow
+  m_EditorClassIdentifier: 
+  itemName: Hunter's Bow
+  itemDescription: Swift and silent, it strikes with deadly precision.
+  vitality: 0
+  radiance: 0
+  eclipse: 0
+  armor: 0
+  strength: 0
+  dexterity: 20
+  intelligence: 0
+  weaponInfo: {fileID: 11400000, guid: f802d46479b65bb40a9d2d0d3c72577f, type: 2}

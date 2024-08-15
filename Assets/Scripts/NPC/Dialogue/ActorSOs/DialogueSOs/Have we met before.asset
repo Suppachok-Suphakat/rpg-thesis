@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ac59e4438b49149aff42b632a8fd8c, type: 3}
+  m_Name: Have we met before
+  m_EditorClassIdentifier: 
+  actors: 0000000000000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  dialogue:
+  - Have we met before, you wonder? It's possible our paths have crossed in this
+    mystical realm or perhaps in dreams that whisper of forgotten encounters.
+  - Regardless, there's a certain familiarity between us, isn't there? In times of
+    chaos, connections like ours can be a beacon of hope.
+  optionText: []
+  option0: {fileID: 0}
+  option1: {fileID: 0}
+  option2: {fileID: 0}
+  option3: {fileID: 0}

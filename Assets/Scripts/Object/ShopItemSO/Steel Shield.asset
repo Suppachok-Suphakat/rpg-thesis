@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59082299adf62468af1e84945d8871, type: 3}
+  m_Name: Steel Shield
+  m_EditorClassIdentifier: 
+  itemName: Steel Shield
+  itemDescription: Solid defense for mortal defenders.
+  itemQuantity: 1
+  itemSprite: {fileID: -1539093697, guid: c903f6e580fa1044f914c45bdefa1370, type: 3}
+  itemType: 7
+  weaponInfo: {fileID: 0}
+  itemPrice: 1

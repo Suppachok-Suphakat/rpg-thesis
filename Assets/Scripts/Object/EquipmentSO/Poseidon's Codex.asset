@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9a6f06be2a7904fa3544f71c97d1b0, type: 3}
+  m_Name: Poseidon's Codex
+  m_EditorClassIdentifier: 
+  itemName: Poseidon's Codex
+  itemDescription: Unveils protective barriers from the depths.
+  vitality: 0
+  radiance: 0
+  eclipse: 0
+  armor: 0
+  strength: 0
+  dexterity: 0
+  intelligence: 5
+  weaponInfo: {fileID: 11400000, guid: e17c4d8b9eab6594b9b35c10e4c46366, type: 2}

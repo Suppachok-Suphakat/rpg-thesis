@@ -1,0 +1,3537 @@
+fileFormatVersion: 2
+guid: 8eb2805e6fb4a3b4e8792d16f895472b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 17
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: New_House+Bg_0
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 427
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b37c29bcd4ec24caf85d8e7efa22e0
+      internalID: -1591497037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ae49e70e35dce4498ccf618b63d33d
+      internalID: 2005622632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3ed0ed36e34b6e46911f495e99ff361
+      internalID: -893408390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_3
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 475752d1ba7487c4395ab2fb3dd75bf9
+      internalID: 371790083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff5e626a9aa7894cadfe14b976f8b43
+      internalID: 165445421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_5
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583ea7fd062f4af46a85e32c1aca2a4d
+      internalID: -2066679506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_6
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030e8fefc95bafe4d9ab29e011d99ef9
+      internalID: -6875780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_7
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 454f3629a85523e46b9327e8be1cda52
+      internalID: -731181781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_8
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879426446276d0e4e9280c48b49893f6
+      internalID: 1790891539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_9
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c450e1ff5bd39784dabdc89f40d32d48
+      internalID: 740761884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_10
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8daff51fd2b4204fb3e1a02a7edb01e
+      internalID: -1019736551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_11
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61fccf0fed7bed6418df91aab4eb4426
+      internalID: -619363194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_12
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 342
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0931a3db1306ad4dba4aef833ac6f5d
+      internalID: 1732755627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_13
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cf0613260452a647b7523b96faceae8
+      internalID: -1230389989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_14
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b432a5c93fd64fe419089065b8f70290
+      internalID: -2064103822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_15
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f3ad0ab2121894e9a2e1236e30d7ea
+      internalID: 1863547866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_16
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15bf21414886b34fa9b79a3eef350d9
+      internalID: 448746981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_17
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3134bf86ead877a47b129fb446d6f155
+      internalID: 290622702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_18
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d1afbe5cc6573b46a42bb3023acf377
+      internalID: -1116088792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_19
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aefd99d098ed9840ac95aaad785345c
+      internalID: -1588413593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_20
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db0635a08d340246bf2462ebf76906d
+      internalID: -1841780354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_21
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77f2486435929d469fd4a537dbeb498
+      internalID: -671601617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_22
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c364bd641198f4b985210f4db8839f
+      internalID: -550658862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_23
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dacd2937c0634843b6cf0b9184d59e7
+      internalID: -108565627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_24
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de79657b951e47a4bbbf0008c3abe26f
+      internalID: -945402221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_25
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c02675199818b4a4d8e52bd0993fb793
+      internalID: -1465801227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_26
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 325
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc7c1731d27bd6746a34884f1073f8dc
+      internalID: 189954910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_27
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8062f6bffbb636342b7d5606e2a417ad
+      internalID: -974920789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_28
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b768a797c176e42b53980ad9c7dff8
+      internalID: 1773106512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_29
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf784d25ba526e94588a9cf2366875fd
+      internalID: -576235195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_30
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8419f2ed58340b341b2ebada99a43d3f
+      internalID: 1164334721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_31
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83da117905e178945a442007a9782e69
+      internalID: -587312653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_32
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee31d3bb209e21d43884a960c720a2ce
+      internalID: -1672452313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_33
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffc20cd07b96a24596abd6cd712cd5b
+      internalID: 106163872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_34
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533cae435a391fe479fbbea6113e7911
+      internalID: 2005309030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_35
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a5b3a7d18b7b9342b941773f163ed71
+      internalID: 626609432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_36
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e3d8d9a340483439da3ef027fdb538
+      internalID: 1250398836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_37
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b149934058a014438de100d169c32a7
+      internalID: -1757316698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_38
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22311c076d841549ace62f2a4acb531
+      internalID: 709864206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_39
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d92cf0e34593437488c4eac600b6af0c
+      internalID: 727314125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_40
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a91716a041b15b44fb0a4e8e3f6816c0
+      internalID: -1439613042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_41
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 308
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26a6324a296f5774f9d76ea7a51f2a44
+      internalID: -1634770127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_42
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab22944230a4c44c8ab6c432afd3d1a
+      internalID: -555178612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_43
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34619726ad80a0b4b8e99be48df8ed5b
+      internalID: -1860636878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_44
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a796ffd1b0e2124abef714fa173bb76
+      internalID: 576302082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_45
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d9af55743a8cb4092254c214051419
+      internalID: -706925786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_46
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9551528cd6613b409830c6ec2a2e16a
+      internalID: 1988105745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_47
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0f9efd640647a24f81ea6da29aca14a
+      internalID: -852827630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_48
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e605a3de35d0a4469f634124b351f9b
+      internalID: -1307338471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_49
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a0a9ae44995bd8489f63bce16a27c74
+      internalID: -2072808318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_50
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7365fc4b410d3b14d86d640f6111ec11
+      internalID: 1163830608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_51
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8441f7c6b3a984b43bdcef69e502ef47
+      internalID: -932677078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_52
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12eee82afa0590948a1f7b089ac5ece6
+      internalID: 1145642019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_53
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490fbe547e327d6428e20ea80868e7f3
+      internalID: -1372313023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_54
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c129bee57f188be43982f7a6b1c21ac1
+      internalID: 113525831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_55
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94b44f2aa74a9464dae22ee2131f1a8c
+      internalID: 2020316775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_56
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 291
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fefde64e1fc2d149a1f1fe80f34e288
+      internalID: 1709051804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_57
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3350b8ac542a2ad4c951f1fbee250a7e
+      internalID: 1931826384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_58
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbd03e87434b5ca429f4e7cf8d0777f6
+      internalID: 929863111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_59
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd40ed80debd7c4eab59b19ebd9ca27
+      internalID: -1536859794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_60
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15dd97f11d166184791ddd9006bd66e1
+      internalID: 89139759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_61
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db120dc938f785b4e8f030d5de772347
+      internalID: -1222078143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_62
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c54c8d741f47f44789117720c4d6cc7
+      internalID: -434117286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_63
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f10c2acf0540541a9d83443ea8bdb5
+      internalID: 1972510292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_64
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f5f2c0803c74b54f927a307b50bc991
+      internalID: 1445302031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_65
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 954355d17d4ca934c90937c972d99101
+      internalID: 83788697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_66
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141803b61cc4f3f4f8104985ed168e73
+      internalID: -692527447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_67
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3e9cd749ae51c468655ced8f8de2de
+      internalID: 2031416801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_68
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca76ac6da2c68de4fb1f391377525a8e
+      internalID: -727389606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_69
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d5f33863fc0934449606670cd1f0f97
+      internalID: -2002047317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_70
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb027c32b4424a499807622efece638
+      internalID: -680054174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_71
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 274
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85e5a2a5326b724aba61abc5d0c52a2
+      internalID: 1990914443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_72
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29750836f3748584b92362829392ae87
+      internalID: 582292731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_73
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3913da8edd878a044b82ef3d2f4e8857
+      internalID: 1543496044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_74
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b2dd9776124c84c8fd214ed362d1c1
+      internalID: 99534731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_75
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daf47df96f724694599d2b49290f95c2
+      internalID: -1187698948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_76
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5462a822b260d4b8e8ed4a86215c01
+      internalID: 1680272352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_77
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcc3ba18720bb474a9efa57ad390c277
+      internalID: 1277888459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_78
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0c75ea8d9feb14798230de1ae9538e
+      internalID: -47038132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_79
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08fcf1ba3a507f4c8a79a52099e5c0f
+      internalID: -176671351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_80
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5163aa33b0b50bb42b323037c0f96a32
+      internalID: -370364436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_81
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a6f67917e6356847bb488d3e13cee0c
+      internalID: 1937062459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_82
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47d2f92b573420b4c94a92b56ef50cd5
+      internalID: -1952583637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_83
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fa0540ed49fe8c468eb39c9fc8ee3fc
+      internalID: 896326027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_84
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65f871ea285a90542b68328bc5dadc4a
+      internalID: 84787290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_85
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6accebf40c9dbd04d9e01156e62e77b1
+      internalID: -552430303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_86
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 257
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d4d97ee5d749754f8ab1813927f8b45
+      internalID: 334695640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_87
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2928814aef92b4a4bba7f68a4addda63
+      internalID: -1263050729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_88
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3b55c8df61dfb42ab66d34a8132f93
+      internalID: -60472666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_89
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 411264758d33cfb4aa4979d33be021fc
+      internalID: 2054157693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_90
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6af3e94d020c47e4693aef8954eeda3a
+      internalID: 528476581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_91
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98541b0579bdd964e89e12425c2c5b6b
+      internalID: 640356769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_92
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51367a9b610e4cf4dae5772667f41324
+      internalID: -499398648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_93
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dd32017a2e94374d8252c4aac9da324
+      internalID: 764843679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_94
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e412e27a4968e49909107bd9d7115d
+      internalID: 177751209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_95
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b8bb6c9934910b4f83f6041e7c1a95b
+      internalID: 716706308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_96
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfced2a33f3dc0b469882f4a31cf6761
+      internalID: -1842053449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_97
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a03584320025a4e9206833654b7fae
+      internalID: -124630597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_98
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb2a98d2f49b424b9c941d160535404
+      internalID: 713787801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_99
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 240
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbfe8458a52d75b47a417d88d9f131b8
+      internalID: 877704157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_100
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0869afd053e2b17458b8f7ae14ba5b77
+      internalID: 1143752421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_101
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b42136459e1c40249a88d9287c16d777
+      internalID: -952975012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_102
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fa4ac7ba81f68c4aa27626a4c40d591
+      internalID: -2076375236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_103
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ccf33ca2d8f4034c95c0798573e384f
+      internalID: 2094727222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_104
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869109ae1eab2d54381a85eda52e7051
+      internalID: -1996472892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_105
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491e491d61f486542bd257a30bd1634e
+      internalID: -720219832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_106
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8a6334fc1648a44b8c822f8a43e4c0
+      internalID: 874083070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_107
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b62a915dec7666b43b149614e369efb8
+      internalID: 1548394808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_108
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d123197d6eeefeb4e91b871f017e14fd
+      internalID: -1541048135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_109
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26abe8488db93794fbe17d744a5b2479
+      internalID: -1250872731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_110
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16520de69399ac74587c00e51d0fc15d
+      internalID: 1536691868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_111
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec7ee9fff567ea94aa5caa53150d517d
+      internalID: 1366308834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_112
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 223
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bae21baf5ee832d42a3ad65bff952b61
+      internalID: 254875039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_113
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1985a575d13e554fa9d8f828abd69eb
+      internalID: -815639547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_114
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6e222ab07369846a16f3167e8dbd29
+      internalID: -1431681574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_115
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b73751257cd544ba3fef6f7aa9a9d1
+      internalID: -1510831442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_116
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e5b6c9f31d9a846af4ae91e2508e2f
+      internalID: 1290719612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_117
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3199ca0e01fcad243aa4bfab5082158e
+      internalID: -555583683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_118
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dab00a9a4e486b84a91fa1b4cecbfd36
+      internalID: 938959323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_119
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c08591a64017bb4c991e4e14c4bbdae
+      internalID: -37327821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_120
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6bd3218239c0fd47ab6ecf80a64df5d
+      internalID: -589378755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_121
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4d85d3583410b64bae9abcffa192749
+      internalID: -1065525781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_122
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 159e71beeb08eee4da4d260f3d6274f6
+      internalID: -1064785871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_123
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16963979e1fbac42b85624c5845531a
+      internalID: -1235005460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_124
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40b11868a30409498f2c6125d224454
+      internalID: 335035868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_125
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 206
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda51406e883f714aa8eab9d2eb36fe2
+      internalID: -1313552919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_126
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37c15b69508147b41b90f127e72073b5
+      internalID: -1869945311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_127
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea8c96bddef8f84eb15678209ab061c
+      internalID: 1820919014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_128
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 007ead38ca81b5d4e9332b2ffa32d411
+      internalID: -2101801707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_129
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a9cf203cc9ffb4f9e0f015b6cf2ac8
+      internalID: -272947662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_130
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5638a028c0db944abf6d9db0418cc4
+      internalID: 1658844275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_131
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31ab0f9d42cf2e44bbaa406f2a1b1154
+      internalID: -1089971650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_132
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf66f387841e1a940acbfa6223a89556
+      internalID: -573651402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_133
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb761de653db0e34b8f1a227e7c19e35
+      internalID: 162729010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_134
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd564cb9a419b9478923697dce29cf1
+      internalID: -265124157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_135
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 981d02d1a044dbf419bd55d675342fe1
+      internalID: -1582354771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_136
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6afffba4000295b498db6a7d1a4b4e04
+      internalID: 1408914354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_137
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ba787751219ff448741e020538912d
+      internalID: -2082615882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_138
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 189
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36208c525dab42c42a3efd7b0c2c7c23
+      internalID: 1491549992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_139
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b8310c1cb38584bb0eede3f4b8f088
+      internalID: 1922910854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_140
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69c7dcb985f796746ad3b3367611f4e3
+      internalID: -1876220177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_141
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44d65628071bf324c9ff9c8719cf35f5
+      internalID: -2045603303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_142
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296d9e6607684c4438b7737555c7578e
+      internalID: -1992011448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_143
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e032fb853ff4094faf5cfee41bfef8e
+      internalID: -1600511886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_144
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c587b825d4f03ab42b8e49f6c71840aa
+      internalID: 1875007791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_145
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542ea97549dbcfb418156e842e8e466b
+      internalID: 1322876338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_146
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c2901f130a84a4599ee8bd3f5a76e6
+      internalID: 349234220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_147
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac5a7e7bdf760ec4aa3af5c8e9700150
+      internalID: 1509695707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_148
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc91c3ca36e79e14291aaf98088f8635
+      internalID: 1211071958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_149
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f0886efadb30247b9a8767f272a052
+      internalID: 1318033699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_150
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c90bc731480e93341a01f13780fa3e3a
+      internalID: 11870301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_151
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 172
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef37a9b3c97b9da44ad6fadcf78d93e3
+      internalID: -148393503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_152
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 155
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e973b0136620d634f8a47713e6133df3
+      internalID: -1405669043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_153
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 155
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e4343f117ebc24c950deaa10e24462
+      internalID: -640617344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New_House+Bg_154
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 155
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db207e35360a594f85b7830b96b1826
+      internalID: 747723204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      New_House+Bg_0: -1591497037
+      New_House+Bg_1: 2005622632
+      New_House+Bg_10: -1019736551
+      New_House+Bg_100: 1143752421
+      New_House+Bg_101: -952975012
+      New_House+Bg_102: -2076375236
+      New_House+Bg_103: 2094727222
+      New_House+Bg_104: -1996472892
+      New_House+Bg_105: -720219832
+      New_House+Bg_106: 874083070
+      New_House+Bg_107: 1548394808
+      New_House+Bg_108: -1541048135
+      New_House+Bg_109: -1250872731
+      New_House+Bg_11: -619363194
+      New_House+Bg_110: 1536691868
+      New_House+Bg_111: 1366308834
+      New_House+Bg_112: 254875039
+      New_House+Bg_113: -815639547
+      New_House+Bg_114: -1431681574
+      New_House+Bg_115: -1510831442
+      New_House+Bg_116: 1290719612
+      New_House+Bg_117: -555583683
+      New_House+Bg_118: 938959323
+      New_House+Bg_119: -37327821
+      New_House+Bg_12: 1732755627
+      New_House+Bg_120: -589378755
+      New_House+Bg_121: -1065525781
+      New_House+Bg_122: -1064785871
+      New_House+Bg_123: -1235005460
+      New_House+Bg_124: 335035868
+      New_House+Bg_125: -1313552919
+      New_House+Bg_126: -1869945311
+      New_House+Bg_127: 1820919014
+      New_House+Bg_128: -2101801707
+      New_House+Bg_129: -272947662
+      New_House+Bg_13: -1230389989
+      New_House+Bg_130: 1658844275
+      New_House+Bg_131: -1089971650
+      New_House+Bg_132: -573651402
+      New_House+Bg_133: 162729010
+      New_House+Bg_134: -265124157
+      New_House+Bg_135: -1582354771
+      New_House+Bg_136: 1408914354
+      New_House+Bg_137: -2082615882
+      New_House+Bg_138: 1491549992
+      New_House+Bg_139: 1922910854
+      New_House+Bg_14: -2064103822
+      New_House+Bg_140: -1876220177
+      New_House+Bg_141: -2045603303
+      New_House+Bg_142: -1992011448
+      New_House+Bg_143: -1600511886
+      New_House+Bg_144: 1875007791
+      New_House+Bg_145: 1322876338
+      New_House+Bg_146: 349234220
+      New_House+Bg_147: 1509695707
+      New_House+Bg_148: 1211071958
+      New_House+Bg_149: 1318033699
+      New_House+Bg_15: 1863547866
+      New_House+Bg_150: 11870301
+      New_House+Bg_151: -148393503
+      New_House+Bg_152: -1405669043
+      New_House+Bg_153: -640617344
+      New_House+Bg_154: 747723204
+      New_House+Bg_16: 448746981
+      New_House+Bg_17: 290622702
+      New_House+Bg_18: -1116088792
+      New_House+Bg_19: -1588413593
+      New_House+Bg_2: -893408390
+      New_House+Bg_20: -1841780354
+      New_House+Bg_21: -671601617
+      New_House+Bg_22: -550658862
+      New_House+Bg_23: -108565627
+      New_House+Bg_24: -945402221
+      New_House+Bg_25: -1465801227
+      New_House+Bg_26: 189954910
+      New_House+Bg_27: -974920789
+      New_House+Bg_28: 1773106512
+      New_House+Bg_29: -576235195
+      New_House+Bg_3: 371790083
+      New_House+Bg_30: 1164334721
+      New_House+Bg_31: -587312653
+      New_House+Bg_32: -1672452313
+      New_House+Bg_33: 106163872
+      New_House+Bg_34: 2005309030
+      New_House+Bg_35: 626609432
+      New_House+Bg_36: 1250398836
+      New_House+Bg_37: -1757316698
+      New_House+Bg_38: 709864206
+      New_House+Bg_39: 727314125
+      New_House+Bg_4: 165445421
+      New_House+Bg_40: -1439613042
+      New_House+Bg_41: -1634770127
+      New_House+Bg_42: -555178612
+      New_House+Bg_43: -1860636878
+      New_House+Bg_44: 576302082
+      New_House+Bg_45: -706925786
+      New_House+Bg_46: 1988105745
+      New_House+Bg_47: -852827630
+      New_House+Bg_48: -1307338471
+      New_House+Bg_49: -2072808318
+      New_House+Bg_5: -2066679506
+      New_House+Bg_50: 1163830608
+      New_House+Bg_51: -932677078
+      New_House+Bg_52: 1145642019
+      New_House+Bg_53: -1372313023
+      New_House+Bg_54: 113525831
+      New_House+Bg_55: 2020316775
+      New_House+Bg_56: 1709051804
+      New_House+Bg_57: 1931826384
+      New_House+Bg_58: 929863111
+      New_House+Bg_59: -1536859794
+      New_House+Bg_6: -6875780
+      New_House+Bg_60: 89139759
+      New_House+Bg_61: -1222078143
+      New_House+Bg_62: -434117286
+      New_House+Bg_63: 1972510292
+      New_House+Bg_64: 1445302031
+      New_House+Bg_65: 83788697
+      New_House+Bg_66: -692527447
+      New_House+Bg_67: 2031416801
+      New_House+Bg_68: -727389606
+      New_House+Bg_69: -2002047317
+      New_House+Bg_7: -731181781
+      New_House+Bg_70: -680054174
+      New_House+Bg_71: 1990914443
+      New_House+Bg_72: 582292731
+      New_House+Bg_73: 1543496044
+      New_House+Bg_74: 99534731
+      New_House+Bg_75: -1187698948
+      New_House+Bg_76: 1680272352
+      New_House+Bg_77: 1277888459
+      New_House+Bg_78: -47038132
+      New_House+Bg_79: -176671351
+      New_House+Bg_8: 1790891539
+      New_House+Bg_80: -370364436
+      New_House+Bg_81: 1937062459
+      New_House+Bg_82: -1952583637
+      New_House+Bg_83: 896326027
+      New_House+Bg_84: 84787290
+      New_House+Bg_85: -552430303
+      New_House+Bg_86: 334695640
+      New_House+Bg_87: -1263050729
+      New_House+Bg_88: -60472666
+      New_House+Bg_89: 2054157693
+      New_House+Bg_9: 740761884
+      New_House+Bg_90: 528476581
+      New_House+Bg_91: 640356769
+      New_House+Bg_92: -499398648
+      New_House+Bg_93: 764843679
+      New_House+Bg_94: 177751209
+      New_House+Bg_95: 716706308
+      New_House+Bg_96: -1842053449
+      New_House+Bg_97: -124630597
+      New_House+Bg_98: 713787801
+      New_House+Bg_99: 877704157
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ac59e4438b49149aff42b632a8fd8c, type: 3}
+  m_Name: What's going on around here
+  m_EditorClassIdentifier: 
+  actors: 0000000000000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  dialogue:
+  - 'Ah, you''re wondering what''s happening, aren''t you? Well, let me give you
+    the lowdown. '
+  - "You've been summoned from another world to fulfill a great destiny\u2014to vanquish
+    the dreaded demon lord who threatens our lands. It's a perilous journey, but
+    fear not, hero, for you're not alone in this quest."
+  optionText: []
+  option0: {fileID: 0}
+  option1: {fileID: 0}
+  option2: {fileID: 0}
+  option3: {fileID: 0}

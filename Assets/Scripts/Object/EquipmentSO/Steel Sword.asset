@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9a6f06be2a7904fa3544f71c97d1b0, type: 3}
+  m_Name: Steel Sword
+  m_EditorClassIdentifier: 
+  itemName: Steel Sword
+  itemDescription: Trusty blade for mortal heroes.
+  vitality: 0
+  radiance: 0
+  eclipse: 0
+  armor: 0
+  strength: 20
+  dexterity: 0
+  intelligence: 0
+  weaponInfo: {fileID: 11400000, guid: f99a26b932f87a14f8f4ab0f39afb851, type: 2}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59082299adf62468af1e84945d8871, type: 3}
+  m_Name: Steel Spear
+  m_EditorClassIdentifier: 
+  itemName: Steel Spear
+  itemDescription: A sturdy weapon for close combat encounters.
+  itemQuantity: 1
+  itemSprite: {fileID: 549340190, guid: dc340a022542791408d38c7f30e318c9, type: 3}
+  itemType: 2
+  weaponInfo: {fileID: 11400000, guid: 956581c011ad84440807833287909592, type: 2}
+  itemPrice: 1
