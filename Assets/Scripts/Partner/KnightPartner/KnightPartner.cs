@@ -56,6 +56,14 @@ public class KnightPartner : Partner
     {
         HandleMouseInput();
 
+        // Check for R key press to return to follow state
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            currentState = State.follow;
+            enemyTransform = null; // Clear the current enemy target
+            animator.SetBool("isWalking", false); // Stop walking animation
+        }
+
         switch (currentState)
         {
             case State.follow:
