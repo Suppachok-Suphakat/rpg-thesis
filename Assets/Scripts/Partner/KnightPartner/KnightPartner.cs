@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class KnightPartner : Partner
 {
     //RaycastHit2D hit;
-    public LayerMask Focus;
+    public LayerMask focus;
 
     //==Combat==//
     private Knockback knockback;
@@ -29,6 +29,7 @@ public class KnightPartner : Partner
 
     KnightPartnerSkill skill;
 
+    private EnemyHealth currentEnemyHealth;
 
     private void Awake()
     {
@@ -50,6 +51,8 @@ public class KnightPartner : Partner
     // Update is called once per frame
     void Update()
     {
+        HandleMouseInput();
+
         switch (currentState)
         {
             case State.follow:
@@ -80,6 +83,67 @@ public class KnightPartner : Partner
                 break;
         }
     }
+
+    void HandleMouseInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
+
+            float detectionRadius = 0.5f; // Adjust this radius as needed
+            Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius, focus);
+
+            if (hit != null)
+            {
+                Debug.Log("Collider detected: " + hit.name);
+                if (hit.CompareTag("Enemy"))
+                {
+                    // Hide the arrow on the previous enemy if it exists
+                    if (currentEnemyHealth != null)
+                    {
+                        Debug.Log("Hiding arrow on previous enemy: " + currentEnemyHealth.name);
+                        currentEnemyHealth.HideArrow();
+                    }
+
+                    // Set the new enemy and show the arrow
+                    Debug.Log("Enemy detected: " + hit.name);
+                    focusEnemy = hit.transform;
+                    enemyTransform = focusEnemy;
+                    currentState = State.chase;
+
+                    // Update the currentEnemyHealth reference
+                    currentEnemyHealth = hit.GetComponent<EnemyHealth>();
+                    if (currentEnemyHealth != null)
+                    {
+                        Debug.Log("Showing arrow on new enemy: " + currentEnemyHealth.name);  // This log should now appear
+                        currentEnemyHealth.ShowArrow();
+                    }
+                }
+                else
+                {
+                    Debug.Log("Detected but not an enemy: " + hit.name);
+                }
+            }
+            else
+            {
+                Debug.Log("No collider detected within radius.");
+            }
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (Application.isPlaying)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(mousePosition, 0.5f); // Adjust the radius as needed
+        }
+    }
+
     void FollowLogic()
     {
         FlipSprite();

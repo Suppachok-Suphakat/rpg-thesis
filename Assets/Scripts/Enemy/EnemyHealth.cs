@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     private Flash flash;
 
     [SerializeField] StatusBar hpBar;
+    [SerializeField] GameObject arrow;
 
     private void Awake()
     {
@@ -24,6 +25,11 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         UpdateHpBar();
+
+        if (arrow != null)
+        {
+            arrow.SetActive(false);
+        }
     }
 
     public void UpdateHpBar()
@@ -66,6 +72,24 @@ public class EnemyHealth : MonoBehaviour
 
             Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+    }
+
+    public void ShowArrow()
+    {
+        if (arrow != null)
+        {
+            Debug.Log("Showing arrow on: " + gameObject.name);  // Add this log
+            arrow.SetActive(true);
+        }
+    }
+
+    public void HideArrow()
+    {
+        if (arrow != null)
+        {
+            Debug.Log("Hiding arrow on: " + gameObject.name);  // Add this log
+            arrow.SetActive(false);
         }
     }
 }

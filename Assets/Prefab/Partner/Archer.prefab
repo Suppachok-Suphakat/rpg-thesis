@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3041811275195127020}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Partner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -298,7 +298,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 3554886383241864524, guid: 3a8a87217b2af434799d573ea5b2b7c1, type: 3}
   arrowSpawnPoint: {fileID: 3445103577796176274}
   isAttacking: 0
-  cooldownTime: 1
+  cooldownTime: 3
   isCooldown: 0
 --- !u!114 &5560042757820007484
 MonoBehaviour:
