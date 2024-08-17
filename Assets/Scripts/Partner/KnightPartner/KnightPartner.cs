@@ -31,6 +31,9 @@ public class KnightPartner : Partner
 
     private EnemyHealth currentEnemyHealth;
 
+    [SerializeField] private float slideDuration = 0.5f;  // Duration for sliding past obstacles
+    private bool isSliding = false;
+
     private void Awake()
     {
         flash = GetComponent<Flash>();
@@ -132,18 +135,6 @@ public class KnightPartner : Partner
         }
     }
 
-    void OnDrawGizmos()
-    {
-        if (Application.isPlaying)
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(mousePosition, 0.5f); // Adjust the radius as needed
-        }
-    }
-
     void FollowLogic()
     {
         FlipSprite();
@@ -152,8 +143,18 @@ public class KnightPartner : Partner
         if (distancePlayer > 2)
         {
             animator.SetBool("isWalking", true);
-            Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y); ;
-            transform.position = Vector2.Lerp(transform.position, targetPosition, status.followSpeed * Time.deltaTime);
+            Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+            Vector2 directionToPlayer = (targetPosition - (Vector2)transform.position).normalized;
+
+            // Check if the partner is stuck or moving
+            if (!isSliding && !CanMove(directionToPlayer))
+            {
+                StartCoroutine(SlidePastObstacle(directionToPlayer));
+            }
+            else
+            {
+                transform.position = Vector2.Lerp(transform.position, targetPosition, status.followSpeed * Time.deltaTime);
+            }
         }
         else
         {
@@ -186,7 +187,15 @@ public class KnightPartner : Partner
                 else
                     transform.localScale = new Vector3(1, 1, 1);
 
-                transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
+                // Check if the partner is stuck or moving
+                if (!isSliding && !CanMove(directionToEnemy))
+                {
+                    StartCoroutine(SlidePastObstacle(directionToEnemy));
+                }
+                else
+                {
+                    transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
+                }
             }
             else
             {
@@ -197,6 +206,27 @@ public class KnightPartner : Partner
         {
             currentState = State.follow;
         }
+    }
+
+    private bool CanMove(Vector2 direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.1f, LayerMask.GetMask("Obstacles"));
+        return hit.collider == null;
+    }
+
+    private IEnumerator SlidePastObstacle(Vector2 direction)
+    {
+        isSliding = true;
+        float slideTime = 0;
+
+        while (slideTime < slideDuration)
+        {
+            transform.Translate(direction * status.followSpeed * Time.deltaTime);
+            slideTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isSliding = false;
     }
 
     public override void AttackLogic()
