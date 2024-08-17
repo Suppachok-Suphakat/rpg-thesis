@@ -292,7 +292,7 @@ MonoBehaviour:
     followSpeed: 2
     chaseSpeed: 3
   currentState: 0
-  Focus:
+  focus:
     serializedVersion: 2
     m_Bits: 1024
   arrowPrefab: {fileID: 3554886383241864524, guid: 3a8a87217b2af434799d573ea5b2b7c1, type: 3}
