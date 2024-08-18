@@ -42,6 +42,10 @@ public class LineTrigger : MonoBehaviour
                         {
                             hit.gameObject.GetComponent<KnightPartner>().skillBar.SetActive(false);
                         }
+                        else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
+                        {
+                            hit.gameObject.GetComponent<ArcherPartnerAI>().skillBar.SetActive(false);
+                        }
 
                         currentTarget = null;
                     }
@@ -51,9 +55,14 @@ public class LineTrigger : MonoBehaviour
                         if (previousTarget != null && previousTarget != newPartner)
                         {
                             KnightPartner previousKnightPartner = previousTarget.GetComponent<KnightPartner>();
+                            ArcherPartnerAI previousArcherPartner = previousTarget.GetComponent<ArcherPartnerAI>();
                             if (previousKnightPartner != null)
                             {
                                 previousKnightPartner.skillBar.SetActive(false);
+                            }
+                            else if(previousArcherPartner != null)
+                            {
+                                previousArcherPartner.skillBar.SetActive(false);
                             }
                         }
 
@@ -68,6 +77,10 @@ public class LineTrigger : MonoBehaviour
                         if (hit.gameObject.GetComponent<KnightPartner>())
                         {
                             hit.gameObject.GetComponent<KnightPartner>().skillBar.SetActive(true);
+                        }
+                        else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
+                        {
+                            hit.gameObject.GetComponent<ArcherPartnerAI>().skillBar.SetActive(true);
                         }
 
                         lineEffect.StartHealing(newPartner);

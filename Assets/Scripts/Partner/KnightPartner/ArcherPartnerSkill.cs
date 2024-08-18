@@ -10,15 +10,29 @@ public class ArcherPartnerSkill : MonoBehaviour
     [SerializeField] int cooldownTime;
     [SerializeField] int maxCooldownTime;
 
-    [SerializeField] int currentCooldownTime;
+    [Header("Skill 1")]
+    [SerializeField] int skill1CooldownTime;
+    [SerializeField] int skill1MaxCooldownTime;
+    [SerializeField] int skill1CurrentCooldownTime;
+    [SerializeField] float skill1ActiveTime;
+    [SerializeField] float currentSkill1ActiveTime;
+
+    [Header("Skill 2")]
+    [SerializeField] int skill2CooldownTime;
+    [SerializeField] int skill2MaxCooldownTime;
+    [SerializeField] int skill2CurrentCooldownTime;
+    [SerializeField] float skill2ActiveTime;
+    [SerializeField] float currentSkill2ActiveTime;
+
+    [Header("Fusion")]
+    [SerializeField] int fusionCooldownTime;
+    [SerializeField] int fusionMaxCooldownTime;
+    [SerializeField] int fusionCurrentCooldownTime;
+    [SerializeField] float fusionActiveTime;
+    [SerializeField] float currentFusionActiveTime;
 
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
-
-    [SerializeField] float skillActiveTime;
-    [SerializeField] float currentSkillActiveTime;
-    [SerializeField] float fusionActiveTime;
-    [SerializeField] float currentFusionActiveTime;
 
     [SerializeField] private StatusBar statusComponent;
     PartnerSkillManager partnerSkillManager;
@@ -31,12 +45,18 @@ public class ArcherPartnerSkill : MonoBehaviour
     WeaponInfo weaponChangeInfo;
     Sprite weaponChangeSprite;
 
+    [SerializeField] public Image skill1Image;
+    //[SerializeField] public Image skill2Image;
+    [SerializeField] public Image fusionImage;
+
     private LineTrigger lineTrigger;
 
     enum AbilityState
     {
         ready,
-        active,
+        active1,
+        active2,
+        fusion,
         cooldown
     }
     AbilityState state = AbilityState.cooldown;
@@ -51,12 +71,19 @@ public class ArcherPartnerSkill : MonoBehaviour
     {
         partnerSkillManager = GameObject.Find("PartnerCanvas").GetComponent<PartnerSkillManager>();
 
-        currentCooldownTime = cooldownTime;
+        skill1CurrentCooldownTime = skill1CooldownTime;
+        skill2CurrentCooldownTime = skill2CooldownTime;
+        fusionCurrentCooldownTime = fusionCooldownTime;
+
         statusComponent = partnerSkillManager.archerMPSliderObject.GetComponent<StatusBar>();
         partnerSkillManager.bubbleObject.SetActive(false);
-        statusComponent.Set(cooldownTime, maxCooldownTime);
+        statusComponent.Set(fusionCooldownTime, fusionMaxCooldownTime);
 
-        //toolbarSlot = GameObject.Find("RangeToolbar").GetComponent<ToolbarSlot>();
+        toolbarSlot = GameObject.Find("Toolbar").GetComponent<ToolbarSlot>();
+
+        skill1Image.fillAmount = 0;
+        //skill2Image.fillAmount = 0;
+        fusionImage.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -73,28 +100,35 @@ public class ArcherPartnerSkill : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Q))
                     {
                         SkillActivate();
-                        statusComponent.Set(0, maxCooldownTime);
-                        state = AbilityState.active;
-                        skillActiveTime = currentSkillActiveTime;
+                        state = AbilityState.active1;
+                        skill1ActiveTime = currentSkill1ActiveTime;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        //Skill2Activate();
+                        //statusComponent.Set(0, skill2MaxCooldownTime);
+                        //state = AbilityState.active2;
+                        //skill2ActiveTime = currentSkill2ActiveTime;
                     }
                     else if (Input.GetKeyDown(KeyCode.F))
                     {
                         FusionActivate();
-                        statusComponent.Set(0, maxCooldownTime);
-                        state = AbilityState.active;
+                        statusComponent.Set(0, fusionMaxCooldownTime);
+                        state = AbilityState.fusion;
                         fusionActiveTime = currentFusionActiveTime;
                     }
                 }
                 break;
-            case AbilityState.active:
+            case AbilityState.active1:
                 partnerSkillManager.bubbleObject.SetActive(false);
-                if (skillActiveTime >= 0 || fusionActiveTime >= 0)
+
+                if (skill1ActiveTime >= 0)
                 {
-                    skillActiveTime -= Time.deltaTime;
-                    fusionActiveTime -= Time.deltaTime;
+                    skill1ActiveTime -= Time.deltaTime;
                 }
                 else
                 {
+                    Debug.Log("A");
                     PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
 
@@ -112,35 +146,105 @@ public class ArcherPartnerSkill : MonoBehaviour
                     GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
 
                     state = AbilityState.cooldown;
-                    cooldownTime = currentCooldownTime;
+                    skill1CooldownTime = skill1CurrentCooldownTime;
                 }
                 break;
-            case AbilityState.cooldown:
-                if (cooldownTime <= maxCooldownTime)
+            case AbilityState.active2:
+                /////////////////////////////////
+                break;
+            case AbilityState.fusion:
+                partnerSkillManager.bubbleObject.SetActive(false);
+
+                if (fusionActiveTime >= 0)
                 {
-                    CooldownOverTime();
-                    statusComponent.Set(cooldownTime, maxCooldownTime);
+                    fusionActiveTime -= Time.deltaTime;
                 }
                 else
                 {
-                    statusComponent.Set(maxCooldownTime, maxCooldownTime);
+                    PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
+                    transform.parent.localScale = new Vector3(1f, 1f, 1f);
+
+                    if (weaponChangeInfo != null)
+                    {
+                        toolbarSlot.weaponInfo = weaponChangeInfo;
+                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    }
+                    else
+                    {
+                        toolbarSlot.weaponInfo = null;
+                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    }
+
+                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+
+                    state = AbilityState.cooldown;
+                    fusionCooldownTime = fusionCurrentCooldownTime;
+                }
+                break;
+            case AbilityState.cooldown:
+                if (skill1CooldownTime < skill1MaxCooldownTime)
+                {
+                    Skill1CooldownOverTime();
+                }
+                if (skill2CooldownTime < skill2MaxCooldownTime)
+                {
+                    Skill2CooldownOverTime();
+                }
+                if (fusionCooldownTime < fusionMaxCooldownTime)
+                {
+                    FusionCooldownOverTime();
+                }
+                if (skill1CooldownTime >= skill1MaxCooldownTime &&
+                    skill2CooldownTime >= skill2MaxCooldownTime &&
+                    fusionCooldownTime >= fusionMaxCooldownTime)
+                {
                     state = AbilityState.ready;
                 }
+                UpdateCooldownUI(); // Update the UI for all skills
                 break;
         }
     }
 
-    public void CooldownOverTime()
+    public void Skill1CooldownOverTime()
     {
         if (cooldownRecoveryTimer <= 0)
         {
-            cooldownTime += 1;
+            skill1CooldownTime += 1;
             cooldownRecoveryTimer = cooldownRecoveryDelay;
         }
         else
         {
             cooldownRecoveryTimer -= Time.deltaTime;
         }
+        skill1CooldownTime = Mathf.Min(skill1CooldownTime, skill1MaxCooldownTime);
+    }
+
+    public void Skill2CooldownOverTime()
+    {
+        if (cooldownRecoveryTimer <= 0)
+        {
+            skill2CooldownTime += 1;
+            cooldownRecoveryTimer = cooldownRecoveryDelay;
+        }
+        else
+        {
+            cooldownRecoveryTimer -= Time.deltaTime;
+        }
+        skill2CooldownTime = Mathf.Min(skill2CooldownTime, skill2MaxCooldownTime);
+    }
+
+    public void FusionCooldownOverTime()
+    {
+        if (cooldownRecoveryTimer <= 0)
+        {
+            fusionCooldownTime += 1;
+            cooldownRecoveryTimer = cooldownRecoveryDelay;
+        }
+        else
+        {
+            cooldownRecoveryTimer -= Time.deltaTime;
+        }
+        fusionCooldownTime = Mathf.Min(fusionCooldownTime, fusionMaxCooldownTime);
     }
 
     public void SkillActivate()
@@ -157,6 +261,9 @@ public class ArcherPartnerSkill : MonoBehaviour
             weaponChangeInfo = toolbarSlot.weaponInfo;
         }
         weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+
+        skill1CooldownTime = 0;  // Start cooldown
+        UpdateCooldownUI();  // Update UI
     }
 
     public void FusionActivate()
@@ -173,5 +280,42 @@ public class ArcherPartnerSkill : MonoBehaviour
         toolbarSlot.weaponInfo = weaponInfo;
         toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
         GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+
+        fusionCooldownTime = 0;  // Start cooldown
+        statusComponent.Set(0, fusionMaxCooldownTime);  // Update status bar
+        UpdateCooldownUI();  // Update UI
+    }
+
+    private void UpdateCooldownUI()
+    {
+        // Update Skill 1 UI
+        if (skill1CooldownTime < skill1MaxCooldownTime)
+        {
+            skill1Image.fillAmount = skill1CooldownTime / (float)skill1MaxCooldownTime;
+        }
+        else
+        {
+            skill1Image.fillAmount = 1;
+        }
+
+        // Update Skill 2 UI
+        if (skill2CooldownTime < skill2MaxCooldownTime)
+        {
+            //skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
+        }
+        else
+        {
+            //skill2Image.fillAmount = 1;
+        }
+
+        // Update Fusion UI
+        if (fusionCooldownTime < fusionMaxCooldownTime)
+        {
+            fusionImage.fillAmount = fusionCooldownTime / (float)fusionMaxCooldownTime;
+        }
+        else
+        {
+            fusionImage.fillAmount = 1;
+        }
     }
 }

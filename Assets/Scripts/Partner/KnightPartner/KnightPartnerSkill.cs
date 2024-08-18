@@ -9,27 +9,29 @@ public class KnightPartnerSkill : MonoBehaviour
     [SerializeField] private GameObject barrier;
     public GameObject barrierCircleInstance;
 
+    [Header("Skill 1")]
     [SerializeField] int skill1CooldownTime;
     [SerializeField] int skill1MaxCooldownTime;
     [SerializeField] int skill1CurrentCooldownTime;
+    [SerializeField] float skill1ActiveTime;
+    [SerializeField] float currentSkill1ActiveTime;
 
+    [Header("Skill 2")]
     [SerializeField] int skill2CooldownTime;
     [SerializeField] int skill2MaxCooldownTime;
     [SerializeField] int skill2CurrentCooldownTime;
+    [SerializeField] float skill2ActiveTime;
+    [SerializeField] float currentSkill2ActiveTime;
 
+    [Header("Fusion")]
     [SerializeField] int fusionCooldownTime;
     [SerializeField] int fusionMaxCooldownTime;
     [SerializeField] int fusionCurrentCooldownTime;
+    [SerializeField] float fusionActiveTime;
+    [SerializeField] float currentFusionActiveTime;
 
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
-
-    [SerializeField] float skill1ActiveTime;
-    [SerializeField] float currentSkill1ActiveTime;
-    [SerializeField] float skill2ActiveTime;
-    [SerializeField] float currentSkill2ActiveTime;
-    [SerializeField] float fusionActiveTime;
-    [SerializeField] float currentFusionActiveTime;
 
     [SerializeField] private StatusBar statusComponent;
     PartnerSkillManager partnerSkillManager;
@@ -76,9 +78,9 @@ public class KnightPartnerSkill : MonoBehaviour
         statusComponent = partnerSkillManager.knightMPSliderObject.GetComponent<StatusBar>();
 
         partnerSkillManager.bubbleObject.SetActive(false);
-        statusComponent.Set(skill1CooldownTime, skill1MaxCooldownTime);
+        statusComponent.Set(fusionCooldownTime, fusionMaxCooldownTime);
 
-        toolbarSlot = GameObject.Find("AssaultToolbar").GetComponent<ToolbarSlot>();
+        toolbarSlot = GameObject.Find("Toolbar").GetComponent<ToolbarSlot>();
 
         skill1Image.fillAmount = 0;
         //skill2Image.fillAmount = 0;
@@ -293,7 +295,6 @@ public class KnightPartnerSkill : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().ResetTrigger("Skill");
         gameObject.GetComponent<Animator>().SetTrigger("Idle"); // Set the partner back to the idle state
-
     }
 
     public void SpawnMagicCircle()
