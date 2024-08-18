@@ -29,10 +29,12 @@ public class KnightPartner : Partner
 
     KnightPartnerSkill skill;
 
-    private EnemyHealth currentEnemyHealth;
+    [SerializeField] private EnemyHealth currentEnemyHealth;
 
     [SerializeField] private float slideDuration = 0.5f;  // Duration for sliding past obstacles
     private bool isSliding = false;
+
+    private LineTrigger lineTrigger;
 
     private void Awake()
     {
@@ -43,6 +45,8 @@ public class KnightPartner : Partner
 
         attackCooldown = cooldownTime;
         skill = gameObject.GetComponent<KnightPartnerSkill>();
+
+        lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
     // Start is called before the first frame update
@@ -97,48 +101,51 @@ public class KnightPartner : Partner
 
     void HandleMouseInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(1))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
-
-            float detectionRadius = 0.5f; // Adjust this radius as needed
-            Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius, focus);
-
-            if (hit != null)
+            if (lineTrigger.currentTarget == this.transform)
             {
-                Debug.Log("Collider detected: " + hit.name);
-                if (hit.CompareTag("Enemy"))
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0f;
+
+                float detectionRadius = 0.5f; // Adjust this radius as needed
+                Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius, focus);
+
+                if (hit != null)
                 {
-                    // Hide the arrow on the previous enemy if it exists
-                    if (currentEnemyHealth != null)
+                    Debug.Log("Collider detected: " + hit.name);
+                    if (hit.CompareTag("Enemy"))
                     {
-                        Debug.Log("Hiding arrow on previous enemy: " + currentEnemyHealth.name);
-                        currentEnemyHealth.HideArrow();
+                        // Hide the arrow on the previous enemy if it exists
+                        if (currentEnemyHealth != null)
+                        {
+                            Debug.Log("Hiding arrow on previous enemy: " + currentEnemyHealth.name);
+                            currentEnemyHealth.HideArrow();
+                        }
+
+                        // Set the new enemy and show the arrow
+                        Debug.Log("Enemy detected: " + hit.name);
+                        focusEnemy = hit.transform;
+                        enemyTransform = focusEnemy;
+                        currentState = State.chase;
+
+                        // Update the currentEnemyHealth reference
+                        currentEnemyHealth = hit.GetComponent<EnemyHealth>();
+                        if (currentEnemyHealth != null)
+                        {
+                            Debug.Log("Showing arrow on new enemy: " + currentEnemyHealth.name);  // This log should now appear
+                            currentEnemyHealth.ShowArrow();
+                        }
                     }
-
-                    // Set the new enemy and show the arrow
-                    Debug.Log("Enemy detected: " + hit.name);
-                    focusEnemy = hit.transform;
-                    enemyTransform = focusEnemy;
-                    currentState = State.chase;
-
-                    // Update the currentEnemyHealth reference
-                    currentEnemyHealth = hit.GetComponent<EnemyHealth>();
-                    if (currentEnemyHealth != null)
+                    else
                     {
-                        Debug.Log("Showing arrow on new enemy: " + currentEnemyHealth.name);  // This log should now appear
-                        currentEnemyHealth.ShowArrow();
+                        Debug.Log("Detected but not an enemy: " + hit.name);
                     }
                 }
                 else
                 {
-                    Debug.Log("Detected but not an enemy: " + hit.name);
+                    Debug.Log("No collider detected within radius.");
                 }
-            }
-            else
-            {
-                Debug.Log("No collider detected within radius.");
             }
         }
     }

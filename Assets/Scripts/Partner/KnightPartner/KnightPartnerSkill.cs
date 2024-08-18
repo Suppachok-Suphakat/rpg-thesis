@@ -33,6 +33,8 @@ public class KnightPartnerSkill : MonoBehaviour
     WeaponInfo weaponChangeInfo;
     Sprite weaponChangeSprite;
 
+    private LineTrigger lineTrigger;
+
     enum AbilityState
     {
         ready,
@@ -43,6 +45,7 @@ public class KnightPartnerSkill : MonoBehaviour
 
     private void Awake()
     {
+        lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
     // Start is called before the first frame update
@@ -68,19 +71,22 @@ public class KnightPartnerSkill : MonoBehaviour
                 partnerSkillManager.bubbleObject.SetActive(true);
                 PlayerController.instance.GetComponent<Animator>().ResetTrigger("KnightFusionReturn");
                 gameObject.GetComponent<Animator>().ResetTrigger("Skill");
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (lineTrigger.currentTarget == this.transform)
                 {
-                    SkillActivate();
-                    statusComponent.Set(0, maxCooldownTime);
-                    state = AbilityState.active;
-                    skillActiveTime = currentSkillActiveTime;
-                }
-                else if (Input.GetKeyDown(KeyCode.F))
-                {
-                    FusionActivate();
-                    statusComponent.Set(0, maxCooldownTime);
-                    state = AbilityState.active;
-                    fusionActiveTime = currentFusionActiveTime;
+                    if (Input.GetKeyDown(KeyCode.Q))
+                    {
+                        SkillActivate();
+                        statusComponent.Set(0, maxCooldownTime);
+                        state = AbilityState.active;
+                        skillActiveTime = currentSkillActiveTime;
+                    }
+                    else if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        FusionActivate();
+                        statusComponent.Set(0, maxCooldownTime);
+                        state = AbilityState.active;
+                        fusionActiveTime = currentFusionActiveTime;
+                    }
                 }
                 break;
             case AbilityState.active:

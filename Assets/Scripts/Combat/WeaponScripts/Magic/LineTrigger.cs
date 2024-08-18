@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineTrigger : MonoBehaviour, IWeapon
+public class LineTrigger : MonoBehaviour
 {
     public LineEffect lineEffect;
     public Transform partner; // Assign the partner character here
 
     [SerializeField] private WeaponInfo weaponInfo;
 
-    private Transform currentTarget;
+    public Transform currentTarget;
+
+    private void Awake()
+    {
+        // Optionally, initialize here
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Change this to your desired input key
+        if (Input.GetMouseButtonDown(0)) // Change this to your desired input key
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
@@ -48,15 +53,5 @@ public class LineTrigger : MonoBehaviour, IWeapon
                 }
             }
         }
-    }
-
-    public void Attack()
-    {
-        // Implement attack logic here if needed
-    }
-
-    public WeaponInfo GetWeaponInfo()
-    {
-        return weaponInfo;
     }
 }

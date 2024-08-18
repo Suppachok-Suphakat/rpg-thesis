@@ -13,6 +13,15 @@ public class ToolbarSlot : MonoBehaviour
 
     [SerializeField] private ItemType itemType = new ItemType();
 
+    private void Start()
+    {
+        Image imageComponent = slotSprite.GetComponent<Image>();
+        if (imageComponent != null && weaponInfo != null)
+        {
+            imageComponent.sprite = weaponInfo.weaponSprite;
+        }
+    }
+
     public WeaponInfo GetWeaponInfo()
     {
         return weaponInfo;
