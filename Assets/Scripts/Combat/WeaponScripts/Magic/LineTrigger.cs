@@ -10,6 +10,7 @@ public class LineTrigger : MonoBehaviour
     [SerializeField] private WeaponInfo weaponInfo;
 
     public Transform currentTarget;
+    private Transform previousTarget; // Track the previous partner
 
     private void Awake()
     {
@@ -36,10 +37,26 @@ public class LineTrigger : MonoBehaviour
                     {
                         // Cancel the line if the same partner is clicked
                         lineEffect.StopHealing();
+
+                        if (hit.gameObject.GetComponent<KnightPartner>())
+                        {
+                            hit.gameObject.GetComponent<KnightPartner>().skillBar.SetActive(false);
+                        }
+
                         currentTarget = null;
                     }
                     else
                     {
+                        // Hide the skill bar of the previous partner, if any
+                        if (previousTarget != null && previousTarget != newPartner)
+                        {
+                            KnightPartner previousKnightPartner = previousTarget.GetComponent<KnightPartner>();
+                            if (previousKnightPartner != null)
+                            {
+                                previousKnightPartner.skillBar.SetActive(false);
+                            }
+                        }
+
                         // Start a new line effect for the new partner
                         if (currentTarget != null)
                         {
@@ -47,8 +64,15 @@ public class LineTrigger : MonoBehaviour
                             lineEffect.StopHealing();
                         }
 
+                        // Show the skill bar of the new partner
+                        if (hit.gameObject.GetComponent<KnightPartner>())
+                        {
+                            hit.gameObject.GetComponent<KnightPartner>().skillBar.SetActive(true);
+                        }
+
                         lineEffect.StartHealing(newPartner);
                         currentTarget = newPartner;
+                        previousTarget = newPartner; // Update the previous target
                     }
                 }
             }

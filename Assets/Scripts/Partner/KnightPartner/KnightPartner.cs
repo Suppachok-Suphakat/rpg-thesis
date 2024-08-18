@@ -36,6 +36,8 @@ public class KnightPartner : Partner
 
     private LineTrigger lineTrigger;
 
+    [SerializeField] public GameObject skillBar;
+
     private void Awake()
     {
         flash = GetComponent<Flash>();
