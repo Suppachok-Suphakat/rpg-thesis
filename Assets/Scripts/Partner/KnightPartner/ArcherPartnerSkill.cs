@@ -56,7 +56,7 @@ public class ArcherPartnerSkill : MonoBehaviour
         partnerSkillManager.bubbleObject.SetActive(false);
         statusComponent.Set(cooldownTime, maxCooldownTime);
 
-        toolbarSlot = GameObject.Find("RangeToolbar").GetComponent<ToolbarSlot>();
+        //toolbarSlot = GameObject.Find("RangeToolbar").GetComponent<ToolbarSlot>();
     }
 
     // Update is called once per frame
