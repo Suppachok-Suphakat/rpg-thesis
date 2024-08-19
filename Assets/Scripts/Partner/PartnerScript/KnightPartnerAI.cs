@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KnightPartner : Partner
+public class KnightPartnerAI : Partner
 {
     //RaycastHit2D hit;
     public LayerMask focus;

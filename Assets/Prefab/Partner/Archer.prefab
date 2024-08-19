@@ -300,6 +300,9 @@ MonoBehaviour:
   isAttacking: 0
   cooldownTime: 3
   isCooldown: 0
+  currentEnemyHealth: {fileID: 0}
+  slideDuration: 0.5
+  skillBar: {fileID: 0}
 --- !u!114 &5560042757820007484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,19 +316,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
-  cooldownTime: 0
-  maxCooldownTime: 20
-  currentCooldownTime: 0
-  cooldownRecoveryTimer: 1
-  cooldownRecoveryDelay: 0.1
-  skillActiveTime: 5
-  currentSkillActiveTime: 5
+  skill1CooldownTime: 0
+  skill1MaxCooldownTime: 10
+  skill1CurrentCooldownTime: 0
+  skill1ActiveTime: 10
+  currentSkill1ActiveTime: 10
+  skill2CooldownTime: 0
+  skill2MaxCooldownTime: 10
+  skill2CurrentCooldownTime: 0
+  skill2ActiveTime: 10
+  currentSkill2ActiveTime: 10
+  fusionCooldownTime: 0
+  fusionMaxCooldownTime: 20
+  fusionCurrentCooldownTime: 0
   fusionActiveTime: 10
   currentFusionActiveTime: 10
+  cooldownRecoveryTimer: 1
+  cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: 763e979fc391cf04f983a40b88d5b5a8, type: 2}
   itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
+  skill1Image: {fileID: 0}
+  fusionImage: {fileID: 0}
 --- !u!114 &7420438465566094969
 MonoBehaviour:
   m_ObjectHideFlags: 0

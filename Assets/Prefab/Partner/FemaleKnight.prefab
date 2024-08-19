@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 7420438465566094969}
   - component: {fileID: 3041811275195127020}
   m_Layer: 0
-  m_Name: Female Knight
+  m_Name: Knight Partner
   m_TagString: Partner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,6 +359,9 @@ MonoBehaviour:
   isAttacking: 0
   cooldownTime: 1
   isCooldown: 0
+  currentEnemyHealth: {fileID: 0}
+  slideDuration: 0.5
+  skillBar: {fileID: 0}
 --- !u!114 &5348084362196584814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,19 +376,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrier: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
   barrierCircleInstance: {fileID: 0}
-  cooldownTime: 0
-  maxCooldownTime: 20
-  currentCooldownTime: 0
-  cooldownRecoveryTimer: 1
-  cooldownRecoveryDelay: 0.1
-  skillActiveTime: 10
-  currentSkillActiveTime: 10
+  skill1CooldownTime: 0
+  skill1MaxCooldownTime: 10
+  skill1CurrentCooldownTime: 0
+  skill1ActiveTime: 10
+  currentSkill1ActiveTime: 10
+  skill2CooldownTime: 0
+  skill2MaxCooldownTime: 10
+  skill2CurrentCooldownTime: 0
+  skill2ActiveTime: 10
+  currentSkill2ActiveTime: 0
+  fusionCooldownTime: 0
+  fusionMaxCooldownTime: 20
+  fusionCurrentCooldownTime: 0
   fusionActiveTime: 10
   currentFusionActiveTime: 10
+  cooldownRecoveryTimer: 1
+  cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: 34ad963e94838f5449cd94e39c4976fb, type: 2}
   itemSprite: {fileID: 1740457147, guid: daee16f8629839e4396595793eb10a79, type: 3}
+  skill1Image: {fileID: 0}
+  fusionImage: {fileID: 0}
 --- !u!114 &7420438465566094969
 MonoBehaviour:
   m_ObjectHideFlags: 0
