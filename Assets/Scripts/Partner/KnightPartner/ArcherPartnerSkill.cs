@@ -113,6 +113,7 @@ public class ArcherPartnerSkill : MonoBehaviour
                     else if (Input.GetKeyDown(KeyCode.F))
                     {
                         FusionActivate();
+                        lineTrigger.lineEffect.StopHealing();
                         statusComponent.Set(0, fusionMaxCooldownTime);
                         state = AbilityState.fusion;
                         fusionActiveTime = currentFusionActiveTime;
@@ -161,7 +162,7 @@ public class ArcherPartnerSkill : MonoBehaviour
                 }
                 else
                 {
-                    PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
+                    PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
 
                     if (weaponChangeInfo != null)

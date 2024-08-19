@@ -69,14 +69,12 @@ public class KnightPartnerSkill : MonoBehaviour
     void Start()
     {
         partnerSkillManager = GameObject.Find("PartnerCanvas").GetComponent<PartnerSkillManager>();
-        //partnerSkillManager.partnerStatusBar.SetActive(true);
 
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
         fusionCurrentCooldownTime = fusionCooldownTime;
 
         statusComponent = partnerSkillManager.knightMPSliderObject.GetComponent<StatusBar>();
-
         partnerSkillManager.bubbleObject.SetActive(false);
         statusComponent.Set(fusionCooldownTime, fusionMaxCooldownTime);
 
@@ -114,6 +112,7 @@ public class KnightPartnerSkill : MonoBehaviour
                     else if (Input.GetKeyDown(KeyCode.F))
                     {
                         FusionActivate();
+                        lineTrigger.lineEffect.StopHealing();
                         statusComponent.Set(0, fusionMaxCooldownTime);
                         state = AbilityState.fusion;
                         fusionActiveTime = currentFusionActiveTime;
