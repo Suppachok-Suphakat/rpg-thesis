@@ -7,8 +7,6 @@ public class ArcherPartnerSkill : MonoBehaviour
 {
     [Header("Partner Skill")]
     [SerializeField] private GameObject skillPrefab;
-    [SerializeField] int cooldownTime;
-    [SerializeField] int maxCooldownTime;
 
     [Header("Skill 1")]
     [SerializeField] int skill1CooldownTime;
@@ -129,7 +127,6 @@ public class ArcherPartnerSkill : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("A");
                     PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
 

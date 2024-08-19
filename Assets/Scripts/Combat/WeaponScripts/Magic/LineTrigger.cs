@@ -76,10 +76,56 @@ public class LineTrigger : MonoBehaviour
                         // Show the skill bar of the new partner
                         if (hit.gameObject.GetComponent<KnightPartner>())
                         {
+                            // Create a new Gradient
+                            Gradient gradient = new Gradient();
+
+                            // Set up the color keys (color and time)
+                            GradientColorKey[] colorKey = new GradientColorKey[2];
+                            colorKey[0].color = Color.white;  // Start color
+                            colorKey[0].time = 0.0f;
+                            colorKey[1].color = Color.blue;   // End color
+                            colorKey[1].time = 1.0f;
+
+                            // Set up the alpha keys (alpha and time)
+                            GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+                            alphaKey[0].alpha = 1.0f;  // Full opacity at start
+                            alphaKey[0].time = 0.0f;
+                            alphaKey[1].alpha = 1.0f;  // Full opacity at end
+                            alphaKey[1].time = 1.0f;
+
+                            // Assign the color keys and alpha keys to the gradient
+                            gradient.SetKeys(colorKey, alphaKey);
+
+                            // Assign the gradient to the LineRenderer's color gradient
+                            lineEffect.lineRenderer.colorGradient = gradient;
+
                             hit.gameObject.GetComponent<KnightPartner>().skillBar.SetActive(true);
                         }
                         else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
                         {
+                            // Create a new Gradient
+                            Gradient gradient = new Gradient();
+
+                            // Set up the color keys (color and time)
+                            GradientColorKey[] colorKey = new GradientColorKey[2];
+                            colorKey[0].color = Color.white;  // Start color
+                            colorKey[0].time = 0.0f;
+                            colorKey[1].color = Color.green;   // End color
+                            colorKey[1].time = 1.0f;
+
+                            // Set up the alpha keys (alpha and time)
+                            GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+                            alphaKey[0].alpha = 1.0f;  // Full opacity at start
+                            alphaKey[0].time = 0.0f;
+                            alphaKey[1].alpha = 1.0f;  // Full opacity at end
+                            alphaKey[1].time = 1.0f;
+
+                            // Assign the color keys and alpha keys to the gradient
+                            gradient.SetKeys(colorKey, alphaKey);
+
+                            // Assign the gradient to the LineRenderer's color gradient
+                            lineEffect.lineRenderer.colorGradient = gradient;
+
                             hit.gameObject.GetComponent<ArcherPartnerAI>().skillBar.SetActive(true);
                         }
 
