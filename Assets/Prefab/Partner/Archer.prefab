@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 5560042757820007484}
   - component: {fileID: 7420438465566094969}
   - component: {fileID: 3041811275195127020}
+  - component: {fileID: 5456508914004489621}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Partner
@@ -366,6 +367,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackTime: 0.2
+--- !u!114 &5456508914004489621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885431940327789363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48c4d1ae5e2a964bb28939aa39e6e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackThrust: 15
+  damageRecoveryTime: 1
+  knockBackThrustAmount: 10
+  hp:
+    maxVal: 100
+    currVal: 0
+  hpBar: {fileID: 0}
 --- !u!1 &7732038939325236158
 GameObject:
   m_ObjectHideFlags: 0
