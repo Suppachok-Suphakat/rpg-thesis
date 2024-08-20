@@ -14,9 +14,8 @@ public class AttackerEnemyAI : MonoBehaviour
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private bool stopMovingWhileAttacking = false;
 
-    //GameObject partner;
-
     private bool canAttack = true;
+    private Transform currentTarget;
 
     private enum State
     {
@@ -68,9 +67,19 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Partner"))
+        if (other.CompareTag("Player") || other.CompareTag("Partner"))
         {
-            
+            currentTarget = other.transform;
+            state = State.Attacking;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Partner"))
+        {
+            currentTarget = null;
+            state = State.Roaming;
         }
     }
 
@@ -80,7 +89,7 @@ public class AttackerEnemyAI : MonoBehaviour
 
         attackerEnemyPathfinding.MoveTo(roamPosition);
 
-        if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) < attackRange)
+        if (currentTarget != null && Vector2.Distance(transform.position, currentTarget.position) < attackRange)
         {
             state = State.Attacking;
         }
@@ -93,20 +102,18 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void Attacking()
     {
-        if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) > attackRange)
+        if (currentTarget == null || Vector2.Distance(transform.position, currentTarget.position) > attackRange)
         {
             state = State.Roaming;
+            return;
         }
 
-        Vector3 directionToPlayer = (PlayerController.instance.transform.position - transform.position).normalized;
-        float distanceToPlayer = Vector2.Distance(transform.position, PlayerController.instance.transform.position);
+        Vector3 directionToTarget = (currentTarget.position - transform.position).normalized;
+        float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
 
-        attackerEnemyPathfinding.MoveTo(directionToPlayer);
-        //transform.Translate(directionToPlayer * chaseSpeed * Time.deltaTime);
+        attackerEnemyPathfinding.MoveTo(directionToTarget);
 
-        //FlipSprite();
-
-        if (distanceToPlayer <= damageRange && canAttack)
+        if (distanceToTarget <= damageRange && canAttack)
         {
             canAttack = false;
             (enemyType as IEnemy).Attack();
@@ -139,8 +146,8 @@ public class AttackerEnemyAI : MonoBehaviour
 
     void FlipSprite()
     {
-        // Flip the sprite based on the player's facing direction
-        if (PlayerController.instance.transform.position.x < transform.position.x)
+        // Flip the sprite based on the target's facing direction
+        if (currentTarget != null && currentTarget.position.x < transform.position.x)
         {
             transform.localScale = new Vector3(1, 1, 1); // Reset the scale to face right
         }

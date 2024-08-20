@@ -4,41 +4,66 @@ using UnityEngine;
 
 public class PartnerHealth : MonoBehaviour
 {
-    public static PartnerHealth Instance;
-
-    [SerializeField] private int startingHealth = 3;
-    [SerializeField] private GameObject deathVFXPrefab;
     [SerializeField] private float knockBackThrust = 15f;
 
-    private int currentHealth;
+    private bool canTakeDamage = true;
+    [SerializeField] private float damageRecoveryTime = 1f;
     private Knockback knockback;
+    [SerializeField] private float knockBackThrustAmount = 10f;
     private Flash flash;
 
     PartnerSkillManager partnerSkillManager;
-    [SerializeField] private StatusBar hpStatusComponent;
+    public Stat hp;
+    [SerializeField] StatusBar hpBar;
+    public bool isDead { get; private set; }
 
     private void Awake()
     {
-        Instance = this;
-
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
     }
 
     private void Start()
     {
-        currentHealth = startingHealth;
+        hp.currVal = hp.maxVal;
 
         partnerSkillManager = GameObject.Find("PartnerCanvas").GetComponent<PartnerSkillManager>();
-        hpStatusComponent = partnerSkillManager.hpSliderObject.GetComponent<StatusBar>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int amount, Transform hitTransform)
     {
-        currentHealth -= damage;
-        knockback.GetKnockedBack(transform, knockBackThrust);
+        if (!canTakeDamage) { return; }
+        knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
-        StartCoroutine(CheckDetectDeathRoutine());
+        canTakeDamage = false;
+
+        DeductHP(amount);
+
+        if (hp.currVal <= 0)
+        {
+            CheckIfPartnerDeath();
+        }
+
+        UpdateHpBar();
+        StartCoroutine(DamageRecoveryRoutine());
+    }
+
+    public void DeductHP(int amount)
+    {
+        //int damageAfterArmor = Mathf.Max(amount - PlayerStats.instance.armor, 0);
+        hp.currVal -= amount;
+        //currVal -= (amount - PlayerStats.instance.armor);
+    }
+
+    private void CheckIfPartnerDeath()
+    {
+        if (hp.currVal <= 0 && !isDead)
+        {
+            isDead = true;
+            Destroy(ActiveWeapon.Instance.gameObject);
+            hp.currVal = 0;
+            //GetComponent<Animator>().SetTrigger(DEATH_HASH);
+        }
     }
 
     private IEnumerator CheckDetectDeathRoutine()
@@ -47,11 +72,22 @@ public class PartnerHealth : MonoBehaviour
         DetectDeath();
     }
 
+    private IEnumerator DamageRecoveryRoutine()
+    {
+        yield return new WaitForSeconds(damageRecoveryTime);
+        canTakeDamage = true;
+    }
+
+    public void UpdateHpBar()
+    {
+        hpBar.Set(hp.currVal, hp.maxVal);
+    }
+
     public void DetectDeath()
     {
-        if (currentHealth <= 0)
+        if (hp.currVal <= 0)
         {
-            Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
+            //Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
