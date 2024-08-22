@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     public void Warp(Vector3 destinationPos)
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         transform.position = destinationPos;
     }
 
