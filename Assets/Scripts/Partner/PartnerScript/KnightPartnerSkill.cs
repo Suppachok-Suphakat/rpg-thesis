@@ -68,20 +68,33 @@ public class KnightPartnerSkill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        partnerSkillManager = GameObject.Find("PartnerCanvas").GetComponent<PartnerSkillManager>();
+        partnerSkillManager = PartnerSkillManager.Instance;
+
+        // Ensure these components are correctly set through the manager
+        if (partnerSkillManager != null)
+        {
+            foreach (var partner in partnerSkillManager.partners)
+            {
+                if (partner.partnerObject == gameObject)
+                {
+                    statusComponent = partner.statusComponent;
+                    statusComponent.gameObject.SetActive(false); // Ensure it's inactive initially
+
+                    if (partner.skillBubble != null)
+                    {
+                        partner.skillBubble.SetActive(false); // Ensure it's inactive initially
+                    }
+
+                    break;
+                }
+            }
+        }
 
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
         fusionCurrentCooldownTime = fusionCooldownTime;
 
-        statusComponent = partnerSkillManager.knightMPSliderObject.GetComponent<StatusBar>();
-        partnerSkillManager.bubbleObject.SetActive(false);
-        statusComponent.Set(fusionCooldownTime, fusionMaxCooldownTime);
-
-        toolbarSlot = GameObject.Find("Toolbar").GetComponent<ToolbarSlot>();
-
         skill1Image.fillAmount = 0;
-        //skill2Image.fillAmount = 0;
         fusionImage.fillAmount = 0;
     }
 
@@ -91,7 +104,17 @@ public class KnightPartnerSkill : MonoBehaviour
         switch (state)
         {
             case AbilityState.ready:
-                partnerSkillManager.bubbleObject.SetActive(true);
+                if (partnerSkillManager != null)
+                {
+                    foreach (var partner in partnerSkillManager.partners)
+                    {
+                        if (partner.partnerObject == gameObject)
+                        {
+                            partner.skillBubble.SetActive(true);
+                            break;
+                        }
+                    }
+                }
                 PlayerController.instance.GetComponent<Animator>().ResetTrigger("KnightFusionReturn");
                 gameObject.GetComponent<Animator>().ResetTrigger("Skill");
                 if (lineTrigger.currentTarget == this.transform)
@@ -120,7 +143,17 @@ public class KnightPartnerSkill : MonoBehaviour
                 }
                 break;
             case AbilityState.active1:
-                partnerSkillManager.bubbleObject.SetActive(false);
+                if (partnerSkillManager != null)
+                {
+                    foreach (var partner in partnerSkillManager.partners)
+                    {
+                        if (partner.partnerObject == gameObject)
+                        {
+                            partner.skillBubble.SetActive(false);
+                            break;
+                        }
+                    }
+                }
 
                 if (skill1ActiveTime >= 0)
                 {
@@ -157,7 +190,17 @@ public class KnightPartnerSkill : MonoBehaviour
                 /////////////////////////////////
                 break;
             case AbilityState.fusion:
-                partnerSkillManager.bubbleObject.SetActive(false);
+                if (partnerSkillManager != null)
+                {
+                    foreach (var partner in partnerSkillManager.partners)
+                    {
+                        if (partner.partnerObject == gameObject)
+                        {
+                            partner.skillBubble.SetActive(false);
+                            break;
+                        }
+                    }
+                }
 
                 if (fusionActiveTime >= 0)
                 {
@@ -260,6 +303,7 @@ public class KnightPartnerSkill : MonoBehaviour
     {
         Debug.Log("Partner Skill Activate");
         gameObject.GetComponent<Animator>().SetTrigger("Skill");
+
         if (toolbarSlot.weaponInfo != null)
         {
             weaponChangeInfo = toolbarSlot.weaponInfo;
@@ -268,6 +312,19 @@ public class KnightPartnerSkill : MonoBehaviour
 
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI
+
+        if (partnerSkillManager != null)
+        {
+            foreach (var partner in partnerSkillManager.partners)
+            {
+                if (partner.partnerObject == gameObject)
+                {
+                    partner.statusComponent.gameObject.SetActive(true);
+                    partner.skillBubble.SetActive(true);
+                    break;
+                }
+            }
+        }
     }
 
     public void FusionActivate()

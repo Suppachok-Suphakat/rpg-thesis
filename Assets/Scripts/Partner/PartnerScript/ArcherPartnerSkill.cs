@@ -73,8 +73,8 @@ public class ArcherPartnerSkill : MonoBehaviour
         skill2CurrentCooldownTime = skill2CooldownTime;
         fusionCurrentCooldownTime = fusionCooldownTime;
 
-        statusComponent = partnerSkillManager.archerMPSliderObject.GetComponent<StatusBar>();
-        partnerSkillManager.bubbleObject.SetActive(false);
+        statusComponent = GameObject.Find("ArcherPartnerSkill").GetComponent<StatusBar>();
+        GameObject.Find("ArcherSkillBubble").SetActive(false);
         statusComponent.Set(fusionCooldownTime, fusionMaxCooldownTime);
 
         toolbarSlot = GameObject.Find("Toolbar").GetComponent<ToolbarSlot>();
@@ -90,7 +90,7 @@ public class ArcherPartnerSkill : MonoBehaviour
         switch (state)
         {
             case AbilityState.ready:
-                partnerSkillManager.bubbleObject.SetActive(true);
+                GameObject.Find("ArcherSkillBubble").SetActive(true);
                 PlayerController.instance.GetComponent<Animator>().ResetTrigger("ArcherFusionReturn");
                 gameObject.GetComponent<Animator>().ResetTrigger("Skill");
                 if (lineTrigger.currentTarget == this.transform)
@@ -119,7 +119,7 @@ public class ArcherPartnerSkill : MonoBehaviour
                 }
                 break;
             case AbilityState.active1:
-                partnerSkillManager.bubbleObject.SetActive(false);
+                GameObject.Find("ArcherSkillBubble").SetActive(false);
 
                 if (skill1ActiveTime >= 0)
                 {
@@ -151,7 +151,7 @@ public class ArcherPartnerSkill : MonoBehaviour
                 /////////////////////////////////
                 break;
             case AbilityState.fusion:
-                partnerSkillManager.bubbleObject.SetActive(false);
+                GameObject.Find("ArcherSkillBubble").SetActive(false);
 
                 if (fusionActiveTime >= 0)
                 {

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,41 +5,34 @@ public class PartnerSkillManager : MonoBehaviour
 {
     public static PartnerSkillManager Instance;
 
-    public GameObject inventoryMenu;
-    public GameObject equipmentMenu;
-
-    public GameObject hpSliderObject;
-    public GameObject knightMPSliderObject;
-    public GameObject archerMPSliderObject;
-    public GameObject bubbleObject;
-
     public GameObject partnerMenu;
 
-    [Header("Knight Partner")]
-    public GameObject knightPartnerStatusBar;
-    public GameObject knightPartnerPreview;
-    public GameObject knightPartner;
-    public GameObject knightSelected;
+    [System.Serializable]
+    public class Partner
+    {
+        public string name;
+        public GameObject partnerObject;
+        public GameObject statusBar;
+        public GameObject preview;
+        public GameObject selectedIndicator;
+        public StatusBar statusComponent;
+        public GameObject skillBubble;
+    }
 
-    [Header("Archer Partner")]
-    public GameObject archerPartnerStatusBar;
-    public GameObject archerPartnerPreview;
-    public GameObject archerPartner;
-    public GameObject archerSelected;
+    public List<Partner> partners = new List<Partner>();
+    private List<int> activePartners = new List<int>();
+    private const int maxActivePartners = 3;
 
-    // Start is called before the first frame update
     void Start()
     {
         Instance = this;
-        //partnerStatusBar.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            PartnerMenu();
+            TogglePartnerMenu();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -49,22 +41,12 @@ public class PartnerSkillManager : MonoBehaviour
         }
     }
 
-    void PartnerMenu()
+    void TogglePartnerMenu()
     {
-        if (partnerMenu.activeSelf)
-        {
-            PlayerController.instance.isMenuActive = false;
-            Time.timeScale = 1;
-            partnerMenu.SetActive(false);
-        }
-        else
-        {
-            PlayerController.instance.isMenuActive = true;
-            Time.timeScale = 0;
-            partnerMenu.SetActive(true);
-            inventoryMenu.SetActive(false);
-            equipmentMenu.SetActive(false);
-        }
+        bool isActive = partnerMenu.activeSelf;
+        partnerMenu.SetActive(!isActive);
+        PlayerController.instance.isMenuActive = !isActive;
+        Time.timeScale = isActive ? 1 : 0;
     }
 
     void ExitPartnerMenu()
@@ -77,59 +59,44 @@ public class PartnerSkillManager : MonoBehaviour
         }
     }
 
-    public void KnightPartner()
+    public void SelectPartner(int index)
     {
-        if (!knightPartner.activeSelf)
+        if (activePartners.Contains(index))
         {
-            if (archerPartner.activeSelf)
+            // Deselect the partner if it's already active
+            SetPartnerActive(index, false);
+            activePartners.Remove(index);
+        }
+        else
+        {
+            if (activePartners.Count < maxActivePartners)
             {
-                archerPartner.SetActive(false);
-                archerPartnerStatusBar.SetActive(false);
-                archerPartnerPreview.SetActive(false);
-                archerSelected.SetActive(false);
+                // Select the partner if under the max limit
+                SetPartnerActive(index, true);
+                activePartners.Add(index);
             }
-
-            knightPartner.SetActive(true);
-            knightPartnerStatusBar.SetActive(true);
-            knightPartnerPreview.SetActive(true);
-            knightSelected.SetActive(true);
+            else
+            {
+                Debug.Log("Cannot activate more than " + maxActivePartners + " partners at once.");
+            }
         }
     }
 
-    public void ArcherPartner()
+    private void SetPartnerActive(int index, bool isActive)
     {
-        if (!archerPartner.activeSelf)
-        {
-            if (knightPartner.activeSelf)
-            {
-                knightPartner.SetActive(false);
-                knightPartnerStatusBar.SetActive(false);
-                knightPartnerPreview.SetActive(false);
-                knightSelected.SetActive(false);
-            }
+        partners[index].partnerObject.SetActive(isActive);
+        partners[index].statusBar.SetActive(isActive);
+        partners[index].preview.SetActive(isActive);
+        partners[index].selectedIndicator.SetActive(isActive);
 
-            archerPartner.SetActive(true);
-            archerPartnerStatusBar.SetActive(true);
-            archerPartnerPreview.SetActive(true);
-            archerSelected.SetActive(true);
+        if (partners[index].statusComponent != null)
+        {
+            partners[index].statusComponent.gameObject.SetActive(isActive);
         }
-    }
 
-    public void OtherPartner()
-    {
-        if (knightPartner.activeSelf)
+        if (partners[index].skillBubble != null)
         {
-            knightPartner.SetActive(false);
-            knightPartnerStatusBar.SetActive(false);
-            knightPartnerPreview.SetActive(false);
-            knightSelected.SetActive(false);
-        }
-        else if(archerPartner.activeSelf)
-        {
-            archerPartner.SetActive(false);
-            archerPartnerStatusBar.SetActive(false);
-            archerPartnerPreview.SetActive(false);
-            archerSelected.SetActive(false);
+            partners[index].skillBubble.SetActive(isActive);
         }
     }
 }
