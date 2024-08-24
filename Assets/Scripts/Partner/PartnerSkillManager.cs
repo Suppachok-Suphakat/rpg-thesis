@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PartnerSkillManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PartnerSkillManager : MonoBehaviour
     }
 
     public List<Partner> partners = new List<Partner>();
-    private List<int> activePartners = new List<int>();
+    public List<int> activePartners = new List<int>();
     private const int maxActivePartners = 3;
 
     void Start()
@@ -63,7 +64,7 @@ public class PartnerSkillManager : MonoBehaviour
     {
         if (activePartners.Contains(index))
         {
-            // Deselect the partner if it's already active
+            Debug.Log("Deselect");
             SetPartnerActive(index, false);
             activePartners.Remove(index);
         }
@@ -71,7 +72,8 @@ public class PartnerSkillManager : MonoBehaviour
         {
             if (activePartners.Count < maxActivePartners)
             {
-                // Select the partner if under the max limit
+
+                Debug.Log("Select");
                 SetPartnerActive(index, true);
                 activePartners.Add(index);
             }
