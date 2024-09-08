@@ -38,9 +38,9 @@ public class LineTrigger : MonoBehaviour
                         // Cancel the line if the same partner is clicked
                         lineEffect.StopHealing();
 
-                        if (hit.gameObject.GetComponent<KnightPartnerAI>())
+                        if (hit.gameObject.GetComponent<KnightHeroAI>())
                         {
-                            hit.gameObject.GetComponent<KnightPartnerAI>().skillBar.SetActive(false);
+                            hit.gameObject.GetComponent<KnightHeroAI>().skillBar.SetActive(false);
                         }
                         else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
                         {
@@ -54,7 +54,7 @@ public class LineTrigger : MonoBehaviour
                         // Hide the skill bar of the previous partner, if any
                         if (previousTarget != null && previousTarget != newPartner)
                         {
-                            KnightPartnerAI previousKnightPartner = previousTarget.GetComponent<KnightPartnerAI>();
+                            KnightHeroAI previousKnightPartner = previousTarget.GetComponent<KnightHeroAI>();
                             ArcherPartnerAI previousArcherPartner = previousTarget.GetComponent<ArcherPartnerAI>();
                             if (previousKnightPartner != null)
                             {
@@ -74,7 +74,7 @@ public class LineTrigger : MonoBehaviour
                         }
 
                         // Show the skill bar of the new partner
-                        if (hit.gameObject.GetComponent<KnightPartnerAI>())
+                        if (hit.gameObject.GetComponent<KnightHeroAI>())
                         {
                             // Create a new Gradient
                             Gradient gradient = new Gradient();
@@ -99,7 +99,7 @@ public class LineTrigger : MonoBehaviour
                             // Assign the gradient to the LineRenderer's color gradient
                             lineEffect.lineRenderer.colorGradient = gradient;
 
-                            hit.gameObject.GetComponent<KnightPartnerAI>().skillBar.SetActive(true);
+                            hit.gameObject.GetComponent<KnightHeroAI>().skillBar.SetActive(true);
                         }
                         else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
                         {
