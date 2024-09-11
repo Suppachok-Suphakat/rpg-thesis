@@ -24,7 +24,8 @@ public class KnightHeroAI : MonoBehaviour
         chase = 1,
         attack = 2,
         skill = 3,
-        death = 4
+        defense = 4,
+        death = 5
     }
 
     //RaycastHit2D hit;
@@ -42,7 +43,7 @@ public class KnightHeroAI : MonoBehaviour
     private float timeBetweenAttacks = 10f;
 
     private Transform enemyTransform;
-    private Transform focusEnemy;
+    public Transform focusEnemy;
 
     [SerializeField] private float cooldownTime;
     private float attackCooldown;
@@ -85,41 +86,33 @@ public class KnightHeroAI : MonoBehaviour
     {
         HandleMouseInput();
 
-        // Check for R key press to return to follow state
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentState = State.follow;
-            enemyTransform = null; // Clear the current enemy target
-            animator.SetBool("isWalking", false); // Stop walking animation
+            enemyTransform = null;
+            animator.SetBool("isWalking", false);
         }
 
+        // Switch between states
         switch (currentState)
         {
             case State.follow:
-                if (skill.barrierCircleInstance != null)
-                {
-                    currentState = State.skill;
-                }
                 FollowLogic();
                 break;
             case State.chase:
-                if (skill.barrierCircleInstance != null)
-                {
-                    currentState = State.skill;
-                }
                 ChaseLogic();
                 break;
             case State.attack:
-                if (skill.barrierCircleInstance != null)
-                {
-                    currentState = State.skill;
-                }
                 AttackLogic();
                 break;
             case State.skill:
                 SkillLogic();
                 break;
+            case State.defense:
+                AttackLogic();
+                break;
             case State.death:
+                /////////////////
                 break;
         }
     }
@@ -177,7 +170,7 @@ public class KnightHeroAI : MonoBehaviour
 
     void FollowLogic()
     {
-        FlipSprite();
+        FlipSprite(PlayerController.instance.transform);
         float distancePlayer = Vector3.Distance(transform.position, player.position);
 
         if (distancePlayer > 2)
@@ -186,7 +179,6 @@ public class KnightHeroAI : MonoBehaviour
             Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
             Vector2 directionToPlayer = (targetPosition - (Vector2)transform.position).normalized;
 
-            // Check if the partner is stuck or moving
             if (!isSliding && !CanMove(directionToPlayer))
             {
                 StartCoroutine(SlidePastObstacle(directionToPlayer));
@@ -202,49 +194,78 @@ public class KnightHeroAI : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
+            focusEnemy = other.transform;
+            enemyTransform = focusEnemy;
             currentState = State.chase;
-            enemyTransform = other.transform;
+        }
+        else if (other.CompareTag("EnemyAttack"))
+        {
+            currentState = State.defense;
+            animator.SetTrigger("Defend");  // Trigger the shield defense animation
+            rb.velocity = Vector2.zero;     // Stop movement during defense
+
+            // Optionally, add a brief pause after defending
+            StartCoroutine(DefenseCooldown());
         }
     }
 
     private void ChaseLogic()
     {
-        if (enemyTransform != null)
+        // If not attacking and the enemy is within range, chase the enemy
+        if (enemyTransform != null && !isAttacking)
         {
-            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-
-            animator.SetBool("isWalking", true);
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
             float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
 
-            if (distanceToEnemy > status.attackDistance)
+            if (distanceToPlayer > 10f)
             {
-                if (enemyTransform.position.x < transform.position.x)
-                    transform.localScale = new Vector3(-1, 1, 1);
-                else
-                    transform.localScale = new Vector3(1, 1, 1);
-
-                // Check if the partner is stuck or moving
-                if (!isSliding && !CanMove(directionToEnemy))
-                {
-                    StartCoroutine(SlidePastObstacle(directionToEnemy));
-                }
-                else
-                {
-                    transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
-                }
+                currentState = State.follow;
+            }
+            else if (distanceToEnemy <= status.attackDistance)
+            {
+                AttackLogic();
             }
             else
             {
-                AttackLogic();
+                Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
+                animator.SetBool("isWalking", true);
+
+                FlipSprite(enemyTransform);
+                transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
             }
         }
         else
         {
             currentState = State.follow;
+        }
+    }
+
+    private void GuardLogic()
+    {
+        if (enemyTransform != null)
+        {
+            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+
+            // If the enemy is close, block or attack
+            if (distanceToEnemy <= status.attackDistance)
+            {
+                AttackLogic();
+            }
+            // Stay close to the player if no enemies nearby
+            else if (distanceToPlayer > 2)
+            {
+                FollowLogic();
+            }
+        }
+        else
+        {
+            FollowLogic();
         }
     }
 
@@ -273,22 +294,80 @@ public class KnightHeroAI : MonoBehaviour
     {
         if (enemyTransform != null)
         {
-
-            isCooldown = true;
-            if (isCooldown)
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer > 10f)
             {
-                cooldownTime -= Time.deltaTime;
-                currentState = State.chase;
+                currentState = State.follow;
+                return;
+            }
 
-                if (cooldownTime <= 0)
+            if (!isAttacking)
+            {
+                isCooldown = true;
+                if (isCooldown)
                 {
-                    animator.SetBool("isWalking", false);
-                    animator.SetTrigger("Attack");
-                    isCooldown = false;
-                    cooldownTime = attackCooldown;
+                    cooldownTime -= Time.deltaTime;
+                    currentState = State.attack;
+
+                    if (cooldownTime <= 0)
+                    {
+                        AggroEnemy();
+                        animator.SetBool("isWalking", false);
+                        FlipSprite(enemyTransform);
+                        animator.SetTrigger("Attack");
+                        isAttacking = true;
+                        isCooldown = false;
+                        cooldownTime = attackCooldown;
+
+                        // After attacking, stand still and brace for another attack
+                        StartCoroutine(BraceForNextAttack());
+                    }
                 }
             }
         }
+    }
+
+    private IEnumerator BraceForNextAttack()
+    {
+        // Pause briefly to brace for another attack
+        yield return new WaitForSeconds(1f);  // Adjust the time as needed
+        isAttacking = false;
+
+        // Transition to defense state or back to chase/follow
+        currentState = State.defense;
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        isAttacking = false;
+
+        // Check if the enemy is still alive or gone, then decide next state
+        if (enemyTransform != null)
+        {
+            currentState = State.chase; // Continue chasing if enemy is alive
+        }
+        else
+        {
+            currentState = State.follow; // Return to follow if enemy is gone
+        }
+    }
+
+    // Aggro the enemy to prioritize attacking the Knight
+    void AggroEnemy()
+    {
+        AttackerEnemyAI enemyAI = enemyTransform.GetComponent<AttackerEnemyAI>();
+        if (enemyAI != null)
+        {
+            enemyAI.currentTarget = this.transform; // Make the enemy target the Knight
+        }
+    }
+
+    // Cooldown after defending
+    private IEnumerator DefenseCooldown()
+    {
+        yield return new WaitForSeconds(1.5f);  // Adjust duration of defense
+        currentState = State.chase;  // Return to chasing the enemy after defending
     }
 
     public void SkillLogic()
@@ -305,17 +384,20 @@ public class KnightHeroAI : MonoBehaviour
 
     public void Attack()
     {
+        // When attacking, the Knight should stop moving
         damageCollider.gameObject.SetActive(true);
+        rb.velocity = Vector2.zero;  // Stop the Knight from moving
     }
 
-    private void Unattacked()
+    public void AttackEnd() // Call this when the attack animation ends
     {
-        //damageCollider.gameObject.SetActive(false);
+        isAttacking = false;
+        damageCollider.gameObject.SetActive(false);
     }
 
-    void FlipSprite()
+    void FlipSprite(Transform flipTo)
     {
-        if (PlayerController.instance.transform.position.x < transform.position.x)
+        if (flipTo.transform.position.x < transform.position.x)
             transform.localScale = new Vector3(-1, 1, 1);
         else
             transform.localScale = new Vector3(1, 1, 1);

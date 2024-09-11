@@ -15,7 +15,7 @@ public class AttackerEnemyAI : MonoBehaviour
     [SerializeField] private bool stopMovingWhileAttacking = false;
 
     private bool canAttack = true;
-    private Transform currentTarget;
+    public Transform currentTarget;
 
     private enum State
     {

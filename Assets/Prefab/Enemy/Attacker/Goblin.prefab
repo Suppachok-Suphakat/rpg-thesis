@@ -345,6 +345,7 @@ MonoBehaviour:
   enemyType: {fileID: 2905894672231633956}
   attackCooldown: 2
   stopMovingWhileAttacking: 0
+  currentTarget: {fileID: 0}
 --- !u!114 &3536736226815985751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,7 +757,7 @@ GameObject:
   - component: {fileID: 8925334782376568100}
   m_Layer: 0
   m_Name: Damage Collider
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
