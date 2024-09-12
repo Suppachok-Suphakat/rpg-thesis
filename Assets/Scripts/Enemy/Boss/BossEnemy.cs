@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossEnemy : MonoBehaviour, BEnemy
 {
-    [SerializeField] private float chaseSpeed = 2;
     public Transform damageCollider;
     public Transform damageCollider2;
 

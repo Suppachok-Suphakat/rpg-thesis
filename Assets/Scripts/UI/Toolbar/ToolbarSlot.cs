@@ -11,7 +11,7 @@ public class ToolbarSlot : MonoBehaviour
 
     [SerializeField] StatusBar chargeBar;
 
-    [SerializeField] private ItemType itemType = new ItemType();
+    //[SerializeField] private ItemType itemType = new ItemType();
 
     private void Start()
     {

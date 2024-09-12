@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Attacker : MonoBehaviour, IEnemy
 {
-    //public Transform player;
-
-    [SerializeField] private float chaseSpeed = 2;
     public Transform damageCollider;
 
     private Animator myAnimator;

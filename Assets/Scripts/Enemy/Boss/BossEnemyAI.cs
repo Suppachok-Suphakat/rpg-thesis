@@ -9,7 +9,6 @@ public class BossEnemyAI : MonoBehaviour
 
     [SerializeField] private float roamChangeDirFloat = 2f;
     [SerializeField] private float attackRange = 0f;
-    [SerializeField] private float rangeAttackRange = 0f;
     [SerializeField] private float damageRange = 0f;
     [SerializeField] private MonoBehaviour enemyType;
     [SerializeField] private float attackCooldown = 2f;
@@ -20,11 +19,6 @@ public class BossEnemyAI : MonoBehaviour
     [Header("Phase2")]
     [SerializeField] public float phase2MoveSpeed = 2f;
 
-    [SerializeField] private float phase2AttackRange = 0f;
-    [SerializeField] private float phase2RangeAttackRange = 0f;
-    [SerializeField] private float phase2DamageRange = 0f;
-    [SerializeField] private float phase2AttackCooldown = 2f;
-    [SerializeField] private float phase2RangeAttackCooldown = 5f;
     [SerializeField] private int phase2BurstCount;
     [SerializeField] private int phase2ProjectilesPerBurst;
     [SerializeField] private int phase2TimeBetweenBursts;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PartnerHealth : MonoBehaviour
 {
-    [SerializeField] private float knockBackThrust = 15f;
-
     private bool canTakeDamage = true;
     [SerializeField] private float damageRecoveryTime = 1f;
     private Knockback knockback;

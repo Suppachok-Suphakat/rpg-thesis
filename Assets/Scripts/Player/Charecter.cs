@@ -74,7 +74,6 @@ public class Charecter : MonoBehaviour, IDamageable
     [SerializeField] private float staminaReduceDelay = 0.1f;
     private float staminaReduceTimer;
 
-    [SerializeField] private int manaReduceRate = 5;
     [SerializeField] private float manaReduceDelay = 0.1f;
     private float manaReduceTimer;
 

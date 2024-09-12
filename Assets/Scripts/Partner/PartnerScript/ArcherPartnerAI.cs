@@ -17,7 +17,6 @@ public class ArcherPartnerAI : Partner
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
     public bool isAttacking = false;
-    private float timeBetweenAttacks = 10f;
 
     private Transform enemyTransform;
     private Transform focusEnemy;

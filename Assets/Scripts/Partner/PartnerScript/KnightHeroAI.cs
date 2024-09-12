@@ -40,7 +40,6 @@ public class KnightHeroAI : MonoBehaviour
 
     public Transform damageCollider;
     public bool isAttacking = false;
-    private float timeBetweenAttacks = 10f;
 
     private Transform enemyTransform;
     public Transform focusEnemy;
