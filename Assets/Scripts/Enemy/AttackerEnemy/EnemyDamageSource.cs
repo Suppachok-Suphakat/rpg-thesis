@@ -17,10 +17,10 @@ public class EnemyDamageSource : MonoBehaviour
         Charecter playerHealth = other.gameObject.GetComponent<Charecter>();
         playerHealth?.TakeDamage(damageAmount, transform);
 
-        PartnerHealth partnerHealth = other.gameObject.GetComponent<PartnerHealth>();
+        HeroHealth partnerHealth = other.gameObject.GetComponent<HeroHealth>();
         partnerHealth?.TakeDamage(damageAmount, transform);
 
-        Knockback knockback = other.gameObject.GetComponent<Knockback>();
-        knockback.GetKnockedBack(transform, knockBackThrust);
+        //Knockback knockback = other.gameObject.GetComponent<Knockback>();
+        //knockback.GetKnockedBack(transform, this.knockBackThrust);
     }
 }

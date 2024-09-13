@@ -8,6 +8,7 @@ TagManager:
   - EnemyOrigin
   - Partner
   - EnemyAttack
+  - Hero
   layers:
   - Default
   - TransparentFX

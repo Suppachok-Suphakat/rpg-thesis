@@ -66,7 +66,7 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Partner"))
+        if (/*other.CompareTag("Player") || */other.CompareTag("Hero"))
         {
             currentTarget = other.transform;
             state = State.Attacking;
@@ -75,10 +75,15 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Partner"))
+        if (other.CompareTag("Player") || other.CompareTag("Hero"))
         {
-            currentTarget = null;
-            state = State.Roaming;
+            float distanceToTarget = Vector2.Distance(transform.position, other.transform.position);
+
+            if (distanceToTarget > attackRange)
+            {
+                currentTarget = null;
+                state = State.Roaming;
+            }
         }
     }
 
@@ -101,7 +106,7 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void Attacking()
     {
-        if (currentTarget == null || Vector2.Distance(transform.position, currentTarget.position) > attackRange)
+        if (currentTarget == null && Vector2.Distance(transform.position, currentTarget.position) > attackRange)
         {
             state = State.Roaming;
             return;

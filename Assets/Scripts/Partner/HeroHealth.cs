@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartnerHealth : MonoBehaviour
+public class HeroHealth : MonoBehaviour
 {
     private bool canTakeDamage = true;
     [SerializeField] private float damageRecoveryTime = 1f;

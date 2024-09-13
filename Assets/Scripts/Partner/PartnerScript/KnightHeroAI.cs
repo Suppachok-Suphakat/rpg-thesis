@@ -10,6 +10,8 @@ public class KnightHeroAI : MonoBehaviour
     public class Status
     {
         public float attackDistance = 5;
+        public float distanceToAttack = 1;
+        public float distanceToDefence = 5;
         public int followSpeed = 2;
         public int chaseSpeed = 2;
     }
@@ -28,8 +30,10 @@ public class KnightHeroAI : MonoBehaviour
         death = 5
     }
 
-    //RaycastHit2D hit;
+    //==Enemy Focus==//
     public LayerMask focus;
+    public Transform enemyTransform;
+    public Transform focusEnemy;
 
     //==Combat==//
     private Knockback knockback;
@@ -41,8 +45,6 @@ public class KnightHeroAI : MonoBehaviour
     public Transform damageCollider;
     public bool isAttacking = false;
 
-    private Transform enemyTransform;
-    public Transform focusEnemy;
 
     [SerializeField] private float cooldownTime;
     private float attackCooldown;
@@ -77,7 +79,7 @@ public class KnightHeroAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -88,7 +90,7 @@ public class KnightHeroAI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentState = State.follow;
-            enemyTransform = null;
+            focusEnemy = null;
             animator.SetBool("isWalking", false);
         }
 
@@ -104,14 +106,11 @@ public class KnightHeroAI : MonoBehaviour
             case State.attack:
                 AttackLogic();
                 break;
-            case State.skill:
-                SkillLogic();
-                break;
             case State.defense:
-                AttackLogic();
+                DefenceLogic();
                 break;
             case State.death:
-                /////////////////
+                //Death logic
                 break;
         }
     }
@@ -125,7 +124,7 @@ public class KnightHeroAI : MonoBehaviour
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0f;
 
-                float detectionRadius = 0.5f; // Adjust this radius as needed
+                float detectionRadius = 0.5f;
                 Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius, focus);
 
                 if (hit != null)
@@ -133,24 +132,21 @@ public class KnightHeroAI : MonoBehaviour
                     Debug.Log("Collider detected: " + hit.name);
                     if (hit.CompareTag("Enemy"))
                     {
-                        // Hide the arrow on the previous enemy if it exists
                         if (currentEnemyHealth != null)
                         {
                             Debug.Log("Hiding arrow on previous enemy: " + currentEnemyHealth.name);
                             currentEnemyHealth.HideArrow();
                         }
 
-                        // Set the new enemy and show the arrow
                         Debug.Log("Enemy detected: " + hit.name);
                         focusEnemy = hit.transform;
                         enemyTransform = focusEnemy;
                         currentState = State.chase;
 
-                        // Update the currentEnemyHealth reference
                         currentEnemyHealth = hit.GetComponent<EnemyHealth>();
                         if (currentEnemyHealth != null)
                         {
-                            Debug.Log("Showing arrow on new enemy: " + currentEnemyHealth.name);  // This log should now appear
+                            Debug.Log("Showing arrow on new enemy: " + currentEnemyHealth.name);
                             currentEnemyHealth.ShowArrow();
                         }
                     }
@@ -164,6 +160,26 @@ public class KnightHeroAI : MonoBehaviour
                     Debug.Log("No collider detected within radius.");
                 }
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            focusEnemy = other.transform;
+            enemyTransform = focusEnemy;
+            currentState = State.chase;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            focusEnemy = other.transform;
+            enemyTransform = focusEnemy;
+            currentState = State.chase;
         }
     }
 
@@ -193,48 +209,31 @@ public class KnightHeroAI : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void ChaseLogic()
     {
-        if (other.CompareTag("Enemy"))
+        if (focusEnemy != null)
         {
-            focusEnemy = other.transform;
-            enemyTransform = focusEnemy;
-            currentState = State.chase;
-        }
-        else if (other.CompareTag("EnemyAttack"))
-        {
-            currentState = State.defense;
-            animator.SetTrigger("Defend");  // Trigger the shield defense animation
-            rb.velocity = Vector2.zero;     // Stop movement during defense
+            float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
+            float distanceToDefence = Vector2.Distance(player.transform.position, focusEnemy.position);
+            float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
 
-            // Optionally, add a brief pause after defending
-            StartCoroutine(DefenseCooldown());
-        }
-    }
-
-    private void ChaseLogic()
-    {
-        // If not attacking and the enemy is within range, chase the enemy
-        if (enemyTransform != null && !isAttacking)
-        {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
-
-            if (distanceToPlayer > 10f)
+            if (distanceToEnemy <= status.attackDistance)
             {
-                currentState = State.follow;
-            }
-            else if (distanceToEnemy <= status.attackDistance)
-            {
-                AttackLogic();
+                currentState = State.defense;
             }
             else
             {
-                Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-                animator.SetBool("isWalking", true);
-
-                FlipSprite(enemyTransform);
-                transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
+                if(distanceToPlayer <= status.distanceToDefence)
+                {
+                    Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
+                    animator.SetBool("isWalking", true);
+                    FlipSprite(focusEnemy);
+                    transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
+                }
+                else 
+                {
+                    currentState = State.defense;
+                }
             }
         }
         else
@@ -243,28 +242,40 @@ public class KnightHeroAI : MonoBehaviour
         }
     }
 
-    private void GuardLogic()
+    void DefenceLogic()
     {
-        if (enemyTransform != null)
+        if (focusEnemy != null)
         {
-            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+            AggroEnemy();
+            float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
 
-            // If the enemy is close, block or attack
-            if (distanceToEnemy <= status.attackDistance)
+            if (distanceToEnemy <= status.distanceToAttack)
             {
                 AttackLogic();
             }
-            // Stay close to the player if no enemies nearby
-            else if (distanceToPlayer > 2)
+            else
             {
-                FollowLogic();
+                animator.SetBool("isWalking", false);
+                //animator.SetBool("isGuarding", true);
+            }
+
+            if (distanceToEnemy >= status.distanceToAttack)
+            {
+                currentState = State.chase;
             }
         }
         else
         {
-            FollowLogic();
+            currentState = State.follow;
+        }
+    }
+
+    void AggroEnemy()
+    {
+        AttackerEnemyAI enemyAI = enemyTransform.GetComponent<AttackerEnemyAI>();
+        if (enemyAI != null)
+        {
+            enemyAI.currentTarget = this.transform;
         }
     }
 
@@ -289,50 +300,34 @@ public class KnightHeroAI : MonoBehaviour
         isSliding = false;
     }
 
-    public void AttackLogic()
+    void AttackLogic()
     {
-        if (enemyTransform != null)
+        if (focusEnemy != null && !isAttacking)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            if (distanceToPlayer > 10f)
+            float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
+
+            if (distanceToEnemy <= status.distanceToAttack)
             {
-                currentState = State.follow;
-                return;
+                isAttacking = true;
+                animator.SetTrigger("Attack");
+                StartCoroutine(AttackCooldown());
             }
-
-            if (!isAttacking)
+            else
             {
-                isCooldown = true;
-                if (isCooldown)
-                {
-                    cooldownTime -= Time.deltaTime;
-                    currentState = State.attack;
-
-                    if (cooldownTime <= 0)
-                    {
-                        AggroEnemy();
-                        animator.SetBool("isWalking", false);
-                        FlipSprite(enemyTransform);
-                        animator.SetTrigger("Attack");
-                        isAttacking = true;
-                        isCooldown = false;
-                        cooldownTime = attackCooldown;
-
-                        // After attacking, stand still and brace for another attack
-                        StartCoroutine(BraceForNextAttack());
-                    }
-                }
+                currentState = State.defense;
             }
+        }
+        else
+        {
+            //currentState = State.follow;
         }
     }
 
     private IEnumerator BraceForNextAttack()
     {
-        // Pause briefly to brace for another attack
-        yield return new WaitForSeconds(1f);  // Adjust the time as needed
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
 
-        // Transition to defense state or back to chase/follow
         currentState = State.defense;
     }
 
@@ -340,55 +335,35 @@ public class KnightHeroAI : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
-
-        // Check if the enemy is still alive or gone, then decide next state
-        if (enemyTransform != null)
-        {
-            currentState = State.chase; // Continue chasing if enemy is alive
-        }
-        else
-        {
-            currentState = State.follow; // Return to follow if enemy is gone
-        }
-    }
-
-    // Aggro the enemy to prioritize attacking the Knight
-    void AggroEnemy()
-    {
-        AttackerEnemyAI enemyAI = enemyTransform.GetComponent<AttackerEnemyAI>();
-        if (enemyAI != null)
-        {
-            enemyAI.currentTarget = this.transform; // Make the enemy target the Knight
-        }
+        currentState = State.defense;
     }
 
     // Cooldown after defending
     private IEnumerator DefenseCooldown()
     {
-        yield return new WaitForSeconds(1.5f);  // Adjust duration of defense
-        currentState = State.chase;  // Return to chasing the enemy after defending
+        yield return new WaitForSeconds(1.5f);
+        currentState = State.chase;
     }
 
     public void SkillLogic()
     {
-            if (skill.barrierCircleInstance != null)
-            {
-                
-            }
-            else
-            {
-                currentState = State.follow;
-            }
+        if (skill.barrierCircleInstance != null)
+        {
+
+        }
+        else
+        {
+            currentState = State.follow;
+        }
     }
 
     public void Attack()
     {
-        // When attacking, the Knight should stop moving
         damageCollider.gameObject.SetActive(true);
-        rb.velocity = Vector2.zero;  // Stop the Knight from moving
+        rb.velocity = Vector2.zero;
     }
 
-    public void AttackEnd() // Call this when the attack animation ends
+    public void AttackEnd()
     {
         isAttacking = false;
         damageCollider.gameObject.SetActive(false);
