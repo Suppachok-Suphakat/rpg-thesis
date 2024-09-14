@@ -26,8 +26,8 @@ public class KnightHeroAI : MonoBehaviour
         chase = 1,
         attack = 2,
         skill = 3,
-        defense = 4,
-        death = 5
+        defence = 4,
+        death = 5,
     }
 
     //==Enemy Focus==//
@@ -106,7 +106,10 @@ public class KnightHeroAI : MonoBehaviour
             case State.attack:
                 AttackLogic();
                 break;
-            case State.defense:
+            case State.skill:
+                SkillLogic();
+                break;
+            case State.defence:
                 DefenceLogic();
                 break;
             case State.death:
@@ -219,7 +222,7 @@ public class KnightHeroAI : MonoBehaviour
 
             if (distanceToEnemy <= status.attackDistance)
             {
-                currentState = State.defense;
+                currentState = State.defence;
             }
             else
             {
@@ -232,7 +235,7 @@ public class KnightHeroAI : MonoBehaviour
                 }
                 else 
                 {
-                    currentState = State.defense;
+                    currentState = State.defence;
                 }
             }
         }
@@ -244,6 +247,7 @@ public class KnightHeroAI : MonoBehaviour
 
     void DefenceLogic()
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         if (focusEnemy != null)
         {
             AggroEnemy();
@@ -314,7 +318,7 @@ public class KnightHeroAI : MonoBehaviour
             }
             else
             {
-                currentState = State.defense;
+                currentState = State.defence;
             }
         }
         else
@@ -328,18 +332,18 @@ public class KnightHeroAI : MonoBehaviour
         yield return new WaitForSeconds(1f);
         isAttacking = false;
 
-        currentState = State.defense;
+        currentState = State.defence;
     }
 
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
-        currentState = State.defense;
+        currentState = State.defence;
     }
 
     // Cooldown after defending
-    private IEnumerator DefenseCooldown()
+    private IEnumerator DefenceCooldown()
     {
         yield return new WaitForSeconds(1.5f);
         currentState = State.chase;
@@ -347,14 +351,7 @@ public class KnightHeroAI : MonoBehaviour
 
     public void SkillLogic()
     {
-        if (skill.barrierCircleInstance != null)
-        {
-
-        }
-        else
-        {
-            currentState = State.follow;
-        }
+        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     public void Attack()

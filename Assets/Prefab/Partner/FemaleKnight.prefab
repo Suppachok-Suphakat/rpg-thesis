@@ -157,7 +157,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6.73003
+  m_Radius: 10
 --- !u!1 &3885431940327789363
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,11 +168,11 @@ GameObject:
   m_Component:
   - component: {fileID: 259461277180325349}
   - component: {fileID: 4791608287320432846}
+  - component: {fileID: 5348084362196584814}
   - component: {fileID: 4671313104234032614}
   - component: {fileID: 720139759768045012}
   - component: {fileID: 1703923707980321434}
   - component: {fileID: 5807049410484225480}
-  - component: {fileID: 5348084362196584814}
   - component: {fileID: 7420438465566094969}
   - component: {fileID: 3041811275195127020}
   - component: {fileID: 1419720091840540866}
@@ -232,6 +232,43 @@ MonoBehaviour:
   currentEnemyHealth: {fileID: 0}
   slideDuration: 0.5
   skillBar: {fileID: 0}
+--- !u!114 &5348084362196584814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885431940327789363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa88543bd8e6464d93f4e11980f6a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrier: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
+  barrierCircleInstance: {fileID: 0}
+  skill1CooldownTime: 0
+  skill1MaxCooldownTime: 10
+  skill1CurrentCooldownTime: 0
+  skill1ActiveTime: 10
+  currentSkill1ActiveTime: 10
+  skill2CooldownTime: 0
+  skill2MaxCooldownTime: 10
+  skill2CurrentCooldownTime: 0
+  skill2ActiveTime: 10
+  currentSkill2ActiveTime: 0
+  fusionCooldownTime: 0
+  fusionMaxCooldownTime: 20
+  fusionCurrentCooldownTime: 0
+  fusionActiveTime: 10
+  currentFusionActiveTime: 10
+  cooldownRecoveryTimer: 1
+  cooldownRecoveryDelay: 0.1
+  statusComponent: {fileID: 0}
+  toolbarSlot: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: 34ad963e94838f5449cd94e39c4976fb, type: 2}
+  itemSprite: {fileID: 1740457147, guid: daee16f8629839e4396595793eb10a79, type: 3}
+  skill1Image: {fileID: 0}
+  fusionImage: {fileID: 0}
 --- !u!212 &4671313104234032614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -352,7 +389,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -367,43 +404,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5348084362196584814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3885431940327789363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa88543bd8e6464d93f4e11980f6a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrier: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
-  barrierCircleInstance: {fileID: 0}
-  skill1CooldownTime: 0
-  skill1MaxCooldownTime: 10
-  skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 10
-  currentSkill1ActiveTime: 10
-  skill2CooldownTime: 0
-  skill2MaxCooldownTime: 10
-  skill2CurrentCooldownTime: 0
-  skill2ActiveTime: 10
-  currentSkill2ActiveTime: 0
-  fusionCooldownTime: 0
-  fusionMaxCooldownTime: 20
-  fusionCurrentCooldownTime: 0
-  fusionActiveTime: 10
-  currentFusionActiveTime: 10
-  cooldownRecoveryTimer: 1
-  cooldownRecoveryDelay: 0.1
-  statusComponent: {fileID: 0}
-  toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: 34ad963e94838f5449cd94e39c4976fb, type: 2}
-  itemSprite: {fileID: 1740457147, guid: daee16f8629839e4396595793eb10a79, type: 3}
-  skill1Image: {fileID: 0}
-  fusionImage: {fileID: 0}
 --- !u!114 &7420438465566094969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,11 +460,11 @@ GameObject:
   - component: {fileID: 6479001410756371445}
   m_Layer: 0
   m_Name: FemaleKnight
-  m_TagString: Partner
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6479001410756371445
 Transform:
   m_ObjectHideFlags: 0

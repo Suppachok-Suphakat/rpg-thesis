@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class KnightHeroSkill : MonoBehaviour
 {
-    [Header("Partner Skill")]
+    [Header("Hero Skill")]
     [SerializeField] private GameObject barrier;
     public GameObject barrierCircleInstance;
 
@@ -49,6 +49,8 @@ public class KnightHeroSkill : MonoBehaviour
     [SerializeField] public Image fusionImage;
 
     private LineTrigger lineTrigger;
+    private Rigidbody2D rb;
+    public KnightHeroAI knightHeroAI;
 
     enum AbilityState
     {
@@ -63,6 +65,8 @@ public class KnightHeroSkill : MonoBehaviour
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
+        rb = GetComponent<Rigidbody2D>();
+        knightHeroAI = GetComponent<KnightHeroAI>();
     }
 
     // Start is called before the first frame update
@@ -236,6 +240,7 @@ public class KnightHeroSkill : MonoBehaviour
             case AbilityState.cooldown:
                 if (skill1CooldownTime < skill1MaxCooldownTime)
                 {
+                    knightHeroAI.currentState = KnightHeroAI.State.defence;
                     Skill1CooldownOverTime();
                 }
                 if (skill2CooldownTime < skill2MaxCooldownTime)
@@ -303,6 +308,7 @@ public class KnightHeroSkill : MonoBehaviour
     {
         Debug.Log("Partner Skill Activate");
         gameObject.GetComponent<Animator>().SetTrigger("Skill");
+        knightHeroAI.currentState = KnightHeroAI.State.skill;
 
         if (toolbarSlot.weaponInfo != null)
         {
