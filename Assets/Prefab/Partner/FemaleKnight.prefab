@@ -256,11 +256,6 @@ MonoBehaviour:
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 10
   currentSkill2ActiveTime: 0
-  fusionCooldownTime: 0
-  fusionMaxCooldownTime: 20
-  fusionCurrentCooldownTime: 0
-  fusionActiveTime: 10
-  currentFusionActiveTime: 10
   cooldownRecoveryTimer: 1
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
@@ -269,6 +264,7 @@ MonoBehaviour:
   itemSprite: {fileID: 1740457147, guid: daee16f8629839e4396595793eb10a79, type: 3}
   skill1Image: {fileID: 0}
   fusionImage: {fileID: 0}
+  knightHeroAI: {fileID: 0}
 --- !u!212 &4671313104234032614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -310,7 +306,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 1979387029, guid: ba5d9c1f0f51a6b4080459c97edc78c7, type: 3}
+  m_Sprite: {fileID: -179866938, guid: 3d3449b414a719e49bcbbcc5f7b0b77e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

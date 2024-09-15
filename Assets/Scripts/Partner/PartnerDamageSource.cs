@@ -9,7 +9,6 @@ public class PartnerDamageSource : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
-        Debug.Log("Hit");
         enemyHealth?.TakeDamage(damageAmount);
     }
 }

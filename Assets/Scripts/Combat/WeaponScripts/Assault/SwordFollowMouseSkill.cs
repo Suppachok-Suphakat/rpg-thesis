@@ -56,7 +56,7 @@ public class SwordFollowMouseSkill : MonoBehaviour, IWeapon
         slashAnimSpawnPoint = GameObject.Find("SlashSpawnPoint").transform;
         currentActiveTime = activeTime;
 
-        sliderObject = GameObject.Find("MeleeWeaponSkillBar");
+        sliderObject = GameObject.Find("WeaponSkillBar");
         statusComponent = sliderObject.GetComponent<StatusBar>();
 
         statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);

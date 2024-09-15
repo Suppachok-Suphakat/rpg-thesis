@@ -56,7 +56,7 @@ public class Sword : MonoBehaviour, IWeapon
         //weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
         currentActiveTime = activeTime;
 
-        sliderObject = GameObject.Find("MeleeWeaponSkillBar");
+        sliderObject = GameObject.Find("WeaponSkillBar");
         statusComponent = sliderObject.GetComponent<StatusBar>();
 
         statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);

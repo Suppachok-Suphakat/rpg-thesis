@@ -41,7 +41,6 @@ public class KnightHeroSkill : MonoBehaviour
 
     [SerializeField] public Image skill1Image;
     //[SerializeField] public Image skill2Image;
-    [SerializeField] public Image fusionImage;
 
     private LineTrigger lineTrigger;
     private Rigidbody2D rb;
@@ -93,7 +92,6 @@ public class KnightHeroSkill : MonoBehaviour
         skill2CurrentCooldownTime = skill2CooldownTime;
 
         skill1Image.fillAmount = 0;
-        fusionImage.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -102,9 +100,8 @@ public class KnightHeroSkill : MonoBehaviour
         if (lineTrigger.currentTarget == this.transform && !fusionActivated)
         {
             // Activate fusion and set flag
-            FusionActivate();
             fusionActivated = true;
-            Debug.Log("Knight Fusion Activated");
+            FusionActivate();
         }
         else if (lineTrigger.currentTarget != this.transform && fusionActivated)
         {
@@ -126,12 +123,9 @@ public class KnightHeroSkill : MonoBehaviour
 
             GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
 
-            // Wait for the animation to finish before resetting the trigger
             StartCoroutine(ResetFusionTrigger());
 
-            // Reset fusion flag
             fusionActivated = false;
-            Debug.Log("Knight Fusion Deactivated");
         }
 
         switch (state)
@@ -187,6 +181,8 @@ public class KnightHeroSkill : MonoBehaviour
                 {
                     if(barrierCircleInstance != null)
                     {
+                        knightHeroAI.isUsingSkill = false;
+                        knightHeroAI.currentState = KnightHeroAI.State.defence;
                         DestroyMagicCircle();
                     }
 
@@ -229,7 +225,6 @@ public class KnightHeroSkill : MonoBehaviour
             case AbilityState.cooldown:
                 if (skill1CooldownTime < skill1MaxCooldownTime)
                 {
-                    knightHeroAI.currentState = KnightHeroAI.State.defence;
                     Skill1CooldownOverTime();
                 }
                 if (skill2CooldownTime < skill2MaxCooldownTime)
@@ -278,7 +273,7 @@ public class KnightHeroSkill : MonoBehaviour
     {
         Debug.Log("Partner Skill Activate");
         gameObject.GetComponent<Animator>().SetTrigger("Skill");
-        knightHeroAI.currentState = KnightHeroAI.State.skill;
+        knightHeroAI.SkillLogic();
 
         if (toolbarSlot.weaponInfo != null)
         {

@@ -51,6 +51,7 @@ public class KnightHeroAI : MonoBehaviour
     [SerializeField] private bool isCooldown;
 
     KnightHeroSkill skill;
+    public bool isUsingSkill = false;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
 
@@ -85,6 +86,12 @@ public class KnightHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState == State.skill)
+        {
+            SkillLogic();
+            return;
+        }
+
         HandleMouseInput();
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -168,6 +175,8 @@ public class KnightHeroAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (currentState == State.skill) return;
+
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
@@ -178,6 +187,8 @@ public class KnightHeroAI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (currentState == State.skill) return;
+
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
@@ -214,6 +225,9 @@ public class KnightHeroAI : MonoBehaviour
 
     void ChaseLogic()
     {
+        if (isUsingSkill) return;
+        if (currentState == State.skill) return;
+
         if (focusEnemy != null)
         {
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
@@ -245,8 +259,11 @@ public class KnightHeroAI : MonoBehaviour
         }
     }
 
-    void DefenceLogic()
+    public void DefenceLogic()
     {
+        if (isUsingSkill) return;
+        if (currentState == State.skill) return;
+
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (focusEnemy != null)
         {
@@ -351,6 +368,8 @@ public class KnightHeroAI : MonoBehaviour
 
     public void SkillLogic()
     {
+        isUsingSkill = true;
+        currentState = State.skill;
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
