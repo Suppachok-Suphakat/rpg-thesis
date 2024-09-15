@@ -27,20 +27,21 @@ public class LineTrigger : MonoBehaviour
             float detectionRadius = 0.5f; // Adjust this radius as needed
             Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius);
 
-            if (hit != null && hit.CompareTag("Partner"))
+            if (hit != null && hit.CompareTag("Hero"))
             {
-                Transform newPartner = hit.transform;
+                Transform newHero = hit.transform;
 
                 if (lineEffect != null)
                 {
-                    if (currentTarget == newPartner)
+                    if (currentTarget == newHero)
                     {
-                        // Cancel the line if the same partner is clicked
                         lineEffect.StopHealing();
 
                         if (hit.gameObject.GetComponent<KnightHeroAI>())
                         {
                             hit.gameObject.GetComponent<KnightHeroAI>().skillBar.SetActive(false);
+                            hit.gameObject.GetComponent<KnightHeroAI>().weaponBar.SetActive(false);
+                            hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
                         }
                         else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
                         {
@@ -51,14 +52,15 @@ public class LineTrigger : MonoBehaviour
                     }
                     else
                     {
-                        // Hide the skill bar of the previous partner, if any
-                        if (previousTarget != null && previousTarget != newPartner)
+                        if (previousTarget != null && previousTarget != newHero)
                         {
-                            KnightHeroAI previousKnightPartner = previousTarget.GetComponent<KnightHeroAI>();
+                            KnightHeroAI previousKnightHero = previousTarget.GetComponent<KnightHeroAI>();
                             ArcherPartnerAI previousArcherPartner = previousTarget.GetComponent<ArcherPartnerAI>();
-                            if (previousKnightPartner != null)
+                            if (previousKnightHero != null)
                             {
-                                previousKnightPartner.skillBar.SetActive(false);
+                                previousKnightHero.skillBar.SetActive(false);
+                                previousKnightHero.weaponBar.SetActive(false);
+                                hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
                             }
                             else if(previousArcherPartner != null)
                             {
@@ -100,6 +102,8 @@ public class LineTrigger : MonoBehaviour
                             lineEffect.lineRenderer.colorGradient = gradient;
 
                             hit.gameObject.GetComponent<KnightHeroAI>().skillBar.SetActive(true);
+                            hit.gameObject.GetComponent<KnightHeroAI>().weaponBar.SetActive(true);
+                            hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.FusionActivate();
                         }
                         else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
                         {
@@ -129,9 +133,9 @@ public class LineTrigger : MonoBehaviour
                             hit.gameObject.GetComponent<ArcherPartnerAI>().skillBar.SetActive(true);
                         }
 
-                        lineEffect.StartHealing(newPartner);
-                        currentTarget = newPartner;
-                        previousTarget = newPartner; // Update the previous target
+                        lineEffect.StartHealing(newHero);
+                        currentTarget = newHero;
+                        previousTarget = newHero; // Update the previous target
                     }
                 }
             }

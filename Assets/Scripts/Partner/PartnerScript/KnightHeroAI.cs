@@ -61,6 +61,9 @@ public class KnightHeroAI : MonoBehaviour
     private LineTrigger lineTrigger;
 
     [SerializeField] public GameObject skillBar;
+    [SerializeField] public GameObject weaponBar;
+
+    public KnightHeroSkill knightHeroSkill;
 
     private void Awake()
     {
@@ -74,6 +77,7 @@ public class KnightHeroAI : MonoBehaviour
         attackCooldown = cooldownTime;
         skill = gameObject.GetComponent<KnightHeroSkill>();
 
+        knightHeroSkill = GetComponent<KnightHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
@@ -204,6 +208,7 @@ public class KnightHeroAI : MonoBehaviour
 
         if (distancePlayer > 2)
         {
+            animator.SetBool("isDefencing", false);
             animator.SetBool("isWalking", true);
             Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
             Vector2 directionToPlayer = (targetPosition - (Vector2)transform.position).normalized;
@@ -243,6 +248,7 @@ public class KnightHeroAI : MonoBehaviour
                 if(distanceToPlayer <= status.distanceToDefence)
                 {
                     Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
+                    animator.SetBool("isDefencing", false);
                     animator.SetBool("isWalking", true);
                     FlipSprite(focusEnemy);
                     transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
@@ -277,7 +283,7 @@ public class KnightHeroAI : MonoBehaviour
             else
             {
                 animator.SetBool("isWalking", false);
-                //animator.SetBool("isGuarding", true);
+                animator.SetBool("isDefencing", true);
             }
 
             if (distanceToEnemy >= status.distanceToAttack)

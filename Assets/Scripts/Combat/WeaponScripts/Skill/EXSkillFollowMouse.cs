@@ -22,7 +22,7 @@ public class EXSkillFollowMouse : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
-        sliderObject = GameObject.Find("RangeWeaponSkillBar");
+        sliderObject = GameObject.Find("WeaponSkillBar");
         statusComponent = sliderObject.GetComponent<SkillStatusBar>();
     }
 

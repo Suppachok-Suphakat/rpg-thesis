@@ -38,6 +38,7 @@ public class KnightHeroSkill : MonoBehaviour
 
     WeaponInfo weaponChangeInfo;
     Sprite weaponChangeSprite;
+    public ActiveToolbar activeToolbar;
 
     [SerializeField] public Image skill1Image;
     //[SerializeField] public Image skill2Image;
@@ -97,37 +98,6 @@ public class KnightHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lineTrigger.currentTarget == this.transform && !fusionActivated)
-        {
-            // Activate fusion and set flag
-            fusionActivated = true;
-            FusionActivate();
-        }
-        else if (lineTrigger.currentTarget != this.transform && fusionActivated)
-        {
-            // Trigger return to normal state
-            PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
-            Debug.Log("KnightFusionReturn trigger called.");
-
-            // Handle weapon change back
-            if (weaponChangeInfo != null)
-            {
-                toolbarSlot.weaponInfo = weaponChangeInfo;
-                toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-            }
-            else
-            {
-                toolbarSlot.weaponInfo = null;
-                toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-            }
-
-            GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
-
-            StartCoroutine(ResetFusionTrigger());
-
-            fusionActivated = false;
-        }
-
         switch (state)
         {
             case AbilityState.ready:
@@ -302,6 +272,12 @@ public class KnightHeroSkill : MonoBehaviour
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusion");
 
+        if (toolbarSlot != null)
+        {
+            toolbarSlot.gameObject.SetActive(true); // Ensure toolbarSlot is active
+            StartCoroutine(EnsureUIUpdate()); // Ensure UI is updated
+        }
+
         if (toolbarSlot.weaponInfo != null)
         {
             weaponChangeInfo = toolbarSlot.weaponInfo;
@@ -310,7 +286,48 @@ public class KnightHeroSkill : MonoBehaviour
 
         toolbarSlot.weaponInfo = weaponInfo;
         toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
-        GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+        activeToolbar.ChangeActiveWeapon();
+
+        fusionActivated = true;
+    }
+
+    public IEnumerator EnsureUIUpdate()
+    {
+        yield return null; // Wait for a frame
+        if (toolbarSlot != null && toolbarSlot.gameObject.activeInHierarchy)
+        {
+            var imageComponent = toolbarSlot.slotSprite.GetComponent<Image>();
+            if (imageComponent != null)
+            {
+                imageComponent.sprite = itemSprite;
+                Debug.Log("Sprite updated to: " + itemSprite.name);
+            }
+        }
+    }
+
+    public void DeFusionActivate()
+    {
+        // Trigger return to normal state
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
+        Debug.Log("KnightFusionReturn trigger called.");
+
+        // Handle weapon change back
+        if (weaponChangeInfo != null)
+        {
+            toolbarSlot.weaponInfo = weaponChangeInfo;
+            toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+        }
+        else
+        {
+            toolbarSlot.weaponInfo = null;
+            toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+        }
+
+        activeToolbar.ChangeActiveWeapon();
+
+        StartCoroutine(ResetFusionTrigger());
+
+        fusionActivated = false;
     }
 
     IEnumerator ResetFusionTrigger()
