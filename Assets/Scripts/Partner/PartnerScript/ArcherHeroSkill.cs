@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ArcherPartnerSkill : MonoBehaviour
+public class ArcherHeroSkill : MonoBehaviour
 {
     [Header("Partner Skill")]
     [SerializeField] private GameObject skillPrefab;

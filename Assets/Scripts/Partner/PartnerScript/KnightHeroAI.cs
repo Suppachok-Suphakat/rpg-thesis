@@ -15,11 +15,6 @@ public class KnightHeroAI : MonoBehaviour
         public int followSpeed = 2;
         public int chaseSpeed = 2;
     }
-
-    public Transform player;
-    public Status status;
-    public State currentState = State.follow;
-
     public enum State
     {
         follow = 0,
@@ -29,6 +24,11 @@ public class KnightHeroAI : MonoBehaviour
         defence = 4,
         death = 5,
     }
+
+    public Transform player;
+    public Status status;
+    public State currentState = State.follow;
+
 
     //==Enemy Focus==//
     public LayerMask focus;

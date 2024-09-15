@@ -107,18 +107,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259461277180325349}
+  - component: {fileID: 2671126753039736215}
+  - component: {fileID: 5560042757820007484}
   - component: {fileID: 4671313104234032614}
   - component: {fileID: 720139759768045012}
   - component: {fileID: 1703923707980321434}
   - component: {fileID: 5807049410484225480}
-  - component: {fileID: 2671126753039736215}
-  - component: {fileID: 5560042757820007484}
   - component: {fileID: 7420438465566094969}
   - component: {fileID: 3041811275195127020}
   - component: {fileID: 5456508914004489621}
   m_Layer: 0
-  m_Name: Archer
-  m_TagString: Partner
+  m_Name: Archer Hero GO
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +140,71 @@ Transform:
   - {fileID: 7294065380370006877}
   m_Father: {fileID: 6479001410756371445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2671126753039736215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885431940327789363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4ba037ac61035448a058b5c3ef318c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  status:
+    attackDistance: 4
+    followSpeed: 2
+    chaseSpeed: 3
+  currentState: 0
+  focus:
+    serializedVersion: 2
+    m_Bits: 1024
+  arrowPrefab: {fileID: 3554886383241864524, guid: 3a8a87217b2af434799d573ea5b2b7c1, type: 3}
+  arrowSpawnPoint: {fileID: 3445103577796176274}
+  isAttacking: 0
+  cooldownTime: 3
+  isCooldown: 0
+  currentEnemyHealth: {fileID: 0}
+  slideDuration: 0.5
+  skillBar: {fileID: 0}
+--- !u!114 &5560042757820007484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885431940327789363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b7852b00d8d42478741ddf031b9282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
+  skill1CooldownTime: 0
+  skill1MaxCooldownTime: 10
+  skill1CurrentCooldownTime: 0
+  skill1ActiveTime: 10
+  currentSkill1ActiveTime: 10
+  skill2CooldownTime: 0
+  skill2MaxCooldownTime: 10
+  skill2CurrentCooldownTime: 0
+  skill2ActiveTime: 10
+  currentSkill2ActiveTime: 10
+  fusionCooldownTime: 0
+  fusionMaxCooldownTime: 20
+  fusionCurrentCooldownTime: 0
+  fusionActiveTime: 10
+  currentFusionActiveTime: 10
+  cooldownRecoveryTimer: 1
+  cooldownRecoveryDelay: 0.1
+  statusComponent: {fileID: 0}
+  toolbarSlot: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: 763e979fc391cf04f983a40b88d5b5a8, type: 2}
+  itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
+  skill1Image: {fileID: 0}
+  fusionImage: {fileID: 0}
 --- !u!212 &4671313104234032614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -275,71 +340,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2671126753039736215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3885431940327789363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4ba037ac61035448a058b5c3ef318c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  status:
-    attackDistance: 4
-    followSpeed: 2
-    chaseSpeed: 3
-  currentState: 0
-  focus:
-    serializedVersion: 2
-    m_Bits: 1024
-  arrowPrefab: {fileID: 3554886383241864524, guid: 3a8a87217b2af434799d573ea5b2b7c1, type: 3}
-  arrowSpawnPoint: {fileID: 3445103577796176274}
-  isAttacking: 0
-  cooldownTime: 3
-  isCooldown: 0
-  currentEnemyHealth: {fileID: 0}
-  slideDuration: 0.5
-  skillBar: {fileID: 0}
---- !u!114 &5560042757820007484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3885431940327789363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b7852b00d8d42478741ddf031b9282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
-  skill1CooldownTime: 0
-  skill1MaxCooldownTime: 10
-  skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 10
-  currentSkill1ActiveTime: 10
-  skill2CooldownTime: 0
-  skill2MaxCooldownTime: 10
-  skill2CurrentCooldownTime: 0
-  skill2ActiveTime: 10
-  currentSkill2ActiveTime: 10
-  fusionCooldownTime: 0
-  fusionMaxCooldownTime: 20
-  fusionCurrentCooldownTime: 0
-  fusionActiveTime: 10
-  currentFusionActiveTime: 10
-  cooldownRecoveryTimer: 1
-  cooldownRecoveryDelay: 0.1
-  statusComponent: {fileID: 0}
-  toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: 763e979fc391cf04f983a40b88d5b5a8, type: 2}
-  itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
-  skill1Image: {fileID: 0}
-  fusionImage: {fileID: 0}
 --- !u!114 &7420438465566094969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48c4d1ae5e2a964bb28939aa39e6e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackThrust: 15
   damageRecoveryTime: 1
   knockBackThrustAmount: 10
   hp:
@@ -397,11 +396,11 @@ GameObject:
   - component: {fileID: 6479001410756371445}
   m_Layer: 0
   m_Name: Archer
-  m_TagString: Partner
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6479001410756371445
 Transform:
   m_ObjectHideFlags: 0

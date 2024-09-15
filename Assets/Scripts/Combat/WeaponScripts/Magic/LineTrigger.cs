@@ -43,9 +43,9 @@ public class LineTrigger : MonoBehaviour
                             hit.gameObject.GetComponent<KnightHeroAI>().weaponBar.SetActive(false);
                             hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
                         }
-                        else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
+                        else if (hit.gameObject.GetComponent<ArcherHeroAI>())
                         {
-                            hit.gameObject.GetComponent<ArcherPartnerAI>().skillBar.SetActive(false);
+                            hit.gameObject.GetComponent<ArcherHeroAI>().skillBar.SetActive(false);
                         }
 
                         currentTarget = null;
@@ -55,7 +55,7 @@ public class LineTrigger : MonoBehaviour
                         if (previousTarget != null && previousTarget != newHero)
                         {
                             KnightHeroAI previousKnightHero = previousTarget.GetComponent<KnightHeroAI>();
-                            ArcherPartnerAI previousArcherPartner = previousTarget.GetComponent<ArcherPartnerAI>();
+                            ArcherHeroAI previousArcherPartner = previousTarget.GetComponent<ArcherHeroAI>();
                             if (previousKnightHero != null)
                             {
                                 previousKnightHero.skillBar.SetActive(false);
@@ -105,7 +105,7 @@ public class LineTrigger : MonoBehaviour
                             hit.gameObject.GetComponent<KnightHeroAI>().weaponBar.SetActive(true);
                             hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.FusionActivate();
                         }
-                        else if (hit.gameObject.GetComponent<ArcherPartnerAI>())
+                        else if (hit.gameObject.GetComponent<ArcherHeroAI>())
                         {
                             // Create a new Gradient
                             Gradient gradient = new Gradient();
@@ -130,7 +130,7 @@ public class LineTrigger : MonoBehaviour
                             // Assign the gradient to the LineRenderer's color gradient
                             lineEffect.lineRenderer.colorGradient = gradient;
 
-                            hit.gameObject.GetComponent<ArcherPartnerAI>().skillBar.SetActive(true);
+                            hit.gameObject.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
                         }
 
                         lineEffect.StartHealing(newHero);

@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 1419720091840540866}
   m_Layer: 0
   m_Name: Knight Hero GO
-  m_TagString: Partner
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,9 +229,12 @@ MonoBehaviour:
   isAttacking: 0
   cooldownTime: 1
   isCooldown: 0
+  isUsingSkill: 0
   currentEnemyHealth: {fileID: 0}
   slideDuration: 0.5
   skillBar: {fileID: 0}
+  weaponBar: {fileID: 0}
+  knightHeroSkill: {fileID: 0}
 --- !u!114 &5348084362196584814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,8 +265,8 @@ MonoBehaviour:
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: 34ad963e94838f5449cd94e39c4976fb, type: 2}
   itemSprite: {fileID: 1740457147, guid: daee16f8629839e4396595793eb10a79, type: 3}
+  activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
-  fusionImage: {fileID: 0}
   knightHeroAI: {fileID: 0}
 --- !u!212 &4671313104234032614
 SpriteRenderer:
@@ -460,7 +463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6479001410756371445
 Transform:
   m_ObjectHideFlags: 0

@@ -2,8 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherPartnerAI : Partner
+public class ArcherHeroAI : MonoBehaviour
 {
+    public class Status
+    {
+        public float attackDistance = 5;
+        public float distanceToAttack = 1;
+        public float distanceToDefence = 5;
+        public int followSpeed = 2;
+        public int chaseSpeed = 2;
+    }
+    public enum State
+    {
+        follow = 0,
+        chase = 1,
+        attack = 2,
+        skill = 3,
+        defence = 4,
+        death = 5,
+    }
+
+    public Transform player;
+    public Status status;
+    public State currentState = State.follow;
+
+
     //RaycastHit2D hit;
     public LayerMask focus;
 
@@ -25,7 +48,7 @@ public class ArcherPartnerAI : Partner
     private float attackCooldown;
     [SerializeField] private bool isCooldown;
 
-    ArcherPartnerSkill skill;
+    ArcherHeroSkill skill;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
 
@@ -44,7 +67,7 @@ public class ArcherPartnerAI : Partner
         animator = GetComponentInChildren<Animator>();
 
         attackCooldown = cooldownTime;
-        skill = gameObject.GetComponent<ArcherPartnerSkill>();
+        skill = gameObject.GetComponent<ArcherHeroSkill>();
 
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
@@ -230,7 +253,7 @@ public class ArcherPartnerAI : Partner
         isSliding = false;
     }
 
-    public override void AttackLogic()
+    public void AttackLogic()
     {
         if (enemyTransform != null)
         {
