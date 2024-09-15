@@ -23,12 +23,7 @@ public class KnightHeroSkill : MonoBehaviour
     [SerializeField] float skill2ActiveTime;
     [SerializeField] float currentSkill2ActiveTime;
 
-    [Header("Fusion")]
-    [SerializeField] int fusionCooldownTime;
-    [SerializeField] int fusionMaxCooldownTime;
-    [SerializeField] int fusionCurrentCooldownTime;
-    [SerializeField] float fusionActiveTime;
-    [SerializeField] float currentFusionActiveTime;
+    private bool fusionActivated = false;
 
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
@@ -96,7 +91,6 @@ public class KnightHeroSkill : MonoBehaviour
 
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
-        fusionCurrentCooldownTime = fusionCooldownTime;
 
         skill1Image.fillAmount = 0;
         fusionImage.fillAmount = 0;
@@ -105,6 +99,41 @@ public class KnightHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lineTrigger.currentTarget == this.transform && !fusionActivated)
+        {
+            // Activate fusion and set flag
+            FusionActivate();
+            fusionActivated = true;
+            Debug.Log("Knight Fusion Activated");
+        }
+        else if (lineTrigger.currentTarget != this.transform && fusionActivated)
+        {
+            // Trigger return to normal state
+            PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
+            Debug.Log("KnightFusionReturn trigger called.");
+
+            // Handle weapon change back
+            if (weaponChangeInfo != null)
+            {
+                toolbarSlot.weaponInfo = weaponChangeInfo;
+                toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+            }
+            else
+            {
+                toolbarSlot.weaponInfo = null;
+                toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+            }
+
+            GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+
+            // Wait for the animation to finish before resetting the trigger
+            StartCoroutine(ResetFusionTrigger());
+
+            // Reset fusion flag
+            fusionActivated = false;
+            Debug.Log("Knight Fusion Deactivated");
+        }
+
         switch (state)
         {
             case AbilityState.ready:
@@ -119,7 +148,6 @@ public class KnightHeroSkill : MonoBehaviour
                         }
                     }
                 }
-                PlayerController.instance.GetComponent<Animator>().ResetTrigger("KnightFusionReturn");
                 gameObject.GetComponent<Animator>().ResetTrigger("Skill");
                 if (lineTrigger.currentTarget == this.transform)
                 {
@@ -135,14 +163,6 @@ public class KnightHeroSkill : MonoBehaviour
                         //statusComponent.Set(0, skill2MaxCooldownTime);
                         //state = AbilityState.active2;
                         //skill2ActiveTime = currentSkill2ActiveTime;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.F))
-                    {
-                        FusionActivate();
-                        lineTrigger.lineEffect.StopHealing();
-                        statusComponent.Set(0, fusionMaxCooldownTime);
-                        state = AbilityState.fusion;
-                        fusionActiveTime = currentFusionActiveTime;
                     }
                 }
                 break;
@@ -170,7 +190,7 @@ public class KnightHeroSkill : MonoBehaviour
                         DestroyMagicCircle();
                     }
 
-                    PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
+
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
 
                     if (weaponChangeInfo != null)
@@ -205,37 +225,6 @@ public class KnightHeroSkill : MonoBehaviour
                         }
                     }
                 }
-
-                if (fusionActiveTime >= 0)
-                {
-                    fusionActiveTime -= Time.deltaTime;
-                }
-                else
-                {
-                    if (barrierCircleInstance != null)
-                    {
-                        DestroyMagicCircle();
-                    }
-
-                    PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
-                    transform.parent.localScale = new Vector3(1f, 1f, 1f);
-
-                    if (weaponChangeInfo != null)
-                    {
-                        toolbarSlot.weaponInfo = weaponChangeInfo;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
-                    else
-                    {
-                        toolbarSlot.weaponInfo = null;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
-
-                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
-
-                    state = AbilityState.cooldown;
-                    fusionCooldownTime = fusionCurrentCooldownTime;
-                }
                 break;
             case AbilityState.cooldown:
                 if (skill1CooldownTime < skill1MaxCooldownTime)
@@ -247,13 +236,8 @@ public class KnightHeroSkill : MonoBehaviour
                 {
                     Skill2CooldownOverTime();
                 }
-                if (fusionCooldownTime < fusionMaxCooldownTime)
-                {
-                    FusionCooldownOverTime();
-                }
                 if (skill1CooldownTime >= skill1MaxCooldownTime &&
-                    skill2CooldownTime >= skill2MaxCooldownTime &&
-                    fusionCooldownTime >= fusionMaxCooldownTime)
+                    skill2CooldownTime >= skill2MaxCooldownTime)
                 {
                     state = AbilityState.ready;
                 }
@@ -290,20 +274,6 @@ public class KnightHeroSkill : MonoBehaviour
         skill2CooldownTime = Mathf.Min(skill2CooldownTime, skill2MaxCooldownTime);
     }
 
-    public void FusionCooldownOverTime()
-    {
-        if (cooldownRecoveryTimer <= 0)
-        {
-            fusionCooldownTime += 1;
-            cooldownRecoveryTimer = cooldownRecoveryDelay;
-        }
-        else
-        {
-            cooldownRecoveryTimer -= Time.deltaTime;
-        }
-        fusionCooldownTime = Mathf.Min(fusionCooldownTime, fusionMaxCooldownTime);
-    }
-
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
@@ -336,7 +306,6 @@ public class KnightHeroSkill : MonoBehaviour
     public void FusionActivate()
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusion");
-        transform.parent.localScale = new Vector3(0f, 0f, 0f);
 
         if (toolbarSlot.weaponInfo != null)
         {
@@ -347,16 +316,12 @@ public class KnightHeroSkill : MonoBehaviour
         toolbarSlot.weaponInfo = weaponInfo;
         toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
         GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
-
-        fusionCooldownTime = 0;  // Start cooldown
-        statusComponent.Set(0, fusionMaxCooldownTime);  // Update status bar
-        UpdateCooldownUI();  // Update UI
     }
 
-    private void ResetPartnerState()
+    IEnumerator ResetFusionTrigger()
     {
-        gameObject.GetComponent<Animator>().ResetTrigger("Skill");
-        gameObject.GetComponent<Animator>().SetTrigger("Idle"); // Set the partner back to the idle state
+        yield return new WaitForSeconds(0.1f);
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("KnightFusionReturn");
     }
 
     public void SpawnMagicCircle()
@@ -401,16 +366,6 @@ public class KnightHeroSkill : MonoBehaviour
         else
         {
             //skill2Image.fillAmount = 1;
-        }
-
-        // Update Fusion UI
-        if (fusionCooldownTime < fusionMaxCooldownTime)
-        {
-            fusionImage.fillAmount = fusionCooldownTime / (float)fusionMaxCooldownTime;
-        }
-        else
-        {
-            fusionImage.fillAmount = 1;
         }
     }
 }
