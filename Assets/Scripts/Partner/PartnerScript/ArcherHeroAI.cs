@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ArcherHeroAI : MonoBehaviour
 {
+    [System.Serializable]
     public class Status
     {
         public float attackDistance = 5;
@@ -12,14 +13,14 @@ public class ArcherHeroAI : MonoBehaviour
         public int followSpeed = 2;
         public int chaseSpeed = 2;
     }
+
     public enum State
     {
         follow = 0,
         chase = 1,
         attack = 2,
         skill = 3,
-        defence = 4,
-        death = 5,
+        death = 4
     }
 
     public Transform player;
@@ -58,6 +59,9 @@ public class ArcherHeroAI : MonoBehaviour
     private LineTrigger lineTrigger;
 
     [SerializeField] public GameObject skillBar;
+    [SerializeField] public GameObject weaponBar;
+
+    public ArcherHeroSkill archerHeroSkill;
 
     private void Awake()
     {
@@ -69,6 +73,7 @@ public class ArcherHeroAI : MonoBehaviour
         attackCooldown = cooldownTime;
         skill = gameObject.GetComponent<ArcherHeroSkill>();
 
+        archerHeroSkill = GetComponent<ArcherHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
@@ -161,7 +166,7 @@ public class ArcherHeroAI : MonoBehaviour
     }
     void FollowLogic()
     {
-        FlipSprite();
+        FlipSprite(PlayerController.instance.transform);
         float distancePlayer = Vector3.Distance(transform.position, player.position);
 
         if (distancePlayer > 2)
@@ -170,7 +175,6 @@ public class ArcherHeroAI : MonoBehaviour
             Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
             Vector2 directionToPlayer = (targetPosition - (Vector2)transform.position).normalized;
 
-            // Check if the partner is stuck or moving
             if (!isSliding && !CanMove(directionToPlayer))
             {
                 StartCoroutine(SlidePastObstacle(directionToPlayer));
@@ -305,9 +309,9 @@ public class ArcherHeroAI : MonoBehaviour
         //damageCollider.gameObject.SetActive(false);
     }
 
-    void FlipSprite()
+    void FlipSprite(Transform flipTo)
     {
-        if (PlayerController.instance.transform.position.x < transform.position.x)
+        if (flipTo.transform.position.x < transform.position.x)
             transform.localScale = new Vector3(-1, 1, 1);
         else
             transform.localScale = new Vector3(1, 1, 1);

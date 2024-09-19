@@ -13,15 +13,9 @@ public class Arrow : MonoBehaviour
 
     private Vector3 startPosition;
 
-    [SerializeField] private GameObject sliderObject;
-    [SerializeField] private SkillStatusBar statusComponent;
-    public int chargeAmount;
-
     private void Start()
     {
         startPosition = transform.position;
-        sliderObject = GameObject.Find("RangeWeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
     }
 
     private void Update()
@@ -65,11 +59,6 @@ public class Arrow : MonoBehaviour
         {
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);
-        }
-
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            statusComponent.chargeAmount++;
         }
     }
 

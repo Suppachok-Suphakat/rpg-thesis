@@ -78,7 +78,7 @@ public class SwordFollowMouseSkill : MonoBehaviour, IWeapon
         switch (state)
         {
             case AbilityState.ready:
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     SkillActivate();
                     statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);

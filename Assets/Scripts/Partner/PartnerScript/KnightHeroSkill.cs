@@ -300,7 +300,6 @@ public class KnightHeroSkill : MonoBehaviour
             if (imageComponent != null)
             {
                 imageComponent.sprite = itemSprite;
-                Debug.Log("Sprite updated to: " + itemSprite.name);
             }
         }
     }
@@ -309,7 +308,6 @@ public class KnightHeroSkill : MonoBehaviour
     {
         // Trigger return to normal state
         PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
-        Debug.Log("KnightFusionReturn trigger called.");
 
         // Handle weapon change back
         if (weaponChangeInfo != null)

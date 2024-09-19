@@ -22,15 +22,10 @@ public class ArcherHeroSkill : MonoBehaviour
     [SerializeField] float skill2ActiveTime;
     [SerializeField] float currentSkill2ActiveTime;
 
-    [Header("Fusion")]
-    [SerializeField] int fusionCooldownTime;
-    [SerializeField] int fusionMaxCooldownTime;
-    [SerializeField] int fusionCurrentCooldownTime;
-    [SerializeField] float fusionActiveTime;
-    [SerializeField] float currentFusionActiveTime;
-
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
+
+    private bool fusionActivated = false;
 
     [SerializeField] private StatusBar statusComponent;
     PartnerSkillManager partnerSkillManager;
@@ -42,10 +37,10 @@ public class ArcherHeroSkill : MonoBehaviour
 
     WeaponInfo weaponChangeInfo;
     Sprite weaponChangeSprite;
+    public ActiveToolbar activeToolbar;
 
     [SerializeField] public Image skill1Image;
     //[SerializeField] public Image skill2Image;
-    [SerializeField] public Image fusionImage;
 
     private LineTrigger lineTrigger;
 
@@ -71,17 +66,12 @@ public class ArcherHeroSkill : MonoBehaviour
 
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
-        fusionCurrentCooldownTime = fusionCooldownTime;
 
         statusComponent = GameObject.Find("ArcherPartnerSkill").GetComponent<StatusBar>();
         GameObject.Find("ArcherSkillBubble").SetActive(false);
-        statusComponent.Set(fusionCooldownTime, fusionMaxCooldownTime);
-
-        toolbarSlot = GameObject.Find("Toolbar").GetComponent<ToolbarSlot>();
 
         skill1Image.fillAmount = 0;
         //skill2Image.fillAmount = 0;
-        fusionImage.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -90,8 +80,7 @@ public class ArcherHeroSkill : MonoBehaviour
         switch (state)
         {
             case AbilityState.ready:
-                GameObject.Find("ArcherSkillBubble").SetActive(true);
-                PlayerController.instance.GetComponent<Animator>().ResetTrigger("ArcherFusionReturn");
+                //GameObject.Find("ArcherSkillBubble").SetActive(true);
                 gameObject.GetComponent<Animator>().ResetTrigger("Skill");
                 if (lineTrigger.currentTarget == this.transform)
                 {
@@ -108,14 +97,6 @@ public class ArcherHeroSkill : MonoBehaviour
                         //state = AbilityState.active2;
                         //skill2ActiveTime = currentSkill2ActiveTime;
                     }
-                    else if (Input.GetKeyDown(KeyCode.F))
-                    {
-                        FusionActivate();
-                        lineTrigger.lineEffect.StopHealing();
-                        statusComponent.Set(0, fusionMaxCooldownTime);
-                        state = AbilityState.fusion;
-                        fusionActiveTime = currentFusionActiveTime;
-                    }
                 }
                 break;
             case AbilityState.active1:
@@ -127,7 +108,6 @@ public class ArcherHeroSkill : MonoBehaviour
                 }
                 else
                 {
-                    PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
 
                     if (weaponChangeInfo != null)
@@ -151,33 +131,7 @@ public class ArcherHeroSkill : MonoBehaviour
                 /////////////////////////////////
                 break;
             case AbilityState.fusion:
-                GameObject.Find("ArcherSkillBubble").SetActive(false);
-
-                if (fusionActiveTime >= 0)
-                {
-                    fusionActiveTime -= Time.deltaTime;
-                }
-                else
-                {
-                    PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
-                    transform.parent.localScale = new Vector3(1f, 1f, 1f);
-
-                    if (weaponChangeInfo != null)
-                    {
-                        toolbarSlot.weaponInfo = weaponChangeInfo;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
-                    else
-                    {
-                        toolbarSlot.weaponInfo = null;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
-
-                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
-
-                    state = AbilityState.cooldown;
-                    fusionCooldownTime = fusionCurrentCooldownTime;
-                }
+                /////////////////////////////////
                 break;
             case AbilityState.cooldown:
                 if (skill1CooldownTime < skill1MaxCooldownTime)
@@ -188,13 +142,8 @@ public class ArcherHeroSkill : MonoBehaviour
                 {
                     Skill2CooldownOverTime();
                 }
-                if (fusionCooldownTime < fusionMaxCooldownTime)
-                {
-                    FusionCooldownOverTime();
-                }
                 if (skill1CooldownTime >= skill1MaxCooldownTime &&
-                    skill2CooldownTime >= skill2MaxCooldownTime &&
-                    fusionCooldownTime >= fusionMaxCooldownTime)
+                    skill2CooldownTime >= skill2MaxCooldownTime)
                 {
                     state = AbilityState.ready;
                 }
@@ -231,20 +180,6 @@ public class ArcherHeroSkill : MonoBehaviour
         skill2CooldownTime = Mathf.Min(skill2CooldownTime, skill2MaxCooldownTime);
     }
 
-    public void FusionCooldownOverTime()
-    {
-        if (cooldownRecoveryTimer <= 0)
-        {
-            fusionCooldownTime += 1;
-            cooldownRecoveryTimer = cooldownRecoveryDelay;
-        }
-        else
-        {
-            cooldownRecoveryTimer -= Time.deltaTime;
-        }
-        fusionCooldownTime = Mathf.Min(fusionCooldownTime, fusionMaxCooldownTime);
-    }
-
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
@@ -267,7 +202,12 @@ public class ArcherHeroSkill : MonoBehaviour
     public void FusionActivate()
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusion");
-        transform.parent.localScale = new Vector3(0f, 0f, 0f);
+
+        if (toolbarSlot != null)
+        {
+            toolbarSlot.gameObject.SetActive(true); // Ensure toolbarSlot is active
+            StartCoroutine(EnsureUIUpdate()); // Ensure UI is updated
+        }
 
         if (toolbarSlot.weaponInfo != null)
         {
@@ -277,11 +217,52 @@ public class ArcherHeroSkill : MonoBehaviour
 
         toolbarSlot.weaponInfo = weaponInfo;
         toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
-        GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+        activeToolbar.ChangeActiveWeapon();
 
-        fusionCooldownTime = 0;  // Start cooldown
-        statusComponent.Set(0, fusionMaxCooldownTime);  // Update status bar
-        UpdateCooldownUI();  // Update UI
+        fusionActivated = true;
+    }
+
+    public IEnumerator EnsureUIUpdate()
+    {
+        yield return null; // Wait for a frame
+        if (toolbarSlot != null && toolbarSlot.gameObject.activeInHierarchy)
+        {
+            var imageComponent = toolbarSlot.slotSprite.GetComponent<Image>();
+            if (imageComponent != null)
+            {
+                imageComponent.sprite = itemSprite;
+            }
+        }
+    }
+
+    public void DeFusionActivate()
+    {
+        // Trigger return to normal state
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
+
+        // Handle weapon change back
+        if (weaponChangeInfo != null)
+        {
+            toolbarSlot.weaponInfo = weaponChangeInfo;
+            toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+        }
+        else
+        {
+            toolbarSlot.weaponInfo = null;
+            toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+        }
+
+        activeToolbar.ChangeActiveWeapon();
+
+        StartCoroutine(ResetFusionTrigger());
+
+        fusionActivated = false;
+    }
+
+    IEnumerator ResetFusionTrigger()
+    {
+        yield return new WaitForSeconds(0.1f);
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("ArcherFusionReturn");
     }
 
     private void UpdateCooldownUI()
@@ -304,16 +285,6 @@ public class ArcherHeroSkill : MonoBehaviour
         else
         {
             //skill2Image.fillAmount = 1;
-        }
-
-        // Update Fusion UI
-        if (fusionCooldownTime < fusionMaxCooldownTime)
-        {
-            fusionImage.fillAmount = fusionCooldownTime / (float)fusionMaxCooldownTime;
-        }
-        else
-        {
-            fusionImage.fillAmount = 1;
         }
     }
 }

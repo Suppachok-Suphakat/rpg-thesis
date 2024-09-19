@@ -19,12 +19,12 @@ public class LineTrigger : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Change this to your desired input key
+        if (Input.GetMouseButtonDown(1)) // Change this to your desired input key
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
-            float detectionRadius = 0.5f; // Adjust this radius as needed
+            float detectionRadius = 1f; // Adjust this radius as needed
             Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius);
 
             if (hit != null && hit.CompareTag("Hero"))
@@ -46,6 +46,8 @@ public class LineTrigger : MonoBehaviour
                         else if (hit.gameObject.GetComponent<ArcherHeroAI>())
                         {
                             hit.gameObject.GetComponent<ArcherHeroAI>().skillBar.SetActive(false);
+                            hit.gameObject.GetComponent<ArcherHeroAI>().weaponBar.SetActive(false);
+                            hit.gameObject.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
                         }
 
                         currentTarget = null;
@@ -65,6 +67,8 @@ public class LineTrigger : MonoBehaviour
                             else if(previousArcherPartner != null)
                             {
                                 previousArcherPartner.skillBar.SetActive(false);
+                                previousArcherPartner.weaponBar.SetActive(false);
+                                hit.gameObject.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
                             }
                         }
 
@@ -131,6 +135,8 @@ public class LineTrigger : MonoBehaviour
                             lineEffect.lineRenderer.colorGradient = gradient;
 
                             hit.gameObject.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
+                            hit.gameObject.GetComponent<ArcherHeroAI>().weaponBar.SetActive(true);
+                            hit.gameObject.GetComponent<ArcherHeroAI>().archerHeroSkill.FusionActivate();
                         }
 
                         lineEffect.StartHealing(newHero);

@@ -45,7 +45,7 @@ public class GunSkill : MonoBehaviour, IWeapon
     {
         currentActiveTime = activeTime;
 
-        sliderObject = GameObject.Find("RangeWeaponSkillBar");
+        sliderObject = GameObject.Find("WeaponSkillBar");
         statusComponent = sliderObject.GetComponent<SkillStatusBar>();
 
         statusComponent.chargeAmount = 0;
@@ -56,6 +56,9 @@ public class GunSkill : MonoBehaviour, IWeapon
 
     private void OnDestroy()
     {
+        sliderObject = GameObject.Find("WeaponSkillBar");
+        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
+
         statusComponent.chargeAmount = 0;
         statusComponent.Set(statusComponent.chargeAmount, statusComponent.maxChargeAmount);
     }
@@ -65,7 +68,7 @@ public class GunSkill : MonoBehaviour, IWeapon
         switch (state)
         {
             case SkillState.ready:
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.F))
                 {
                     SkillActivate();
                     statusComponent.chargeAmount = 0;
@@ -91,12 +94,10 @@ public class GunSkill : MonoBehaviour, IWeapon
                 if (statusComponent.chargeAmount < this.chargeAmount)
                 {
                     //Charging
-                    Debug.Log("Charging");
                     statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
                 }
                 else
                 {
-                    Debug.Log("MaxCharging");
                     statusComponent.Set(maxChargeAmount, maxChargeAmount);
                     state = SkillState.ready;
                 }
@@ -109,7 +110,7 @@ public class GunSkill : MonoBehaviour, IWeapon
         myAnimator.SetTrigger(FIRE_HASH);
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position,
             ActiveWeapon.Instance.transform.rotation);
-        newArrow.GetComponent<Arrow>().UpdateProjectileRange(weaponInfo.weaponRange);
+        newArrow.GetComponent<Bullet>().UpdateProjectileRange(weaponInfo.weaponRange);
         StartCoroutine(ReduceStaminaRoutine());
     }
 
@@ -132,7 +133,7 @@ public class GunSkill : MonoBehaviour, IWeapon
             yield return new WaitForSeconds(0.1f); // Adjust the delay between shots as needed
 
             GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, ActiveWeapon.Instance.transform.rotation);
-            newArrow.GetComponent<Arrow>().UpdateProjectileRange(weaponInfo.weaponRange);
+            newArrow.GetComponent<Bullet>().UpdateProjectileRange(weaponInfo.weaponRange);
         }
     }
 
