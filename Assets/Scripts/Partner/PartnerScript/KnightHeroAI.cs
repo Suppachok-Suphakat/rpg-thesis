@@ -72,7 +72,7 @@ public class KnightHeroAI : MonoBehaviour
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         attackCooldown = cooldownTime;
         skill = gameObject.GetComponent<KnightHeroSkill>();
@@ -131,7 +131,7 @@ public class KnightHeroAI : MonoBehaviour
 
     void HandleMouseInput()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(3))
         {
             if (lineTrigger.currentTarget == this.transform)
             {

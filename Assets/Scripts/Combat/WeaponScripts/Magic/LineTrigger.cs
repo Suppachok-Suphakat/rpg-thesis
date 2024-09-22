@@ -5,17 +5,12 @@ using UnityEngine;
 public class LineTrigger : MonoBehaviour
 {
     public LineEffect lineEffect;
-    public Transform partner; // Assign the partner character here
+    public Transform hero; // Assign the partner character here
 
     [SerializeField] private WeaponInfo weaponInfo;
 
     public Transform currentTarget;
     private Transform previousTarget; // Track the previous partner
-
-    private void Awake()
-    {
-        // Optionally, initialize here
-    }
 
     void Update()
     {
@@ -33,118 +28,88 @@ public class LineTrigger : MonoBehaviour
 
                 if (lineEffect != null)
                 {
+                    // Unlink the current hero if already linked to the same one
                     if (currentTarget == newHero)
                     {
-                        lineEffect.StopHealing();
-
-                        if (hit.gameObject.GetComponent<KnightHeroAI>())
-                        {
-                            hit.gameObject.GetComponent<KnightHeroAI>().skillBar.SetActive(false);
-                            hit.gameObject.GetComponent<KnightHeroAI>().weaponBar.SetActive(false);
-                            hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
-                        }
-                        else if (hit.gameObject.GetComponent<ArcherHeroAI>())
-                        {
-                            hit.gameObject.GetComponent<ArcherHeroAI>().skillBar.SetActive(false);
-                            hit.gameObject.GetComponent<ArcherHeroAI>().weaponBar.SetActive(false);
-                            hit.gameObject.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
-                        }
-
-                        currentTarget = null;
+                        UnlinkHero(newHero);
                     }
                     else
                     {
+                        // Unlink previous hero before linking the new one
                         if (previousTarget != null && previousTarget != newHero)
                         {
-                            KnightHeroAI previousKnightHero = previousTarget.GetComponent<KnightHeroAI>();
-                            ArcherHeroAI previousArcherPartner = previousTarget.GetComponent<ArcherHeroAI>();
-                            if (previousKnightHero != null)
-                            {
-                                previousKnightHero.skillBar.SetActive(false);
-                                previousKnightHero.weaponBar.SetActive(false);
-                                hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
-                            }
-                            else if(previousArcherPartner != null)
-                            {
-                                previousArcherPartner.skillBar.SetActive(false);
-                                previousArcherPartner.weaponBar.SetActive(false);
-                                hit.gameObject.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
-                            }
+                            UnlinkHero(previousTarget);
                         }
 
-                        // Start a new line effect for the new partner
-                        if (currentTarget != null)
-                        {
-                            // Optionally, stop the previous line effect
-                            lineEffect.StopHealing();
-                        }
-
-                        // Show the skill bar of the new partner
-                        if (hit.gameObject.GetComponent<KnightHeroAI>())
-                        {
-                            // Create a new Gradient
-                            Gradient gradient = new Gradient();
-
-                            // Set up the color keys (color and time)
-                            GradientColorKey[] colorKey = new GradientColorKey[2];
-                            colorKey[0].color = Color.white;  // Start color
-                            colorKey[0].time = 0.0f;
-                            colorKey[1].color = Color.blue;   // End color
-                            colorKey[1].time = 1.0f;
-
-                            // Set up the alpha keys (alpha and time)
-                            GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
-                            alphaKey[0].alpha = 1.0f;  // Full opacity at start
-                            alphaKey[0].time = 0.0f;
-                            alphaKey[1].alpha = 1.0f;  // Full opacity at end
-                            alphaKey[1].time = 1.0f;
-
-                            // Assign the color keys and alpha keys to the gradient
-                            gradient.SetKeys(colorKey, alphaKey);
-
-                            // Assign the gradient to the LineRenderer's color gradient
-                            lineEffect.lineRenderer.colorGradient = gradient;
-
-                            hit.gameObject.GetComponent<KnightHeroAI>().skillBar.SetActive(true);
-                            hit.gameObject.GetComponent<KnightHeroAI>().weaponBar.SetActive(true);
-                            hit.gameObject.GetComponent<KnightHeroAI>().knightHeroSkill.FusionActivate();
-                        }
-                        else if (hit.gameObject.GetComponent<ArcherHeroAI>())
-                        {
-                            // Create a new Gradient
-                            Gradient gradient = new Gradient();
-
-                            // Set up the color keys (color and time)
-                            GradientColorKey[] colorKey = new GradientColorKey[2];
-                            colorKey[0].color = Color.white;  // Start color
-                            colorKey[0].time = 0.0f;
-                            colorKey[1].color = Color.green;   // End color
-                            colorKey[1].time = 1.0f;
-
-                            // Set up the alpha keys (alpha and time)
-                            GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
-                            alphaKey[0].alpha = 1.0f;  // Full opacity at start
-                            alphaKey[0].time = 0.0f;
-                            alphaKey[1].alpha = 1.0f;  // Full opacity at end
-                            alphaKey[1].time = 1.0f;
-
-                            // Assign the color keys and alpha keys to the gradient
-                            gradient.SetKeys(colorKey, alphaKey);
-
-                            // Assign the gradient to the LineRenderer's color gradient
-                            lineEffect.lineRenderer.colorGradient = gradient;
-
-                            hit.gameObject.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
-                            hit.gameObject.GetComponent<ArcherHeroAI>().weaponBar.SetActive(true);
-                            hit.gameObject.GetComponent<ArcherHeroAI>().archerHeroSkill.FusionActivate();
-                        }
-
-                        lineEffect.StartHealing(newHero);
-                        currentTarget = newHero;
-                        previousTarget = newHero; // Update the previous target
+                        // Link to the new hero
+                        LinkHero(newHero);
                     }
                 }
             }
         }
+    }
+
+    // Method to handle unlinking a hero
+    private void UnlinkHero(Transform hero)
+    {
+        lineEffect.StopHealing();
+
+        if (hero.GetComponent<KnightHeroAI>())
+        {
+            hero.GetComponent<KnightHeroAI>().skillBar.SetActive(false);
+            hero.GetComponent<KnightHeroAI>().weaponBar.SetActive(false);
+            hero.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
+        }
+        else if (hero.GetComponent<ArcherHeroAI>())
+        {
+            hero.GetComponent<ArcherHeroAI>().skillBar.SetActive(false);
+            hero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(false);
+            hero.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
+        }
+
+        currentTarget = null; // Clear current target after unlinking
+    }
+
+    // Method to handle linking a new hero
+    private void LinkHero(Transform newHero)
+    {
+        if (newHero.GetComponent<KnightHeroAI>())
+        {
+            SetupLineRenderer(Color.white, Color.blue); // White to Blue for Knight
+            newHero.GetComponent<KnightHeroAI>().skillBar.SetActive(true);
+            newHero.GetComponent<KnightHeroAI>().weaponBar.SetActive(true);
+            newHero.GetComponent<KnightHeroAI>().knightHeroSkill.FusionActivate();
+        }
+        else if (newHero.GetComponent<ArcherHeroAI>())
+        {
+            SetupLineRenderer(Color.white, Color.green); // White to Green for Archer
+            newHero.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
+            newHero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(true);
+            newHero.GetComponent<ArcherHeroAI>().archerHeroSkill.FusionActivate();
+        }
+
+        lineEffect.StartHealing(newHero); // Start new line effect
+        currentTarget = newHero;          // Set current target
+        previousTarget = newHero;         // Update previous target
+    }
+
+    // Method to setup the LineRenderer's color gradient
+    private void SetupLineRenderer(Color startColor, Color endColor)
+    {
+        Gradient gradient = new Gradient();
+        GradientColorKey[] colorKey = new GradientColorKey[2];
+        colorKey[0].color = startColor;
+        colorKey[0].time = 0.0f;
+        colorKey[1].color = endColor;
+        colorKey[1].time = 1.0f;
+
+        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+        alphaKey[0].alpha = 1.0f;
+        alphaKey[0].time = 0.0f;
+        alphaKey[1].alpha = 1.0f;
+        alphaKey[1].time = 1.0f;
+
+        gradient.SetKeys(colorKey, alphaKey);
+        lineEffect.lineRenderer.colorGradient = gradient;
     }
 }
