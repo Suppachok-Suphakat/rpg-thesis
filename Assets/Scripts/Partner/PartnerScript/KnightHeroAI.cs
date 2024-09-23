@@ -139,7 +139,7 @@ public class KnightHeroAI : MonoBehaviour
                 mousePosition.z = 0f;
 
                 float detectionRadius = 0.5f;
-                Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius, focus);
+                Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius);
 
                 if (hit != null)
                 {

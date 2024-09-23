@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7176255407824286500}
   - component: {fileID: 2452058153353855210}
   - component: {fileID: 5043504097734292809}
+  - component: {fileID: 6865303630429976045}
   m_Layer: 0
   m_Name: Knight Hero GO
   m_TagString: Hero
@@ -33,7 +34,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645030252299325955}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -150,7 +151,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 0
   m_Sprite: {fileID: -176408342, guid: a0343180afe76a64d9b168216f1ee3f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -290,6 +291,36 @@ MonoBehaviour:
     maxVal: 100
     currVal: 0
   hpBar: {fileID: 0}
+--- !u!114 &6865303630429976045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030252299325955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 4d374d6253a60eb800000000bde1a1e9
+  m_ShapePath:
+  - {x: -0.29376984, y: -0.62584877, z: 0}
+  - {x: -0.24855804, y: -0.47535706, z: 0}
+  - {x: 0.16750336, y: -0.46673965, z: 0}
+  - {x: 0.24530792, y: -0.6269455, z: 0}
+  m_ShapePathHash: 601149333
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 52420
+  m_LocalBounds:
+    m_Center: {x: -0.024230957, y: -0.5468426, z: 0}
+    m_Extent: {x: 0.26953888, y: 0.08010292, z: 0}
 --- !u!1 &3918124466747510457
 GameObject:
   m_ObjectHideFlags: 0
