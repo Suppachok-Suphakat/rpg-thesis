@@ -15,6 +15,7 @@ public class ArcherHeroAI : MonoBehaviour
         public float retreatDistance = 3f; // Distance to retreat if enemies get too close
         public float safeDistance = 6f; // Ideal shooting distance
         public int retreatSpeed = 3;
+        public float maxChaseDistance = 10f; // Maximum distance from the player while chasing
     }
 
     public enum State
@@ -207,6 +208,7 @@ public class ArcherHeroAI : MonoBehaviour
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
+
             currentState = State.chase;
         }
     }
@@ -219,22 +221,33 @@ public class ArcherHeroAI : MonoBehaviour
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
+
             currentState = State.chase;
         }
     }
 
     private void ChaseLogic()
     {
-        //if (isUsingSkill) return;
         if (currentState == State.skill) return;
 
-        if (focusEnemy != null)
+        if (enemyTransform != null)
         {
-            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-
-            animator.SetBool("isWalking", true);
+            // Calculate distance to the enemy and player
             float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
+            // If the distance to the player exceeds the max chase distance, return to follow
+            if (distanceToPlayer > status.maxChaseDistance)
+            {
+                currentState = State.follow;
+                focusEnemy = null; // Optionally, clear the enemy focus
+                return;
+            }
+
+            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
+            animator.SetBool("isWalking", true);
+
+            // Continue chasing the enemy if within range
             if (distanceToEnemy > status.attackDistance)
             {
                 if (enemyTransform.position.x < transform.position.x)
@@ -242,7 +255,7 @@ public class ArcherHeroAI : MonoBehaviour
                 else
                     transform.localScale = new Vector3(1, 1, 1);
 
-                // Check if the partner is stuck or moving
+                // Move towards the enemy
                 if (!isSliding && !CanMove(directionToEnemy))
                 {
                     StartCoroutine(SlidePastObstacle(directionToEnemy));
@@ -254,7 +267,7 @@ public class ArcherHeroAI : MonoBehaviour
             }
             else
             {
-                AttackLogic();
+                AttackLogic(); // Start attacking if close enough
             }
         }
         else
@@ -286,9 +299,9 @@ public class ArcherHeroAI : MonoBehaviour
 
     void AttackLogic()
     {
-        if (focusEnemy != null && cooldownTime <= 0f)
+        if (enemyTransform != null && cooldownTime <= 0f)
         {
-            float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
+            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
 
             if (distanceToEnemy > status.retreatDistance)
             {
@@ -309,14 +322,14 @@ public class ArcherHeroAI : MonoBehaviour
 
     void RetreatLogic()
     {
-        if (focusEnemy != null)
+        if (enemyTransform != null)
         {
-            float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
+            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
 
             // Retreat if the enemy is too close
             if (distanceToEnemy < status.retreatDistance)
             {
-                Vector3 directionAwayFromEnemy = (transform.position - focusEnemy.position).normalized;
+                Vector3 directionAwayFromEnemy = (transform.position - enemyTransform.position).normalized;
                 transform.Translate(directionAwayFromEnemy * status.retreatSpeed * Time.deltaTime);
                 animator.SetBool("isWalking", true);
             }
