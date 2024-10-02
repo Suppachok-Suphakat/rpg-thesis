@@ -9,6 +9,9 @@ public class TransparentDetection : MonoBehaviour
     [SerializeField] private float transparencyAmount = 0.8f;
     [SerializeField] private float fadeTime = .4f;
 
+    [SerializeField] private string changeSortingLayer = "Highground";
+    [SerializeField] private string originalSortingLayer = "Foreground";
+
     private SpriteRenderer spriteRenderer;
     private Tilemap tilemap;
 
@@ -22,6 +25,7 @@ public class TransparentDetection : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero")
         {
+            ChangeSortingLayer(changeSortingLayer);
             if (spriteRenderer)
             {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, transparencyAmount));
@@ -37,6 +41,8 @@ public class TransparentDetection : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero")
         {
+            ChangeSortingLayer(originalSortingLayer);
+
             if (spriteRenderer)
             {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));
@@ -45,6 +51,18 @@ public class TransparentDetection : MonoBehaviour
             {
                 StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, 1f));
             }
+        }
+    }
+
+    private void ChangeSortingLayer(string layerName)
+    {
+        if (spriteRenderer)
+        {
+            spriteRenderer.sortingLayerName = layerName;
+        }
+        else if (tilemap)
+        {
+            tilemap.GetComponent<Renderer>().sortingLayerName = layerName;
         }
     }
 
