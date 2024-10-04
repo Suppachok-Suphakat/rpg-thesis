@@ -7,6 +7,7 @@ public class ArcherHeroSkill : MonoBehaviour
 {
     [Header("Partner Skill")]
     [SerializeField] private GameObject skillPrefab;
+    [SerializeField] private GameObject skill2Prefab;
 
     [Header("Skill 1")]
     [SerializeField] int skill1CooldownTime;
@@ -40,7 +41,7 @@ public class ArcherHeroSkill : MonoBehaviour
     public ActiveToolbar activeToolbar;
 
     [SerializeField] public Image skill1Image;
-    //[SerializeField] public Image skill2Image;
+    [SerializeField] public Image skill2Image;
 
     private LineTrigger lineTrigger;
 
@@ -92,15 +93,15 @@ public class ArcherHeroSkill : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.E))
                     {
-                        //Skill2Activate();
-                        //statusComponent.Set(0, skill2MaxCooldownTime);
-                        //state = AbilityState.active2;
-                        //skill2ActiveTime = currentSkill2ActiveTime;
+                        Skill2Activate();
+                        statusComponent.Set(0, skill2MaxCooldownTime);
+                        state = AbilityState.active2;
+                        skill2ActiveTime = currentSkill2ActiveTime;
                     }
                 }
                 break;
             case AbilityState.active1:
-                GameObject.Find("ArcherSkillBubble").SetActive(false);
+                //GameObject.Find("ArcherSkillBubble").SetActive(false);
 
                 if (skill1ActiveTime >= 0)
                 {
@@ -199,6 +200,25 @@ public class ArcherHeroSkill : MonoBehaviour
         UpdateCooldownUI();  // Update UI
     }
 
+    public void Skill2Activate()
+    {
+        Debug.Log("Partner Skill Activate");
+        gameObject.GetComponent<Animator>().SetTrigger("skill2");
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
+        Instantiate(skill2Prefab, mousePosition, Quaternion.identity);
+
+        if (toolbarSlot.weaponInfo != null)
+        {
+            weaponChangeInfo = toolbarSlot.weaponInfo;
+        }
+        weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+
+        skill2CooldownTime = 0;  // Start cooldown
+        UpdateCooldownUI();  // Update UI
+    }
+
     public void FusionActivate()
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusion");
@@ -280,11 +300,11 @@ public class ArcherHeroSkill : MonoBehaviour
         // Update Skill 2 UI
         if (skill2CooldownTime < skill2MaxCooldownTime)
         {
-            //skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
+            skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
         }
         else
         {
-            //skill2Image.fillAmount = 1;
+            skill2Image.fillAmount = 1;
         }
     }
 }

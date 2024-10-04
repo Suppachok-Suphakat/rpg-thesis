@@ -6,6 +6,8 @@ public class MagicAnim : MonoBehaviour
 {
     private ParticleSystem ps;
 
+    public GameObject damageCollider;   
+
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
@@ -17,6 +19,11 @@ public class MagicAnim : MonoBehaviour
         {
             DestroySelf();
         }
+    }
+
+    public void DamageCollider()
+    {
+        damageCollider.SetActive(true);
     }
 
     public void DestroySelf()

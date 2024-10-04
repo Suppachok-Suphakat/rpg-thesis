@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3d3449b414a719e49bcbbcc5f7b0b77e
+guid: a0343180afe76a64d9b168216f1ee3f7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f72f95edb9bb89d408d1e09eeebc853c
-      internalID: -179866938
+      spriteID: 423a352c784fec344ac6c327d9b878c2
+      internalID: -176408342
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bb182ca5403f8541a71fd24e86ad4e0
-      internalID: -1032317900
+      spriteID: 8ce42d174ed0f5e4d9b8bf224c95f0c7
+      internalID: 852032649
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5642760c69ec19d4b98c5b8eb44debb5
-      internalID: -1914728997
+      spriteID: 006e9eb4de5450946bf00992ecd67e10
+      internalID: 2097025917
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      H_Knight_Sprite_Idle_0: -179866938
-      H_Knight_Sprite_Idle_1: -1032317900
-      H_Knight_Sprite_Idle_2: -1914728997
+      H_Knight_Sprite_Idle_0: -176408342
+      H_Knight_Sprite_Idle_1: 852032649
+      H_Knight_Sprite_Idle_2: 2097025917
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -56,7 +56,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4243921893850822989
 Transform:
   m_ObjectHideFlags: 0
@@ -86,16 +86,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4ba037ac61035448a058b5c3ef318c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDistance: 5
+  distanceToAttack: 1
+  distanceToDefence: 5
+  followSpeed: 2
+  chaseSpeed: 2
+  retreatSpeed: 3
+  retreatDistance: 3
+  retreatDuration: 1
+  safeDistance: 6
+  maxChaseDistance: 10
   player: {fileID: 0}
-  status:
-    attackDistance: 4
-    distanceToAttack: 1
-    distanceToDefence: 5
-    followSpeed: 2
-    chaseSpeed: 3
-    retreatDistance: 3
-    safeDistance: 6
-    retreatSpeed: 8
   currentState: 0
   focus:
     serializedVersion: 2
@@ -125,16 +126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
+  skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
   skill1CooldownTime: 0
-  skill1MaxCooldownTime: 10
+  skill1MaxCooldownTime: 50
   skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 10
-  currentSkill1ActiveTime: 10
+  skill1ActiveTime: 5
+  currentSkill1ActiveTime: 5
   skill2CooldownTime: 0
-  skill2MaxCooldownTime: 10
+  skill2MaxCooldownTime: 50
   skill2CurrentCooldownTime: 0
-  skill2ActiveTime: 10
-  currentSkill2ActiveTime: 10
+  skill2ActiveTime: 5
+  currentSkill2ActiveTime: 5
   cooldownRecoveryTimer: 1
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
@@ -143,6 +145,7 @@ MonoBehaviour:
   itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
+  skill2Image: {fileID: 0}
 --- !u!212 &4926665258290011330
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -330,7 +333,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7121556042380603943}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -349,7 +352,7 @@ MonoBehaviour:
   - {x: 0.28253937, y: -0.6066952, z: 0}
   m_ShapePathHash: 1840836117
   m_Mesh: {fileID: 0}
-  m_InstanceId: 52416
+  m_InstanceId: -2680
   m_LocalBounds:
     m_Center: {x: -0.025817871, y: -0.5283556, z: 0}
     m_Extent: {x: 0.30835724, y: 0.081643105, z: 0}
@@ -419,4 +422,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6.73003
+  m_Radius: 8

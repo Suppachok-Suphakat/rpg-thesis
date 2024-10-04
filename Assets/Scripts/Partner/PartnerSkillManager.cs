@@ -42,7 +42,7 @@ public class PartnerSkillManager : MonoBehaviour
         }
     }
 
-    void TogglePartnerMenu()
+    public void TogglePartnerMenu()
     {
         bool isActive = partnerMenu.activeSelf;
         partnerMenu.SetActive(!isActive);
