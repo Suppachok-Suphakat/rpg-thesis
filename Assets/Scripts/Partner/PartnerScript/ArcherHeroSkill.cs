@@ -153,8 +153,6 @@ public class ArcherHeroSkill : MonoBehaviour
                     skill2CooldownTime = skill2CurrentCooldownTime; // Reset skill2CooldownTime
                 }
                 break;
-
-                break;
             case AbilityState.fusion:
                 /////////////////////////////////
                 break;

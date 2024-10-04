@@ -8,6 +8,7 @@ public class KnightHeroSkill : MonoBehaviour
     [Header("Hero Skill")]
     [SerializeField] private GameObject barrier;
     public GameObject barrierCircleInstance;
+    public GameObject skillDamage;
 
     [Header("Skill 1")]
     [SerializeField] int skill1CooldownTime;
@@ -41,7 +42,7 @@ public class KnightHeroSkill : MonoBehaviour
     public ActiveToolbar activeToolbar;
 
     [SerializeField] public Image skill1Image;
-    //[SerializeField] public Image skill2Image;
+    [SerializeField] public Image skill2Image;
 
     private LineTrigger lineTrigger;
     private Rigidbody2D rb;
@@ -113,6 +114,7 @@ public class KnightHeroSkill : MonoBehaviour
                     }
                 }
                 gameObject.GetComponent<Animator>().ResetTrigger("Skill");
+                gameObject.GetComponent<Animator>().ResetTrigger("Skill2");
                 if (lineTrigger.currentTarget == this.transform)
                 {
                     if (Input.GetKeyDown(KeyCode.Q))
@@ -123,10 +125,10 @@ public class KnightHeroSkill : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.E))
                     {
-                        //Skill2Activate();
-                        //statusComponent.Set(0, skill2MaxCooldownTime);
-                        //state = AbilityState.active2;
-                        //skill2ActiveTime = currentSkill2ActiveTime;
+                        Skill2Activate();
+                        statusComponent.Set(0, skill2MaxCooldownTime);
+                        state = AbilityState.active2;
+                        skill2ActiveTime = currentSkill2ActiveTime;
                     }
                 }
                 break;
@@ -177,7 +179,29 @@ public class KnightHeroSkill : MonoBehaviour
                 }
                 break;
             case AbilityState.active2:
-                /////////////////////////////////
+                if (skill2ActiveTime >= 0)
+                {
+                    skill2ActiveTime -= Time.deltaTime;
+                }
+                else
+                {
+                    // Reset the weapon if necessary
+                    if (weaponChangeInfo != null)
+                    {
+                        toolbarSlot.weaponInfo = weaponChangeInfo;
+                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    }
+                    else
+                    {
+                        toolbarSlot.weaponInfo = null;
+                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    }
+
+                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+
+                    state = AbilityState.cooldown;
+                    skill2CooldownTime = skill2CurrentCooldownTime; // Reset skill2CooldownTime
+                }
                 break;
             case AbilityState.fusion:
                 if (partnerSkillManager != null)
@@ -268,6 +292,22 @@ public class KnightHeroSkill : MonoBehaviour
         }
     }
 
+    public void Skill2Activate()
+    {
+        Debug.Log("Partner Skill Activate");
+        gameObject.GetComponent<Animator>().SetTrigger("Skill2");
+        knightHeroAI.SkillLogic();
+
+        if (toolbarSlot.weaponInfo != null)
+        {
+            weaponChangeInfo = toolbarSlot.weaponInfo;
+        }
+        weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+
+        skill2CooldownTime = 0;  // Start cooldown
+        UpdateCooldownUI();  // Update UI
+    }
+
     public void FusionActivate()
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusion");
@@ -356,6 +396,16 @@ public class KnightHeroSkill : MonoBehaviour
         Destroy(barrierCircleInstance);
     }
 
+    public void OnSkillDamage()
+    {
+        skillDamage.SetActive(true);
+    }
+
+    public void OffSkillDamage()
+    {
+        skillDamage.SetActive(false);
+    }
+
     private void UpdateCooldownUI()
     {
         // Update Skill 1 UI
@@ -371,11 +421,11 @@ public class KnightHeroSkill : MonoBehaviour
         // Update Skill 2 UI
         if (skill2CooldownTime < skill2MaxCooldownTime)
         {
-            //skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
+            skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
         }
         else
         {
-            //skill2Image.fillAmount = 1;
+            skill2Image.fillAmount = 1;
         }
     }
 }
