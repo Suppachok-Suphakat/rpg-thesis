@@ -18,21 +18,6 @@ public class ArcherHeroAI : MonoBehaviour
     public float safeDistance = 6f;
     public float maxChaseDistance = 10f;
 
-    //public class Status
-    //{
-    //    public float attackDistance = 5f;
-    //    public float distanceToAttack = 1f;
-    //    public float distanceToDefence = 5f;
-    //    public int followSpeed = 2;
-    //    public int chaseSpeed = 2;
-    //    public int retreatSpeed = 3;
-    //    public float retreatDistance = 3f;
-    //    public float retreatDuration = 1f;
-    //    private float retreatTimer = 0f;
-    //    public float safeDistance = 6f;
-    //    public float maxChaseDistance = 10f;
-    //}
-
     public enum State
     {
         follow = 0,
@@ -100,7 +85,7 @@ public class ArcherHeroAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame

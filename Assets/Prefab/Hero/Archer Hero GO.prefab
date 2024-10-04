@@ -90,8 +90,8 @@ MonoBehaviour:
   distanceToAttack: 1
   distanceToDefence: 5
   followSpeed: 2
-  chaseSpeed: 2
-  retreatSpeed: 3
+  chaseSpeed: 5
+  retreatSpeed: 5
   retreatDistance: 3
   retreatDuration: 1
   safeDistance: 6

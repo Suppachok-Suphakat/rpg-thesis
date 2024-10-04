@@ -129,7 +129,31 @@ public class ArcherHeroSkill : MonoBehaviour
                 }
                 break;
             case AbilityState.active2:
-                /////////////////////////////////
+                if (skill2ActiveTime >= 0)
+                {
+                    skill2ActiveTime -= Time.deltaTime;
+                }
+                else
+                {
+                    // Reset the weapon if necessary
+                    if (weaponChangeInfo != null)
+                    {
+                        toolbarSlot.weaponInfo = weaponChangeInfo;
+                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    }
+                    else
+                    {
+                        toolbarSlot.weaponInfo = null;
+                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    }
+
+                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+
+                    state = AbilityState.cooldown;
+                    skill2CooldownTime = skill2CurrentCooldownTime; // Reset skill2CooldownTime
+                }
+                break;
+
                 break;
             case AbilityState.fusion:
                 /////////////////////////////////
@@ -202,8 +226,8 @@ public class ArcherHeroSkill : MonoBehaviour
 
     public void Skill2Activate()
     {
-        Debug.Log("Partner Skill Activate");
-        gameObject.GetComponent<Animator>().SetTrigger("skill2");
+        Debug.Log("Partner Skill 2 Activate");
+        gameObject.GetComponent<Animator>().SetTrigger("Skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
@@ -215,7 +239,7 @@ public class ArcherHeroSkill : MonoBehaviour
         }
         weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
 
-        skill2CooldownTime = 0;  // Start cooldown
+        skill2CooldownTime = 0;  // Start cooldown for Skill 2
         UpdateCooldownUI();  // Update UI
     }
 

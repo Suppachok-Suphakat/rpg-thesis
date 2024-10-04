@@ -11,6 +11,8 @@ public class AttackerEnemyPathfinding : MonoBehaviour
     private Knockback knockback;
     private SpriteRenderer spriteRenderer;
 
+    public bool isImmobilized = false;
+
     private AttackerEnemyAI attackerEnemyAI;
 
     private void Awake()
@@ -24,6 +26,7 @@ public class AttackerEnemyPathfinding : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isImmobilized) { return; }
         if (knockback.GettingKnockedBack) { return; }
 
         rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
