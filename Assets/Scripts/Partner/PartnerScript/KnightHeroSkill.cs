@@ -161,18 +161,18 @@ public class KnightHeroSkill : MonoBehaviour
 
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
 
-                    if (weaponChangeInfo != null)
-                    {
-                        toolbarSlot.weaponInfo = weaponChangeInfo;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
-                    else
-                    {
-                        toolbarSlot.weaponInfo = null;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
+                    //if (weaponChangeInfo != null)
+                    //{
+                    //    toolbarSlot.weaponInfo = weaponChangeInfo;
+                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    //}
+                    //else
+                    //{
+                    //    toolbarSlot.weaponInfo = null;
+                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    //}
 
-                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+                    //GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
 
                     state = AbilityState.cooldown;
                     skill1CooldownTime = skill1CurrentCooldownTime;
@@ -185,19 +185,19 @@ public class KnightHeroSkill : MonoBehaviour
                 }
                 else
                 {
-                    // Reset the weapon if necessary
-                    if (weaponChangeInfo != null)
-                    {
-                        toolbarSlot.weaponInfo = weaponChangeInfo;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
-                    else
-                    {
-                        toolbarSlot.weaponInfo = null;
-                        toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    }
+                    //// Reset the weapon if necessary
+                    //if (weaponChangeInfo != null)
+                    //{
+                    //    toolbarSlot.weaponInfo = weaponChangeInfo;
+                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    //}
+                    //else
+                    //{
+                    //    toolbarSlot.weaponInfo = null;
+                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+                    //}
 
-                    GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
+                    //GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
 
                     state = AbilityState.cooldown;
                     skill2CooldownTime = skill2CurrentCooldownTime; // Reset skill2CooldownTime
@@ -269,11 +269,11 @@ public class KnightHeroSkill : MonoBehaviour
         gameObject.GetComponent<Animator>().SetTrigger("Skill");
         knightHeroAI.SkillLogic();
 
-        if (toolbarSlot.weaponInfo != null)
-        {
-            weaponChangeInfo = toolbarSlot.weaponInfo;
-        }
-        weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+        //if (toolbarSlot.weaponInfo != null)
+        //{
+        //    weaponChangeInfo = toolbarSlot.weaponInfo;
+        //}
+        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
 
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI
@@ -296,13 +296,12 @@ public class KnightHeroSkill : MonoBehaviour
     {
         Debug.Log("Partner Skill Activate");
         gameObject.GetComponent<Animator>().SetTrigger("Skill2");
-        knightHeroAI.SkillLogic();
 
-        if (toolbarSlot.weaponInfo != null)
-        {
-            weaponChangeInfo = toolbarSlot.weaponInfo;
-        }
-        weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+        //if (toolbarSlot.weaponInfo != null)
+        //{
+        //    weaponChangeInfo = toolbarSlot.weaponInfo;
+        //}
+        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
 
         skill2CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI

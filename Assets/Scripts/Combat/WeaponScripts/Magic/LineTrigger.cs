@@ -12,14 +12,21 @@ public class LineTrigger : MonoBehaviour
     public Transform currentTarget;
     private Transform previousTarget; // Track the previous partner
 
+    private float fusionCooldown = 0.5f; // Half a second cooldown between actions
+    private float lastFusionTime = 0f; // Track the time of the last link/unlink
+
+    private bool isInFusion = false;
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) // Change this to your desired input key
+        if (Input.GetMouseButtonDown(1) && Time.time >= lastFusionTime + fusionCooldown)
         {
+            lastFusionTime = Time.time; // Reset the cooldown timer
+
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
-            float detectionRadius = 1f; // Adjust this radius as needed
+            float detectionRadius = 1f;
             Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius);
 
             if (hit != null && hit.CompareTag("Hero"))
@@ -28,20 +35,16 @@ public class LineTrigger : MonoBehaviour
 
                 if (lineEffect != null)
                 {
-                    // Unlink the current hero if already linked to the same one
                     if (currentTarget == newHero)
                     {
                         UnlinkHero(newHero);
                     }
                     else
                     {
-                        // Unlink previous hero before linking the new one
                         if (previousTarget != null && previousTarget != newHero)
                         {
                             UnlinkHero(previousTarget);
                         }
-
-                        // Link to the new hero
                         LinkHero(newHero);
                     }
                 }
@@ -49,9 +52,10 @@ public class LineTrigger : MonoBehaviour
         }
     }
 
-    // Method to handle unlinking a hero
     private void UnlinkHero(Transform hero)
     {
+        if (!isInFusion) return; // Prevent unlinking if not in fusion mode
+
         lineEffect.StopHealing();
 
         if (hero.GetComponent<KnightHeroAI>())
@@ -67,30 +71,33 @@ public class LineTrigger : MonoBehaviour
             hero.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
         }
 
-        currentTarget = null; // Clear current target after unlinking
+        currentTarget = null;
+        isInFusion = false; // Reset fusion state
     }
 
-    // Method to handle linking a new hero
     private void LinkHero(Transform newHero)
     {
+        if (isInFusion) return; // Prevent linking if already in fusion mode
+
         if (newHero.GetComponent<KnightHeroAI>())
         {
-            SetupLineRenderer(Color.white, Color.blue); // White to Blue for Knight
+            SetupLineRenderer(Color.white, Color.blue);
             newHero.GetComponent<KnightHeroAI>().skillBar.SetActive(true);
             newHero.GetComponent<KnightHeroAI>().weaponBar.SetActive(true);
             newHero.GetComponent<KnightHeroAI>().knightHeroSkill.FusionActivate();
         }
         else if (newHero.GetComponent<ArcherHeroAI>())
         {
-            SetupLineRenderer(Color.white, Color.green); // White to Green for Archer
+            SetupLineRenderer(Color.white, Color.green);
             newHero.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
             newHero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(true);
             newHero.GetComponent<ArcherHeroAI>().archerHeroSkill.FusionActivate();
         }
 
-        lineEffect.StartHealing(newHero); // Start new line effect
-        currentTarget = newHero;          // Set current target
-        previousTarget = newHero;         // Update previous target
+        lineEffect.StartHealing(newHero);
+        currentTarget = newHero;
+        previousTarget = newHero;
+        isInFusion = true; // Set fusion state
     }
 
     // Method to setup the LineRenderer's color gradient

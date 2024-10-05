@@ -23,7 +23,7 @@ public class TransparentDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero")
+        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero" || other.gameObject.tag == "Enemy")
         {
             ChangeSortingLayer(changeSortingLayer);
             if (spriteRenderer)
@@ -39,7 +39,7 @@ public class TransparentDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero")
+        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero" || other.gameObject.tag == "Enemy")
         {
             ChangeSortingLayer(originalSortingLayer);
 
