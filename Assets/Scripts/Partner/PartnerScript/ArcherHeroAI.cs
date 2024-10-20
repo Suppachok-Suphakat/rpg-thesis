@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class ArcherHeroAI : MonoBehaviour
@@ -184,7 +183,7 @@ public class ArcherHeroAI : MonoBehaviour
         FlipSprite(PlayerController.instance.transform);
         float distancePlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distancePlayer > 2)
+        if (distancePlayer > 2.5f)
         {
             animator.SetBool("isWalking", true);
             Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
