@@ -82,7 +82,7 @@ public class ArcherHeroSkill : MonoBehaviour
         {
             case AbilityState.ready:
                 //GameObject.Find("ArcherSkillBubble").SetActive(true);
-                gameObject.GetComponent<Animator>().ResetTrigger("Skill");
+                gameObject.GetComponent<Animator>().ResetTrigger("skill");
                 if (lineTrigger.currentTarget == this.transform)
                 {
                     if (Input.GetKeyDown(KeyCode.Q))
@@ -206,7 +206,7 @@ public class ArcherHeroSkill : MonoBehaviour
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
-        gameObject.GetComponent<Animator>().SetTrigger("Skill");
+        gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;
@@ -225,7 +225,7 @@ public class ArcherHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill 2 Activate");
-        gameObject.GetComponent<Animator>().SetTrigger("Skill");
+        gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;

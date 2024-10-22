@@ -113,8 +113,8 @@ public class KnightHeroSkill : MonoBehaviour
                         }
                     }
                 }
-                gameObject.GetComponent<Animator>().ResetTrigger("Skill");
-                gameObject.GetComponent<Animator>().ResetTrigger("Skill2");
+                gameObject.GetComponent<Animator>().ResetTrigger("skill");
+                gameObject.GetComponent<Animator>().ResetTrigger("skill2");
                 if (lineTrigger.currentTarget == this.transform)
                 {
                     if (Input.GetKeyDown(KeyCode.Q))
@@ -266,7 +266,7 @@ public class KnightHeroSkill : MonoBehaviour
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
-        gameObject.GetComponent<Animator>().SetTrigger("Skill");
+        gameObject.GetComponent<Animator>().SetTrigger("skill");
         knightHeroAI.SkillLogic();
 
         //if (toolbarSlot.weaponInfo != null)
@@ -295,7 +295,7 @@ public class KnightHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
-        gameObject.GetComponent<Animator>().SetTrigger("Skill2");
+        gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
         //if (toolbarSlot.weaponInfo != null)
         //{

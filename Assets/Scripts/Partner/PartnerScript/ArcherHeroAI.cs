@@ -317,7 +317,7 @@ public class ArcherHeroAI : MonoBehaviour
             {
                 animator.SetBool("isWalking", false);
                 FlipSprite(enemyTransform);
-                animator.SetTrigger("Attack");
+                animator.SetTrigger("attack");
                 cooldownTime = attackCooldown;
             }
             else

@@ -336,7 +336,7 @@ public class KnightHeroAI : MonoBehaviour
             if (distanceToEnemy <= status.distanceToAttack)
             {
                 isAttacking = true;
-                animator.SetTrigger("Attack");
+                animator.SetTrigger("attack");
                 StartCoroutine(AttackCooldown());
             }
             else
