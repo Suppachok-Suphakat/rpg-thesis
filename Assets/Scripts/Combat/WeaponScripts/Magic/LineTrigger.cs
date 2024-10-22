@@ -5,14 +5,14 @@ using UnityEngine;
 public class LineTrigger : MonoBehaviour
 {
     public LineEffect lineEffect;
-    public Transform hero; // Assign the partner character here
+    public Transform hero;
 
     [SerializeField] private WeaponInfo weaponInfo;
 
     public Transform currentTarget;
     private Transform previousTarget; // Track the previous partner
 
-    private float fusionCooldown = 0.5f; // Half a second cooldown between actions
+    private float fusionCooldown = 1f;
     private float lastFusionTime = 0f; // Track the time of the last link/unlink
 
     private bool isInFusion = false;
@@ -26,7 +26,7 @@ public class LineTrigger : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
-            float detectionRadius = 1f;
+            float detectionRadius = 0.5f;
             Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius);
 
             if (hit != null && hit.CompareTag("Hero"))
@@ -70,6 +70,13 @@ public class LineTrigger : MonoBehaviour
             hero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(false);
             hero.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
         }
+        else if (hero.GetComponent<PriestessHeroAI>())
+        {
+            Debug.Log("Unlink");
+            hero.GetComponent<PriestessHeroAI>().skillBar.SetActive(false);
+            hero.GetComponent<PriestessHeroAI>().weaponBar.SetActive(false);
+            hero.GetComponent<PriestessHeroAI>().priestessHeroSkill.DeFusionActivate();
+        }
 
         currentTarget = null;
         isInFusion = false; // Reset fusion state
@@ -92,6 +99,13 @@ public class LineTrigger : MonoBehaviour
             newHero.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
             newHero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(true);
             newHero.GetComponent<ArcherHeroAI>().archerHeroSkill.FusionActivate();
+        }
+        else if (newHero.GetComponent<PriestessHeroAI>())
+        {
+            SetupLineRenderer(Color.white, Color.yellow);
+            newHero.GetComponent<PriestessHeroAI>().skillBar.SetActive(true);
+            newHero.GetComponent<PriestessHeroAI>().weaponBar.SetActive(true);
+            newHero.GetComponent<PriestessHeroAI>().priestessHeroSkill.FusionActivate();
         }
 
         lineEffect.StartHealing(newHero);

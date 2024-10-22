@@ -56,7 +56,7 @@ public class PriestessHeroAI : MonoBehaviour
     [SerializeField] public GameObject skillBar;
     [SerializeField] public GameObject weaponBar;
 
-    public PriestessHeroSkill priestHeroSkill;
+    public PriestessHeroSkill priestessHeroSkill;
 
     private void Awake()
     {
@@ -68,7 +68,7 @@ public class PriestessHeroAI : MonoBehaviour
         attackCooldown = cooldownTime;
         skill = gameObject.GetComponent<PriestessHeroSkill>();
 
-        priestHeroSkill = GetComponent<PriestessHeroSkill>();
+        priestessHeroSkill = GetComponent<PriestessHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 

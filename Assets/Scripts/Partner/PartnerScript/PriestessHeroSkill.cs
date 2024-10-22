@@ -68,11 +68,10 @@ public class PriestessHeroSkill : MonoBehaviour
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
 
-        statusComponent = GameObject.Find("ArcherPartnerSkill").GetComponent<StatusBar>();
-        GameObject.Find("ArcherSkillBubble").SetActive(false);
+        statusComponent = GameObject.Find("PriestessPartnerSkill").GetComponent<StatusBar>();
+        GameObject.Find("PriestessSkillBubble").SetActive(false);
 
         skill1Image.fillAmount = 0;
-        //skill2Image.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -243,7 +242,7 @@ public class PriestessHeroSkill : MonoBehaviour
 
     public void FusionActivate()
     {
-        PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusion");
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("priestessLink");
 
         if (toolbarSlot != null)
         {
@@ -279,8 +278,9 @@ public class PriestessHeroSkill : MonoBehaviour
 
     public void DeFusionActivate()
     {
+        Debug.Log("Unlink1");
         // Trigger return to normal state
-        PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("priestessUnlink");
 
         // Handle weapon change back
         if (weaponChangeInfo != null)
@@ -304,7 +304,7 @@ public class PriestessHeroSkill : MonoBehaviour
     IEnumerator ResetFusionTrigger()
     {
         yield return new WaitForSeconds(0.1f);
-        PlayerController.instance.GetComponent<Animator>().ResetTrigger("ArcherFusionReturn");
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("priestessUnlink");
     }
 
     private void UpdateCooldownUI()

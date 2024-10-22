@@ -25,7 +25,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   slideDuration: 0.5
   skillBar: {fileID: 0}
   weaponBar: {fileID: 0}
-  priestHeroSkill: {fileID: 0}
+  priestessHeroSkill: {fileID: 0}
 --- !u!114 &3979085936879950760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,24 +88,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f58f75921effba42a629f5e89354f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPrefab: {fileID: 0}
-  skill2Prefab: {fileID: 0}
+  skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
+  skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
   skill1CooldownTime: 0
-  skill1MaxCooldownTime: 0
+  skill1MaxCooldownTime: 50
   skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 0
-  currentSkill1ActiveTime: 0
+  skill1ActiveTime: 5
+  currentSkill1ActiveTime: 5
   skill2CooldownTime: 0
-  skill2MaxCooldownTime: 0
+  skill2MaxCooldownTime: 50
   skill2CurrentCooldownTime: 0
-  skill2ActiveTime: 0
-  currentSkill2ActiveTime: 0
+  skill2ActiveTime: 5
+  currentSkill2ActiveTime: 5
   cooldownRecoveryTimer: 1
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 0}
-  itemSprite: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: 763e979fc391cf04f983a40b88d5b5a8, type: 2}
+  itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
