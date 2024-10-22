@@ -146,7 +146,7 @@ public class PriestessHeroAI : MonoBehaviour
                         Debug.Log("Enemy detected: " + hit.name);
                         focusEnemy = hit.transform;
                         enemyTransform = focusEnemy;
-                        currentState = State.chase;
+                        currentState = State.follow;
 
                         // Update the currentEnemyHealth reference
                         currentEnemyHealth = hit.GetComponent<EnemyHealth>();
@@ -203,7 +203,7 @@ public class PriestessHeroAI : MonoBehaviour
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
 
-            currentState = State.chase;
+            currentState = State.follow;
         }
     }
 
@@ -216,7 +216,7 @@ public class PriestessHeroAI : MonoBehaviour
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
 
-            currentState = State.chase;
+            currentState = State.follow;
         }
     }
 
@@ -263,7 +263,7 @@ public class PriestessHeroAI : MonoBehaviour
         }
         else
         {
-            currentState = State.chase;
+            currentState = State.follow;
         }
     }
 
