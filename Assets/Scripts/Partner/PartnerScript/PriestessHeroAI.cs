@@ -8,13 +8,6 @@ public class PriestessHeroAI : MonoBehaviour
     public float attackDistance = 5f;
     public float distanceToAttack = 1f;
     public int followSpeed = 2;
-    //public int chaseSpeed = 2;
-    //public float maxChaseDistance = 10f;
-    //public int retreatSpeed = 3;
-    //public float retreatDistance = 3f;
-    //public float retreatDuration = 1f;
-    //private float retreatTimer = 0f;
-    //public float safeDistance = 6f;
 
     public enum State
     {
@@ -41,8 +34,7 @@ public class PriestessHeroAI : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
 
-    [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private Transform arrowSpawnPoint;
+    [SerializeField] private GameObject magicPrefab; // The magic effect to instantiate
     public bool isAttacking = false;
 
     public Transform enemyTransform;
@@ -52,11 +44,11 @@ public class PriestessHeroAI : MonoBehaviour
     private float attackCooldown;
     [SerializeField] private bool isCooldown;
 
-    ArcherHeroSkill skill;
+    PriestessHeroSkill skill;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
 
-    [SerializeField] private float slideDuration = 0.5f;  // Duration for sliding past obstacles
+    [SerializeField] private float slideDuration = 0.5f;
     private bool isSliding = false;
 
     private LineTrigger lineTrigger;
@@ -64,7 +56,7 @@ public class PriestessHeroAI : MonoBehaviour
     [SerializeField] public GameObject skillBar;
     [SerializeField] public GameObject weaponBar;
 
-    public ArcherHeroSkill archerHeroSkill;
+    public PriestessHeroSkill priestHeroSkill;
 
     private void Awake()
     {
@@ -74,9 +66,9 @@ public class PriestessHeroAI : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         attackCooldown = cooldownTime;
-        skill = gameObject.GetComponent<ArcherHeroSkill>();
+        skill = gameObject.GetComponent<PriestessHeroSkill>();
 
-        archerHeroSkill = GetComponent<ArcherHeroSkill>();
+        priestHeroSkill = GetComponent<PriestessHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
@@ -89,14 +81,13 @@ public class PriestessHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cooldownTime -= Time.deltaTime;
+        // Reduce the cooldown over time
+        if (cooldownTime > 0)
+        {
+            cooldownTime -= Time.deltaTime;
+        }
 
         HandleMouseInput();
-
-        if (ShouldRetreat())
-        {
-            currentState = State.retreat;
-        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -111,13 +102,13 @@ public class PriestessHeroAI : MonoBehaviour
                 FollowLogic();
                 break;
             case State.chase:
-                //ChaseLogic();
+                //
                 break;
             case State.attack:
                 AttackLogic();
                 break;
             case State.retreat:
-                RetreatLogic();
+                //
                 break;
             case State.skill:
                 SkillLogic();
@@ -229,62 +220,6 @@ public class PriestessHeroAI : MonoBehaviour
         }
     }
 
-    private void ChaseLogic()
-    {
-        if (currentState == State.skill) return;
-
-        if (enemyTransform != null)
-        {
-            // Calculate distance to the enemy and player
-            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-            // If the distance to the player exceeds the max chase distance, return to follow
-            if (distanceToPlayer > maxChaseDistance)
-            {
-                currentState = State.follow;
-                focusEnemy = null; // Optionally, clear the enemy focus
-                return;
-            }
-
-            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-
-            // Stop the walking animation if within attack range but on cooldown
-            if (distanceToEnemy <= attackDistance && cooldownTime > 0f)
-            {
-                // Within attack range but still on cooldown, stop the walking animation
-                animator.SetBool("isWalking", false);
-            }
-            else
-            {
-                FlipSprite(enemyTransform);
-                // Continue walking if not within attack range or if not on cooldown
-                animator.SetBool("isWalking", true);
-
-                if (distanceToEnemy > attackDistance)
-                {
-                    // Move towards the enemy
-                    if (!isSliding && !CanMove(directionToEnemy))
-                    {
-                        StartCoroutine(SlidePastObstacle(directionToEnemy));
-                    }
-                    else
-                    {
-                        transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
-                    }
-                }
-                else
-                {
-                    AttackLogic(); // Start attacking if close enough
-                }
-            }
-        }
-        else
-        {
-            currentState = State.follow;
-        }
-    }
-
     private bool CanMove(Vector2 direction)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.1f, LayerMask.GetMask("Obstacles"));
@@ -312,10 +247,12 @@ public class PriestessHeroAI : MonoBehaviour
         {
             float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
 
-            if (distanceToEnemy > retreatDistance)
+            // Check if the enemy is within attack distance
+            if (distanceToEnemy <= attackDistance)
             {
                 animator.SetBool("isWalking", false);
                 FlipSprite(enemyTransform);
+                // Trigger the casting animation instead of the attack animation
                 animator.SetTrigger("attack");
                 cooldownTime = attackCooldown;
             }
@@ -327,53 +264,6 @@ public class PriestessHeroAI : MonoBehaviour
         else
         {
             currentState = State.chase;
-        }
-    }
-
-    bool ShouldRetreat()
-    {
-        if (enemyTransform != null)
-        {
-            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
-            // If the enemy is within retreat distance, trigger retreat
-            return distanceToEnemy < retreatDistance;
-        }
-        return false;
-    }
-
-    void RetreatLogic()
-    {
-        if (enemyTransform != null)
-        {
-            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
-
-            // Start or continue retreating
-            if (distanceToEnemy < retreatDistance)
-            {
-                // Reset retreat timer if too close to enemy
-                retreatTimer = retreatDuration;
-            }
-
-            // Countdown retreat timer
-            if (retreatTimer > 0)
-            {
-                retreatTimer -= Time.deltaTime;
-
-                // Move away from the enemy
-                Vector3 directionAwayFromEnemy = (transform.position - enemyTransform.position).normalized;
-                transform.Translate(directionAwayFromEnemy * retreatSpeed * Time.deltaTime);
-                animator.SetBool("isWalking", true);
-            }
-            else if (distanceToEnemy > safeDistance)
-            {
-                // Once safe distance is reached and timer ends, go back to attack
-                currentState = State.attack;
-            }
-            else
-            {
-                // Prevent rapid switching; stay in retreat until the timer ends
-                retreatTimer = retreatDuration;
-            }
         }
     }
 
@@ -391,15 +281,12 @@ public class PriestessHeroAI : MonoBehaviour
 
     public void Attack()
     {
-        // Calculate direction towards the enemy
-        Vector2 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-
-        // Calculate rotation angle towards the enemy
-        float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
-        arrowSpawnPoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, arrowSpawnPoint.rotation);
-        newArrow.GetComponent<Arrow>().UpdateProjectileRange(12f);
+        if (enemyTransform != null)
+        {
+            // Instantiate magic effect at enemy location
+            Vector3 magicPosition = enemyTransform.position;
+            Instantiate(magicPrefab, magicPosition, Quaternion.identity);
+        }
     }
 
     private void Unattacked()

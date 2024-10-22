@@ -57,23 +57,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fe93f7108e6474e82f97589e8a1be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 5
+  attackDistance: 3
   distanceToAttack: 1
-  distanceToDefence: 5
   followSpeed: 2
-  chaseSpeed: 2
-  retreatSpeed: 3
-  retreatDistance: 3
-  retreatDuration: 1
-  safeDistance: 6
-  maxChaseDistance: 10
   player: {fileID: 0}
   currentState: 0
   focus:
     serializedVersion: 2
     m_Bits: 0
-  arrowPrefab: {fileID: 0}
-  arrowSpawnPoint: {fileID: 0}
+  magicPrefab: {fileID: 371351925480119373, guid: 5033be63cc9d5ec4b835ad5be6c58ca0, type: 3}
   isAttacking: 0
   enemyTransform: {fileID: 0}
   focusEnemy: {fileID: 0}
@@ -83,7 +75,7 @@ MonoBehaviour:
   slideDuration: 0.5
   skillBar: {fileID: 0}
   weaponBar: {fileID: 0}
-  archerHeroSkill: {fileID: 0}
+  priestHeroSkill: {fileID: 0}
 --- !u!114 &3979085936879950760
 MonoBehaviour:
   m_ObjectHideFlags: 0
