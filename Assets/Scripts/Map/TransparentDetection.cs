@@ -15,6 +15,8 @@ public class TransparentDetection : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Tilemap tilemap;
 
+    private int objectsInTrigger = 0; // Track number of objects (Player and Hero)
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,9 +25,12 @@ public class TransparentDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero" || other.gameObject.tag == "Enemy")
+        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero")
         {
+            objectsInTrigger++; // Increase count when Player or Hero enters
+
             ChangeSortingLayer(changeSortingLayer);
+
             if (spriteRenderer)
             {
                 StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, transparencyAmount));
@@ -39,17 +44,23 @@ public class TransparentDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero" || other.gameObject.tag == "Enemy")
+        if (other.gameObject.GetComponent<PlayerController>() || other.gameObject.tag == "Hero")
         {
-            ChangeSortingLayer(originalSortingLayer);
+            objectsInTrigger--; // Decrease count when Player or Hero exits
 
-            if (spriteRenderer)
+            // Only change back when no objects are inside the trigger
+            if (objectsInTrigger <= 0)
             {
-                StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));
-            }
-            else if (tilemap)
-            {
-                StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, 1f));
+                ChangeSortingLayer(originalSortingLayer);
+
+                if (spriteRenderer)
+                {
+                    StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));
+                }
+                else if (tilemap)
+                {
+                    StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, 1f));
+                }
             }
         }
     }

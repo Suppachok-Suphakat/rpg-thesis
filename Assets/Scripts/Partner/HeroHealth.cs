@@ -53,6 +53,12 @@ public class HeroHealth : MonoBehaviour
         //currVal -= (amount - PlayerStats.instance.armor);
     }
 
+    public void Heal(int amount)
+    {
+        hp.currVal += amount;
+        UpdateHpBar();
+    }
+
     private void CheckIfPartnerDeath()
     {
         if (hp.currVal <= 0 && !isDead)
