@@ -30,15 +30,15 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            Inventory();
-        }
+        //if(Input.GetKeyDown(KeyCode.I))
+        //{
+        //    Inventory();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Equipment();
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Equipment();
+        //}
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
