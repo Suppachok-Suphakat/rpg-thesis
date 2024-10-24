@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 726458a6173e672419d770f76ea9f219
+guid: 5e7205ac1002b4c4680b2c7d58db2f3d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_0
+      name: New_ArcherFusion_Fusion_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 980df1bea9c8cd1449eb9a14a66a09f9
-      internalID: -248008927
+      spriteID: de324d232e38b1242bc34bac17d7759f
+      internalID: -1897001144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_1
+      name: New_ArcherFusion_Fusion_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e31d575ba53fd74fb6e4ba5d8e945a6
-      internalID: -1882315116
+      spriteID: 829ab74dd54473548a219ccaff95ae0b
+      internalID: 682794586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_2
+      name: New_ArcherFusion_Fusion_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 526225d042442c84c9ce47d499991322
-      internalID: -1816207136
+      spriteID: cc52a2219f01cfa48b54dd4ff2004ee5
+      internalID: 1203376938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_3
+      name: New_ArcherFusion_Fusion_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3faf09beb92e342488fe0264ff3778de
-      internalID: 1385316283
+      spriteID: 6cc1c33f37ca3d144a14b945054127d2
+      internalID: -2109926775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_4
+      name: New_ArcherFusion_Fusion_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8214c89f20123f74aa5582a8897c8b0b
-      internalID: 307926416
+      spriteID: cf853171d0c3f864aafd7853d8395aff
+      internalID: -1007359050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_5
+      name: New_ArcherFusion_Fusion_5
       rect:
         serializedVersion: 2
         x: 320
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 492a8150ec02f974689d3b4769d3f9b6
-      internalID: 81660130
+      spriteID: e4fe350b58724c044b11f166f4aa6a0d
+      internalID: -248878776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_6
+      name: New_ArcherFusion_Fusion_6
       rect:
         serializedVersion: 2
         x: 384
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20d26a57255f20848aecd3526107f1f2
-      internalID: -1141956074
+      spriteID: ab9eea4ea94466845a5eba23d659d696
+      internalID: -243981468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_7
+      name: New_ArcherFusion_Fusion_7
       rect:
         serializedVersion: 2
         x: 448
@@ -284,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ae6fb46fe9cdc24b8caef7f39a9309d
-      internalID: -743532421
+      spriteID: 0508011e1220cf94ab66dbbc41390128
+      internalID: 120900111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_8
+      name: New_ArcherFusion_Fusion_8
       rect:
         serializedVersion: 2
         x: 512
@@ -305,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a3a4a82fcbb544f973f52b49fa5765
-      internalID: 936412653
+      spriteID: 6622544202fdf69458d970b6a29c8d36
+      internalID: 794038589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Transform_9
+      name: New_ArcherFusion_Fusion_9
       rect:
         serializedVersion: 2
         x: 576
@@ -326,8 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f92ca9a3d81d5b49af69386edccf452
-      internalID: 1897886275
+      spriteID: b653893e64e3429479379de7270ff74d
+      internalID: 1084166888
       vertices: []
       indices: 
       edges: []
@@ -343,16 +343,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      P_Sprite_ArcherFusion_Transform_0: -248008927
-      P_Sprite_ArcherFusion_Transform_1: -1882315116
-      P_Sprite_ArcherFusion_Transform_2: -1816207136
-      P_Sprite_ArcherFusion_Transform_3: 1385316283
-      P_Sprite_ArcherFusion_Transform_4: 307926416
-      P_Sprite_ArcherFusion_Transform_5: 81660130
-      P_Sprite_ArcherFusion_Transform_6: -1141956074
-      P_Sprite_ArcherFusion_Transform_7: -743532421
-      P_Sprite_ArcherFusion_Transform_8: 936412653
-      P_Sprite_ArcherFusion_Transform_9: 1897886275
+      New_ArcherFusion_Fusion_0: -1897001144
+      New_ArcherFusion_Fusion_1: 682794586
+      New_ArcherFusion_Fusion_2: 1203376938
+      New_ArcherFusion_Fusion_3: -2109926775
+      New_ArcherFusion_Fusion_4: -1007359050
+      New_ArcherFusion_Fusion_5: -248878776
+      New_ArcherFusion_Fusion_6: -243981468
+      New_ArcherFusion_Fusion_7: 120900111
+      New_ArcherFusion_Fusion_8: 794038589
+      New_ArcherFusion_Fusion_9: 1084166888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

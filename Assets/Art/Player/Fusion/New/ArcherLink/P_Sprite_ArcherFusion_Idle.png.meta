@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07887e905c9586641a6a423ad440bf71
+guid: 8845fe957da6b0b4ca9f15af0a2c42d4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Idle_0
+      name: New_ArcherFusion_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a170520e59832654ea98422504c71913
-      internalID: 361314417
+      spriteID: 76a91f9af75e252468928d43302cd596
+      internalID: 1202602185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Idle_1
+      name: New_ArcherFusion_Idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54a0ccb20ae7cee4092d11dfe8598420
-      internalID: 1069780247
+      spriteID: 1a2112d676c7e2d499f0d95679e7f743
+      internalID: -1771191288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Idle_2
+      name: New_ArcherFusion_Idle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b45cf982bb714d43954e4e2bbffb3dd
-      internalID: 1401946770
+      spriteID: 354727d4497292241ba7fafd1adfaefc
+      internalID: -393755169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Idle_3
+      name: New_ArcherFusion_Idle_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03985572ce5c72942aa004e8aaed2807
-      internalID: -2080713892
+      spriteID: 8b62c235a60f47d4f9fd057c94d44e7f
+      internalID: 928619224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Idle_4
+      name: New_ArcherFusion_Idle_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4a8c9d60b7347442b28ea2ab4dbf0e1
-      internalID: -666766336
+      spriteID: 23ed05ba9e603c14b85e97df071349a4
+      internalID: 134849772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_ArcherFusion_Idle_5
+      name: New_ArcherFusion_Idle_5
       rect:
         serializedVersion: 2
         x: 320
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 680ea28115c85e248b4ce69d27042115
-      internalID: 1331144669
+      spriteID: e4b3c237bc17c9447b518e3984bbf8fe
+      internalID: 254547742
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      P_Sprite_ArcherFusion_Idle_0: 361314417
-      P_Sprite_ArcherFusion_Idle_1: 1069780247
-      P_Sprite_ArcherFusion_Idle_2: 1401946770
-      P_Sprite_ArcherFusion_Idle_3: -2080713892
-      P_Sprite_ArcherFusion_Idle_4: -666766336
-      P_Sprite_ArcherFusion_Idle_5: 1331144669
+      New_ArcherFusion_Idle_0: 1202602185
+      New_ArcherFusion_Idle_1: -1771191288
+      New_ArcherFusion_Idle_2: -393755169
+      New_ArcherFusion_Idle_3: 928619224
+      New_ArcherFusion_Idle_4: 134849772
+      New_ArcherFusion_Idle_5: 254547742
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
