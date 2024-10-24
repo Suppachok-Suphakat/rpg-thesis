@@ -109,20 +109,6 @@ public class PriestessHeroSkill : MonoBehaviour
                 else
                 {
                     transform.parent.localScale = new Vector3(1f, 1f, 1f);
-
-                    //if (weaponChangeInfo != null)
-                    //{
-                    //    toolbarSlot.weaponInfo = weaponChangeInfo;
-                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    //}
-                    //else
-                    //{
-                    //    toolbarSlot.weaponInfo = null;
-                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    //}
-
-                    //GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
-
                     state = AbilityState.cooldown;
                     skill1CooldownTime = skill1CurrentCooldownTime;
                 }
