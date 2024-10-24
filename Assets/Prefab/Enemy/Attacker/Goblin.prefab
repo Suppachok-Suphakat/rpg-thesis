@@ -389,7 +389,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   deathVFXPrefab: {fileID: 3626922010709504189, guid: 6edd3c2e4fc54a647b47a1663decdf66, type: 3}
-  knockBackThrust: 5
+  knockBackThrust: 1
   hpBar: {fileID: 1444901905197584768}
   arrow: {fileID: 5339104044626962236}
 --- !u!50 &4038742072775554809

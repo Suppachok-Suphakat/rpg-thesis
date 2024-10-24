@@ -206,7 +206,7 @@ public class KnightHeroAI : MonoBehaviour
         FlipSprite(PlayerController.instance.transform);
         float distancePlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distancePlayer > 2.5f)
+        if (distancePlayer > 2f)
         {
             animator.SetBool("isDefencing", false);
             animator.SetBool("isWalking", true);

@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1206999469
-  m_SortingLayer: -1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 829765582, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 1653837002, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,8 +130,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958169670684826831}
-  - component: {fileID: 6787549504983668559}
   - component: {fileID: 5735391842503544217}
+  - component: {fileID: 8908895202564279500}
   m_Layer: 0
   m_Name: DamageCollider
   m_TagString: Untagged
@@ -154,8 +154,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5015991133030946201}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &6787549504983668559
-CircleCollider2D:
+--- !u!114 &5735391842503544217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5266923146069708492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666b76789a3e2ba44a6955ff4e6fe219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+--- !u!70 &8908895202564279500
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -186,19 +199,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.34830213}
-  serializedVersion: 2
-  m_Radius: 1.8
---- !u!114 &5735391842503544217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5266923146069708492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666b76789a3e2ba44a6955ff4e6fe219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
+  m_Offset: {x: 0.071822, y: -0.45053777}
+  m_Size: {x: 1.8842671, y: 0.63059855}
+  m_Direction: 1

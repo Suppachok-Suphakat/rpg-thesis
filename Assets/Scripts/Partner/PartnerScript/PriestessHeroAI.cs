@@ -40,8 +40,9 @@ public class PriestessHeroAI : MonoBehaviour
     public Transform enemyTransform;
     public Transform focusEnemy;
 
-    [SerializeField] private float cooldownTime;
-    private float attackCooldown;
+    [SerializeField] private float cooldownTime = 2f;
+    [SerializeField] private float currentCooldown;
+    [SerializeField] private float attackCooldown = 5f;
     [SerializeField] private bool isCooldown;
 
     PriestessHeroSkill skill;
@@ -94,28 +95,13 @@ public class PriestessHeroAI : MonoBehaviour
             currentState = State.follow;
             focusEnemy = null;
             animator.SetBool("isWalking", false);
+
+            // Stop attack or skill logic
+            isCooldown = false;
+            isAttacking = false;
         }
 
-        switch (currentState)
-        {
-            case State.follow:
-                FollowLogic();
-                break;
-            case State.chase:
-                //
-                break;
-            case State.attack:
-                AttackLogic();
-                break;
-            case State.retreat:
-                //
-                break;
-            case State.skill:
-                SkillLogic();
-                break;
-            case State.death:
-                break;
-        }
+        FollowAndAttack(); // Follow the player and attack enemies within range
     }
 
     void HandleMouseInput()
@@ -168,6 +154,7 @@ public class PriestessHeroAI : MonoBehaviour
             }
         }
     }
+
     void FollowLogic()
     {
         FlipSprite(PlayerController.instance.transform);
@@ -194,29 +181,53 @@ public class PriestessHeroAI : MonoBehaviour
         }
     }
 
+    void FollowAndAttack()
+    {
+        FollowLogic(); // Continue to follow the player
+
+        // Attack enemies while following
+        if (focusEnemy != null && enemyTransform != null)
+        {
+            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+
+            // Check if the enemy is within attack distance
+            if (distanceToEnemy <= attackDistance && !isCooldown)
+            {
+                animator.SetBool("isWalking", false);
+                FlipSprite(enemyTransform);
+                animator.SetTrigger("attack"); // Trigger attack animation
+                Attack(); // Perform the actual attack
+                isCooldown = true; // Start cooldown
+                currentCooldown = attackCooldown;  // Reset currentCooldown here
+            }
+
+            // Handle cooldown countdown
+            if (isCooldown)
+            {
+                currentCooldown -= Time.deltaTime;  // Use a new cooldown variable
+                if (currentCooldown <= 0)
+                {
+                    isCooldown = false; // Reset cooldown
+                }
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
-
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
-
-            currentState = State.follow;
         }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
-
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
-
-            currentState = State.follow;
         }
     }
 
@@ -281,12 +292,24 @@ public class PriestessHeroAI : MonoBehaviour
 
     public void Attack()
     {
-        if (enemyTransform != null)
+        if (enemyTransform != null && !isAttacking) // Ensure the Priestess is not already attacking
         {
+            isAttacking = true; // Set the attacking flag
+
             // Instantiate magic effect at enemy location
             Vector3 magicPosition = enemyTransform.position;
             Instantiate(magicPrefab, magicPosition, Quaternion.identity);
+
+            StartCoroutine(AttackCooldown());
         }
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        // Prevent multiple attacks during cooldown
+        yield return new WaitForSeconds(attackCooldown);
+
+        isAttacking = false; // Allow the Priestess to attack again
     }
 
     private void Unattacked()

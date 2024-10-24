@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 3
-  distanceToAttack: 1
+  distanceToAttack: 3
   followSpeed: 2
   player: {fileID: 0}
   currentState: 0
@@ -69,7 +69,9 @@ MonoBehaviour:
   isAttacking: 0
   enemyTransform: {fileID: 0}
   focusEnemy: {fileID: 0}
-  cooldownTime: 0
+  cooldownTime: 5
+  currentCooldown: 0
+  attackCooldown: 5
   isCooldown: 0
   currentEnemyHealth: {fileID: 0}
   slideDuration: 0.5
