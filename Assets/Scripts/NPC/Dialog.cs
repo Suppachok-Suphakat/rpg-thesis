@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DialogueCharecter
+public class DialogueCharacter
 {
     public string name;
     public Sprite icon;
@@ -12,7 +12,7 @@ public class DialogueCharecter
 [System.Serializable]
 public class DialogueLine
 {
-    public DialogueCharecter charecter;
+    public DialogueCharacter character;
     [TextArea(3, 10)]
     public string line;
 }

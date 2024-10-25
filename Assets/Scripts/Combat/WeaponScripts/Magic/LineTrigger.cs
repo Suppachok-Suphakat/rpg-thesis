@@ -72,7 +72,6 @@ public class LineTrigger : MonoBehaviour
         }
         else if (hero.GetComponent<PriestessHeroAI>())
         {
-            Debug.Log("Unlink");
             hero.GetComponent<PriestessHeroAI>().skillBar.SetActive(false);
             hero.GetComponent<PriestessHeroAI>().weaponBar.SetActive(false);
             hero.GetComponent<PriestessHeroAI>().priestessHeroSkill.DeFusionActivate();

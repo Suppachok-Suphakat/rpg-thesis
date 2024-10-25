@@ -21,7 +21,7 @@ public class LandSplatter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Charecter player = other.gameObject.GetComponent<Charecter>();
+        Character player = other.gameObject.GetComponent<Character>();
         player?.TakeDamage(damage, transform);
     }
 

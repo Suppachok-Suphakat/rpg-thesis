@@ -10,7 +10,7 @@ public class Staff : MonoBehaviour, IWeapon
     [SerializeField] private int manaCost;
 
     private Animator myAnimator;
-    private Charecter charecter;
+    private Character character;
 
     readonly int ATTACK_HASH = Animator.StringToHash("Attack");
 
@@ -38,7 +38,7 @@ public class Staff : MonoBehaviour, IWeapon
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
-        charecter = FindObjectOfType<Charecter>();
+        character = FindObjectOfType<Character>();
     }
 
     private void Start()
@@ -109,7 +109,7 @@ public class Staff : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        if (charecter.mana.currVal >= manaCost)
+        if (character.mana.currVal >= manaCost)
         {
             myAnimator.SetTrigger(ATTACK_HASH);
             StartCoroutine(ReduceManaRoutine());
@@ -124,7 +124,7 @@ public class Staff : MonoBehaviour, IWeapon
 
     private IEnumerator ReduceManaRoutine()
     {
-        charecter.ReduceMana(manaCost);
+        character.ReduceMana(manaCost);
         yield return new WaitForSeconds(weaponInfo.weaponCooldown);
     }
 

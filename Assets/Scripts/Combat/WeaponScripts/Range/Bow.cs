@@ -9,7 +9,7 @@ public class Bow : MonoBehaviour, IWeapon
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
     [SerializeField] private int staminaCost;
-    private Charecter charecter;
+    private Character character;
 
     readonly int FIRE_HASH = Animator.StringToHash("Fire");
 
@@ -39,7 +39,7 @@ public class Bow : MonoBehaviour, IWeapon
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
-        charecter = FindObjectOfType<Charecter>();
+        character = FindObjectOfType<Character>();
     }
 
     private void Start()
@@ -116,7 +116,7 @@ public class Bow : MonoBehaviour, IWeapon
 
     private IEnumerator ReduceStaminaRoutine()
     {
-        charecter.ReduceStamina(staminaCost);
+        character.ReduceStamina(staminaCost);
         yield return new WaitForSeconds(0.5f);
     }
 

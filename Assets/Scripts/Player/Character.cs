@@ -45,9 +45,9 @@ public class Stat
     }
 }
 
-public class Charecter : MonoBehaviour, IDamageable
+public class Character : MonoBehaviour, IDamageable
 {
-    public static Charecter instance;
+    public static Character instance;
 
     public bool isDead { get; private set; }
     const string TOWN_TEXT = "Map01";

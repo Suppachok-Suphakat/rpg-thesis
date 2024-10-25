@@ -13,19 +13,19 @@ public class Codex : MonoBehaviour, IWeapon
     [SerializeField] private int codexCooldown;
 
     private Animator myAnimator;
-    private Charecter charecter;
+    private Character character;
 
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
-        charecter = FindObjectOfType<Charecter>();
+        character = FindObjectOfType<Character>();
     }
 
     private void Update()
     {
         MouseFollowWithOffset();
 
-        if(Charecter.instance.mana.currVal > 0)
+        if(Character.instance.mana.currVal > 0)
         {
             if (Input.GetMouseButtonDown(0)) // Check for mouse button down
             {
@@ -36,7 +36,7 @@ public class Codex : MonoBehaviour, IWeapon
             {
                 // Update the position of the magic circle to follow the player
                 UpdateMagicCirclePosition();
-                charecter.ReduceManaOverTime(manaCost);
+                character.ReduceManaOverTime(manaCost);
             }
             else if (Input.GetMouseButtonUp(0) && magicCircleInstance != null) // Check for mouse button release
             {

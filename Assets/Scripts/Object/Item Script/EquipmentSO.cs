@@ -27,8 +27,8 @@ public class EquipmentSO : ScriptableObject
     {
         PlayerStats playerStats = GameObject.Find("StatManager").GetComponent<PlayerStats>();
         playerStats.vitality += vitality;
-        Charecter.instance.hp.maxVal += vitality;
-        Charecter.instance.hp.currVal += vitality;
+        Character.instance.hp.maxVal += vitality;
+        Character.instance.hp.currVal += vitality;
         playerStats.radiance += radiance;
         playerStats.eclipse += eclipse;
         playerStats.armor += armor;
@@ -44,8 +44,8 @@ public class EquipmentSO : ScriptableObject
     {
         PlayerStats playerStats = GameObject.Find("StatManager").GetComponent<PlayerStats>();
         playerStats.vitality -= vitality;
-        Charecter.instance.hp.maxVal -= vitality;
-        Charecter.instance.hp.currVal -= vitality;
+        Character.instance.hp.maxVal -= vitality;
+        Character.instance.hp.currVal -= vitality;
         playerStats.radiance -= radiance;
         playerStats.eclipse -= eclipse;
         playerStats.armor -= armor;

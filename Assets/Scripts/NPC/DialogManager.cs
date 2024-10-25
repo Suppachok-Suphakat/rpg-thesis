@@ -11,8 +11,8 @@ public class DialogManager : MonoBehaviour
 
     [SerializeField] GameObject dialogBox;
 
-    public Image charecterPortrait;
-    public TextMeshProUGUI charecterName;
+    public Image characterPortrait;
+    public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogArea;
 
     [SerializeField] int letterPerSecond;
@@ -70,8 +70,8 @@ public class DialogManager : MonoBehaviour
     {
         isTyping = true;
         dialogArea.text = "";
-        charecterPortrait.sprite = dialogLine.charecter.icon;
-        charecterName.text = dialogLine.charecter.name;
+        characterPortrait.sprite = dialogLine.character.icon;
+        characterName.text = dialogLine.character.name;
         foreach (char letter in dialogLine.line.ToCharArray())
         {
             dialogArea.text += letter;

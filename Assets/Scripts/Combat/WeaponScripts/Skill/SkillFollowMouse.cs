@@ -46,7 +46,7 @@ public class SkillFollowMouse : MonoBehaviour
     {
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         Indestructible indestructible = other.gameObject.GetComponent<Indestructible>();
-        Charecter player = other.gameObject.GetComponent<Charecter>();
+        Character player = other.gameObject.GetComponent<Character>();
         Barrier barrier = other.gameObject.GetComponent<Barrier>();
 
         if (!other.isTrigger && (enemyHealth || indestructible || player))

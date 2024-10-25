@@ -50,9 +50,9 @@ public class PlayerStats : MonoBehaviour
         dexterityText.text = dexterity.ToString();
         intelligenceText.text = intelligence.ToString();
 
-        hpText.text = Charecter.instance.hp.currVal.ToString() + "/ " + Charecter.instance.hp.maxVal.ToString();
-        mpText.text = Charecter.instance.mana.currVal.ToString() + "/ " + Charecter.instance.mana.maxVal.ToString();
-        staminaText.text = Charecter.instance.stamina.currVal.ToString() + "/ " + Charecter.instance.stamina.maxVal.ToString();
+        hpText.text = Character.instance.hp.currVal.ToString() + "/ " + Character.instance.hp.maxVal.ToString();
+        mpText.text = Character.instance.mana.currVal.ToString() + "/ " + Character.instance.mana.maxVal.ToString();
+        staminaText.text = Character.instance.stamina.currVal.ToString() + "/ " + Character.instance.stamina.maxVal.ToString();
         armorText.text = armor.ToString();
     }
 

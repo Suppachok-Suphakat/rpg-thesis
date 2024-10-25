@@ -12,12 +12,12 @@ public class HealMagic : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Charecter charecter = other.gameObject.GetComponent<Charecter>();
+        Character character = other.gameObject.GetComponent<Character>();
         HeroHealth heroHealth = other.gameObject.GetComponent<HeroHealth>();
 
-        if (charecter != null && hpRecoveryTimer <= 0f && charecter.hp.currVal < charecter.hp.maxVal)
+        if (character != null && hpRecoveryTimer <= 0f && character.hp.currVal < character.hp.maxVal)
         {
-            charecter.Heal(hpRecoveryRate);
+            character.Heal(hpRecoveryRate);
             hpRecoveryTimer = hpRecoveryDelay; // Reset the timer
         }
 

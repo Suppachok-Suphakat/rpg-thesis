@@ -14,7 +14,7 @@ public class EnemyDamageSource : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Charecter playerHealth = other.gameObject.GetComponent<Charecter>();
+        Character playerHealth = other.gameObject.GetComponent<Character>();
         playerHealth?.TakeDamage(damageAmount, transform);
 
         HeroHealth partnerHealth = other.gameObject.GetComponent<HeroHealth>();

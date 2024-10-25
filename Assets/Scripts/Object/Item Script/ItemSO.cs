@@ -18,28 +18,28 @@ public class ItemSO : ScriptableObject
     {
         if(statToChange == StatToChange.health)
         {
-            Charecter charecter = GameObject.Find("Player").GetComponent<Charecter>();
-            if(charecter.hp.currVal == charecter.hp.maxVal)
+            Character character = GameObject.Find("Player").GetComponent<Character>();
+            if(character.hp.currVal == character.hp.maxVal)
             {
                 return false;
             }
             else
             {
-                charecter.Heal(amountToChangeStat);
+                character.Heal(amountToChangeStat);
                 return true;
             }
         }
 
         if (statToChange == StatToChange.mana)
         {
-            Charecter charecter = GameObject.Find("Player").GetComponent<Charecter>();
-            if (charecter.mana.currVal == charecter.mana.maxVal)
+            Character character = GameObject.Find("Player").GetComponent<Character>();
+            if (character.mana.currVal == character.mana.maxVal)
             {
                 return false;
             }
             else
             {
-                charecter.RestoreMana(amountToChangeStat);
+                character.RestoreMana(amountToChangeStat);
                 return true;
             }
         }

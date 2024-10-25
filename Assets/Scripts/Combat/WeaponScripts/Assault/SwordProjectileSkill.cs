@@ -14,7 +14,7 @@ public class SwordProjectileSkill : MonoBehaviour, IWeapon
 
     [SerializeField] private Transform weaponCollider;
     private Animator animator;
-    private Charecter charecter;
+    private Character character;
 
     private GameObject slashAnim;
 
@@ -46,7 +46,7 @@ public class SwordProjectileSkill : MonoBehaviour, IWeapon
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        charecter = FindObjectOfType<Charecter>();
+        character = FindObjectOfType<Character>();
     }
 
     private void Start()
@@ -119,7 +119,7 @@ public class SwordProjectileSkill : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        if (charecter.stamina.currVal >= staminaCost && !PlayerController.instance.isMenuActive)
+        if (character.stamina.currVal >= staminaCost && !PlayerController.instance.isMenuActive)
         {
             animator.SetTrigger("Attack");
             weaponCollider.gameObject.SetActive(true);
@@ -140,7 +140,7 @@ public class SwordProjectileSkill : MonoBehaviour, IWeapon
 
     private IEnumerator ReduceStaminaRoutine()
     {
-        charecter.ReduceStamina(staminaCost);
+        character.ReduceStamina(staminaCost);
         yield return new WaitForSeconds(weaponInfo.weaponCooldown);
     }
 

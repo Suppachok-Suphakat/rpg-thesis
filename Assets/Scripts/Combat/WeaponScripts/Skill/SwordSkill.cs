@@ -10,14 +10,14 @@ public class SwordSkill : MonoBehaviour
 
     private Transform weaponCollider;
     private Animator animator;
-    private Charecter charecter;
+    private Character character;
 
     private GameObject slashAnim;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        charecter = FindObjectOfType<Charecter>();
+        character = FindObjectOfType<Character>();
     }
 
     private void Start()
@@ -32,7 +32,7 @@ public class SwordSkill : MonoBehaviour
 
     private IEnumerator ReduceWeaponChargeRoutine()
     {
-        charecter.ReduceStamina(staminaCost);
+        character.ReduceStamina(staminaCost);
         yield return new WaitForSeconds(1);
     }
 
