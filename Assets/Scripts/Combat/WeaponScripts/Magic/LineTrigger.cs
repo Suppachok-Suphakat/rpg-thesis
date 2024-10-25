@@ -10,10 +10,10 @@ public class LineTrigger : MonoBehaviour
     [SerializeField] private WeaponInfo weaponInfo;
 
     public Transform currentTarget;
-    private Transform previousTarget; // Track the previous partner
+    private Transform previousTarget;
 
     private float fusionCooldown = 1f;
-    private float lastFusionTime = 0f; // Track the time of the last link/unlink
+    private float lastFusionTime = 0f;
 
     private bool isInFusion = false;
 
@@ -21,32 +21,55 @@ public class LineTrigger : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && Time.time >= lastFusionTime + fusionCooldown)
         {
-            lastFusionTime = Time.time; // Reset the cooldown timer
+            lastFusionTime = Time.time;
 
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
-            float detectionRadius = 0.5f;
-            Collider2D hit = Physics2D.OverlapCircle(mousePosition, detectionRadius);
+            float detectionRadius = 1f; // Increase radius to allow easier detection
+            Collider2D[] hits = Physics2D.OverlapCircleAll(mousePosition, detectionRadius);
 
-            if (hit != null && hit.CompareTag("Hero"))
+            // Check for the closest hero in detected colliders
+            Transform closestHero = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (Collider2D hit in hits)
             {
-                Transform newHero = hit.transform;
-
-                if (lineEffect != null)
+                if (hit.CompareTag("Hero"))
                 {
-                    if (currentTarget == newHero)
+                    float distance = Vector3.Distance(mousePosition, hit.transform.position);
+                    if (distance < closestDistance)
                     {
-                        UnlinkHero(newHero);
+                        closestDistance = distance;
+                        closestHero = hit.transform;
                     }
-                    else
+                }
+            }
+
+            // If no hero is found, fall back to raycast precision
+            if (closestHero == null)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+                if (hit.collider != null && hit.collider.CompareTag("Hero"))
+                {
+                    closestHero = hit.transform;
+                }
+            }
+
+            // Handle linking or unlinking hero
+            if (closestHero != null && lineEffect != null)
+            {
+                if (currentTarget == closestHero)
+                {
+                    UnlinkHero(closestHero);
+                }
+                else
+                {
+                    if (previousTarget != null && previousTarget != closestHero)
                     {
-                        if (previousTarget != null && previousTarget != newHero)
-                        {
-                            UnlinkHero(previousTarget);
-                        }
-                        LinkHero(newHero);
+                        UnlinkHero(previousTarget);
                     }
+                    LinkHero(closestHero);
                 }
             }
         }
@@ -54,66 +77,65 @@ public class LineTrigger : MonoBehaviour
 
     private void UnlinkHero(Transform hero)
     {
-        if (!isInFusion) return; // Prevent unlinking if not in fusion mode
+        if (!isInFusion) return;
 
         lineEffect.StopHealing();
 
-        if (hero.GetComponent<KnightHeroAI>())
+        if (hero.TryGetComponent(out KnightHeroAI knightHero))
         {
-            hero.GetComponent<KnightHeroAI>().skillBar.SetActive(false);
-            hero.GetComponent<KnightHeroAI>().weaponBar.SetActive(false);
-            hero.GetComponent<KnightHeroAI>().knightHeroSkill.DeFusionActivate();
+            knightHero.skillBar.SetActive(false);
+            knightHero.weaponBar.SetActive(false);
+            knightHero.knightHeroSkill.DeFusionActivate();
         }
-        else if (hero.GetComponent<ArcherHeroAI>())
+        else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
         {
-            hero.GetComponent<ArcherHeroAI>().skillBar.SetActive(false);
-            hero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(false);
-            hero.GetComponent<ArcherHeroAI>().archerHeroSkill.DeFusionActivate();
+            archerHero.skillBar.SetActive(false);
+            archerHero.weaponBar.SetActive(false);
+            archerHero.archerHeroSkill.DeFusionActivate();
         }
-        else if (hero.GetComponent<PriestessHeroAI>())
+        else if (hero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
-            hero.GetComponent<PriestessHeroAI>().skillBar.SetActive(false);
-            hero.GetComponent<PriestessHeroAI>().weaponBar.SetActive(false);
-            hero.GetComponent<PriestessHeroAI>().priestessHeroSkill.DeFusionActivate();
+            priestessHero.skillBar.SetActive(false);
+            priestessHero.weaponBar.SetActive(false);
+            priestessHero.priestessHeroSkill.DeFusionActivate();
         }
 
         currentTarget = null;
-        isInFusion = false; // Reset fusion state
+        isInFusion = false;
     }
 
     private void LinkHero(Transform newHero)
     {
-        if (isInFusion) return; // Prevent linking if already in fusion mode
+        if (isInFusion) return;
 
-        if (newHero.GetComponent<KnightHeroAI>())
+        if (newHero.TryGetComponent(out KnightHeroAI knightHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
-            newHero.GetComponent<KnightHeroAI>().skillBar.SetActive(true);
-            newHero.GetComponent<KnightHeroAI>().weaponBar.SetActive(true);
-            newHero.GetComponent<KnightHeroAI>().knightHeroSkill.FusionActivate();
+            knightHero.skillBar.SetActive(true);
+            knightHero.weaponBar.SetActive(true);
+            knightHero.knightHeroSkill.FusionActivate();
         }
-        else if (newHero.GetComponent<ArcherHeroAI>())
+        else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
         {
             SetupLineRenderer(Color.white, Color.green);
-            newHero.GetComponent<ArcherHeroAI>().skillBar.SetActive(true);
-            newHero.GetComponent<ArcherHeroAI>().weaponBar.SetActive(true);
-            newHero.GetComponent<ArcherHeroAI>().archerHeroSkill.FusionActivate();
+            archerHero.skillBar.SetActive(true);
+            archerHero.weaponBar.SetActive(true);
+            archerHero.archerHeroSkill.FusionActivate();
         }
-        else if (newHero.GetComponent<PriestessHeroAI>())
+        else if (newHero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
             SetupLineRenderer(Color.white, Color.yellow);
-            newHero.GetComponent<PriestessHeroAI>().skillBar.SetActive(true);
-            newHero.GetComponent<PriestessHeroAI>().weaponBar.SetActive(true);
-            newHero.GetComponent<PriestessHeroAI>().priestessHeroSkill.FusionActivate();
+            priestessHero.skillBar.SetActive(true);
+            priestessHero.weaponBar.SetActive(true);
+            priestessHero.priestessHeroSkill.FusionActivate();
         }
 
         lineEffect.StartHealing(newHero);
         currentTarget = newHero;
         previousTarget = newHero;
-        isInFusion = true; // Set fusion state
+        isInFusion = true;
     }
 
-    // Method to setup the LineRenderer's color gradient
     private void SetupLineRenderer(Color startColor, Color endColor)
     {
         Gradient gradient = new Gradient();

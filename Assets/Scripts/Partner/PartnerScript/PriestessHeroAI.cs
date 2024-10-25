@@ -8,12 +8,12 @@ public class PriestessHeroAI : MonoBehaviour
     public float attackDistance = 5f;
     public float distanceToAttack = 1f;
     public int followSpeed = 2;
+    public float healDistance = 5f;
 
     public enum State
     {
         follow = 0,
-        chase = 1,
-        attack = 2,
+        heal = 1,
         skill = 3,
         retreat = 4,
         death = 5,
@@ -36,6 +36,14 @@ public class PriestessHeroAI : MonoBehaviour
 
     [SerializeField] private GameObject magicPrefab; // The magic effect to instantiate
     public bool isAttacking = false;
+
+    [SerializeField] private GameObject healEffectPrefab; // Healing effect to instantiate
+    [SerializeField] private float healCooldown = 5f;
+    private float currentHealCooldown;
+
+    private Character playerHealth; // Reference to player's health
+    private List<HeroHealth> heroesInRange = new List<HeroHealth>(); // List of nearby heroes
+    private bool isHealing = false;
 
     public Transform enemyTransform;
     public Transform focusEnemy;
@@ -66,6 +74,8 @@ public class PriestessHeroAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
 
+        playerHealth = player.GetComponent<Character>();
+
         attackCooldown = cooldownTime;
         skill = gameObject.GetComponent<PriestessHeroSkill>();
 
@@ -76,7 +86,7 @@ public class PriestessHeroAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHealCooldown = 0f;
     }
 
     // Update is called once per frame
@@ -101,7 +111,15 @@ public class PriestessHeroAI : MonoBehaviour
             isAttacking = false;
         }
 
-        FollowAndAttack(); // Follow the player and attack enemies within range
+        // Reduce the cooldown over time
+        if (currentHealCooldown > 0)
+        {
+            currentHealCooldown -= Time.deltaTime;
+        }
+
+        FollowAndHeal(); // Follow player and perform healing logic
+
+        //FollowAndAttack(); // Follow the player and attack enemies within range
     }
 
     void HandleMouseInput()
@@ -181,6 +199,83 @@ public class PriestessHeroAI : MonoBehaviour
         }
     }
 
+    void FollowAndHeal()
+    {
+        FollowLogic();
+
+        // Heal logic
+        if (currentHealCooldown <= 0 && !isHealing)
+        {
+            HealTarget();
+        }
+    }
+
+    void HealTarget()
+    {
+        // Check if the player needs healing
+        if (playerHealth.hp.currVal < playerHealth.hp.maxVal && playerHealth.hp.currVal <= playerHealth.hp.maxVal * 0.5f)
+        {
+            StartCoroutine(HealCoroutine(playerHealth.transform));
+            return; // Exit after healing the player
+        }
+
+        // Find the hero with the lowest health in range
+        HeroHealth lowestHealthHero = null;
+        float lowestHealth = float.MaxValue;
+
+        foreach (HeroHealth hero in heroesInRange)
+        {
+            if (hero.hp.currVal < hero.hp.maxVal && hero.hp.currVal < lowestHealth)
+            {
+                lowestHealthHero = hero;
+                lowestHealth = hero.hp.currVal;
+            }
+        }
+
+        // If a hero in range needs healing, heal them
+        if (lowestHealthHero != null)
+        {
+            StartCoroutine(HealCoroutine(lowestHealthHero.transform));
+        }
+        else
+        {
+            Debug.Log("No heroes in range need healing.");
+        }
+    }
+
+    private IEnumerator HealCoroutine(Transform target)
+    {
+        if (isHealing) yield break; // Prevent overlapping heals
+
+        isHealing = true;
+        animator.SetTrigger("heal"); // Trigger healing animation
+
+        // Instantiate healing effect at the target's position
+        Vector3 healEffectPosition = target.position;
+        Instantiate(healEffectPrefab, healEffectPosition, Quaternion.identity);
+
+        // Apply healing effect to the target
+        Character character = target.GetComponent<Character>();
+        if (character != null)
+        {
+            character.Heal(10); // Adjust healing amount as needed
+            Debug.Log("Healed player: " + character.name);
+        }
+        else
+        {
+            HeroHealth heroHealth = target.GetComponent<HeroHealth>();
+            if (heroHealth != null)
+            {
+                heroHealth.Heal(10); // Adjust healing amount as needed
+                Debug.Log("Healed hero: " + heroHealth.name);
+            }
+        }
+
+        currentHealCooldown = healCooldown; // Reset cooldown
+        yield return new WaitForSeconds(healCooldown);
+        isHealing = false;
+    }
+
     void FollowAndAttack()
     {
         FollowLogic(); // Continue to follow the player
@@ -220,6 +315,15 @@ public class PriestessHeroAI : MonoBehaviour
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
         }
+
+        if (other.CompareTag("Hero"))
+        {
+            HeroHealth heroHealth = other.GetComponent<HeroHealth>();
+            if (heroHealth != null && !heroesInRange.Contains(heroHealth))
+            {
+                heroesInRange.Add(heroHealth);
+            }
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -228,6 +332,27 @@ public class PriestessHeroAI : MonoBehaviour
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
+        }
+
+        if (other.CompareTag("Hero"))
+        {
+            HeroHealth heroHealth = other.GetComponent<HeroHealth>();
+            if (heroHealth != null && !heroesInRange.Contains(heroHealth))
+            {
+                heroesInRange.Add(heroHealth);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Hero"))
+        {
+            HeroHealth heroHealth = other.GetComponent<HeroHealth>();
+            if (heroHealth != null && heroesInRange.Contains(heroHealth))
+            {
+                heroesInRange.Remove(heroHealth);
+            }
         }
     }
 
