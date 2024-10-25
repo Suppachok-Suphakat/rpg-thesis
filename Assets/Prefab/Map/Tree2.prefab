@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5614129472775147817}
   - component: {fileID: 623119697023683889}
   - component: {fileID: 2874138180809566654}
+  - component: {fileID: 8093633714220833514}
   m_Layer: 0
   m_Name: Shadow T
   m_TagString: Untagged
@@ -120,6 +121,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.12479644, y: -4.328383}
   m_Size: {x: 9.318, y: 2.952267}
   m_Direction: 1
+--- !u!114 &8093633714220833514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3360456692258115844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aceac3cc753d8e45b711d88686ad4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4912543821750969709
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +147,7 @@ GameObject:
   - component: {fileID: 6676432644710754960}
   - component: {fileID: 8761118100992261627}
   - component: {fileID: 8287737012166888188}
+  - component: {fileID: -7802056987493706222}
   m_Layer: 0
   m_Name: Tree2
   m_TagString: Untagged
@@ -326,3 +340,15 @@ CircleCollider2D:
   m_Offset: {x: -0.06118846, y: 0.7138872}
   serializedVersion: 2
   m_Radius: 2.4498453
+--- !u!114 &-7802056987493706222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4912543821750969709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aceac3cc753d8e45b711d88686ad4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
