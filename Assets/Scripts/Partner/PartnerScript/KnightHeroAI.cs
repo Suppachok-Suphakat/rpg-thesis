@@ -6,15 +6,12 @@ using UnityEngine.UI;
 
 public class KnightHeroAI : MonoBehaviour
 {
-    [System.Serializable]
-    public class Status
-    {
-        public float attackDistance = 5;
-        public float distanceToAttack = 1;
-        public float distanceToDefence = 5;
-        public int followSpeed = 2;
-        public int chaseSpeed = 2;
-    }
+    public float attackDistance = 5;
+    public float distanceToAttack = 1;
+    public float distanceToDefence = 5;
+    public int followSpeed = 2;
+    public int chaseSpeed = 2;
+
     public enum State
     {
         follow = 0,
@@ -26,9 +23,10 @@ public class KnightHeroAI : MonoBehaviour
     }
 
     public Transform player;
-    public Status status;
     public State currentState = State.follow;
 
+    public float minDistance = 1.0f; // Minimum distance between heroes
+    public float repulsionStrength = 2.0f; // Force to push heroes apart
 
     //==Enemy Focus==//
     public LayerMask focus;
@@ -90,6 +88,11 @@ public class KnightHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 2f)
+        {
+            RepelHeroes();
+        }
+
         if (currentState == State.skill)
         {
             SkillLogic();
@@ -219,12 +222,34 @@ public class KnightHeroAI : MonoBehaviour
             }
             else
             {
-                transform.position = Vector2.Lerp(transform.position, targetPosition, status.followSpeed * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
             }
         }
         else
         {
             animator.SetBool("isWalking", false);
+        }
+    }
+
+    protected void RepelHeroes()
+    {
+        // Find all heroes of type BaseHeroAI (includes Knight, Archer, Priestess, etc.)
+        BaseHero[] allHeroes = FindObjectsOfType<BaseHero>();
+
+        foreach (var hero in allHeroes)
+        {
+            if (hero != this) // Skip self
+            {
+                float distance = Vector3.Distance(transform.position, hero.transform.position);
+
+                if (distance < minDistance)
+                {
+                    Vector3 direction = (transform.position - hero.transform.position).normalized;
+                    Vector3 repulsion = direction * repulsionStrength * (minDistance - distance);
+
+                    transform.position += repulsion * Time.deltaTime;
+                }
+            }
         }
     }
 
@@ -239,19 +264,19 @@ public class KnightHeroAI : MonoBehaviour
             float distanceToDefence = Vector2.Distance(player.transform.position, focusEnemy.position);
             float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
 
-            if (distanceToEnemy <= status.attackDistance)
+            if (distanceToEnemy <= attackDistance)
             {
                 currentState = State.defence;
             }
             else
             {
-                if(distanceToPlayer <= status.distanceToDefence)
+                if(distanceToPlayer <= distanceToDefence)
                 {
                     Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
                     animator.SetBool("isDefencing", false);
                     animator.SetBool("isWalking", true);
                     FlipSprite(focusEnemy);
-                    transform.Translate(directionToEnemy * status.chaseSpeed * Time.deltaTime);
+                    transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
                 }
                 else 
                 {
@@ -276,7 +301,7 @@ public class KnightHeroAI : MonoBehaviour
             AggroEnemy();
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
 
-            if (distanceToEnemy <= status.distanceToAttack)
+            if (distanceToEnemy <= distanceToAttack)
             {
                 AttackLogic();
             }
@@ -286,7 +311,7 @@ public class KnightHeroAI : MonoBehaviour
                 animator.SetBool("isDefencing", true);
             }
 
-            if (distanceToEnemy >= status.distanceToAttack)
+            if (distanceToEnemy >= distanceToAttack)
             {
                 currentState = State.chase;
             }
@@ -319,7 +344,7 @@ public class KnightHeroAI : MonoBehaviour
 
         while (slideTime < slideDuration)
         {
-            transform.Translate(direction * status.followSpeed * Time.deltaTime);
+            transform.Translate(direction * followSpeed * Time.deltaTime);
             slideTime += Time.deltaTime;
             yield return null;
         }
@@ -333,7 +358,7 @@ public class KnightHeroAI : MonoBehaviour
         {
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
 
-            if (distanceToEnemy <= status.distanceToAttack)
+            if (distanceToEnemy <= distanceToAttack)
             {
                 isAttacking = true;
                 animator.SetTrigger("attack");

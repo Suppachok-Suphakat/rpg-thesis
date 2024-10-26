@@ -18,14 +18,15 @@ GameObject:
   - component: {fileID: 7176255407824286500}
   - component: {fileID: 2452058153353855210}
   - component: {fileID: 5043504097734292809}
-  - component: {fileID: 6865303630429976045}
+  - component: {fileID: 2403942900922811183}
+  - component: {fileID: 6771965182663709726}
   m_Layer: 3
   m_Name: Priestess Hero GO
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -59,10 +60,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 3
   distanceToAttack: 3
-  followSpeed: 2
+  followSpeed: 1
   healDistance: 5
   player: {fileID: 0}
   currentState: 0
+  minDistance: 1.5
+  repulsionStrength: 2
   focus:
     serializedVersion: 2
     m_Bits: 0
@@ -109,8 +112,8 @@ MonoBehaviour:
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: 763e979fc391cf04f983a40b88d5b5a8, type: 2}
-  itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
+  weaponInfo: {fileID: 11400000, guid: a83bd6cdb9a549e468cd5cf9261b3682, type: 2}
+  itemSprite: {fileID: 21300000, guid: be079bf4d45859c41becf6f3d8067f42, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
@@ -219,8 +222,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023035586, y: -0.0065816045}
-  m_Size: {x: 1.1, y: 1.6}
+  m_Offset: {x: -0.034455717, y: -0.010388255}
+  m_Size: {x: 0.7726234, y: 1.3259172}
   m_Direction: 0
 --- !u!50 &2653958118176451094
 Rigidbody2D:
@@ -294,36 +297,30 @@ MonoBehaviour:
     maxVal: 100
     currVal: 0
   hpBar: {fileID: 0}
---- !u!114 &6865303630429976045
+--- !u!114 &2403942900922811183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645030252299325955}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 4d374d6253a60eb800000000bde1a1e9
-  m_ShapePath:
-  - {x: -0.29376984, y: -0.62584877, z: 0}
-  - {x: -0.24855804, y: -0.47535706, z: 0}
-  - {x: 0.16750336, y: -0.46673965, z: 0}
-  - {x: 0.24530792, y: -0.6269455, z: 0}
-  m_ShapePathHash: 601149333
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -1478
-  m_LocalBounds:
-    m_Center: {x: -0.024230957, y: -0.5468426, z: 0}
-    m_Extent: {x: 0.26953888, y: 0.08010292, z: 0}
+--- !u!114 &6771965182663709726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645030252299325955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65dc4a9f330a19a498efa2b82bd7539d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1603878265584195838
 GameObject:
   m_ObjectHideFlags: 0

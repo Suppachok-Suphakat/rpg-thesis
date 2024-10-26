@@ -133,14 +133,15 @@ GameObject:
   - component: {fileID: 2917381381030955830}
   - component: {fileID: 900757048690839179}
   - component: {fileID: 2369691894657827048}
-  - component: {fileID: 4771327886843123863}
+  - component: {fileID: 6513540306045517653}
+  - component: {fileID: 7372615303998903399}
   m_Layer: 3
   m_Name: Archer Hero GO
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4243921893850822989
 Transform:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ MonoBehaviour:
   attackDistance: 5
   distanceToAttack: 1
   distanceToDefence: 5
-  followSpeed: 2
+  followSpeed: 1
   chaseSpeed: 5
   retreatSpeed: 5
   retreatDistance: 3
@@ -183,6 +184,8 @@ MonoBehaviour:
   maxChaseDistance: 10
   player: {fileID: 0}
   currentState: 0
+  minDistance: 1.5
+  repulsionStrength: 2
   focus:
     serializedVersion: 2
     m_Bits: 1024
@@ -226,8 +229,8 @@ MonoBehaviour:
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: 763e979fc391cf04f983a40b88d5b5a8, type: 2}
-  itemSprite: {fileID: -1349397161, guid: 69fe9318071f4a548986fead5f058504, type: 3}
+  weaponInfo: {fileID: 11400000, guid: 44ae3bed7a3280c4cbcb4a397822484c, type: 2}
+  itemSprite: {fileID: 21300000, guid: 99bd61632676e6d4f91f9b0794a6e1a4, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
@@ -336,8 +339,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022928119, y: 0.022928178}
-  m_Size: {x: 1.1, y: 1.6}
+  m_Offset: {x: -0.03331262, y: 0.06706196}
+  m_Size: {x: 0.61193144, y: 1.314428}
   m_Direction: 0
 --- !u!50 &8347628445842072355
 Rigidbody2D:
@@ -411,36 +414,30 @@ MonoBehaviour:
     maxVal: 100
     currVal: 0
   hpBar: {fileID: 0}
---- !u!114 &4771327886843123863
+--- !u!114 &6513540306045517653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7121556042380603943}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 4d374d6253a60eb800000000bde1a1e9
-  m_ShapePath:
-  - {x: -0.3341751, y: -0.6099987, z: 0}
-  - {x: -0.28736877, y: -0.45587158, z: 0}
-  - {x: 0.22600555, y: -0.4467125, z: 0}
-  - {x: 0.28253937, y: -0.6066952, z: 0}
-  m_ShapePathHash: 1840836117
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -2680
-  m_LocalBounds:
-    m_Center: {x: -0.025817871, y: -0.5283556, z: 0}
-    m_Extent: {x: 0.30835724, y: 0.081643105, z: 0}
+--- !u!114 &7372615303998903399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121556042380603943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65dc4a9f330a19a498efa2b82bd7539d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8318243149906767626
 GameObject:
   m_ObjectHideFlags: 0

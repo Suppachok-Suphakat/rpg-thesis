@@ -23,6 +23,8 @@ public class PriestessHeroAI : MonoBehaviour
     //public Status status;
     public State currentState = State.follow;
 
+    public float minDistance = 1.0f; // Minimum distance between heroes
+    public float repulsionStrength = 2.0f; // Force to push heroes apart
 
     //RaycastHit2D hit;
     public LayerMask focus;
@@ -92,6 +94,11 @@ public class PriestessHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 2f)
+        {
+            RepelHeroes();
+        }
+
         // Reduce the cooldown over time
         if (cooldownTime > 0)
         {
@@ -196,6 +203,28 @@ public class PriestessHeroAI : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
+        }
+    }
+
+    protected void RepelHeroes()
+    {
+        // Find all heroes of type BaseHeroAI (includes Knight, Archer, Priestess, etc.)
+        BaseHero[] allHeroes = FindObjectsOfType<BaseHero>();
+
+        foreach (var hero in allHeroes)
+        {
+            if (hero != this) // Skip self
+            {
+                float distance = Vector3.Distance(transform.position, hero.transform.position);
+
+                if (distance < minDistance)
+                {
+                    Vector3 direction = (transform.position - hero.transform.position).normalized;
+                    Vector3 repulsion = direction * repulsionStrength * (minDistance - distance);
+
+                    transform.position += repulsion * Time.deltaTime;
+                }
+            }
         }
     }
 
