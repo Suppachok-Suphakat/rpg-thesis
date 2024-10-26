@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5614129472775147817}
   - component: {fileID: 623119697023683889}
   - component: {fileID: 2874138180809566654}
-  - component: {fileID: 8093633714220833514}
+  - component: {fileID: 7209004092776850963}
   m_Layer: 0
   m_Name: Shadow T
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3360456692258115844}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13, y: -0.61, z: 0.17}
+  m_LocalPosition: {x: 0.13, y: 1.77, z: 0.17}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -121,7 +121,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.12479644, y: -4.328383}
   m_Size: {x: 9.318, y: 2.952267}
   m_Direction: 1
---- !u!114 &8093633714220833514
+--- !u!114 &7209004092776850963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3360456692258115844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aceac3cc753d8e45b711d88686ad4fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4912543821750969709
@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 4180803576833888851}
   - component: {fileID: 3045897505928927200}
   - component: {fileID: 6676432644710754960}
-  - component: {fileID: 8761118100992261627}
   - component: {fileID: 8287737012166888188}
   - component: {fileID: -7802056987493706222}
   m_Layer: 0
@@ -164,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 4912543821750969709}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.3, y: 20.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -276,10 +275,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.062870026, y: -1.9159184}
+  m_Offset: {x: -0.062870026, y: 0.57092243}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.2}
     oldSize: {x: 8, y: 8}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -287,24 +286,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2656174, y: 0.2575035}
+  m_Size: {x: 1.2656174, y: 0.2946204}
   m_EdgeRadius: 0
---- !u!114 &8761118100992261627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4912543821750969709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea979a2143612eb42a1053bb72e03c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transparencyAmount: 0.8
-  fadeTime: 0.4
-  changeSortingLayer: Highground
-  originalSortingLayer: Foreground
 --- !u!58 &8287737012166888188
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -337,9 +320,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06118846, y: 0.7138872}
+  m_Offset: {x: -0.06118846, y: 3.1543314}
   serializedVersion: 2
-  m_Radius: 2.4498453
+  m_Radius: 2.3477733
 --- !u!114 &-7802056987493706222
 MonoBehaviour:
   m_ObjectHideFlags: 0

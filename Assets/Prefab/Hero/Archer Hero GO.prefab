@@ -134,13 +134,13 @@ GameObject:
   - component: {fileID: 900757048690839179}
   - component: {fileID: 2369691894657827048}
   - component: {fileID: 4771327886843123863}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Archer Hero GO
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4243921893850822989
 Transform:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.022928119, y: 0.022928178}
-  m_Size: {x: 0.9520817, y: 1.5763031}
+  m_Size: {x: 1.1, y: 1.6}
   m_Direction: 0
 --- !u!50 &8347628445842072355
 Rigidbody2D:
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageRecoveryTime: 1
-  knockBackThrustAmount: 10
+  knockBackThrustAmount: 2
   hp:
     maxVal: 100
     currVal: 0

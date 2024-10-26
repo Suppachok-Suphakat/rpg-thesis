@@ -19,13 +19,13 @@ GameObject:
   - component: {fileID: 2452058153353855210}
   - component: {fileID: 5043504097734292809}
   - component: {fileID: 6865303630429976045}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Knight Hero GO
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -221,7 +221,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.023035586, y: -0.0065816045}
-  m_Size: {x: 0.95333946, y: 1.5180811}
+  m_Size: {x: 1.1, y: 1.6}
   m_Direction: 0
 --- !u!50 &2653958118176451094
 Rigidbody2D:
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageRecoveryTime: 1
-  knockBackThrustAmount: 10
+  knockBackThrustAmount: 2
   hp:
     maxVal: 100
     currVal: 0

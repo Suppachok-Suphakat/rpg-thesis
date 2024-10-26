@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2452058153353855210}
   - component: {fileID: 5043504097734292809}
   - component: {fileID: 6865303630429976045}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Priestess Hero GO
   m_TagString: Hero
   m_Icon: {fileID: 0}
@@ -60,6 +60,7 @@ MonoBehaviour:
   attackDistance: 3
   distanceToAttack: 3
   followSpeed: 2
+  healDistance: 5
   player: {fileID: 0}
   currentState: 0
   focus:
@@ -67,6 +68,8 @@ MonoBehaviour:
     m_Bits: 0
   magicPrefab: {fileID: 371351925480119373, guid: 5033be63cc9d5ec4b835ad5be6c58ca0, type: 3}
   isAttacking: 0
+  healEffectPrefab: {fileID: 371351925480119373, guid: 4e47842eac9767145921fb7d9c3fbcd3, type: 3}
+  healCooldown: 5
   enemyTransform: {fileID: 0}
   focusEnemy: {fileID: 0}
   cooldownTime: 5
@@ -90,15 +93,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f58f75921effba42a629f5e89354f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
-  skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
+  skillPrefab: {fileID: 371351925480119373, guid: 49afb12cfb1c55648b20598a813d4bd0, type: 3}
+  skill2Prefab: {fileID: 371351925480119373, guid: 5033be63cc9d5ec4b835ad5be6c58ca0, type: 3}
   skill1CooldownTime: 0
-  skill1MaxCooldownTime: 50
+  skill1MaxCooldownTime: 20
   skill1CurrentCooldownTime: 0
   skill1ActiveTime: 5
   currentSkill1ActiveTime: 5
   skill2CooldownTime: 0
-  skill2MaxCooldownTime: 50
+  skill2MaxCooldownTime: 10
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
@@ -217,7 +220,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.023035586, y: -0.0065816045}
-  m_Size: {x: 0.95333946, y: 1.5180811}
+  m_Size: {x: 1.1, y: 1.6}
   m_Direction: 0
 --- !u!50 &2653958118176451094
 Rigidbody2D:
@@ -286,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageRecoveryTime: 1
-  knockBackThrustAmount: 10
+  knockBackThrustAmount: 2
   hp:
     maxVal: 100
     currVal: 0

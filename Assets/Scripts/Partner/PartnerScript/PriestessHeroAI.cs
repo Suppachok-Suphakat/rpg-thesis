@@ -212,34 +212,43 @@ public class PriestessHeroAI : MonoBehaviour
 
     void HealTarget()
     {
-        // Check if the player needs healing
-        if (playerHealth.hp.currVal < playerHealth.hp.maxVal && playerHealth.hp.currVal <= playerHealth.hp.maxVal * 0.5f)
+        // Determine the player's current health as a potential target for healing
+        float playerHealthValue = playerHealth.hp.currVal;
+        Transform targetToHeal = null;
+
+        // Check if player is below max health and set as target if necessary
+        if (playerHealthValue < playerHealth.hp.maxVal)
         {
-            StartCoroutine(HealCoroutine(playerHealth.transform));
-            return; // Exit after healing the player
+            targetToHeal = playerHealth.transform;
         }
 
         // Find the hero with the lowest health in range
         HeroHealth lowestHealthHero = null;
-        float lowestHealth = float.MaxValue;
+        float lowestHeroHealth = float.MaxValue;
 
         foreach (HeroHealth hero in heroesInRange)
         {
-            if (hero.hp.currVal < hero.hp.maxVal && hero.hp.currVal < lowestHealth)
+            if (hero.hp.currVal < hero.hp.maxVal && hero.hp.currVal < lowestHeroHealth)
             {
                 lowestHealthHero = hero;
-                lowestHealth = hero.hp.currVal;
+                lowestHeroHealth = hero.hp.currVal;
             }
         }
 
-        // If a hero in range needs healing, heal them
-        if (lowestHealthHero != null)
+        // Determine final target to heal: player or lowest-health hero
+        if (lowestHealthHero != null && (playerHealthValue >= lowestHeroHealth || targetToHeal == null))
         {
-            StartCoroutine(HealCoroutine(lowestHealthHero.transform));
+            targetToHeal = lowestHealthHero.transform;
+        }
+
+        // Heal the target if one is found
+        if (targetToHeal != null)
+        {
+            StartCoroutine(HealCoroutine(targetToHeal));
         }
         else
         {
-            Debug.Log("No heroes in range need healing.");
+            Debug.Log("No target needs healing.");
         }
     }
 
@@ -248,7 +257,7 @@ public class PriestessHeroAI : MonoBehaviour
         if (isHealing) yield break; // Prevent overlapping heals
 
         isHealing = true;
-        animator.SetTrigger("heal"); // Trigger healing animation
+        animator.SetTrigger("attack"); // Trigger healing animation
 
         // Instantiate healing effect at the target's position
         Vector3 healEffectPosition = target.position;
