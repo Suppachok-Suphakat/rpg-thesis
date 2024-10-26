@@ -427,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  isImmobilized: 0
 --- !u!212 &8061802504375978587
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -470,7 +471,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1669610398, guid: 0e85f1376db2b97459bb020d83c124a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 2}
@@ -532,8 +533,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008071184, y: -0.19531417}
-  m_Size: {x: 0.59685516, y: 0.60308695}
+  m_Offset: {x: 0.0017596483, y: -0.11273518}
+  m_Size: {x: 0.39630628, y: 0.7682449}
   m_Direction: 0
 --- !u!50 &3487142607092114208
 Rigidbody2D:

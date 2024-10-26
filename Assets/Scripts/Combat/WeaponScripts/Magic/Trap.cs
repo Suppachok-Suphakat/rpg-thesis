@@ -31,6 +31,12 @@ public class Trap : MonoBehaviour
             attackerEnemyMovement.isImmobilized = true; // Custom flag to stop movement
         }
 
+        EnemyPathfinding enemyMovement = enemy.GetComponent<EnemyPathfinding>();
+        if (enemyMovement != null)
+        {
+            enemyMovement.isImmobilized = true; // Custom flag to stop movement
+        }
+
         // Wait for the trap duration to end
         yield return new WaitForSeconds(trapDuration);
 
@@ -38,6 +44,11 @@ public class Trap : MonoBehaviour
         if (attackerEnemyMovement != null)
         {
             attackerEnemyMovement.isImmobilized = false;
+        }
+
+        if (enemyMovement != null)
+        {
+            enemyMovement.isImmobilized = false;
         }
 
         // Destroy both the trap and its parent object after it's done

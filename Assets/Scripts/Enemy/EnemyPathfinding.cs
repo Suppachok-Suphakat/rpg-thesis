@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPathfinding : MonoBehaviour
@@ -10,6 +8,8 @@ public class EnemyPathfinding : MonoBehaviour
     private Vector2 moveDir;
     private Knockback knockback;
     private SpriteRenderer spriteRenderer;
+
+    public bool isImmobilized = false;
 
     private EnemyAI enemyAI;
 
@@ -24,20 +24,31 @@ public class EnemyPathfinding : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isImmobilized) { return; }
         if (knockback.GettingKnockedBack) { return; }
 
         rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
 
+        //if (moveDir.x < 0)
+        //    spriteRenderer.flipX = true;
+        //else if (moveDir.x > 0)
+        //    spriteRenderer.flipX = false;
+
         if (moveDir.x < 0)
-            spriteRenderer.flipX = true;
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            //spriteRenderer.flipX = false;
+        }
         else if (moveDir.x > 0)
-            spriteRenderer.flipX = false;
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            //spriteRenderer.flipX = true;
+        }
     }
 
     public void MoveTo(Vector2 targetPosition)
     {
-        // Calculate movement direction based on the difference between target and current position
-        moveDir = targetPosition - rb.position;
+        moveDir = targetPosition;
     }
 
     public void StopMoving()
