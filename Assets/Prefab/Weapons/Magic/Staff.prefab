@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2495342115278651482}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.038, y: 0.385, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70,11 +70,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -375266883
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 16cbe1d4b9e50214c999c627fd94c506, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e209d349b362e1348854326defd356c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be079bf4d45859c41becf6f3d8067f42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -206,9 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: a83bd6cdb9a549e468cd5cf9261b3682, type: 2}
-  magicLaser: {fileID: 371351925480119373, guid: 41f59588c3c594540b3eeba4a224166b, type: 3}
+  magic: {fileID: 371351925480119373, guid: 41f59588c3c594540b3eeba4a224166b, type: 3}
   magicLaserSpawnPoint: {fileID: 5357654354462653215}
-  manaCost: 20
+  manaCost: 0
 --- !u!1 &5666836248820612983
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 5666836248820612983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36, y: -0.018, z: 0}
+  m_LocalPosition: {x: 0.291, y: 0.358, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

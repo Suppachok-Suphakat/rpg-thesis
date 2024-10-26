@@ -66,7 +66,7 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (/*other.CompareTag("Player") || */other.CompareTag("Hero"))
+        if (other.CompareTag("Player") || other.CompareTag("Hero"))
         {
             currentTarget = other.transform;
             state = State.Attacking;
