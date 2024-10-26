@@ -36,7 +36,8 @@ public class EnemyPathfinding : MonoBehaviour
 
     public void MoveTo(Vector2 targetPosition)
     {
-        moveDir = targetPosition;
+        // Calculate movement direction based on the difference between target and current position
+        moveDir = targetPosition - rb.position;
     }
 
     public void StopMoving()
