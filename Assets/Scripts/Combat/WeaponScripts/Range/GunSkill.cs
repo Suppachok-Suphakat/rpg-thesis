@@ -14,18 +14,18 @@ public class GunSkill : MonoBehaviour, IWeapon
 
     private Animator myAnimator;
 
-    [Header("Weapon Skill")]
-    [SerializeField] private GameObject arrowSkillPrefab;
-    [SerializeField] float chargeTime;
-    [SerializeField] float activeTime;
-    [SerializeField] float currentChargeTime;
-    [SerializeField] float currentActiveTime;
+    //[Header("Weapon Skill")]
+    //[SerializeField] private GameObject arrowSkillPrefab;
+    //[SerializeField] float chargeTime;
+    //[SerializeField] float activeTime;
+    //[SerializeField] float currentChargeTime;
+    //[SerializeField] float currentActiveTime;
 
-    public int chargeAmount;
-    public int maxChargeAmount;
+    //public int chargeAmount;
+    //public int maxChargeAmount;
 
-    [SerializeField] private GameObject sliderObject;
-    [SerializeField] private SkillStatusBar statusComponent;
+    //[SerializeField] private GameObject sliderObject;
+    //[SerializeField] private SkillStatusBar statusComponent;
 
     enum SkillState
     {
@@ -43,66 +43,66 @@ public class GunSkill : MonoBehaviour, IWeapon
 
     private void Start()
     {
-        currentActiveTime = activeTime;
+        //currentActiveTime = activeTime;
 
-        sliderObject = GameObject.Find("WeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
+        //sliderObject = GameObject.Find("WeaponSkillBar");
+        //statusComponent = sliderObject.GetComponent<SkillStatusBar>();
 
-        statusComponent.chargeAmount = 0;
-        statusComponent.maxChargeAmount = this.maxChargeAmount;
+        //statusComponent.chargeAmount = 0;
+        //statusComponent.maxChargeAmount = this.maxChargeAmount;
 
-        statusComponent.Set(this.chargeAmount, this.maxChargeAmount);
+        //statusComponent.Set(this.chargeAmount, this.maxChargeAmount);
     }
 
-    private void OnDestroy()
-    {
-        sliderObject = GameObject.Find("WeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
+    //private void OnDestroy()
+    //{
+    //    sliderObject = GameObject.Find("WeaponSkillBar");
+    //    statusComponent = sliderObject.GetComponent<SkillStatusBar>();
 
-        statusComponent.chargeAmount = 0;
-        statusComponent.Set(statusComponent.chargeAmount, statusComponent.maxChargeAmount);
-    }
+    //    statusComponent.chargeAmount = 0;
+    //    statusComponent.Set(statusComponent.chargeAmount, statusComponent.maxChargeAmount);
+    //}
 
     private void Update()
     {
-        switch (state)
-        {
-            case SkillState.ready:
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    SkillActivate();
-                    statusComponent.chargeAmount = 0;
-                    statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
-                    state = SkillState.active;
-                    activeTime = currentActiveTime;
-                }
-                break;
-            case SkillState.active:
-                if (activeTime > 0)
-                {
-                    activeTime -= Time.deltaTime;
-                }
-                else
-                {
-                    statusComponent.chargeAmount = 0;
-                    state = SkillState.charge;
-                    chargeTime = currentActiveTime;
-                }
-                break;
-            case SkillState.charge:
-                //animator.ResetTrigger("Skill");
-                if (statusComponent.chargeAmount < this.chargeAmount)
-                {
-                    //Charging
-                    statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
-                }
-                else
-                {
-                    statusComponent.Set(maxChargeAmount, maxChargeAmount);
-                    state = SkillState.ready;
-                }
-                break;
-        }
+        //switch (state)
+        //{
+        //    case SkillState.ready:
+        //        if (Input.GetKeyDown(KeyCode.F))
+        //        {
+        //            SkillActivate();
+        //            statusComponent.chargeAmount = 0;
+        //            statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
+        //            state = SkillState.active;
+        //            activeTime = currentActiveTime;
+        //        }
+        //        break;
+        //    case SkillState.active:
+        //        if (activeTime > 0)
+        //        {
+        //            activeTime -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            statusComponent.chargeAmount = 0;
+        //            state = SkillState.charge;
+        //            chargeTime = currentActiveTime;
+        //        }
+        //        break;
+        //    case SkillState.charge:
+        //        //animator.ResetTrigger("Skill");
+        //        if (statusComponent.chargeAmount < this.chargeAmount)
+        //        {
+        //            //Charging
+        //            statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
+        //        }
+        //        else
+        //        {
+        //            statusComponent.Set(maxChargeAmount, maxChargeAmount);
+        //            state = SkillState.ready;
+        //        }
+        //        break;
+        //}
     }
 
     public void Attack()

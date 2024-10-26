@@ -18,23 +18,23 @@ public class SwordFollowMouseSkill : MonoBehaviour, IWeapon
 
     private GameObject slashAnim;
 
-    [Header("Weapon Ability")]
-    [SerializeField] private GameObject swordProjectileSkillPrefab;
-    [SerializeField] private GameObject newSwordSkill;
-    [SerializeField] private Transform skillSpawnPoint;
-    [SerializeField] private GameObject swordAbilityAnimPrefab;
-    [SerializeField] private Transform swordAbilityAnimSpawnPoint;
-    [SerializeField] private GameObject swordAbilityAnim;
-    [SerializeField] float chargeTime;
-    [SerializeField] float activeTime;
-    [SerializeField] float currentChargeTime;
-    [SerializeField] float currentActiveTime;
+    //[Header("Weapon Ability")]
+    //[SerializeField] private GameObject swordProjectileSkillPrefab;
+    //[SerializeField] private GameObject newSwordSkill;
+    //[SerializeField] private Transform skillSpawnPoint;
+    //[SerializeField] private GameObject swordAbilityAnimPrefab;
+    //[SerializeField] private Transform swordAbilityAnimSpawnPoint;
+    //[SerializeField] private GameObject swordAbilityAnim;
+    //[SerializeField] float chargeTime;
+    //[SerializeField] float activeTime;
+    //[SerializeField] float currentChargeTime;
+    //[SerializeField] float currentActiveTime;
 
-    public int chargeAmount;
-    public int maxChargeAmount;
+    //public int chargeAmount;
+    //public int maxChargeAmount;
 
-    [SerializeField] private GameObject sliderObject;
-    [SerializeField] private StatusBar statusComponent;
+    //[SerializeField] private GameObject sliderObject;
+    //[SerializeField] private StatusBar statusComponent;
 
     enum AbilityState
     {
@@ -54,72 +54,72 @@ public class SwordFollowMouseSkill : MonoBehaviour, IWeapon
     {
         weaponCollider.gameObject.GetComponent<SwordDamageSouce>().damageAmount = this.damageAmount;
         slashAnimSpawnPoint = GameObject.Find("SlashSpawnPoint").transform;
-        currentActiveTime = activeTime;
+        //currentActiveTime = activeTime;
 
-        sliderObject = GameObject.Find("WeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<StatusBar>();
+        //sliderObject = GameObject.Find("WeaponSkillBar");
+        //statusComponent = sliderObject.GetComponent<StatusBar>();
 
-        statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
+        //statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
     }
 
-    private void OnDestroy()
-    {
-        animator.ResetTrigger("SkillThrow");
-        animator.ResetTrigger("CancelSkill");
-        Destroy(newSwordSkill);
-        weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-        statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
-    }
+    //private void OnDestroy()
+    //{
+    //    animator.ResetTrigger("SkillThrow");
+    //    animator.ResetTrigger("CancelSkill");
+    //    Destroy(newSwordSkill);
+    //    weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
+    //    statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
+    //}
 
     private void Update()
     {
         MouseFollowWithOffset();
 
-        switch (state)
-        {
-            case AbilityState.ready:
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    SkillActivate();
-                    statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
-                    state = AbilityState.active;
-                    activeTime = currentActiveTime;
-                }
-                break;
-            case AbilityState.active:
-                if (activeTime > 0)
-                {
-                    weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-                    activeTime -= Time.deltaTime;
-                }
-                else
-                {
-                    state = AbilityState.charge;
-                    chargeTime = currentActiveTime;
-                }
-                break;
-            case AbilityState.charge:
-                if (newSwordSkill != null)
-                {
-                    Destroy(newSwordSkill);
-                    animator.SetTrigger("CancelSkill");
-                    animator.ResetTrigger("SkillThrow");
-                }
-                animator.ResetTrigger("Skill");
-                if (weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount < this.chargeAmount)
-                {
-                    statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
-                    //Charging
-                }
-                else
-                {
-                    weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-                    weaponCollider.gameObject.SetActive(false);
-                    statusComponent.Set(maxChargeAmount, maxChargeAmount);
-                    state = AbilityState.ready;
-                }
-                break;
-        }
+        //switch (state)
+        //{
+        //    case AbilityState.ready:
+        //        if (Input.GetKeyDown(KeyCode.F))
+        //        {
+        //            SkillActivate();
+        //            statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
+        //            state = AbilityState.active;
+        //            activeTime = currentActiveTime;
+        //        }
+        //        break;
+        //    case AbilityState.active:
+        //        if (activeTime > 0)
+        //        {
+        //            weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
+        //            activeTime -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            state = AbilityState.charge;
+        //            chargeTime = currentActiveTime;
+        //        }
+        //        break;
+        //    case AbilityState.charge:
+        //        if (newSwordSkill != null)
+        //        {
+        //            Destroy(newSwordSkill);
+        //            animator.SetTrigger("CancelSkill");
+        //            animator.ResetTrigger("SkillThrow");
+        //        }
+        //        animator.ResetTrigger("Skill");
+        //        if (weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount < this.chargeAmount)
+        //        {
+        //            statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
+        //            //Charging
+        //        }
+        //        else
+        //        {
+        //            weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
+        //            weaponCollider.gameObject.SetActive(false);
+        //            statusComponent.Set(maxChargeAmount, maxChargeAmount);
+        //            state = AbilityState.ready;
+        //        }
+        //        break;
+        //}
     }
 
     public WeaponInfo GetWeaponInfo()
@@ -140,15 +140,15 @@ public class SwordFollowMouseSkill : MonoBehaviour, IWeapon
         }
     }
 
-    public void SkillActivate()
-    {
-        animator.SetTrigger("SkillThrow");
-        animator.ResetTrigger("CancelSkill");
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
-        newSwordSkill = Instantiate(swordProjectileSkillPrefab, slashAnimSpawnPoint.position,
-            ActiveWeapon.Instance.transform.rotation);
-    }
+    //public void SkillActivate()
+    //{
+    //    animator.SetTrigger("SkillThrow");
+    //    animator.ResetTrigger("CancelSkill");
+    //    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //    mousePosition.z = 0;
+    //    newSwordSkill = Instantiate(swordProjectileSkillPrefab, slashAnimSpawnPoint.position,
+    //        ActiveWeapon.Instance.transform.rotation);
+    //}
 
     private IEnumerator ReduceStaminaRoutine()
     {
