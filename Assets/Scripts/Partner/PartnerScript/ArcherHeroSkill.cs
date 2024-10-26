@@ -77,8 +77,8 @@ public class ArcherHeroSkill : MonoBehaviour
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
 
-        statusComponent = GameObject.Find("ArcherPartnerSkill").GetComponent<StatusBar>();
-        GameObject.Find("ArcherSkillBubble").SetActive(false);
+        //statusComponent = GameObject.Find("ArcherPartnerSkill").GetComponent<StatusBar>();
+        //GameObject.Find("ArcherSkillBubble").SetActive(false);
 
         skill1Image.fillAmount = 0;
         //skill2Image.fillAmount = 0;

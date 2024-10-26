@@ -181,7 +181,7 @@ public class Character : MonoBehaviour, IDamageable
 
     public void UpdateManaBar()
     {
-        manaBar.Set(mana.currVal, mana.maxVal);
+        //manaBar.Set(mana.currVal, mana.maxVal);
     }
 
     public void TakeDamage(int amount, Transform hitTransform)

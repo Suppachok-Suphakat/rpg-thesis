@@ -79,25 +79,25 @@ public class KnightHeroSkill : MonoBehaviour
     {
         partnerSkillManager = PartnerSkillManager.Instance;
 
-        // Ensure these components are correctly set through the manager
-        if (partnerSkillManager != null)
-        {
-            foreach (var partner in partnerSkillManager.partners)
-            {
-                if (partner.partnerObject == gameObject)
-                {
-                    statusComponent = partner.statusComponent;
-                    statusComponent.gameObject.SetActive(false); // Ensure it's inactive initially
+        //// Ensure these components are correctly set through the manager
+        //if (partnerSkillManager != null)
+        //{
+        //    foreach (var partner in partnerSkillManager.partners)
+        //    {
+        //        if (partner.partnerObject == gameObject)
+        //        {
+        //            statusComponent = partner.statusComponent;
+        //            statusComponent.gameObject.SetActive(false); // Ensure it's inactive initially
 
-                    if (partner.skillBubble != null)
-                    {
-                        partner.skillBubble.SetActive(false); // Ensure it's inactive initially
-                    }
+        //            if (partner.skillBubble != null)
+        //            {
+        //                partner.skillBubble.SetActive(false); // Ensure it's inactive initially
+        //            }
 
-                    break;
-                }
-            }
-        }
+        //            break;
+        //        }
+        //    }
+        //}
 
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
@@ -228,18 +228,18 @@ public class KnightHeroSkill : MonoBehaviour
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI
 
-        if (partnerSkillManager != null)
-        {
-            foreach (var partner in partnerSkillManager.partners)
-            {
-                if (partner.partnerObject == gameObject)
-                {
-                    partner.statusComponent.gameObject.SetActive(true);
-                    partner.skillBubble.SetActive(true);
-                    break;
-                }
-            }
-        }
+        //if (partnerSkillManager != null)
+        //{
+        //    foreach (var partner in partnerSkillManager.partners)
+        //    {
+        //        if (partner.partnerObject == gameObject)
+        //        {
+        //            partner.statusComponent.gameObject.SetActive(true);
+        //            partner.skillBubble.SetActive(true);
+        //            break;
+        //        }
+        //    }
+        //}
     }
 
     public void Skill2Activate()

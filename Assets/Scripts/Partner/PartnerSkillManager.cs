@@ -17,7 +17,7 @@ public class PartnerSkillManager : MonoBehaviour
         public GameObject preview;
         public GameObject selectedIndicator;
         public StatusBar statusComponent;
-        public GameObject skillBubble;
+        //public GameObject skillBubble;
     }
 
     public List<Partner> partners = new List<Partner>();
@@ -96,9 +96,9 @@ public class PartnerSkillManager : MonoBehaviour
             partners[index].statusComponent.gameObject.SetActive(isActive);
         }
 
-        if (partners[index].skillBubble != null)
-        {
-            partners[index].skillBubble.SetActive(isActive);
-        }
+        //if (partners[index].skillBubble != null)
+        //{
+        //    partners[index].skillBubble.SetActive(isActive);
+        //}
     }
 }

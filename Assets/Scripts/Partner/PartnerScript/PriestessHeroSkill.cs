@@ -77,8 +77,8 @@ public class PriestessHeroSkill : MonoBehaviour
         skill1CurrentCooldownTime = skill1CooldownTime;
         skill2CurrentCooldownTime = skill2CooldownTime;
 
-        statusComponent = GameObject.Find("PriestessPartnerSkill").GetComponent<StatusBar>();
-        GameObject.Find("PriestessSkillBubble").SetActive(false);
+        //statusComponent = GameObject.Find("PriestessPartnerSkill").GetComponent<StatusBar>();
+        //GameObject.Find("PriestessSkillBubble").SetActive(false);
 
         skill1Image.fillAmount = 0;
     }

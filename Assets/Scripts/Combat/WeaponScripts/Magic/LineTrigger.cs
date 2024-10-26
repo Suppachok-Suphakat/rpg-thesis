@@ -83,19 +83,19 @@ public class LineTrigger : MonoBehaviour
 
         if (hero.TryGetComponent(out KnightHeroAI knightHero))
         {
-            knightHero.skillBar.SetActive(false);
+            //knightHero.skillBar.SetActive(false);
             knightHero.weaponBar.SetActive(false);
             knightHero.knightHeroSkill.DeFusionActivate();
         }
         else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
         {
-            archerHero.skillBar.SetActive(false);
+            //archerHero.skillBar.SetActive(false);
             archerHero.weaponBar.SetActive(false);
             archerHero.archerHeroSkill.DeFusionActivate();
         }
         else if (hero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
-            priestessHero.skillBar.SetActive(false);
+            //priestessHero.skillBar.SetActive(false);
             priestessHero.weaponBar.SetActive(false);
             priestessHero.priestessHeroSkill.DeFusionActivate();
         }
@@ -111,21 +111,21 @@ public class LineTrigger : MonoBehaviour
         if (newHero.TryGetComponent(out KnightHeroAI knightHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
-            knightHero.skillBar.SetActive(true);
+            //knightHero.skillBar.SetActive(true);
             knightHero.weaponBar.SetActive(true);
             knightHero.knightHeroSkill.FusionActivate();
         }
         else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
         {
             SetupLineRenderer(Color.white, Color.green);
-            archerHero.skillBar.SetActive(true);
+            //archerHero.skillBar.SetActive(true);
             archerHero.weaponBar.SetActive(true);
             archerHero.archerHeroSkill.FusionActivate();
         }
         else if (newHero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
             SetupLineRenderer(Color.white, Color.yellow);
-            priestessHero.skillBar.SetActive(true);
+            //priestessHero.skillBar.SetActive(true);
             priestessHero.weaponBar.SetActive(true);
             priestessHero.priestessHeroSkill.FusionActivate();
         }
