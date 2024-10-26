@@ -250,6 +250,8 @@ public class AdvancedDialogueManager : MonoBehaviour
 }
 public enum DialogueActors
 {
+    Knight_Talk,
+    Knight_Smile,
     Lunar,
     Random,
     Branch,

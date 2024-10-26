@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ac59e4438b49149aff42b632a8fd8c, type: 3}
   m_Name: Dialogue1
   m_EditorClassIdentifier: 
-  actors: 0000000002000000
+  actors: 0000000004000000
   randomActorName: 
   randomActorPortrait: {fileID: 0}
   dialogue:
-  - Hey there! It's nice to see you.
+  - Ah, there you are. I was beginning to wonder if you'd forgotten our purpose here.
   optionText:
-  - Have we met before?
-  - What's going on around here?
-  - ' Hi! I''m the hero.'
-  - '[Shop]'
+  - I'm ready, my lady.
+  - We could use a break.
+  - You seem tense.
   option0: {fileID: 11400000, guid: c9f2ab490407aba41b83563818a967e5, type: 2}
   option1: {fileID: 11400000, guid: d61dc647165c8a349b347ce4e4e3e86e, type: 2}
   option2: {fileID: 11400000, guid: c40f428b96662c743a94a2f9938c3237, type: 2}
