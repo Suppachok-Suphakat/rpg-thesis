@@ -29,7 +29,7 @@ public class TransparentDetection : MonoBehaviour
         {
             objectsInTrigger++; // Increase count when Player or Hero enters
 
-            ChangeSortingLayer(changeSortingLayer);
+            //ChangeSortingLayer(changeSortingLayer);
 
             if (spriteRenderer)
             {
@@ -51,7 +51,7 @@ public class TransparentDetection : MonoBehaviour
             // Only change back when no objects are inside the trigger
             if (objectsInTrigger <= 0)
             {
-                ChangeSortingLayer(originalSortingLayer);
+                //ChangeSortingLayer(originalSortingLayer);
 
                 if (spriteRenderer)
                 {

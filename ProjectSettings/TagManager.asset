@@ -13,7 +13,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Obstacles
@@ -23,8 +23,8 @@ TagManager:
   - Enemy
   - Partner
   - Camera
-  - 
-  - 
+  - EnemyObstacles
+  - Wall
   - 
   - 
   - 

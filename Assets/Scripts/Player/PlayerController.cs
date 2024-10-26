@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     private bool facingLeft = false;
 
+    private bool isWalkingBack;
+
     private PlayerControls playerControls;
     public Vector2 movement;
 
@@ -108,11 +110,30 @@ public class PlayerController : MonoBehaviour
         if (movement.magnitude > 0)
         {
             animator.SetBool("Idle", false); // Player is not idle
+            CheckIfWalkingBack(); // Check if player is walking back
         }
         else
         {
             animator.SetBool("Idle", true); // Player is idle
+            animator.SetBool("isWalkingBack", false); // Not walking back when idle
         }
+    }
+
+    private void CheckIfWalkingBack()
+    {
+        // Get the mouse position in world space and convert it to Vector2
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Calculate the player's movement direction and the direction towards the mouse
+        Vector2 playerPosition = transform.position;
+        Vector2 moveDirection = movement.normalized;
+        Vector2 mouseDirection = (mouseWorldPos - playerPosition).normalized;
+
+        // Check if the player is moving away from the mouse position
+        bool isMovingAway = Vector2.Dot(moveDirection, mouseDirection) < 0;
+
+        // Set the animation parameter based on the direction check
+        animator.SetBool("isWalkingBack", isMovingAway);
     }
 
     private void Move()
