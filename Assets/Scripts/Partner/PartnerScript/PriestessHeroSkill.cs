@@ -55,6 +55,15 @@ public class PriestessHeroSkill : MonoBehaviour
     }
     AbilityState state = AbilityState.cooldown;
 
+    enum SkillState
+    {
+        Ready,
+        Active,
+        Cooldown
+    }
+    SkillState skill1State = SkillState.Cooldown;
+    SkillState skill2State = SkillState.Cooldown;
+
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
@@ -77,85 +86,73 @@ public class PriestessHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (state)
+        HandleSkill1();
+        HandleSkill2();
+        UpdateCooldownUI();
+    }
+
+    private void HandleSkill1()
+    {
+        switch (skill1State)
         {
-            case AbilityState.ready:
-                //GameObject.Find("ArcherSkillBubble").SetActive(true);
-                gameObject.GetComponent<Animator>().ResetTrigger("skill");
-                if (lineTrigger.currentTarget == this.transform)
+            case SkillState.Ready:
+                if (lineTrigger.currentTarget == this.transform && Input.GetKeyDown(KeyCode.Q))
                 {
-                    if (Input.GetKeyDown(KeyCode.Q))
-                    {
-                        SkillActivate();
-                        state = AbilityState.active1;
-                        skill1ActiveTime = currentSkill1ActiveTime;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        Skill2Activate();
-                        statusComponent.Set(0, skill2MaxCooldownTime);
-                        state = AbilityState.active2;
-                        skill2ActiveTime = currentSkill2ActiveTime;
-                    }
+                    SkillActivate();
+                    skill1State = SkillState.Active;
+                    skill1ActiveTime = currentSkill1ActiveTime;
                 }
                 break;
-            case AbilityState.active1:
-                //GameObject.Find("ArcherSkillBubble").SetActive(false);
-
-                if (skill1ActiveTime >= 0)
+            case SkillState.Active:
+                if (skill1ActiveTime > 0)
                 {
                     skill1ActiveTime -= Time.deltaTime;
                 }
                 else
                 {
-                    transform.parent.localScale = new Vector3(1f, 1f, 1f);
-                    state = AbilityState.cooldown;
+                    skill1State = SkillState.Cooldown;
                     skill1CooldownTime = skill1CurrentCooldownTime;
                 }
                 break;
-            case AbilityState.active2:
-                if (skill2ActiveTime >= 0)
+            case SkillState.Cooldown:
+                Skill1CooldownOverTime();
+                if (skill1CooldownTime >= skill1MaxCooldownTime)
+                {
+                    skill1State = SkillState.Ready;
+                }
+                break;
+        }
+    }
+
+    private void HandleSkill2()
+    {
+        switch (skill2State)
+        {
+            case SkillState.Ready:
+                if (lineTrigger.currentTarget == this.transform && Input.GetKeyDown(KeyCode.E))
+                {
+                    Skill2Activate();
+                    skill2State = SkillState.Active;
+                    skill2ActiveTime = currentSkill2ActiveTime;
+                }
+                break;
+            case SkillState.Active:
+                if (skill2ActiveTime > 0)
                 {
                     skill2ActiveTime -= Time.deltaTime;
                 }
                 else
                 {
-                    //// Reset the weapon if necessary
-                    //if (weaponChangeInfo != null)
-                    //{
-                    //    toolbarSlot.weaponInfo = weaponChangeInfo;
-                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    //}
-                    //else
-                    //{
-                    //    toolbarSlot.weaponInfo = null;
-                    //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-                    //}
-
-                    //GameObject.Find("ActiveToolbar").GetComponent<ActiveToolbar>().ChangeActiveWeapon();
-
-                    state = AbilityState.cooldown;
-                    skill2CooldownTime = skill2CurrentCooldownTime; // Reset skill2CooldownTime
+                    skill2State = SkillState.Cooldown;
+                    skill2CooldownTime = skill2CurrentCooldownTime;
                 }
                 break;
-            case AbilityState.fusion:
-                /////////////////////////////////
-                break;
-            case AbilityState.cooldown:
-                if (skill1CooldownTime < skill1MaxCooldownTime)
+            case SkillState.Cooldown:
+                Skill2CooldownOverTime();
+                if (skill2CooldownTime >= skill2MaxCooldownTime)
                 {
-                    Skill1CooldownOverTime();
+                    skill2State = SkillState.Ready;
                 }
-                if (skill2CooldownTime < skill2MaxCooldownTime)
-                {
-                    Skill2CooldownOverTime();
-                }
-                if (skill1CooldownTime >= skill1MaxCooldownTime &&
-                    skill2CooldownTime >= skill2MaxCooldownTime)
-                {
-                    state = AbilityState.ready;
-                }
-                UpdateCooldownUI(); // Update the UI for all skills
                 break;
         }
     }
