@@ -84,19 +84,25 @@ public class LineTrigger : MonoBehaviour
         if (hero.TryGetComponent(out KnightHeroAI knightHero))
         {
             //knightHero.skillBar.SetActive(false);
-            knightHero.weaponBar.SetActive(false);
+            knightHero.selectedIndicator.SetActive(false);
+            knightHero.skillbutton1.SetActive(false);
+            knightHero.skillbutton2.SetActive(false);
             knightHero.knightHeroSkill.DeFusionActivate();
         }
         else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
         {
             //archerHero.skillBar.SetActive(false);
-            archerHero.weaponBar.SetActive(false);
+            archerHero.selectedIndicator.SetActive(false);
+            archerHero.skillbutton1.SetActive(false);
+            archerHero.skillbutton2.SetActive(false);
             archerHero.archerHeroSkill.DeFusionActivate();
         }
         else if (hero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
             //priestessHero.skillBar.SetActive(false);
-            priestessHero.weaponBar.SetActive(false);
+            priestessHero.selectedIndicator.SetActive(false);
+            priestessHero.skillbutton1.SetActive(false);
+            priestessHero.skillbutton2.SetActive(false);
             priestessHero.priestessHeroSkill.DeFusionActivate();
         }
 
@@ -112,21 +118,27 @@ public class LineTrigger : MonoBehaviour
         {
             SetupLineRenderer(Color.white, Color.blue);
             //knightHero.skillBar.SetActive(true);
-            knightHero.weaponBar.SetActive(true);
+            knightHero.selectedIndicator.SetActive(true);
+            knightHero.skillbutton1.SetActive(true);
+            knightHero.skillbutton2.SetActive(true);
             knightHero.knightHeroSkill.FusionActivate();
         }
         else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
         {
             SetupLineRenderer(Color.white, Color.green);
             //archerHero.skillBar.SetActive(true);
-            archerHero.weaponBar.SetActive(true);
+            archerHero.selectedIndicator.SetActive(true);
+            archerHero.skillbutton1.SetActive(true);
+            archerHero.skillbutton2.SetActive(true);
             archerHero.archerHeroSkill.FusionActivate();
         }
         else if (newHero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
             SetupLineRenderer(Color.white, Color.yellow);
             //priestessHero.skillBar.SetActive(true);
-            priestessHero.weaponBar.SetActive(true);
+            priestessHero.selectedIndicator.SetActive(true);
+            priestessHero.skillbutton1.SetActive(true);
+            priestessHero.skillbutton2.SetActive(true);
             priestessHero.priestessHeroSkill.FusionActivate();
         }
 

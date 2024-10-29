@@ -17,7 +17,6 @@ public class PartnerSkillManager : MonoBehaviour
         public GameObject preview;
         public GameObject selectedIndicator;
         public StatusBar statusComponent;
-        //public GameObject skillBubble;
     }
 
     public List<Partner> partners = new List<Partner>();

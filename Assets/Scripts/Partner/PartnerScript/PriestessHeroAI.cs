@@ -65,7 +65,9 @@ public class PriestessHeroAI : MonoBehaviour
     private LineTrigger lineTrigger;
 
     [SerializeField] public GameObject skillBar;
-    [SerializeField] public GameObject weaponBar;
+    [SerializeField] public GameObject selectedIndicator;
+    [SerializeField] public GameObject skillbutton1;
+    [SerializeField] public GameObject skillbutton2;
 
     public PriestessHeroSkill priestessHeroSkill;
 
