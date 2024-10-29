@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -58,16 +58,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8795aca509a807048aacb5948109c262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDistance: 5
+  distanceToAttack: 1
+  distanceToDefence: 5
+  followSpeed: 1.5
+  chaseSpeed: 3
   player: {fileID: 0}
-  status:
-    attackDistance: 1
-    distanceToAttack: 1
-    distanceToDefence: 5
-    followSpeed: 1
-    chaseSpeed: 3
   currentState: 0
-  minDistance: 1.5
-  repulsionStrength: 2
+  minDistance: 1
+  repulsionStrength: 1
   focus:
     serializedVersion: 2
     m_Bits: 1024
@@ -81,7 +80,9 @@ MonoBehaviour:
   currentEnemyHealth: {fileID: 0}
   slideDuration: 0.5
   skillBar: {fileID: 0}
-  weaponBar: {fileID: 0}
+  selectedIndicator: {fileID: 0}
+  skillbutton1: {fileID: 0}
+  skillbutton2: {fileID: 0}
   knightHeroSkill: {fileID: 0}
 --- !u!114 &8739522059059753338
 MonoBehaviour:

@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4243921893850822989
 Transform:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   attackDistance: 5
   distanceToAttack: 1
   distanceToDefence: 5
-  followSpeed: 1
+  followSpeed: 1.5
   chaseSpeed: 5
   retreatSpeed: 5
   retreatDistance: 3
@@ -184,8 +184,8 @@ MonoBehaviour:
   maxChaseDistance: 10
   player: {fileID: 0}
   currentState: 0
-  minDistance: 1.5
-  repulsionStrength: 2
+  minDistance: 1
+  repulsionStrength: 1
   focus:
     serializedVersion: 2
     m_Bits: 1024
@@ -199,7 +199,9 @@ MonoBehaviour:
   currentEnemyHealth: {fileID: 0}
   slideDuration: 0.5
   skillBar: {fileID: 0}
-  weaponBar: {fileID: 0}
+  selectedIndicator: {fileID: 0}
+  skillbutton1: {fileID: 0}
+  skillbutton2: {fileID: 0}
   archerHeroSkill: {fileID: 0}
 --- !u!114 &6467919669117534607
 MonoBehaviour:

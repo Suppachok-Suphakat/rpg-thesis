@@ -9,7 +9,7 @@ public class KnightHeroAI : MonoBehaviour
     public float attackDistance = 5;
     public float distanceToAttack = 1;
     public float distanceToDefence = 5;
-    public int followSpeed = 2;
+    public float followSpeed = 2;
     public int chaseSpeed = 2;
 
     public enum State
@@ -84,13 +84,13 @@ public class KnightHeroAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 2f)
+        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 3f)
         {
             RepelHeroes();
         }

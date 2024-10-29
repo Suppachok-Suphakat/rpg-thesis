@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -60,12 +60,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 3
   distanceToAttack: 3
-  followSpeed: 1
+  followSpeed: 1.5
   healDistance: 5
   player: {fileID: 0}
   currentState: 0
-  minDistance: 1.5
-  repulsionStrength: 2
+  minDistance: 1
+  repulsionStrength: 1
   focus:
     serializedVersion: 2
     m_Bits: 0
@@ -82,7 +82,9 @@ MonoBehaviour:
   currentEnemyHealth: {fileID: 0}
   slideDuration: 0.5
   skillBar: {fileID: 0}
-  weaponBar: {fileID: 0}
+  selectedIndicator: {fileID: 0}
+  skillbutton1: {fileID: 0}
+  skillbutton2: {fileID: 0}
   priestessHeroSkill: {fileID: 0}
 --- !u!114 &3979085936879950760
 MonoBehaviour:

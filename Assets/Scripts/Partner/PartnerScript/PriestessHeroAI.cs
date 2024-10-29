@@ -7,7 +7,7 @@ public class PriestessHeroAI : MonoBehaviour
     [Header("Status")]
     public float attackDistance = 5f;
     public float distanceToAttack = 1f;
-    public int followSpeed = 2;
+    public float followSpeed = 2;
     public float healDistance = 5f;
 
     public enum State
@@ -91,12 +91,13 @@ public class PriestessHeroAI : MonoBehaviour
     void Start()
     {
         currentHealCooldown = 0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 2f)
+        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 3f)
         {
             RepelHeroes();
         }
