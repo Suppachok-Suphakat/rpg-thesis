@@ -575,10 +575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8fc565a02b64e408ea41ac33e94f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 80
   currentHealth: 0
   deathVFXPrefab: {fileID: 3626922010709504189, guid: 6edd3c2e4fc54a647b47a1663decdf66, type: 3}
-  knockBackThrust: 15
+  knockBackThrust: 1
   hpBar: {fileID: 6297893415184007781}
   arrow: {fileID: 1595643302032641417}
 --- !u!114 &5558173840406602056
