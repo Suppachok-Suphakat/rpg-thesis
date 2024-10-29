@@ -70,7 +70,7 @@ public class AdvancedDialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dialogueActivated && Input.GetKeyDown(KeyCode.Mouse0) && canContinueText)
+        if (dialogueActivated && Input.GetKeyDown(KeyCode.F) && canContinueText)
         {
             statusCanvas.SetActive(false);
             inventoryCanvas.SetActive(false);

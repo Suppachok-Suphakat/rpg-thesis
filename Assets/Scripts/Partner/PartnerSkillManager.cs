@@ -30,15 +30,15 @@ public class PartnerSkillManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TogglePartnerMenu();
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    TogglePartnerMenu();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ExitPartnerMenu();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    ExitPartnerMenu();
+        //}
     }
 
     public void TogglePartnerMenu()
@@ -49,7 +49,7 @@ public class PartnerSkillManager : MonoBehaviour
         Time.timeScale = isActive ? 1 : 0;
     }
 
-    void ExitPartnerMenu()
+    public void ExitPartnerMenu()
     {
         if (partnerMenu.activeSelf)
         {
