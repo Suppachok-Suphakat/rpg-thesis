@@ -26,7 +26,7 @@ public class Bow : MonoBehaviour, IWeapon
     public int maxChargeAmount;
 
     [SerializeField] private GameObject sliderObject;
-    [SerializeField] private SkillStatusBar statusComponent;
+    //[SerializeField] private SkillStatusBar statusComponent;
 
     enum SkillState
     {
@@ -47,62 +47,62 @@ public class Bow : MonoBehaviour, IWeapon
         currentActiveTime = activeTime;
 
         sliderObject = GameObject.Find("RangeWeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
+        //statusComponent = sliderObject.GetComponent<SkillStatusBar>();
 
-        statusComponent.chargeAmount = 0;
-        statusComponent.maxChargeAmount = this.maxChargeAmount;
+        //statusComponent.chargeAmount = 0;
+        //statusComponent.maxChargeAmount = this.maxChargeAmount;
 
-        statusComponent.Set(this.chargeAmount, this.maxChargeAmount);
+        //statusComponent.Set(this.chargeAmount, this.maxChargeAmount);
     }
 
-    private void OnDestroy()
-    {
-        statusComponent.chargeAmount = 0;
-        statusComponent.Set(statusComponent.chargeAmount, statusComponent.maxChargeAmount);
-    }
+    //private void OnDestroy()
+    //{
+    //    statusComponent.chargeAmount = 0;
+    //    statusComponent.Set(statusComponent.chargeAmount, statusComponent.maxChargeAmount);
+    //}
 
     private void Update()
     {
-        switch (state)
-        {
-            case SkillState.ready:
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    SkillActivate();
-                    statusComponent.chargeAmount = 0;
-                    statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
-                    state = SkillState.active;
-                    activeTime = currentActiveTime;
-                }
-                break;
-            case SkillState.active:
-                if (activeTime > 0)
-                {
-                    activeTime -= Time.deltaTime;
-                }
-                else
-                {
-                    statusComponent.chargeAmount = 0;
-                    state = SkillState.charge;
-                    chargeTime = currentActiveTime;
-                }
-                break;
-            case SkillState.charge:
-                //animator.ResetTrigger("Skill");
-                if (statusComponent.chargeAmount < this.chargeAmount)
-                {
-                    //Charging
-                    Debug.Log("Charging");
-                    statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
-                }
-                else
-                {
-                    Debug.Log("MaxCharging");
-                    statusComponent.Set(maxChargeAmount, maxChargeAmount);
-                    state = SkillState.ready;
-                }
-                break;
-        }
+        //switch (state)
+        //{
+        //    case SkillState.ready:
+        //        if (Input.GetKeyDown(KeyCode.E))
+        //        {
+        //            SkillActivate();
+        //            statusComponent.chargeAmount = 0;
+        //            statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
+        //            state = SkillState.active;
+        //            activeTime = currentActiveTime;
+        //        }
+        //        break;
+        //    case SkillState.active:
+        //        if (activeTime > 0)
+        //        {
+        //            activeTime -= Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            statusComponent.chargeAmount = 0;
+        //            state = SkillState.charge;
+        //            chargeTime = currentActiveTime;
+        //        }
+        //        break;
+        //    case SkillState.charge:
+        //        //animator.ResetTrigger("Skill");
+        //        if (statusComponent.chargeAmount < this.chargeAmount)
+        //        {
+        //            //Charging
+        //            Debug.Log("Charging");
+        //            statusComponent.Set(statusComponent.chargeAmount, maxChargeAmount);
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("MaxCharging");
+        //            statusComponent.Set(maxChargeAmount, maxChargeAmount);
+        //            state = SkillState.ready;
+        //        }
+        //        break;
+        //}
     }
 
     public void Attack()

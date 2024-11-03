@@ -17,6 +17,8 @@ public class LineTrigger : MonoBehaviour
 
     private bool isInFusion = false;
 
+    public ConversationManager conversationManager; // Reference to the ConversationManager
+
     void Update()
     {
         if (Input.GetMouseButtonDown(1) && Time.time >= lastFusionTime + fusionCooldown)
@@ -117,29 +119,35 @@ public class LineTrigger : MonoBehaviour
         if (newHero.TryGetComponent(out KnightHeroAI knightHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
-            //knightHero.skillBar.SetActive(true);
             knightHero.selectedIndicator.SetActive(true);
             knightHero.skillbutton1.SetActive(true);
             knightHero.skillbutton2.SetActive(true);
             knightHero.knightHeroSkill.FusionActivate();
+
+            // Trigger the conversation for Knight
+            conversationManager.ShowConversation("Let's do this!", knightHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
         {
             SetupLineRenderer(Color.white, Color.green);
-            //archerHero.skillBar.SetActive(true);
             archerHero.selectedIndicator.SetActive(true);
             archerHero.skillbutton1.SetActive(true);
             archerHero.skillbutton2.SetActive(true);
             archerHero.archerHeroSkill.FusionActivate();
+
+            // Trigger the conversation for Archer
+            conversationManager.ShowConversation("Ready to strike!", archerHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
             SetupLineRenderer(Color.white, Color.yellow);
-            //priestessHero.skillBar.SetActive(true);
             priestessHero.selectedIndicator.SetActive(true);
             priestessHero.skillbutton1.SetActive(true);
             priestessHero.skillbutton2.SetActive(true);
             priestessHero.priestessHeroSkill.FusionActivate();
+
+            // Trigger the conversation for Priestess
+            conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
 
         lineEffect.StartHealing(newHero);

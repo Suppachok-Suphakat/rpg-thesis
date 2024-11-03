@@ -14,14 +14,14 @@ public class Bullet : MonoBehaviour
     private Vector3 startPosition;
 
     [SerializeField] private GameObject sliderObject;
-    [SerializeField] private SkillStatusBar statusComponent;
+    //[SerializeField] private SkillStatusBar statusComponent;
     public int chargeAmount;
 
     private void Start()
     {
         startPosition = transform.position;
         sliderObject = GameObject.Find("WeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
+        //statusComponent = sliderObject.GetComponent<SkillStatusBar>();
     }
 
     private void Update()
@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            statusComponent.chargeAmount++;
+            //statusComponent.chargeAmount++;
         }
     }
 

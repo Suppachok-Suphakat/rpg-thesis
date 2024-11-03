@@ -69,6 +69,8 @@ public class PriestessHeroAI : MonoBehaviour
     [SerializeField] public GameObject skillbutton1;
     [SerializeField] public GameObject skillbutton2;
 
+    public Sprite heroFaceSprite;
+
     public PriestessHeroSkill priestessHeroSkill;
 
     private void Awake()

@@ -63,6 +63,8 @@ public class KnightHeroAI : MonoBehaviour
     [SerializeField] public GameObject skillbutton1;
     [SerializeField] public GameObject skillbutton2;
 
+    public Sprite heroFaceSprite;
+
     public KnightHeroSkill knightHeroSkill;
 
     private void Awake()

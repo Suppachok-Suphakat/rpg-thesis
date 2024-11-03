@@ -69,6 +69,8 @@ public class ArcherHeroAI : MonoBehaviour
     [SerializeField] public GameObject skillbutton1;
     [SerializeField] public GameObject skillbutton2;
 
+    public Sprite heroFaceSprite;
+
     public ArcherHeroSkill archerHeroSkill;
 
     private void Awake()
