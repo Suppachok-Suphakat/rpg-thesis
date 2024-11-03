@@ -48,6 +48,8 @@ public class KnightHeroSkill : MonoBehaviour
     private Rigidbody2D rb;
     public KnightHeroAI knightHeroAI;
 
+    public ConversationManager conversationManager;
+
     enum AbilityState
     {
         ready,
@@ -216,6 +218,7 @@ public class KnightHeroSkill : MonoBehaviour
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
+        conversationManager.ShowConversation("Shield up!", knightHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
         knightHeroAI.SkillLogic();
 
@@ -245,6 +248,7 @@ public class KnightHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
+        conversationManager.ShowConversation("I’ll clear a path!", knightHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
         //if (toolbarSlot.weaponInfo != null)

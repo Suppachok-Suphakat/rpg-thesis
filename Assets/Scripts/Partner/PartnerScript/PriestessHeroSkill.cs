@@ -43,7 +43,12 @@ public class PriestessHeroSkill : MonoBehaviour
     [SerializeField] public Image skill1Image;
     [SerializeField] public Image skill2Image;
 
+    public PriestessHeroAI priestessHeroAI;
+
     private LineTrigger lineTrigger;
+
+    public ConversationManager conversationManager;
+
 
     enum AbilityState
     {
@@ -67,6 +72,7 @@ public class PriestessHeroSkill : MonoBehaviour
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
+        priestessHeroAI = GetComponent<PriestessHeroAI>();
     }
 
     // Start is called before the first frame update
@@ -188,6 +194,7 @@ public class PriestessHeroSkill : MonoBehaviour
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
+        conversationManager.ShowConversation("Be restored in sacred light!", priestessHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -207,6 +214,7 @@ public class PriestessHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill 2 Activate");
+        conversationManager.ShowConversation("Feel the warmth of the divine!", priestessHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

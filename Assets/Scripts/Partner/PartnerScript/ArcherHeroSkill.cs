@@ -43,7 +43,11 @@ public class ArcherHeroSkill : MonoBehaviour
     [SerializeField] public Image skill1Image;
     [SerializeField] public Image skill2Image;
 
+    public ArcherHeroAI archerHeroAI;
+
     private LineTrigger lineTrigger;
+
+    public ConversationManager conversationManager;
 
     enum AbilityState
     {
@@ -67,6 +71,7 @@ public class ArcherHeroSkill : MonoBehaviour
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
+        archerHeroAI = GetComponent<ArcherHeroAI>();
     }
 
     // Start is called before the first frame update
@@ -189,6 +194,7 @@ public class ArcherHeroSkill : MonoBehaviour
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
+        conversationManager.ShowConversation("Nature strikes with me!", archerHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -208,6 +214,7 @@ public class ArcherHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill 2 Activate");
+        conversationManager.ShowConversation("Caught you in my sights!", archerHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
