@@ -8,6 +8,7 @@ public class HeroSelection : MonoBehaviour
 {
     private bool heroMenuInitiated;
     private bool playerCheck;
+    public GameObject canvas;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class HeroSelection : MonoBehaviour
             //speechBubbleRenderer.enabled = true;
 
             playerCheck = true;
+            canvas.SetActive(true);
         }
     }
 
@@ -46,6 +48,7 @@ public class HeroSelection : MonoBehaviour
             //speechBubbleRenderer.enabled = false;
 
             playerCheck = false;
+            canvas.SetActive(false);
         }
     }
 }
