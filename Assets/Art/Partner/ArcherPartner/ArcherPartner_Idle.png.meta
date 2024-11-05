@@ -206,6 +206,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ArcherPartner_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 15
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1b3985d4204674e8954bec5ac4ef37
+      internalID: 591122504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -221,6 +242,7 @@ TextureImporter:
       ArcherPartner_Idle_1: 198934767
       ArcherPartner_Idle_2: 150686608
       ArcherPartner_Idle_3: -333326211
+      ArcherPartner_Idle_4: 591122504
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

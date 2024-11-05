@@ -7,6 +7,8 @@ public class PartnerSkillManager : MonoBehaviour
     public static PartnerSkillManager Instance;
 
     public GameObject partnerMenu;
+    public Transform statusBarContainer; // Drag your StatusBarContainer (VerticalLayoutGroup) here in the Inspector.
+    public Transform previewContainer; // Drag your PreviewContainer (HorizontalLayoutGroup) here in the Inspector.
 
     [System.Serializable]
     public class Partner
@@ -26,19 +28,6 @@ public class PartnerSkillManager : MonoBehaviour
     void Start()
     {
         Instance = this;
-    }
-
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    TogglePartnerMenu();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    ExitPartnerMenu();
-        //}
     }
 
     public void TogglePartnerMenu()
@@ -71,10 +60,17 @@ public class PartnerSkillManager : MonoBehaviour
         {
             if (activePartners.Count < maxActivePartners)
             {
-
                 Debug.Log("Select");
                 SetPartnerActive(index, true);
                 activePartners.Add(index);
+
+                // Move the selected partner's status bar to the end of the status bar container
+                partners[index].statusBar.transform.SetParent(null); // Temporarily detach
+                partners[index].statusBar.transform.SetParent(statusBarContainer); // Reattach at end
+
+                // Move the selected partner's preview to the end of the preview container
+                partners[index].preview.transform.SetParent(null); // Temporarily detach
+                partners[index].preview.transform.SetParent(previewContainer); // Reattach at end
             }
             else
             {
@@ -94,10 +90,5 @@ public class PartnerSkillManager : MonoBehaviour
         {
             partners[index].statusComponent.gameObject.SetActive(isActive);
         }
-
-        //if (partners[index].skillBubble != null)
-        //{
-        //    partners[index].skillBubble.SetActive(isActive);
-        //}
     }
 }

@@ -269,6 +269,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: H_Priest_Sprite_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 9
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4299b04f3211394fb68c4603d7801cd
+      internalID: -1796233333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -287,6 +308,7 @@ TextureImporter:
       H_Priest_Sprite_Idle_4: -404630895
       H_Priest_Sprite_Idle_5: 1223313825
       H_Priest_Sprite_Idle_6: 1988238082
+      H_Priest_Sprite_Idle_7: -1796233333
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
