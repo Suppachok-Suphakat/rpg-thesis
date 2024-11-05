@@ -17,14 +17,30 @@ public class LineTrigger : MonoBehaviour
 
     private bool isInFusion = false;
 
-    public ConversationManager conversationManager; // Reference to the ConversationManager
+    public ConversationManager conversationManager;
+
+    public PartnerSkillManager partnerSkillManager;
+
+    void Start()
+    {
+        //partnerSkillManager = PartnerSkillManager.Instance;
+        //if (partnerSkillManager == null)
+        //{
+        //    Debug.LogError("PartnerSkillManager instance is null in LineTrigger!");
+        //}
+    }
 
     void Update()
+    {
+        HandleMouseInput();
+        HandleKeyboardInput();
+    }
+
+    private void HandleMouseInput()
     {
         if (Input.GetMouseButtonDown(1) && Time.time >= lastFusionTime + fusionCooldown)
         {
             lastFusionTime = Time.time;
-
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
@@ -77,6 +93,58 @@ public class LineTrigger : MonoBehaviour
         }
     }
 
+    private void HandleKeyboardInput()
+    {
+        if (partnerSkillManager == null || partnerSkillManager.activePartners.Count == 0) return;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && partnerSkillManager.activePartners.Count >= 1 && Time.time >= lastFusionTime + fusionCooldown)
+        {
+            SelectHeroByOrder(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && partnerSkillManager.activePartners.Count >= 2 && Time.time >= lastFusionTime + fusionCooldown)
+        {
+            SelectHeroByOrder(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && partnerSkillManager.activePartners.Count >= 3 && Time.time >= lastFusionTime + fusionCooldown)
+        {
+            SelectHeroByOrder(2);
+        }
+    }
+
+    private void SelectHeroByOrder(int orderIndex)
+    {
+        Debug.Log("SelectHeroByOrder called with order index: " + orderIndex);
+
+        if (partnerSkillManager == null || orderIndex >= partnerSkillManager.activePartners.Count)
+        {
+            Debug.LogWarning("Invalid hero index or PartnerSkillManager is null");
+            return;
+        }
+
+        int heroIndex = partnerSkillManager.activePartners[orderIndex];
+        if (heroIndex >= partnerSkillManager.partners.Count)
+        {
+            Debug.LogWarning("Hero index out of range in partners list");
+            return;
+        }
+
+        lastFusionTime = Time.time;
+        Transform selectedHero = partnerSkillManager.partners[heroIndex].partnerObject.transform;
+
+        if (currentTarget == selectedHero)
+        {
+            UnlinkHero(selectedHero);
+        }
+        else
+        {
+            if (previousTarget != null && previousTarget != selectedHero)
+            {
+                UnlinkHero(previousTarget);
+            }
+            LinkHero(selectedHero);
+        }
+    }
+
     private void UnlinkHero(Transform hero)
     {
         if (!isInFusion) return;
@@ -85,7 +153,6 @@ public class LineTrigger : MonoBehaviour
 
         if (hero.TryGetComponent(out KnightHeroAI knightHero))
         {
-            //knightHero.skillBar.SetActive(false);
             knightHero.selectedIndicator.SetActive(false);
             knightHero.skillbutton1.SetActive(false);
             knightHero.skillbutton2.SetActive(false);
@@ -93,7 +160,6 @@ public class LineTrigger : MonoBehaviour
         }
         else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
         {
-            //archerHero.skillBar.SetActive(false);
             archerHero.selectedIndicator.SetActive(false);
             archerHero.skillbutton1.SetActive(false);
             archerHero.skillbutton2.SetActive(false);
@@ -101,7 +167,6 @@ public class LineTrigger : MonoBehaviour
         }
         else if (hero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
-            //priestessHero.skillBar.SetActive(false);
             priestessHero.selectedIndicator.SetActive(false);
             priestessHero.skillbutton1.SetActive(false);
             priestessHero.skillbutton2.SetActive(false);
@@ -123,8 +188,6 @@ public class LineTrigger : MonoBehaviour
             knightHero.skillbutton1.SetActive(true);
             knightHero.skillbutton2.SetActive(true);
             knightHero.knightHeroSkill.FusionActivate();
-
-            // Trigger the conversation for Knight
             conversationManager.ShowConversation("Let's do this!", knightHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
@@ -134,8 +197,6 @@ public class LineTrigger : MonoBehaviour
             archerHero.skillbutton1.SetActive(true);
             archerHero.skillbutton2.SetActive(true);
             archerHero.archerHeroSkill.FusionActivate();
-
-            // Trigger the conversation for Archer
             conversationManager.ShowConversation("Ready to strike!", archerHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out PriestessHeroAI priestessHero))
@@ -145,8 +206,6 @@ public class LineTrigger : MonoBehaviour
             priestessHero.skillbutton1.SetActive(true);
             priestessHero.skillbutton2.SetActive(true);
             priestessHero.priestessHeroSkill.FusionActivate();
-
-            // Trigger the conversation for Priestess
             conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
 

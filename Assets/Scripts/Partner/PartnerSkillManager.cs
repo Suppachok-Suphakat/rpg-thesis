@@ -25,9 +25,15 @@ public class PartnerSkillManager : MonoBehaviour
     public List<int> activePartners = new List<int>();
     private const int maxActivePartners = 3;
 
+    private void Awake()
+    {
+        Debug.Log("PartnerSkillManager instance set");
+        Instance = this;
+    }
+
     void Start()
     {
-        Instance = this;
+
     }
 
     public void TogglePartnerMenu()
@@ -50,6 +56,9 @@ public class PartnerSkillManager : MonoBehaviour
 
     public void SelectPartner(int index)
     {
+        Debug.Log("Testing SelectPartner: Hero index " + index + " clicked");
+
+        Debug.Log("SelectPartner called with index: " + index);
         if (activePartners.Contains(index))
         {
             Debug.Log("Deselect");
