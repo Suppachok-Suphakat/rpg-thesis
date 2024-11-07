@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81a43078da149564ebd1aad81d870240
+guid: 6b33d913d5b081440b2ba34f2ef29dba
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: P_Sprite_Walkback_0
+      name: "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b190c2c8aeb81d94e8569f1d8efc8c95
-      internalID: 1257617883
+      spriteID: 74943a5619766074eb154bae64c9bfd3
+      internalID: -963633462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_Walkback_1
+      name: "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af0c534313c80be4db68d7554e0a8bcf
-      internalID: 201864758
+      spriteID: e90b28cb13793c84bbe916b7381982c9
+      internalID: 78188723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_Walkback_2
+      name: "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed12fae9df47bb64298704c82230c8cc
-      internalID: -457173973
+      spriteID: 5644068c60734c842b4f4e0937dd7aa4
+      internalID: 1767390022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_Walkback_3
+      name: "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_3"
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9be44f57c88b89a46ae073c2fbb91455
-      internalID: -1726785048
+      spriteID: c6c40a4a14c17d74f93a1d9c44cc51d3
+      internalID: 142409482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_Walkback_4
+      name: "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_4"
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9702757abce57429d519563685a339
-      internalID: 400881410
+      spriteID: 4a6ca83dcc7a44c448bfd4147c800f5e
+      internalID: 1431454411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: P_Sprite_Walkback_5
+      name: "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_5"
       rect:
         serializedVersion: 2
         x: 320
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef293ab4a93a1494e88bae17d24c7b19
-      internalID: 1066971383
+      spriteID: 563f95a7e6f2ff44db39e75730f24587
+      internalID: 1869259685
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      P_Sprite_Walkback_0: 1257617883
-      P_Sprite_Walkback_1: 201864758
-      P_Sprite_Walkback_2: -457173973
-      P_Sprite_Walkback_3: -1726785048
-      P_Sprite_Walkback_4: 400881410
-      P_Sprite_Walkback_5: 1066971383
+      "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_0": -963633462
+      "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_1": 78188723
+      "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_2": 1767390022
+      "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_3": 142409482
+      "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_4": 1431454411
+      "\u0E16\u0E2D\u0E22\u0E2B\u0E25\u0E31\u0E072_5": 1869259685
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

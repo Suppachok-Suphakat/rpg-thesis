@@ -432,6 +432,7 @@ public class ArcherHeroAI : MonoBehaviour
         float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
         arrowSpawnPoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
+        Debug.Log("Shoot");
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, arrowSpawnPoint.rotation);
         newArrow.GetComponent<Arrow>().UpdateProjectileRange(12f);
     }
