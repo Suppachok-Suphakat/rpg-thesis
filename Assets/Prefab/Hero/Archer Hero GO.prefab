@@ -215,6 +215,7 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
+  heroFaceSprite: {fileID: 0}
   archerHeroSkill: {fileID: 0}
 --- !u!114 &6467919669117534607
 MonoBehaviour:
@@ -249,6 +250,8 @@ MonoBehaviour:
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
+  archerHeroAI: {fileID: 0}
+  conversationManager: {fileID: 0}
 --- !u!212 &4926665258290011330
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -290,7 +293,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1361016620, guid: 9a12a76f1e55ed34c90da56b42f220ff, type: 3}
+  m_Sprite: {fileID: -1603171407, guid: 377aee973dd16f544a86042708ec997e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
