@@ -16,6 +16,7 @@ public class ArcherHeroAI : MonoBehaviour
     private float retreatTimer = 0f;
     public float safeDistance = 6f;
     public float maxChaseDistance = 10f;
+    [SerializeField] private float stateSwitchBuffer = 0.5f;
 
     public enum State
     {
@@ -96,15 +97,14 @@ public class ArcherHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 3f)
+        if (cooldownTime > 0f)
         {
-            RepelHeroes();
+            cooldownTime -= Time.deltaTime;
         }
-
-        cooldownTime -= Time.deltaTime;
 
         HandleMouseInput();
 
+        // Check if the archer should retreat based on distance to the enemy
         if (ShouldRetreat())
         {
             currentState = State.retreat;
@@ -265,52 +265,36 @@ public class ArcherHeroAI : MonoBehaviour
 
     private void ChaseLogic()
     {
-        if (currentState == State.skill) return;
-
         if (enemyTransform != null)
         {
-            // Calculate distance to the enemy and player
             float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-            // If the distance to the player exceeds the max chase distance, return to follow
+            // Return to follow if too far from the player
             if (distanceToPlayer > maxChaseDistance)
             {
                 currentState = State.follow;
-                focusEnemy = null; // Optionally, clear the enemy focus
+                focusEnemy = null;
                 return;
             }
 
-            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
-
-            // Stop the walking animation if within attack range but on cooldown
-            if (distanceToEnemy <= attackDistance && cooldownTime > 0f)
+            if (distanceToEnemy <= attackDistance)
             {
-                // Within attack range but still on cooldown, stop the walking animation
-                animator.SetBool("isWalking", false);
+                currentState = State.attack;
+                return;
+            }
+
+            // Continue chasing the enemy
+            Vector3 directionToEnemy = (enemyTransform.position - transform.position).normalized;
+            animator.SetBool("isWalking", true);
+            FlipSprite(enemyTransform);
+            if (!isSliding && !CanMove(directionToEnemy))
+            {
+                StartCoroutine(SlidePastObstacle(directionToEnemy));
             }
             else
             {
-                FlipSprite(enemyTransform);
-                // Continue walking if not within attack range or if not on cooldown
-                animator.SetBool("isWalking", true);
-
-                if (distanceToEnemy > attackDistance)
-                {
-                    // Move towards the enemy
-                    if (!isSliding && !CanMove(directionToEnemy))
-                    {
-                        StartCoroutine(SlidePastObstacle(directionToEnemy));
-                    }
-                    else
-                    {
-                        transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
-                    }
-                }
-                else
-                {
-                    AttackLogic(); // Start attacking if close enough
-                }
+                transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
             }
         }
         else
@@ -318,6 +302,7 @@ public class ArcherHeroAI : MonoBehaviour
             currentState = State.follow;
         }
     }
+
 
     private bool CanMove(Vector2 direction)
     {
@@ -342,25 +327,28 @@ public class ArcherHeroAI : MonoBehaviour
 
     void AttackLogic()
     {
-        if (enemyTransform != null && cooldownTime <= 0f)
+        if (enemyTransform == null)
         {
-            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
-
-            if (distanceToEnemy > retreatDistance)
-            {
-                animator.SetBool("isWalking", false);
-                FlipSprite(enemyTransform);
-                animator.SetTrigger("attack");
-                cooldownTime = attackCooldown;
-            }
-            else
-            {
-                currentState = State.retreat;
-            }
+            currentState = State.follow;
+            return;
         }
-        else
+
+        float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+
+        if (distanceToEnemy <= attackDistance && cooldownTime <= 0f)
         {
-            currentState = State.chase;
+            animator.SetBool("isWalking", false);
+            FlipSprite(enemyTransform);
+            animator.SetTrigger("attack");
+            cooldownTime = attackCooldown;  // Reset cooldown
+        }
+        else if (distanceToEnemy > attackDistance)
+        {
+            currentState = State.chase; // Return to chasing if out of range
+        }
+        else if (distanceToEnemy <= retreatDistance)
+        {
+            currentState = State.retreat;  // Retreat if too close
         }
     }
 
@@ -369,8 +357,7 @@ public class ArcherHeroAI : MonoBehaviour
         if (enemyTransform != null)
         {
             float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
-            // If the enemy is within retreat distance, trigger retreat
-            return distanceToEnemy < retreatDistance;
+            return distanceToEnemy < retreatDistance;  // Retreat if the enemy is very close
         }
         return false;
     }
@@ -398,9 +385,9 @@ public class ArcherHeroAI : MonoBehaviour
                 transform.Translate(directionAwayFromEnemy * retreatSpeed * Time.deltaTime);
                 animator.SetBool("isWalking", true);
             }
-            else if (distanceToEnemy > safeDistance)
+            else if (distanceToEnemy > safeDistance + stateSwitchBuffer)
             {
-                // Once safe distance is reached and timer ends, go back to attack
+                // Only switch back to attack if we are beyond the safe distance plus buffer
                 currentState = State.attack;
             }
             else
@@ -410,6 +397,7 @@ public class ArcherHeroAI : MonoBehaviour
             }
         }
     }
+
 
     public void SkillLogic()
     {
@@ -425,6 +413,7 @@ public class ArcherHeroAI : MonoBehaviour
 
     public void Attack()
     {
+        Debug.Log("Attack method triggered");
         // Calculate direction towards the enemy
         Vector2 directionToEnemy = (enemyTransform.position - transform.position).normalized;
 
@@ -440,6 +429,14 @@ public class ArcherHeroAI : MonoBehaviour
     private void Unattacked()
     {
         //damageCollider.gameObject.SetActive(false);
+    }
+
+    private void SetWalkingAnimation(bool isWalking)
+    {
+        if (animator.GetBool("isWalking") != isWalking)
+        {
+            animator.SetBool("isWalking", isWalking);
+        }
     }
 
     void FlipSprite(Transform flipTo)

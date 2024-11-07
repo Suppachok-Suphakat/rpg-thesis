@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7153042684854541932
 Transform:
   m_ObjectHideFlags: 0
@@ -195,6 +195,7 @@ MonoBehaviour:
   retreatDuration: 1
   safeDistance: 6
   maxChaseDistance: 10
+  stateSwitchBuffer: 0.5
   player: {fileID: 0}
   currentState: 0
   minDistance: 1
