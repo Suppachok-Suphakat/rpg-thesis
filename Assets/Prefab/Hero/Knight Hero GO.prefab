@@ -83,6 +83,7 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
+  heroFaceSprite: {fileID: 0}
   knightHeroSkill: {fileID: 0}
 --- !u!114 &8739522059059753338
 MonoBehaviour:
@@ -119,6 +120,7 @@ MonoBehaviour:
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
   knightHeroAI: {fileID: 0}
+  conversationManager: {fileID: 0}
 --- !u!212 &3926950155357857189
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -267,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: 2dfd1fb67a3520241a6ba463545b8721, type: 2}
+  redFlashMat: {fileID: 2100000, guid: 1775b57b5dca0fd4c968374e0ee5b79d, type: 2}
   restoreDefaultMatTime: 0.2
 --- !u!114 &2452058153353855210
 MonoBehaviour:

@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Flash : MonoBehaviour
 {
     [SerializeField] private Material whiteFlashMat;
+    [SerializeField] private Material redFlashMat;
     [SerializeField] private float restoreDefaultMatTime = .2f;
 
     private Material defaultMat;
@@ -23,8 +23,19 @@ public class Flash : MonoBehaviour
 
     public IEnumerator FlashRoutine()
     {
+        // Flash red
+        spriteRenderer.material = redFlashMat;
+        yield return new WaitForSeconds(restoreDefaultMatTime);
+
+        // Flash white
         spriteRenderer.material = whiteFlashMat;
         yield return new WaitForSeconds(restoreDefaultMatTime);
+
+        // Flash red again
+        spriteRenderer.material = redFlashMat;
+        yield return new WaitForSeconds(restoreDefaultMatTime);
+
+        // Restore original material
         spriteRenderer.material = defaultMat;
     }
 }
