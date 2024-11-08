@@ -15,7 +15,7 @@ public class LineTrigger : MonoBehaviour
     private float fusionCooldown = 1f;
     private float lastFusionTime = 0f;
 
-    private bool isInFusion = false;
+    public bool isInFusion = false;
 
     public ConversationManager conversationManager;
 
@@ -145,7 +145,7 @@ public class LineTrigger : MonoBehaviour
         }
     }
 
-    private void UnlinkHero(Transform hero)
+    public void UnlinkHero(Transform hero)
     {
         if (!isInFusion) return;
 

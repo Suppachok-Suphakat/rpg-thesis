@@ -14,6 +14,8 @@ public class PartnerSkillManager : MonoBehaviour
     public Image[] portraitBoxes; // Assign three UI Images in the Inspector for portraits
     public Image[] spriteBoxes; // Assign three UI Images in the Inspector for sprites
 
+    public LineTrigger lineTrigger;
+
     [System.Serializable]
     public class Partner
     {
@@ -68,6 +70,12 @@ public class PartnerSkillManager : MonoBehaviour
         if (activePartners.Contains(index))
         {
             Debug.Log("Deselect");
+            if (lineTrigger != null && lineTrigger.isInFusion)
+            {
+                Transform partnerTransform = partners[index].partnerObject.transform;
+                lineTrigger.UnlinkHero(partnerTransform);
+            }
+
             SetPartnerActive(index, false);
             activePartners.Remove(index);
         }
