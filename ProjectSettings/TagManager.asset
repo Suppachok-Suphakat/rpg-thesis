@@ -9,6 +9,7 @@ TagManager:
   - Partner
   - EnemyAttack
   - Hero
+  - Wall
   layers:
   - Default
   - TransparentFX

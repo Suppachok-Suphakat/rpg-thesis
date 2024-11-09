@@ -14,19 +14,6 @@ public class GunSkill : MonoBehaviour, IWeapon
 
     private Animator myAnimator;
 
-    //[Header("Weapon Skill")]
-    //[SerializeField] private GameObject arrowSkillPrefab;
-    //[SerializeField] float chargeTime;
-    //[SerializeField] float activeTime;
-    //[SerializeField] float currentChargeTime;
-    //[SerializeField] float currentActiveTime;
-
-    //public int chargeAmount;
-    //public int maxChargeAmount;
-
-    //[SerializeField] private GameObject sliderObject;
-    //[SerializeField] private SkillStatusBar statusComponent;
-
     enum SkillState
     {
         ready,

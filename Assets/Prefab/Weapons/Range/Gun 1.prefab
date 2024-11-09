@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5478454300927910231}
   - component: {fileID: 6128501301318098374}
   - component: {fileID: 490568745078072519}
+  - component: {fileID: -6798385432624278520}
   m_Layer: 0
   m_Name: Gun 1
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 101
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 79c7b5d0eee382145b8c4e5da7cac28d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,6 +125,18 @@ MonoBehaviour:
   arrowPrefab: {fileID: 3554886383241864524, guid: be5d267ae905ba94693af271501095bf, type: 3}
   arrowSpawnPoint: {fileID: 2601915384263383017}
   staminaCost: 0
+--- !u!114 &-6798385432624278520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5651435467538364925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5816764601949020601
 GameObject:
   m_ObjectHideFlags: 0

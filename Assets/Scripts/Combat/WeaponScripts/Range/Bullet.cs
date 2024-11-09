@@ -14,14 +14,12 @@ public class Bullet : MonoBehaviour
     private Vector3 startPosition;
 
     [SerializeField] private GameObject sliderObject;
-    //[SerializeField] private SkillStatusBar statusComponent;
     public int chargeAmount;
 
     private void Start()
     {
         startPosition = transform.position;
         sliderObject = GameObject.Find("WeaponSkillBar");
-        //statusComponent = sliderObject.GetComponent<SkillStatusBar>();
     }
 
     private void Update()
@@ -42,6 +40,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Wall"))
+        {
+            Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
+        Debug.Log("Collided with: " + other.gameObject.name);
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         Indestructible indestructible = other.gameObject.GetComponent<Indestructible>();
         Character player = other.gameObject.GetComponent<Character>();
@@ -49,13 +59,14 @@ public class Bullet : MonoBehaviour
 
         if (!other.isTrigger && (enemyHealth || indestructible || player))
         {
+            Debug.Log("Damage or Destroy: " + other.gameObject.name);
             if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
             {
                 player?.TakeDamage(damage, transform);
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
-            else if (!other.isTrigger && indestructible)
+            else if (indestructible)
             {
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
                 Destroy(gameObject);
@@ -65,11 +76,6 @@ public class Bullet : MonoBehaviour
         {
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);
-        }
-
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            //statusComponent.chargeAmount++;
         }
     }
 
