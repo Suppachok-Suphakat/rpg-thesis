@@ -265,8 +265,6 @@ public class KnightHeroAI : MonoBehaviour
         if (focusEnemy != null)
         {
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
-            float distanceToDefence = Vector2.Distance(player.transform.position, focusEnemy.position);
-            float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
 
             if (distanceToEnemy <= attackDistance)
             {
@@ -274,18 +272,11 @@ public class KnightHeroAI : MonoBehaviour
             }
             else
             {
-                if(distanceToPlayer <= distanceToDefence)
-                {
-                    Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
-                    animator.SetBool("isDefencing", false);
-                    animator.SetBool("isWalking", true);
-                    FlipSprite(focusEnemy);
-                    transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
-                }
-                else 
-                {
-                    currentState = State.defence;
-                }
+                Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
+                animator.SetBool("isDefencing", false);
+                animator.SetBool("isWalking", true);
+                FlipSprite(focusEnemy);
+                transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
             }
         }
         else
@@ -313,16 +304,12 @@ public class KnightHeroAI : MonoBehaviour
             {
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isDefencing", true);
-            }
-
-            if (distanceToEnemy >= distanceToAttack)
-            {
-                currentState = State.chase;
+                currentState = State.chase; // Go back to chasing if the enemy is not close enough to attack
             }
         }
         else
         {
-            currentState = State.follow;
+            currentState = State.follow; // Only return to follow if there is no enemy
         }
     }
 
