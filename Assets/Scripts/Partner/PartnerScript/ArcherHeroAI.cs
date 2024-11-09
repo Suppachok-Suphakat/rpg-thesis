@@ -97,6 +97,11 @@ public class ArcherHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentState == State.follow) //&& Vector3.Distance(transform.position, player.position) <= 3f)
+        {
+            RepelHeroes();
+        }
+
         if (cooldownTime > 0f)
         {
             cooldownTime -= Time.deltaTime;

@@ -92,7 +92,7 @@ public class KnightHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == State.follow && Vector3.Distance(transform.position, player.position) <= 3f)
+        if (currentState == State.follow) //&& Vector3.Distance(transform.position, player.position) <= 3f)
         {
             RepelHeroes();
         }
