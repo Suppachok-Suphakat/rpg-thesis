@@ -11,7 +11,7 @@ public class AttackerEnemyAI : MonoBehaviour
     [SerializeField] private float damageRange = 0f;
     [SerializeField] private MonoBehaviour enemyType;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private bool stopMovingWhileAttacking = false;
+    [SerializeField] private bool stopMovingWhileAttacking = true;
 
     private bool canAttack = true;
     public Transform currentTarget;
@@ -106,7 +106,7 @@ public class AttackerEnemyAI : MonoBehaviour
 
     private void Attacking()
     {
-        if (currentTarget == null && Vector2.Distance(transform.position, currentTarget.position) > attackRange)
+        if (currentTarget == null || Vector2.Distance(transform.position, currentTarget.position) > attackRange)
         {
             state = State.Roaming;
             return;
@@ -115,22 +115,22 @@ public class AttackerEnemyAI : MonoBehaviour
         Vector3 directionToTarget = (currentTarget.position - transform.position).normalized;
         float distanceToTarget = Vector2.Distance(transform.position, currentTarget.position);
 
-        attackerEnemyPathfinding.MoveTo(directionToTarget);
+        if (stopMovingWhileAttacking && distanceToTarget <= damageRange)
+        {
+            // Stop moving during attack if flag is true
+            attackerEnemyPathfinding.StopMoving();
+        }
+        else
+        {
+            // Only move if stopMovingWhileAttacking is false
+            attackerEnemyPathfinding.MoveTo(directionToTarget);
+        }
 
         if (distanceToTarget <= damageRange && canAttack)
         {
             canAttack = false;
             (enemyType as IEnemy).Attack();
-
-            if (stopMovingWhileAttacking)
-            {
-                animator.SetTrigger("Attack");
-                attackerEnemyPathfinding.StopMoving();
-            }
-            else
-            {
-                attackerEnemyPathfinding.MoveTo(roamPosition);
-            }
+            animator.SetTrigger("Attack");
 
             StartCoroutine(AttackCooldownRoutine());
         }

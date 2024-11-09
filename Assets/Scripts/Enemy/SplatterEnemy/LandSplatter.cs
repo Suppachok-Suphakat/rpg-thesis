@@ -23,6 +23,9 @@ public class LandSplatter : MonoBehaviour
     {
         Character player = other.gameObject.GetComponent<Character>();
         player?.TakeDamage(damage, transform);
+
+        HeroHealth partnerHealth = other.gameObject.GetComponent<HeroHealth>();
+        partnerHealth?.TakeDamage(damage, transform);
     }
 
     private void DisableCollider()

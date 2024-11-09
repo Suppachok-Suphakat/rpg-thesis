@@ -345,7 +345,7 @@ MonoBehaviour:
   damageRange: 2.5
   enemyType: {fileID: 2905894672231633956}
   attackCooldown: 2
-  stopMovingWhileAttacking: 0
+  stopMovingWhileAttacking: 1
   currentTarget: {fileID: 0}
 --- !u!114 &3536736226815985751
 MonoBehaviour:
@@ -451,8 +451,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01808083, y: -0.033638477}
-  m_Size: {x: 0.62294936, y: 0.92854977}
+  m_Offset: {x: 0.022562385, y: 0.023262024}
+  m_Size: {x: 0.54166293, y: 1.3458207}
   m_Direction: 0
 --- !u!70 &630756322047249549
 CapsuleCollider2D:
@@ -486,8 +486,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01808083, y: -0.033638477}
-  m_Size: {x: 0.62294936, y: 0.92854977}
+  m_Offset: {x: 0.01714325, y: 0.020552635}
+  m_Size: {x: 0.5525012, y: 1.3512397}
   m_Direction: 0
 --- !u!212 &4665463519184906572
 SpriteRenderer:
@@ -530,7 +530,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1138333594, guid: ed25458f7116743428bf19b8b34d0fbe, type: 3}
+  m_Sprite: {fileID: 2088510346, guid: 225b15033c97bfc4abecba1c08f03e6f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -640,7 +640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.55}
+  m_AnchoredPosition: {x: 0, y: 0.929}
   m_SizeDelta: {x: 1.0419, y: 0.1283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &596301544319321731
@@ -790,8 +790,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4125252639932647868}
-  - component: {fileID: 2699051718593079324}
   - component: {fileID: 8925334782376568100}
+  - component: {fileID: 3512174536519002410}
   m_Layer: 0
   m_Name: Damage Collider
   m_TagString: EnemyAttack
@@ -814,8 +814,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4100660503886856127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2699051718593079324
-CircleCollider2D:
+--- !u!114 &8925334782376568100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810984377382944630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb996c433c58d0448ace71303697fc36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+  knockBackThrust: 5
+--- !u!70 &3512174536519002410
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -846,23 +860,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.6929468, y: -0.06916261}
-  serializedVersion: 2
-  m_Radius: 0.3941182
---- !u!114 &8925334782376568100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5810984377382944630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb996c433c58d0448ace71303697fc36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
-  knockBackThrust: 5
+  m_Offset: {x: -1.8533328, y: 0.14902464}
+  m_Size: {x: 1.139454, y: 0.19653752}
+  m_Direction: 1
 --- !u!1 &7779028558632745202
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,8 +889,8 @@ Transform:
   m_GameObject: {fileID: 7779028558632745202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.015, y: -0.26, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0.015, y: -0.206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4100660503886856127}
