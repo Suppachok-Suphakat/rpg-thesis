@@ -12,6 +12,7 @@ public class Shooter : MonoBehaviour, IEnemy
     [SerializeField] private float startingDistance = 0.1f;
     [SerializeField] private float timeBetweenBursts;
     [SerializeField] private float restTime = 1f;
+    [SerializeField] private float animationDelay = 0.5f; // Delay before shooting for animation sync
 
     private bool isShooting = false;
 
@@ -27,19 +28,23 @@ public class Shooter : MonoBehaviour, IEnemy
     {
         isShooting = true;
 
+        // Flip to face the player at the start of shooting
+        FlipSprite(PlayerController.instance.transform);
+
         float startAngle, currentAngle, angleStep;
 
         TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
 
         for (int i = 0; i < burstCount; i++)
         {
+            yield return new WaitForSeconds(animationDelay); // Add delay for animation
+
             for (int j = 0; j < projectilesPerBurst; j++)
             {
                 Vector2 pos = FindBulletSpawnPos(currentAngle);
 
                 GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
                 newBullet.transform.right = newBullet.transform.position - transform.position;
-
 
                 if (newBullet.TryGetComponent(out Projectile projectile))
                 {
@@ -86,5 +91,13 @@ public class Shooter : MonoBehaviour, IEnemy
         Vector2 pos = new Vector2(x, y);
 
         return pos;
+    }
+
+    private void FlipSprite(Transform flipTo)
+    {
+        if (flipTo.position.x < transform.position.x)
+            transform.localScale = new Vector3(1, 1, 1);
+        else
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 }

@@ -175,7 +175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.385}
+  m_AnchoredPosition: {x: 0, y: 0.952}
   m_SizeDelta: {x: 1.0419, y: 0.1283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6545019857196054100
@@ -324,7 +324,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -608107332, guid: 8f5d7618cf93d0346bded2f8d87ebdc6, type: 3}
+  m_Sprite: {fileID: -729943160, guid: 4e1f85b3a6655e14691f046d8713f580, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -388,8 +388,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005309835, y: -0.01674068}
-  m_Size: {x: 0.45549408, y: 0.83840656}
+  m_Offset: {x: -0.012871146, y: 0.017285287}
+  m_Size: {x: 0.54622996, y: 1.2996475}
   m_Direction: 0
 --- !u!50 &3487142607092114208
 Rigidbody2D:
@@ -515,6 +515,7 @@ MonoBehaviour:
   startingDistance: 0.1
   timeBetweenBursts: 0
   restTime: 1
+  animationDelay: 0.5
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0
