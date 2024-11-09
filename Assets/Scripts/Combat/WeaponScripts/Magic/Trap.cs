@@ -6,6 +6,7 @@ public class Trap : MonoBehaviour
 {
     public float trapDuration = 5f; // Time the enemy stays trapped
     public float trapLifetime = 5f; // Time before the trap self-destructs
+    public GameObject trapEffectPrefab; // Reference to the trap effect prefab
 
     void Start()
     {
@@ -24,6 +25,10 @@ public class Trap : MonoBehaviour
 
     IEnumerator ActivateTrap(Collider2D enemy)
     {
+        // Instantiate the trap effect at the enemy's position
+        GameObject trapEffect = Instantiate(trapEffectPrefab, enemy.transform.position, Quaternion.identity);
+        trapEffect.transform.parent = enemy.transform; // Attach effect to the enemy
+
         // Disable enemy movement by accessing its script
         AttackerEnemyPathfinding attackerEnemyMovement = enemy.GetComponent<AttackerEnemyPathfinding>();
         if (attackerEnemyMovement != null)
@@ -50,6 +55,9 @@ public class Trap : MonoBehaviour
         {
             enemyMovement.isImmobilized = false;
         }
+
+        // Destroy the trap effect and trap itself
+        Destroy(trapEffect);
 
         // Destroy both the trap and its parent object after it's done
         if (transform.parent != null)

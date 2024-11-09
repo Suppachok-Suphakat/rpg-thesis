@@ -22,20 +22,14 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 829765582, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - time: 0.1
+    - time: 0.16666667
       value: {fileID: -1127604144, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - time: 0.21666667
+    - time: 0.36666667
       value: {fileID: -1090216809, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - time: 0.31666666
+    - time: 0.55
       value: {fileID: -1618052678, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - time: 0.43333334
-      value: {fileID: 1653837002, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - time: 0.53333336
-      value: {fileID: -1422541411, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - time: 0.65
-      value: {fileID: 291874409, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
     - time: 0.75
-      value: {fileID: 723030674, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
+      value: {fileID: 1653837002, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -63,9 +57,6 @@ AnimationClip:
     - {fileID: -1090216809, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
     - {fileID: -1618052678, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
     - {fileID: 1653837002, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - {fileID: -1422541411, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - {fileID: 291874409, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
-    - {fileID: 723030674, guid: 331e3023d6d727f41856224ccd04a670, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -93,13 +84,6 @@ AnimationClip:
   m_Events:
   - time: 0.21666667
     functionName: DamageCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.75
-    functionName: DestroySelf
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
