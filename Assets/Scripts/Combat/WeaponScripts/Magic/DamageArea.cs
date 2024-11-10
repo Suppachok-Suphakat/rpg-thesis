@@ -61,7 +61,7 @@ public class DamageArea : MonoBehaviour
         {
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(Mathf.RoundToInt(poisonDamage)); // Apply poison damage
+                enemyHealth.TakeDamageNoCamShake(Mathf.RoundToInt(poisonDamage)); // Apply poison damage
             }
 
             // Wait for the next tick

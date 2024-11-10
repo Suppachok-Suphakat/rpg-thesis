@@ -47,6 +47,15 @@ public class EnemyHealth : MonoBehaviour
         StartCoroutine(CheckDetectDeathRoutine());
     }
 
+    public void TakeDamageNoCamShake(int damage)
+    {
+        currentHealth -= damage;
+        UpdateHpBar();
+        knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);
+        StartCoroutine(flash.FlashRoutine());
+        StartCoroutine(CheckDetectDeathRoutine());
+    }
+
     public void TakeDamageNoKnockBack(int damage)
     {
         currentHealth -= damage;
