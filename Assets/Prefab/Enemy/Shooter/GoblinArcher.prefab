@@ -612,8 +612,8 @@ MonoBehaviour:
   angleSpread: 0
   startingDistance: 0.1
   timeBetweenBursts: 0
-  restTime: 1
-  animationDelay: 0.5
+  restTime: 0
+  animationDelay: 0.75
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

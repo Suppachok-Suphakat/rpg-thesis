@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
   attackRange: 5
-  damageRange: 2.5
+  damageRange: 1.5
   enemyType: {fileID: 2905894672231633956}
   attackCooldown: 2
   stopMovingWhileAttacking: 1
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  knockBackThrust: 5
+  knockBackThrust: 0
 --- !u!70 &3512174536519002410
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
