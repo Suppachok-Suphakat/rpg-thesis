@@ -211,3 +211,5 @@ MonoBehaviour:
   heightY: 5.5
   splatterProjectileShadow: {fileID: 561078635120838229, guid: 0f2abdab586395a41b2224195ea9abb5, type: 3}
   splatterPrefab: {fileID: 2136554603464929707, guid: a74b5098cafa1e84ca46711d0d020df1, type: 3}
+  landingShadowPrefab: {fileID: 561078635120838229, guid: 0fc2c02d231976146b6d163c6a2c3bb1, type: 3}
+  maxShadowScale: {x: 3, y: 3, z: 1}

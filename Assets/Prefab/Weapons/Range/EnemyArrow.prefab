@@ -191,8 +191,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -375266883
-  m_SortingLayer: 1
+  m_SortingLayerID: -1206999469
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Time: 0.12
   m_PreviewTimeScale: 1
@@ -273,8 +273,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3554886383241864524}
   m_Enabled: 1
-  m_SortingLayerID: -375266883
-  m_SortingLayer: 1
+  m_SortingLayerID: -1206999469
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &478831989371973017
