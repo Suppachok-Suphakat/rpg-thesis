@@ -55,7 +55,7 @@ public class Arrow : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (barrier)
+        else if (barrier && isEnemyProjectile)
         {
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);

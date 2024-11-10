@@ -609,7 +609,7 @@ MonoBehaviour:
   bulletMoveSpeed: 6
   burstCount: 1
   projectilesPerBurst: 3
-  angleSpread: 45
+  angleSpread: 60
   startingDistance: 0.1
   timeBetweenBursts: 0
   restTime: 1

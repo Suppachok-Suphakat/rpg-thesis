@@ -18,11 +18,13 @@ public class PlayerController : MonoBehaviour
     public Vector2 movement;
 
     public float moveSpeed = 5f;
+    public float runSpeed = 8f;
     public float startingMoveSpeed;
+    public float currentMoveSpeed;
 
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private int dashStamina = 100;
-    [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] public TrailRenderer trailRenderer;
     [SerializeField] private Transform swordWeaponCollider;
     [SerializeField] private Transform spearWeaponCollider;
 
@@ -191,7 +193,14 @@ public class PlayerController : MonoBehaviour
         float dashCD = .25f;
         character.ReduceStamina(dashStamina);
         yield return new WaitForSeconds(dashTime);
-        moveSpeed = startingMoveSpeed;
+        if (character.isLeftShiftPressed)
+        {
+            moveSpeed = runSpeed;
+        }
+        else
+        {
+            moveSpeed = startingMoveSpeed;
+        }
         trailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCD);
         isDashing = false;

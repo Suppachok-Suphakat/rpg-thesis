@@ -128,12 +128,15 @@ public class Character : MonoBehaviour, IDamageable
             StopCoroutine(StaminaRecovery());
             isLeftShiftPressed = true;
             ReduceStaminaOverTime();
-            playerController.moveSpeed *= 2f;
+            playerController.moveSpeed = playerController.runSpeed;
+            playerController.trailRenderer.emitting = true;
 
             if (stamina.currVal <= 0f)
             {
                 isExhuasted = true;
                 playerController.moveSpeed = playerController.startingMoveSpeed;
+                playerController.trailRenderer.emitting = false;
+
                 StartCoroutine(StaminaRecovery());
             }
         }
@@ -147,6 +150,8 @@ public class Character : MonoBehaviour, IDamageable
             {
                 isExhuasted = true;
                 playerController.moveSpeed = playerController.startingMoveSpeed;
+                playerController.trailRenderer.emitting = false;
+
                 StartCoroutine(StaminaRecovery());
             }
         }
@@ -155,6 +160,7 @@ public class Character : MonoBehaviour, IDamageable
         {
             isLeftShiftPressed = false;
             playerController.moveSpeed = playerController.startingMoveSpeed;
+            playerController.trailRenderer.emitting = false;
         }
     }
 
