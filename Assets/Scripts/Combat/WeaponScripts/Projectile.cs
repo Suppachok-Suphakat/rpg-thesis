@@ -39,6 +39,7 @@ public class Projectile : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         Indestructible indestructible = other.gameObject.GetComponent<Indestructible>();
         Character player = other.gameObject.GetComponent<Character>();
+        HeroHealth heroHealth = other.gameObject.GetComponent<HeroHealth>();
         Barrier barrier = other.gameObject.GetComponent<Barrier>();
 
         if (!other.isTrigger && (enemyHealth || indestructible || player))
