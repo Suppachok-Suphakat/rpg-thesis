@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    public CinemachineVirtualCamera virtualCamera;
 
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
 
@@ -144,10 +146,18 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
 
-    public void Warp(Vector3 destinationPos)
+    public void Warp(Vector3 newPosition)
     {
-        //StopAllCoroutines();
-        transform.position = destinationPos;
+        // Move player to the new position
+        transform.position = newPosition;
+
+        // Reset Cinemachine's position
+        if (virtualCamera != null)
+        {
+            virtualCamera.OnTargetObjectWarped(transform, newPosition - transform.position);
+        }
+
+        Debug.Log("Player teleported, camera synced.");
     }
 
     void Interact()
