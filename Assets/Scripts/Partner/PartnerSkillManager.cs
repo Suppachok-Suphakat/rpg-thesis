@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,10 +8,8 @@ public class PartnerSkillManager : MonoBehaviour
     public static PartnerSkillManager Instance;
 
     public GameObject partnerMenu;
-    public Transform statusBarContainer; // Drag your StatusBarContainer (VerticalLayoutGroup) here in the Inspector.
-    //public Transform previewContainer; // Drag your PreviewContainer (HorizontalLayoutGroup) here in the Inspector.
+    public Transform statusBarContainer;
 
-    // Arrays to hold the portrait and sprite boxes for the selected partners
     public Image[] portraitBoxes; // Assign three UI Images in the Inspector for portraits
     public Image[] spriteBoxes; // Assign three UI Images in the Inspector for sprites
 
@@ -22,9 +21,9 @@ public class PartnerSkillManager : MonoBehaviour
         public string name;
         public GameObject partnerObject;
         public GameObject statusBar;
-        public GameObject preview;
         public GameObject selectedIndicator;
         public StatusBar statusComponent;
+        public RectTransform buttonTransform; // Reference to the button's RectTransform
 
         public Sprite portraitImage;
         public Sprite spriteImage;
@@ -36,13 +35,7 @@ public class PartnerSkillManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("PartnerSkillManager instance set");
         Instance = this;
-    }
-
-    void Start()
-    {
-
     }
 
     public void TogglePartnerMenu()
@@ -65,35 +58,15 @@ public class PartnerSkillManager : MonoBehaviour
 
     public void SelectPartner(int index)
     {
-        Debug.Log("Testing SelectPartner: Hero index " + index + " clicked");
-
         if (activePartners.Contains(index))
         {
-            Debug.Log("Deselect");
-            if (lineTrigger != null && lineTrigger.isInFusion)
-            {
-                Transform partnerTransform = partners[index].partnerObject.transform;
-                lineTrigger.UnlinkHero(partnerTransform);
-            }
-
-            SetPartnerActive(index, false);
-            activePartners.Remove(index);
+            DeselectPartner(index);
         }
         else
         {
             if (activePartners.Count < maxActivePartners)
             {
-                Debug.Log("Select");
-                SetPartnerActive(index, true);
-                activePartners.Add(index);
-
-                // Move the selected partner's status bar to the end of the status bar container
-                partners[index].statusBar.transform.SetParent(null);
-                partners[index].statusBar.transform.SetParent(statusBarContainer);
-
-                // Move the selected partner's preview to the end of the preview container
-                //partners[index].preview.transform.SetParent(null);
-                //partners[index].preview.transform.SetParent(previewContainer);
+                ActivatePartner(index);
             }
             else
             {
@@ -104,17 +77,59 @@ public class PartnerSkillManager : MonoBehaviour
         UpdatePortraitAndSpriteBoxes();
     }
 
+    private void ActivatePartner(int index)
+    {
+        SetPartnerActive(index, true);
+        activePartners.Add(index);
+
+        // Animate button to move slightly outward to indicate selection
+        StartCoroutine(MoveButton(partners[index].buttonTransform, Vector2.right * 30));
+    }
+
+    private void DeselectPartner(int index)
+    {
+        SetPartnerActive(index, false);
+        activePartners.Remove(index);
+
+        if (lineTrigger != null && lineTrigger.isInFusion)
+        {
+            Transform partnerTransform = partners[index].partnerObject.transform;
+            lineTrigger.UnlinkHero(partnerTransform);
+        }
+
+        // Animate button back to its original position
+        StartCoroutine(MoveButton(partners[index].buttonTransform, Vector2.left * 30));
+    }
+
     private void SetPartnerActive(int index, bool isActive)
     {
         partners[index].partnerObject.SetActive(isActive);
         partners[index].statusBar.SetActive(isActive);
-        //partners[index].preview.SetActive(isActive);
-        partners[index].selectedIndicator.SetActive(isActive);
+        //partners[index].selectedIndicator.SetActive(isActive);
 
         if (partners[index].statusComponent != null)
         {
             partners[index].statusComponent.gameObject.SetActive(isActive);
         }
+    }
+
+    private IEnumerator MoveButton(RectTransform button, Vector2 targetOffset)
+    {
+        if (button == null) yield break;
+
+        Vector2 initialPosition = button.anchoredPosition;
+        Vector2 targetPosition = initialPosition + targetOffset;
+        float duration = 0.2f; // Adjust for faster/slower animation
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            button.anchoredPosition = Vector2.Lerp(initialPosition, targetPosition, elapsed / duration);
+            yield return null;
+        }
+
+        button.anchoredPosition = targetPosition;
     }
 
     private void UpdatePortraitAndSpriteBoxes()
