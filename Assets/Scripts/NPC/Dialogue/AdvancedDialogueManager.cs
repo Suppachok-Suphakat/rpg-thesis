@@ -252,6 +252,9 @@ public enum DialogueActors
 {
     Knight_Talk,
     Knight_Smile,
+    Priestess_Smile,
+    Priestess_Talk,
+    Archer_Talk,
     Lunar,
     Random,
     Branch,

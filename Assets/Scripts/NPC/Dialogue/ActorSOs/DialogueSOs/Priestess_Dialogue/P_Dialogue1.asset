@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ac59e4438b49149aff42b632a8fd8c, type: 3}
+  m_Name: P_Dialogue1
+  m_EditorClassIdentifier: 
+  actors: 0200000007000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  dialogue:
+  - It feels good to rest for a moment. How are you holding up?
+  optionText:
+  - What do you think about our next move?
+  - What keeps you so hopeful?
+  - "We couldn\u2019t do this without you."
+  option0: {fileID: 11400000, guid: 8f9ba59b70acf3340b63a94fbe1fb7b7, type: 2}
+  option1: {fileID: 11400000, guid: 47e1bcf263e8f7e47bb0feb2166a1871, type: 2}
+  option2: {fileID: 11400000, guid: 51e2452a288762f4a96b18cc9abaaca4, type: 2}
+  option3: {fileID: 0}
