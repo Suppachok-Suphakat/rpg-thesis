@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PartnerSkillManager : MonoBehaviour
 {
@@ -25,18 +26,72 @@ public class PartnerSkillManager : MonoBehaviour
         public StatusBar statusComponent;
         public RectTransform buttonTransform; // Reference to the button's RectTransform
         public bool isSelected; // Track if the partner is selected
+        public GameObject skillInfoUI;
 
         public Sprite portraitImage;
         public Sprite spriteImage;
     }
+    private Partner hoveredPartner = null;
 
     public List<Partner> partners = new List<Partner>();
     public List<int> activePartners = new List<int>();
     private const int maxActivePartners = 3;
 
+
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && hoveredPartner != null)
+        {
+            // Toggle skill info panel
+            if (hoveredPartner.skillInfoUI.activeSelf)
+            {
+                HideSkillInfo(hoveredPartner);
+            }
+            else
+            {
+                ShowSkillInfo(hoveredPartner);
+            }
+        }
+    }
+
+    public void OnPartnerButtonHoverEnter(int index)
+    {
+        if (index >= 0 && index < partners.Count)
+        {
+            hoveredPartner = partners[index];
+        }
+    }
+
+    public void OnPartnerButtonHoverExit()
+    {
+        if (hoveredPartner != null)
+        {
+            HideSkillInfo(hoveredPartner);
+        }
+
+        hoveredPartner = null;
+    }
+
+    private void ShowSkillInfo(Partner partner)
+    {
+        // Hide all other skill info UIs
+        foreach (var p in partners)
+        {
+            p.skillInfoUI.SetActive(false);
+        }
+
+        // Show the selected partner's skill info UI
+        partner.skillInfoUI.SetActive(true);
+    }
+
+    private void HideSkillInfo(Partner partner)
+    {
+        partner.skillInfoUI.SetActive(false);
     }
 
     public void TogglePartnerMenu()
