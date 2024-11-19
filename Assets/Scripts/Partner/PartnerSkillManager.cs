@@ -24,6 +24,7 @@ public class PartnerSkillManager : MonoBehaviour
         public GameObject selectedIndicator;
         public StatusBar statusComponent;
         public RectTransform buttonTransform; // Reference to the button's RectTransform
+        public bool isSelected; // Track if the partner is selected
 
         public Sprite portraitImage;
         public Sprite spriteImage;
@@ -43,7 +44,12 @@ public class PartnerSkillManager : MonoBehaviour
         bool isActive = partnerMenu.activeSelf;
         partnerMenu.SetActive(!isActive);
         PlayerController.instance.isMenuActive = !isActive;
-        Time.timeScale = isActive ? 1 : 0;
+        
+        // Apply saved button states when menu is opened
+        if (!isActive) 
+        {
+            ApplyPartnerButtonStates();
+        }
     }
 
     public void ExitPartnerMenu()
@@ -51,7 +57,6 @@ public class PartnerSkillManager : MonoBehaviour
         if (partnerMenu.activeSelf)
         {
             PlayerController.instance.isMenuActive = false;
-            Time.timeScale = 1;
             partnerMenu.SetActive(false);
         }
     }
@@ -81,24 +86,28 @@ public class PartnerSkillManager : MonoBehaviour
     {
         SetPartnerActive(index, true);
         activePartners.Add(index);
+        partners[index].isSelected = true;  // Mark partner as selected
 
-        // Animate button to move slightly outward to indicate selection
-        StartCoroutine(MoveButton(partners[index].buttonTransform, Vector2.right * 30));
+        // Trigger move animation
+        Animator buttonAnimator = partners[index].buttonTransform.GetComponent<Animator>();
+        if (buttonAnimator != null)
+        {
+            buttonAnimator.SetBool("IsSelected", true);
+        }
     }
 
     private void DeselectPartner(int index)
     {
         SetPartnerActive(index, false);
         activePartners.Remove(index);
+        partners[index].isSelected = false;  // Mark partner as deselected
 
-        if (lineTrigger != null && lineTrigger.isInFusion)
+        // Trigger move back animation
+        Animator buttonAnimator = partners[index].buttonTransform.GetComponent<Animator>();
+        if (buttonAnimator != null)
         {
-            Transform partnerTransform = partners[index].partnerObject.transform;
-            lineTrigger.UnlinkHero(partnerTransform);
+            buttonAnimator.SetBool("IsSelected", false);
         }
-
-        // Animate button back to its original position
-        StartCoroutine(MoveButton(partners[index].buttonTransform, Vector2.left * 30));
     }
 
     private void SetPartnerActive(int index, bool isActive)
@@ -111,25 +120,6 @@ public class PartnerSkillManager : MonoBehaviour
         {
             partners[index].statusComponent.gameObject.SetActive(isActive);
         }
-    }
-
-    private IEnumerator MoveButton(RectTransform button, Vector2 targetOffset)
-    {
-        if (button == null) yield break;
-
-        Vector2 initialPosition = button.anchoredPosition;
-        Vector2 targetPosition = initialPosition + targetOffset;
-        float duration = 0.2f; // Adjust for faster/slower animation
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            button.anchoredPosition = Vector2.Lerp(initialPosition, targetPosition, elapsed / duration);
-            yield return null;
-        }
-
-        button.anchoredPosition = targetPosition;
     }
 
     private void UpdatePortraitAndSpriteBoxes()
@@ -157,6 +147,18 @@ public class PartnerSkillManager : MonoBehaviour
             {
                 spriteBoxes[i].sprite = partners[partnerIndex].spriteImage;
                 spriteBoxes[i].enabled = true;
+            }
+        }
+    }
+
+    private void ApplyPartnerButtonStates()
+    {
+        foreach (var partner in partners)
+        {
+            Animator buttonAnimator = partner.buttonTransform.GetComponent<Animator>();
+            if (buttonAnimator != null)
+            {
+                buttonAnimator.SetBool("IsSelected", partner.isSelected);
             }
         }
     }
