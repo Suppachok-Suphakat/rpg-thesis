@@ -7,22 +7,32 @@ public class ArcherHeroSkill : MonoBehaviour
 {
     [Header("Partner Skill")]
     [SerializeField] private GameObject skillPrefab;
+    [SerializeField] private GameObject skill1AreaPreview;
     [SerializeField] private GameObject skill2Prefab;
+    [SerializeField] private GameObject skill2AreaPreview;
+    private GameObject skill1PreviewInstance;
+    private GameObject skill2PreviewInstance;
+
+    private bool isSkill1Active = false;
+    private bool isSkill2Active = false;
+
+    [Header("Skill Settings")]
+    [SerializeField] float skill1CooldownTime;
+    [SerializeField] float skill1MaxCooldownTime;
+    [SerializeField] float skill2CooldownTime;
+    [SerializeField] float skill2MaxCooldownTime;
 
     [Header("Skill 1")]
-    [SerializeField] int skill1CooldownTime;
-    [SerializeField] int skill1MaxCooldownTime;
     [SerializeField] int skill1CurrentCooldownTime;
     [SerializeField] float skill1ActiveTime;
     [SerializeField] float currentSkill1ActiveTime;
 
     [Header("Skill 2")]
-    [SerializeField] int skill2CooldownTime;
-    [SerializeField] int skill2MaxCooldownTime;
     [SerializeField] int skill2CurrentCooldownTime;
     [SerializeField] float skill2ActiveTime;
     [SerializeField] float currentSkill2ActiveTime;
 
+    [Header("Skill")]
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
 
@@ -79,13 +89,7 @@ public class ArcherHeroSkill : MonoBehaviour
     {
         partnerSkillManager = GameObject.Find("PartnerCanvas").GetComponent<PartnerSkillManager>();
 
-        skill1CurrentCooldownTime = skill1CooldownTime;
-        skill2CurrentCooldownTime = skill2CooldownTime;
-
-        //statusComponent = GameObject.Find("ArcherPartnerSkill").GetComponent<StatusBar>();
-        //GameObject.Find("ArcherSkillBubble").SetActive(false);
-
-        skill1Image.fillAmount = 0;
+        //skill1Image.fillAmount = 0;
         //skill2Image.fillAmount = 0;
     }
 
@@ -99,96 +103,120 @@ public class ArcherHeroSkill : MonoBehaviour
 
     private void HandleSkill1()
     {
-        switch (skill1State)
+        if (Input.GetKey(KeyCode.Q))
         {
-            case SkillState.Ready:
-                if (lineTrigger.currentTarget == this.transform && Input.GetKeyDown(KeyCode.Q))
+            if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
+            {
+                if (skill1PreviewInstance == null)
                 {
-                    SkillActivate();
-                    skill1State = SkillState.Active;
-                    skill1ActiveTime = currentSkill1ActiveTime;
+                    skill1PreviewInstance = Instantiate(skill1AreaPreview);
                 }
-                break;
-            case SkillState.Active:
-                if (skill1ActiveTime > 0)
-                {
-                    skill1ActiveTime -= Time.deltaTime;
-                }
-                else
-                {
-                    skill1State = SkillState.Cooldown;
-                    skill1CooldownTime = skill1CurrentCooldownTime;
-                }
-                break;
-            case SkillState.Cooldown:
-                Skill1CooldownOverTime();
-                if (skill1CooldownTime >= skill1MaxCooldownTime)
-                {
-                    skill1State = SkillState.Ready;
-                }
-                break;
+                skill1PreviewInstance.SetActive(true);
+                skill1PreviewInstance.transform.position = GetMouseWorldPosition(); // Follow the mouse position
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (skill1PreviewInstance != null)
+            {
+                skill1PreviewInstance.SetActive(false); // Hide the preview when the button is released
+                Destroy(skill1PreviewInstance); // Optionally destroy it after use
+                skill1PreviewInstance = null;
+            }
+
+            if (skill1CooldownTime <= 0) // Cooldown completed
+            {
+                ActivateSkill(skillPrefab);
+                isSkill1Active = true;
+                skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
+            }
+        }
+
+        // Update cooldown over time
+        if (skill1CooldownTime > 0)
+        {
+            skill1CooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            isSkill1Active = false; // Skill is ready again
         }
     }
 
     private void HandleSkill2()
     {
-        switch (skill2State)
+        if (Input.GetKey(KeyCode.E))
         {
-            case SkillState.Ready:
-                if (lineTrigger.currentTarget == this.transform && Input.GetKeyDown(KeyCode.E))
+            if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
+            {
+                if (skill2PreviewInstance == null)
                 {
-                    Skill2Activate();
-                    skill2State = SkillState.Active;
-                    skill2ActiveTime = currentSkill2ActiveTime;
+                    skill2PreviewInstance = Instantiate(skill2AreaPreview);
                 }
-                break;
-            case SkillState.Active:
-                if (skill2ActiveTime > 0)
-                {
-                    skill2ActiveTime -= Time.deltaTime;
-                }
-                else
-                {
-                    skill2State = SkillState.Cooldown;
-                    skill2CooldownTime = skill2CurrentCooldownTime;
-                }
-                break;
-            case SkillState.Cooldown:
-                Skill2CooldownOverTime();
-                if (skill2CooldownTime >= skill2MaxCooldownTime)
-                {
-                    skill2State = SkillState.Ready;
-                }
-                break;
+                skill2PreviewInstance.SetActive(true);
+                skill2PreviewInstance.transform.position = GetMouseWorldPosition(); // Follow the mouse position
+            }
         }
-    }
 
-    public void Skill1CooldownOverTime()
-    {
-        if (cooldownRecoveryTimer <= 0)
+        if (Input.GetKeyUp(KeyCode.E))
         {
-            skill1CooldownTime += 1;
-            cooldownRecoveryTimer = cooldownRecoveryDelay;
+            if (skill2PreviewInstance != null)
+            {
+                skill2PreviewInstance.SetActive(false); // Hide the preview when the button is released
+                Destroy(skill2PreviewInstance); // Optionally destroy it after use
+                skill2PreviewInstance = null;
+            }
+
+            if (skill2CooldownTime <= 0) // Cooldown completed
+            {
+                ActivateSkill(skill2Prefab);
+                isSkill2Active = true;
+                skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+            }
+        }
+
+        // Update cooldown over time
+        if (skill2CooldownTime > 0)
+        {
+            skill2CooldownTime -= Time.deltaTime;
         }
         else
         {
-            cooldownRecoveryTimer -= Time.deltaTime;
+            isSkill2Active = false; // Skill is ready again
         }
-        skill1CooldownTime = Mathf.Min(skill1CooldownTime, skill1MaxCooldownTime);
     }
 
-    public void Skill2CooldownOverTime()
+
+    private void ShowSkillPreview(GameObject skillPreview)
     {
-        if (cooldownRecoveryTimer <= 0)
+        skillPreview.SetActive(true);
+        // Optionally update the preview's position based on the mouse or player aim.
+        skillPreview.transform.position = GetMouseWorldPosition();
+    }
+
+    private void HideSkillPreview(GameObject skillPreview)
+    {
+        skillPreview.SetActive(false);
+    }
+
+    private void ActivateSkill(GameObject skillPrefab)
+    {
+        Vector3 mousePosition = GetMouseWorldPosition();
+        Instantiate(skillPrefab, mousePosition, Quaternion.identity);
+        Debug.Log("Skill Activated");
+    }
+
+    private void SkillCooldown(ref float currentCooldown, float maxCooldown, ref bool isActive)
+    {
+        if (currentCooldown < maxCooldown)
         {
-            skill2CooldownTime += 1;
-            cooldownRecoveryTimer = cooldownRecoveryDelay;
+            currentCooldown += Time.deltaTime; // Smooth increment
         }
         else
         {
-            cooldownRecoveryTimer -= Time.deltaTime;
+            isActive = false;
         }
-        skill2CooldownTime = Mathf.Min(skill2CooldownTime, skill2MaxCooldownTime);
     }
 
     public void SkillActivate()
@@ -299,24 +327,15 @@ public class ArcherHeroSkill : MonoBehaviour
 
     private void UpdateCooldownUI()
     {
-        // Update Skill 1 UI
-        if (skill1CooldownTime < skill1MaxCooldownTime)
-        {
-            skill1Image.fillAmount = skill1CooldownTime / (float)skill1MaxCooldownTime;
-        }
-        else
-        {
-            skill1Image.fillAmount = 1;
-        }
+        // Update skill cooldown UI
+        skill1Image.fillAmount = Mathf.Clamp01(1 - (skill1CooldownTime / skill1MaxCooldownTime));
+        skill2Image.fillAmount = Mathf.Clamp01(1 - (skill2CooldownTime / skill2MaxCooldownTime));
+    }
 
-        // Update Skill 2 UI
-        if (skill2CooldownTime < skill2MaxCooldownTime)
-        {
-            skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
-        }
-        else
-        {
-            skill2Image.fillAmount = 1;
-        }
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // Make sure it's on the same Z plane
+        return mousePosition;
     }
 }
