@@ -23,11 +23,18 @@ public class LineTrigger : MonoBehaviour
 
     void Start()
     {
-        //partnerSkillManager = PartnerSkillManager.Instance;
-        //if (partnerSkillManager == null)
-        //{
-        //    Debug.LogError("PartnerSkillManager instance is null in LineTrigger!");
-        //}
+        CursorManager.Instance.OnCursorChanged += Instance_OnCursorChanged;
+    }
+
+    void Instance_OnCursorChanged(object sender, CursorManager.OnCursorChangedEventArgs e)
+    {
+        if(e.cursorType == CursorManager.CursorType.Arrow)
+        {
+            if (isInFusion)
+            {
+                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Archer);
+            }
+        }
     }
 
     void Update()
@@ -173,6 +180,7 @@ public class LineTrigger : MonoBehaviour
             priestessHero.priestessHeroSkill.DeFusionActivate();
         }
 
+        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
         currentTarget = null;
         isInFusion = false;
     }
@@ -209,6 +217,7 @@ public class LineTrigger : MonoBehaviour
             conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
 
+        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Archer);
         lineEffect.StartHealing(newHero);
         currentTarget = newHero;
         previousTarget = newHero;

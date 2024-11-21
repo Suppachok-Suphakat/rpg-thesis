@@ -148,6 +148,8 @@ GameObject:
   - component: {fileID: 2369691894657827048}
   - component: {fileID: 6513540306045517653}
   - component: {fileID: 7372615303998903399}
+  - component: {fileID: 707302582671328874}
+  - component: {fileID: 8760901581627027250}
   m_Layer: 3
   m_Name: Archer Hero GO
   m_TagString: Hero
@@ -231,14 +233,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
+  skill1AreaPreview: {fileID: 0}
   skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
+  skill2AreaPreview: {fileID: 0}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 50
+  skill2CooldownTime: 0
+  skill2MaxCooldownTime: 50
   skill1CurrentCooldownTime: 0
   skill1ActiveTime: 5
   currentSkill1ActiveTime: 5
-  skill2CooldownTime: 0
-  skill2MaxCooldownTime: 50
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
@@ -458,6 +462,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65dc4a9f330a19a498efa2b82bd7539d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &707302582671328874
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121556042380603943}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03331262, y: 0.06706196}
+  m_Size: {x: 0.61193144, y: 1.314428}
+  m_Direction: 0
+--- !u!114 &8760901581627027250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121556042380603943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda9df6dd6018c24f9d27d09a585321c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &8318243149906767626
 GameObject:
   m_ObjectHideFlags: 0
