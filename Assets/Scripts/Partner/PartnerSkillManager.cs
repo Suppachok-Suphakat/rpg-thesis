@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class PartnerSkillManager : MonoBehaviour
 {
@@ -37,6 +36,8 @@ public class PartnerSkillManager : MonoBehaviour
     public List<int> activePartners = new List<int>();
     private const int maxActivePartners = 3;
 
+    private Dictionary<int, float> cooldownTimers = new Dictionary<int, float>();
+    public float selectionCooldown = 1.0f; // Cooldown time in seconds
 
     private void Awake()
     {
@@ -99,9 +100,9 @@ public class PartnerSkillManager : MonoBehaviour
         bool isActive = partnerMenu.activeSelf;
         partnerMenu.SetActive(!isActive);
         PlayerController.instance.isMenuActive = !isActive;
-        
+
         // Apply saved button states when menu is opened
-        if (!isActive) 
+        if (!isActive)
         {
             ApplyPartnerButtonStates();
         }
@@ -118,6 +119,16 @@ public class PartnerSkillManager : MonoBehaviour
 
     public void SelectPartner(int index)
     {
+        // Check if the partner is on cooldown
+        if (cooldownTimers.ContainsKey(index) && Time.time < cooldownTimers[index])
+        {
+            Debug.Log($"Partner {partners[index].name} is on cooldown.");
+            return;
+        }
+
+        // Update cooldown timer
+        cooldownTimers[index] = Time.time + selectionCooldown;
+
         if (activePartners.Contains(index))
         {
             DeselectPartner(index);
@@ -141,7 +152,7 @@ public class PartnerSkillManager : MonoBehaviour
     {
         SetPartnerActive(index, true);
         activePartners.Add(index);
-        partners[index].isSelected = true;  // Mark partner as selected
+        partners[index].isSelected = true; // Mark partner as selected
 
         // Trigger move animation
         Animator buttonAnimator = partners[index].buttonTransform.GetComponent<Animator>();
@@ -155,7 +166,7 @@ public class PartnerSkillManager : MonoBehaviour
     {
         SetPartnerActive(index, false);
         activePartners.Remove(index);
-        partners[index].isSelected = false;  // Mark partner as deselected
+        partners[index].isSelected = false; // Mark partner as deselected
 
         // Trigger move back animation
         Animator buttonAnimator = partners[index].buttonTransform.GetComponent<Animator>();
@@ -169,7 +180,6 @@ public class PartnerSkillManager : MonoBehaviour
     {
         partners[index].partnerObject.SetActive(isActive);
         partners[index].statusBar.SetActive(isActive);
-        //partners[index].selectedIndicator.SetActive(isActive);
 
         if (partners[index].statusComponent != null)
         {

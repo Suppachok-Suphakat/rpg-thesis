@@ -87,7 +87,7 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 0}
+  heroFaceSprite: {fileID: 21300000, guid: ec27e8f74aeb02a438fdc56d028a0716, type: 3}
   priestessHeroSkill: {fileID: 0}
 --- !u!114 &3979085936879950760
 MonoBehaviour:
@@ -565,7 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4846054213895574878}
   - component: {fileID: 313609226283469466}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

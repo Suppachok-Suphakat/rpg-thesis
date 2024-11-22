@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Laser Sword
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 9173177442540303044, guid: e9df512f684980d46a650d3813952735, type: 3}
-  weaponCooldown: 0.5
+  weaponCooldown: 0.4
   weaponDamage: 50
   weaponRange: 0
   weaponSprite: {fileID: 0}

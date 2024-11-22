@@ -218,7 +218,7 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 0}
+  heroFaceSprite: {fileID: 21300000, guid: 86a8624f383bc4d44a77fbc49d08273e, type: 3}
   archerHeroSkill: {fileID: 0}
 --- !u!114 &6467919669117534607
 MonoBehaviour:
@@ -233,13 +233,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
-  skill1AreaPreview: {fileID: 0}
+  skill1AreaPreview: {fileID: 7686837216217434397, guid: d6711fa96ba70db44814d0a2fef27cc3, type: 3}
   skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
-  skill2AreaPreview: {fileID: 0}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: b04d5c8e413f3df4ebba4a4dde7980e6, type: 3}
   skill1CooldownTime: 0
-  skill1MaxCooldownTime: 50
+  skill1MaxCooldownTime: 12
   skill2CooldownTime: 0
-  skill2MaxCooldownTime: 50
+  skill2MaxCooldownTime: 15
   skill1CurrentCooldownTime: 0
   skill1ActiveTime: 5
   currentSkill1ActiveTime: 5
@@ -520,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8049581254924152164}
   - component: {fileID: 5428171244713735715}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
