@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5015991133030946201}
   - component: {fileID: 3403967664440178448}
+  - component: {fileID: 6201210307451442150}
+  - component: {fileID: 3725495217581752978}
   m_Layer: 0
   m_Name: PoisonEffect
   m_TagString: Untagged
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -375266883
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1817322608, guid: 8b4034eb74ef9e1448735febf78c306d, type: 3}
+  m_Sprite: {fileID: 123658947, guid: b7d22c51527cea540bdb6f886b86aadc, type: 3}
   m_Color: {r: 0, g: 0.6226415, b: 0.07984583, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,3 +86,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6201210307451442150
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371351925480119373}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5923033f6fe734a448423c27d4826b24, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3725495217581752978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371351925480119373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c2c1b67100d5f45b8b80c365f92779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonDuration: 5
+  poisonDamage: 5
+  damageInterval: 1

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArcherHeroSkill : MonoBehaviour
 {
-    [Header("Partner Skill")]
+    [Header("Hero Skill")]
     [SerializeField] private GameObject skillPrefab;
     [SerializeField] private GameObject skill1AreaPreview;
     [SerializeField] private GameObject skill2Prefab;
@@ -59,25 +59,6 @@ public class ArcherHeroSkill : MonoBehaviour
 
     public ConversationManager conversationManager;
 
-    enum AbilityState
-    {
-        ready,
-        active1,
-        active2,
-        fusion,
-        cooldown
-    }
-    AbilityState state = AbilityState.cooldown;
-
-    enum SkillState
-    {
-        Ready,
-        Active,
-        Cooldown
-    }
-    SkillState skill1State = SkillState.Cooldown;
-    SkillState skill2State = SkillState.Cooldown;
-
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
@@ -88,9 +69,6 @@ public class ArcherHeroSkill : MonoBehaviour
     void Start()
     {
         partnerSkillManager = GameObject.Find("PartnerCanvas").GetComponent<PartnerSkillManager>();
-
-        //skill1Image.fillAmount = 0;
-        //skill2Image.fillAmount = 0;
     }
 
     // Update is called once per frame
