@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0ecc57b8718b8d04abf5576bd212fb8c
+guid: 4a7c4d495a09a3743b9d7bafdf66625b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Attack_0
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87a276d223632214bbbb078a1e2dbe6d
-      internalID: 1825732516
+      spriteID: ae87690111b6a1a4c966cb38ba4d0eef
+      internalID: 695367652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Attack_1
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0d589477f4d34b42bac0c3c859b63b7
-      internalID: -1927816132
+      spriteID: 83faf7f1603acaa47a15c9e28a967f6b
+      internalID: 200995397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Attack_2
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3074abd6dcce6f54486c57960a2897bd
-      internalID: 114949902
+      spriteID: 797726b5c46cd3c4d950881547a08cc5
+      internalID: -980722790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Attack_3
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_3"
       rect:
         serializedVersion: 2
         x: 192
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7aa1f0f54e8c774abb42928691b384e
-      internalID: 325333960
+      spriteID: bb96f049c06cbb84a80c9403e8f586db
+      internalID: -196098121
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_MageGoblin_Sprite_Attack_0: 1825732516
-      E_MageGoblin_Sprite_Attack_1: -1927816132
-      E_MageGoblin_Sprite_Attack_2: 114949902
-      E_MageGoblin_Sprite_Attack_3: 325333960
+      "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_0": 695367652
+      "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_1": 200995397
+      "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_2": -980722790
+      "\u0E40\u0E27\u0E17\u0E1A\u0E22\u0E34\u0E07_3": -196098121
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 73b89d6d58ce15a47bfd0709a95685eb
+guid: 7ed6016256b074f42b4e1cfddc6486d3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_0
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64c10771814385a41adc7d568603ee99
-      internalID: 74958555
+      spriteID: 193f8e30920bac94d8eb1b5a62c0b0b0
+      internalID: -326839181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_1
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 260ec9c22a46e2e44a624033cf691db1
-      internalID: 2004208848
+      spriteID: 7954e5f4593a71f4d9a729d3d47257af
+      internalID: -1761191886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_2
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bab911eaafaf1f04ba6379d4ecf386b8
-      internalID: -1129307524
+      spriteID: b25a9bc727500164ab78ec1725689ea7
+      internalID: 2145185269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_3
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_3"
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b8fc38055b522847b7bc2ac846e025d
-      internalID: 1172706326
+      spriteID: d566c9ab0e792e142aaff2be727811c4
+      internalID: 339396700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_4
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_4"
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acd5ba8fc32a3e44da1a4c38b933d6eb
-      internalID: -1492928684
+      spriteID: c84e316c25d070c4aad292ff5405d20c
+      internalID: -757944343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_5
+      name: "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_5"
       rect:
         serializedVersion: 2
         x: 320
@@ -242,50 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2bbdd2c10106f343becd13994bf1eee
-      internalID: -1716021203
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 956bb939a056f9849b93248096dd5518
-      internalID: -1418308133
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_MageGoblin_Sprite_Walk_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 886f2e07b5826aa438d0ad3a19d084a4
-      internalID: -1223118187
+      spriteID: 55ffa3ec9ec6ba9489b27223c7d4a2eb
+      internalID: -1764931780
       vertices: []
       indices: 
       edges: []
@@ -301,14 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_MageGoblin_Sprite_Walk_0: 74958555
-      E_MageGoblin_Sprite_Walk_1: 2004208848
-      E_MageGoblin_Sprite_Walk_2: -1129307524
-      E_MageGoblin_Sprite_Walk_3: 1172706326
-      E_MageGoblin_Sprite_Walk_4: -1492928684
-      E_MageGoblin_Sprite_Walk_5: -1716021203
-      E_MageGoblin_Sprite_Walk_6: -1418308133
-      E_MageGoblin_Sprite_Walk_7: -1223118187
+      "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_0": -326839181
+      "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_1": -1761191886
+      "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_2": 2145185269
+      "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_3": 339396700
+      "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_4": -757944343
+      "\u0E40\u0E27\u0E17\u0E1A\u0E40\u0E14\u0E34\u0E19_5": -1764931780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
