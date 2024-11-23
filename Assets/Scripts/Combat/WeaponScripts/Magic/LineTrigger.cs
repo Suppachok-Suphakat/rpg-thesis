@@ -32,7 +32,7 @@ public class LineTrigger : MonoBehaviour
         {
             if (isInFusion)
             {
-                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Archer);
+                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
             }
         }
     }
@@ -180,9 +180,9 @@ public class LineTrigger : MonoBehaviour
             priestessHero.priestessHeroSkill.DeFusionActivate();
         }
 
-        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
         currentTarget = null;
         isInFusion = false;
+        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
     }
 
     private void LinkHero(Transform newHero)
@@ -217,7 +217,7 @@ public class LineTrigger : MonoBehaviour
             conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
 
-        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Archer);
+        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
         lineEffect.StartHealing(newHero);
         currentTarget = newHero;
         previousTarget = newHero;

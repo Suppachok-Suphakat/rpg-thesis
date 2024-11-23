@@ -25,7 +25,8 @@ public class CursorManager : MonoBehaviour
     {
         Arrow,
         Link,
-        Archer
+        Aim,
+        Talk
     }
 
     private void Awake()
