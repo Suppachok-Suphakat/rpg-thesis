@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62e0c58083482ae48aeaf60200dfba46
+guid: f5bed1a86752f044f8d133a4c69a027f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_0
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7fea8342d0a2f04caf81b834a3e3632
-      internalID: -1008175447
+      spriteID: 5731907c849d0ab4a8e475dba6546fbe
+      internalID: 1316358345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_1
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a80d59d16bbcbc94fad830dce33d84d8
-      internalID: -2055228495
+      spriteID: 0347d3219f5afef4a86d1017917f0682
+      internalID: -1242444950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_2
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1a27126c2530c4438708e79a3e214b3
-      internalID: 1583076752
+      spriteID: a3b4b335286e5bc4893aa1dca75b60c2
+      internalID: 1056934770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_3
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_3"
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a423cfcbe02eca4469353b238cb53946
-      internalID: 436882826
+      spriteID: 8268ef25ba8902d469e4fe61b92c989c
+      internalID: 380055814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_4
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_4"
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57f2e9d15529d6b4ab423e330ba574c2
-      internalID: 475101478
+      spriteID: 8d4cac2dc6b1f1a40b3930973136cfb9
+      internalID: 2021693111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_5
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_5"
       rect:
         serializedVersion: 2
         x: 320
@@ -242,50 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0216f50765ec35748bf412bbec1d48b9
-      internalID: 2015419584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca18f62aefbef79499c28dafd5397276
-      internalID: 1824139066
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Walk_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06238ac6930709e43b6cec3ab36ddbde
-      internalID: 1384195461
+      spriteID: 21e7c57c262fa8e46847c21ae16590d8
+      internalID: -769542776
       vertices: []
       indices: 
       edges: []
@@ -301,14 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_GoblinThrower_Sprite_Walk_0: -1008175447
-      E_GoblinThrower_Sprite_Walk_1: -2055228495
-      E_GoblinThrower_Sprite_Walk_2: 1583076752
-      E_GoblinThrower_Sprite_Walk_3: 436882826
-      E_GoblinThrower_Sprite_Walk_4: 475101478
-      E_GoblinThrower_Sprite_Walk_5: 2015419584
-      E_GoblinThrower_Sprite_Walk_6: 1824139066
-      E_GoblinThrower_Sprite_Walk_7: 1384195461
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_0": 1316358345
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_1": -1242444950
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_2": 1056934770
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_3": 380055814
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_4": 2021693111
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E40\u0E14\u0E34\u0E19_5": -769542776
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

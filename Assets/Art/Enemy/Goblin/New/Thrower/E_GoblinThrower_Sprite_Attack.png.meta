@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8f81e493289b6f344910663add9063aa
+guid: 80fe9910be72a7c4b9af8cbc4738482c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Attack_0
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cc5a65e0c964ad4a960ba80cab7526a
-      internalID: -1096035194
+      spriteID: d7426e26ec1d69d47b96fc38e372dbe8
+      internalID: 903165522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Attack_1
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 573500c00dbce06468f8fe8dec016b23
-      internalID: 2061635937
+      spriteID: d3fd6bd3b847003479435fda3d623f18
+      internalID: 1609559818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Attack_2
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 833efca117251af4bae2e76833be78ce
-      internalID: -1371862379
+      spriteID: 16ea2d102bdf55f47bf9f481d179dd3d
+      internalID: 2131175177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Attack_3
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_3"
       rect:
         serializedVersion: 2
         x: 192
@@ -200,29 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5010eea080959c48ad704d7ee96900d
-      internalID: 553511274
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Attack_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f25f95a13c4cc846a45ecf95aaa392f
-      internalID: 221249695
+      spriteID: 0f895af8b9e032e4f90ff0946c1f5fcc
+      internalID: 1664669238
       vertices: []
       indices: 
       edges: []
@@ -238,11 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_GoblinThrower_Sprite_Attack_0: -1096035194
-      E_GoblinThrower_Sprite_Attack_1: 2061635937
-      E_GoblinThrower_Sprite_Attack_2: -1371862379
-      E_GoblinThrower_Sprite_Attack_3: 553511274
-      E_GoblinThrower_Sprite_Attack_4: 221249695
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_0": 903165522
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_1": 1609559818
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_2": 2131175177
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E1B\u0E32_3": 1664669238
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e005b163fe08d34191516b5866a6d31
+guid: dc15bfd563b3a1b4e937f320c757944f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Idle_0
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E22\u0E37\u0E19_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5536faec7e7c64c419a5d8667c75e408
-      internalID: 935338276
+      spriteID: 0a0a99b9db4045249977c95172911e3c
+      internalID: -1513588153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Idle_1
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E22\u0E37\u0E19_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd5a25185a6fe8a47a1f363704d578c8
-      internalID: -1045364591
+      spriteID: 14712b5bd131c3041b8c04974be46da2
+      internalID: 1932144537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_GoblinThrower_Sprite_Idle_2
+      name: "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E22\u0E37\u0E19_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b16b28b702b1404fb452a0bb3bc2aac
-      internalID: -729965928
+      spriteID: ed9e7b81bdcdeda46b2cb2c02d87d1b5
+      internalID: 889320401
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_GoblinThrower_Sprite_Idle_0: 935338276
-      E_GoblinThrower_Sprite_Idle_1: -1045364591
-      E_GoblinThrower_Sprite_Idle_2: -729965928
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E22\u0E37\u0E19_0": -1513588153
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E22\u0E37\u0E19_1": 1932144537
+      "\u0E23\u0E30\u0E40\u0E1A\u0E34\u0E14\u0E22\u0E37\u0E19_2": 889320401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
