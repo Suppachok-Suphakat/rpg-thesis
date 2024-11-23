@@ -1,88 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    public float trapDuration = 5f; // Time the enemy stays trapped
     public float trapLifetime = 5f; // Time before the trap self-destructs
     public GameObject trapEffectPrefab; // Reference to the trap effect prefab
 
     void Start()
     {
-        // Start a timer to destroy the trap even if no enemy steps on it
-        StartCoroutine(DestroyTrapAfterLifetime());
+        // Destroy the trap after its lifetime
+        Destroy(gameObject, trapLifetime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the enemy steps on the trap
         if (other.CompareTag("Enemy"))
         {
-            StartCoroutine(ActivateTrap(other));
-        }
-    }
-
-    IEnumerator ActivateTrap(Collider2D enemy)
-    {
-        // Instantiate the trap effect at the enemy's position
-        GameObject trapEffect = Instantiate(trapEffectPrefab, enemy.transform.position, Quaternion.identity);
-        trapEffect.transform.parent = enemy.transform; // Attach effect to the enemy
-
-        // Disable enemy movement by accessing its script
-        AttackerEnemyPathfinding attackerEnemyMovement = enemy.GetComponent<AttackerEnemyPathfinding>();
-        if (attackerEnemyMovement != null)
-        {
-            attackerEnemyMovement.isImmobilized = true; // Custom flag to stop movement
-        }
-
-        EnemyPathfinding enemyMovement = enemy.GetComponent<EnemyPathfinding>();
-        if (enemyMovement != null)
-        {
-            enemyMovement.isImmobilized = true; // Custom flag to stop movement
-        }
-
-        // Wait for the trap duration to end
-        yield return new WaitForSeconds(trapDuration);
-
-        // Re-enable enemy movement
-        if (attackerEnemyMovement != null)
-        {
-            attackerEnemyMovement.isImmobilized = false;
-        }
-
-        if (enemyMovement != null)
-        {
-            enemyMovement.isImmobilized = false;
-        }
-
-        // Destroy the trap effect and trap itself
-        Destroy(trapEffect);
-
-        // Destroy both the trap and its parent object after it's done
-        if (transform.parent != null)
-        {
-            Destroy(transform.parent.gameObject); // Destroy parent and all children
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy only the trap if no parent exists
-        }
-    }
-
-    IEnumerator DestroyTrapAfterLifetime()
-    {
-        // Wait for the lifetime duration to pass
-        yield return new WaitForSeconds(trapLifetime);
-
-        // Destroy both the trap and its parent object after lifetime expires
-        if (transform.parent != null)
-        {
-            Destroy(transform.parent.gameObject); // Destroy parent and all children
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy only the trap if no parent exists
+            // Spawn the trap effect if not already applied to this enemy
+            if (other.transform.Find("TrapEffect") == null)
+            {
+                GameObject trapEffect = Instantiate(trapEffectPrefab, other.transform.position, Quaternion.identity);
+                trapEffect.name = "TrapEffect"; // Ensure a unique name for tracking
+                trapEffect.transform.parent = other.transform; // Attach to the enemy
+            }
         }
     }
 }
