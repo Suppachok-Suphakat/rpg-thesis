@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 82203567e2c6d05409119c5e18a15d1a
+guid: c1ff4492ec7b19948a394dc7a16baa9d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91884c371da4f7a42894ae8ade7711c2
-      internalID: 907056675
+      spriteID: 86815ca7918a20f49bb61881968bf4f5
+      internalID: 1318186173
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ebe9b1eb890e484f997ecca939021c8
-      internalID: -1476249440
+      spriteID: 43c452e9903bcf1428bae231d6c0ca0f
+      internalID: -1248472414
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13f81e35953a8d34bacfb4648e6a71a6
-      internalID: -1355731813
+      spriteID: b092ca541a5716142b21ffc87fe37ed4
+      internalID: -1002321949
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db03efb91a6871b4e9dd59a38535ddca
-      internalID: -597017770
+      spriteID: a8ab3cb027eba7747adbf537fa589beb
+      internalID: 1068123140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: E_GoblinKnight_Sprite_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca639dabd408c94e8cf5e3bb6fdfad6
+      internalID: 1306346042
       vertices: []
       indices: 
       edges: []
@@ -217,10 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_GoblinKnight_Sprite_Attack_0: 907056675
-      E_GoblinKnight_Sprite_Attack_1: -1476249440
-      E_GoblinKnight_Sprite_Attack_2: -1355731813
-      E_GoblinKnight_Sprite_Attack_3: -597017770
+      E_GoblinKnight_Sprite_Attack_0: 1318186173
+      E_GoblinKnight_Sprite_Attack_1: -1248472414
+      E_GoblinKnight_Sprite_Attack_2: -1002321949
+      E_GoblinKnight_Sprite_Attack_3: 1068123140
+      E_GoblinKnight_Sprite_Attack_4: 1306346042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

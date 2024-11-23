@@ -451,8 +451,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022562385, y: 0.023262024}
-  m_Size: {x: 0.54166293, y: 1.3458207}
+  m_Offset: {x: 0.10676825, y: 0.07378554}
+  m_Size: {x: 0.5753453, y: 1.4468677}
   m_Direction: 0
 --- !u!70 &630756322047249549
 CapsuleCollider2D:
@@ -486,8 +486,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01714325, y: 0.020552635}
-  m_Size: {x: 0.5525012, y: 1.3512397}
+  m_Offset: {x: 0.10555935, y: 0.07528645}
+  m_Size: {x: 0.5777631, y: 1.4607073}
   m_Direction: 0
 --- !u!212 &4665463519184906572
 SpriteRenderer:
@@ -798,7 +798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4125252639932647868
 Transform:
   m_ObjectHideFlags: 0
@@ -844,7 +844,7 @@ CapsuleCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -889,7 +889,7 @@ Transform:
   m_GameObject: {fileID: 7779028558632745202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.015, y: -0.206, z: 0}
+  m_LocalPosition: {x: 0.099, y: -0.172, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

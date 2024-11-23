@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e1f85b3a6655e14691f046d8713f580
+guid: 7f5660c746b35d44ea14d26a5a86d964
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_ArcherGoblin_Sprite_Idle_0
+      name: "\u0E18\u0E19\u0E39\u0E22\u0E37\u0E19_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90b7a95c8b288324d94608c0cec916b3
-      internalID: -729943160
+      spriteID: 9e680ef0a25b6264c9a43c8ec5d87c37
+      internalID: -1801831041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_ArcherGoblin_Sprite_Idle_1
+      name: "\u0E18\u0E19\u0E39\u0E22\u0E37\u0E19_1"
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9cd2f6d99d92a342a1c83929686cdf2
-      internalID: 1155318622
+      spriteID: ca1a7c4e28deb8d418fef2198b372418
+      internalID: -1424914365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_ArcherGoblin_Sprite_Idle_2
+      name: "\u0E18\u0E19\u0E39\u0E22\u0E37\u0E19_2"
       rect:
         serializedVersion: 2
         x: 128
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b1130387d7c6de4d873c7c9cf3c049b
-      internalID: 1270157698
+      spriteID: c41f87b7a3ff23c4f84868fe376aa26f
+      internalID: 1468681822
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_ArcherGoblin_Sprite_Idle_0: -729943160
-      E_ArcherGoblin_Sprite_Idle_1: 1155318622
-      E_ArcherGoblin_Sprite_Idle_2: 1270157698
+      "\u0E18\u0E19\u0E39\u0E22\u0E37\u0E19_0": -1801831041
+      "\u0E18\u0E19\u0E39\u0E22\u0E37\u0E19_1": -1424914365
+      "\u0E18\u0E19\u0E39\u0E22\u0E37\u0E19_2": 1468681822
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 225b15033c97bfc4abecba1c08f03e6f
+guid: 59f19f7497c0e91408e645315b94a228
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9981a6f653e8e09428215b1b000e5481
-      internalID: 2088510346
+      spriteID: afd161987eb0bf34fa5aff4a5526c067
+      internalID: 1170509875
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec69e1487821b014098a011bb4d43e68
-      internalID: -1372350334
+      spriteID: 745f603b3e86eaa438558cba6d5d6ccc
+      internalID: 1709832713
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68b71d10dee170b41ab7b0fa76d25fed
-      internalID: -183529271
+      spriteID: 2eba8e6f08ca053448b56ac1d06c4c19
+      internalID: 1903166643
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_GoblinKnight_Sprite_Idle_0: 2088510346
-      E_GoblinKnight_Sprite_Idle_1: -1372350334
-      E_GoblinKnight_Sprite_Idle_2: -183529271
+      E_GoblinKnight_Sprite_Idle_0: 1170509875
+      E_GoblinKnight_Sprite_Idle_1: 1709832713
+      E_GoblinKnight_Sprite_Idle_2: 1903166643
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
