@@ -170,7 +170,8 @@ public class ArcherHeroSkill : MonoBehaviour
 
             if (skill2CooldownTime <= 0) // Cooldown completed
             {
-                ActivateSkill(skill2Prefab);
+                GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
+                ActivateSkill2(skillInstance);
                 isSkill2Active = true;
                 skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
             }
@@ -187,6 +188,31 @@ public class ArcherHeroSkill : MonoBehaviour
         }
     }
 
+    private void ActivateSkill2(GameObject skillInstance)
+    {
+        // Start a coroutine to handle the skill duration and exit animation
+        StartCoroutine(HandleSkill2Exit(skillInstance));
+    }
+
+    private IEnumerator HandleSkill2Exit(GameObject skillInstance)
+    {
+        // Wait for the active duration
+        yield return new WaitForSeconds(skill2ActiveTime);
+
+        // Trigger the exit animation
+        Animator animator = skillInstance.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Exit");
+
+            // Wait for the animation to complete
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return new WaitForSeconds(stateInfo.length);
+        }
+
+        // Destroy the skill instance
+        Destroy(skillInstance);
+    }
 
     private void ShowSkillPreview(GameObject skillPreview)
     {
