@@ -168,6 +168,13 @@ public class PartnerSkillManager : MonoBehaviour
         activePartners.Remove(index);
         partners[index].isSelected = false; // Mark partner as deselected
 
+        // Unlink hero if it's currently linked
+        Transform partnerTransform = partners[index].partnerObject.transform;
+        if (lineTrigger.currentTarget == partnerTransform)
+        {
+            lineTrigger.UnlinkHero(partnerTransform);
+        }
+
         // Trigger move back animation
         Animator buttonAnimator = partners[index].buttonTransform.GetComponent<Animator>();
         if (buttonAnimator != null)
@@ -184,6 +191,12 @@ public class PartnerSkillManager : MonoBehaviour
         if (partners[index].statusComponent != null)
         {
             partners[index].statusComponent.gameObject.SetActive(isActive);
+        }
+
+        // If deactivated, ensure the partner cannot be linked
+        if (!isActive && lineTrigger.currentTarget == partners[index].partnerObject.transform)
+        {
+            lineTrigger.UnlinkHero(partners[index].partnerObject.transform);
         }
     }
 
