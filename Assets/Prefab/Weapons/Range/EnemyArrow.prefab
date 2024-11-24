@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522ed6fb0dcb91a4da1fb6f4b4a6bcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   moveSpeed: 20
   particleOnHitPrefabVFX: {fileID: 3626922010709504189, guid: d632d51825fea4e4aa4c41406f90ebb2, type: 3}
   isEnemyProjectile: 1
@@ -306,5 +306,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb996c433c58d0448ace71303697fc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 15
   knockBackThrust: 0

@@ -80,15 +80,18 @@ public class EnemyHealth : MonoBehaviour
                 GetComponent<PickupSpawner>().DropItems();
             }
 
-            QuestManager questManager = FindObjectOfType<QuestManager>();
-
-            if (questManager != null)
-            {
-                questManager.AddKill();
-            }
-
             Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        QuestManager questManager = FindObjectOfType<QuestManager>();
+
+        if (questManager != null)
+        {
+            questManager.AddKill();
         }
     }
 

@@ -145,7 +145,15 @@ public class PartnerSkillManager : MonoBehaviour
             }
         }
 
-        UpdatePortraitAndSpriteBoxes();
+        // Ensure the order of `activePartners` reflects the latest selection order
+        if (activePartners.Contains(index))
+        {
+            activePartners.Remove(index); // Remove if already in the list
+            activePartners.Add(index);   // Re-add to the end of the list
+        }
+
+        UpdateStatusBars(); // Update status bar order dynamically
+        UpdatePortraitAndSpriteBoxes(); // Update UI portraits and sprites
     }
 
     private void ActivatePartner(int index)
@@ -238,6 +246,23 @@ public class PartnerSkillManager : MonoBehaviour
             {
                 buttonAnimator.SetBool("IsSelected", partner.isSelected);
             }
+        }
+    }
+
+    private void UpdateStatusBars()
+    {
+        // Clear all status bars from the container
+        foreach (Transform child in statusBarContainer)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        // Add active partners' status bars in the selected order
+        foreach (int partnerIndex in activePartners)
+        {
+            GameObject statusBar = partners[partnerIndex].statusBar;
+            statusBar.SetActive(true);
+            statusBar.transform.SetSiblingIndex(statusBarContainer.childCount - 1); // Move to the end
         }
     }
 }
