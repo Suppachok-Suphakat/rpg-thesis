@@ -23,16 +23,16 @@ public class Flash : MonoBehaviour
 
     public IEnumerator FlashRoutine()
     {
+        // Flash white
+        spriteRenderer.material = whiteFlashMat;
+        yield return new WaitForSeconds(restoreDefaultMatTime);
+
         // Flash red
         spriteRenderer.material = redFlashMat;
         yield return new WaitForSeconds(restoreDefaultMatTime);
 
         // Flash white
         spriteRenderer.material = whiteFlashMat;
-        yield return new WaitForSeconds(restoreDefaultMatTime);
-
-        // Flash red again
-        spriteRenderer.material = redFlashMat;
         yield return new WaitForSeconds(restoreDefaultMatTime);
 
         // Restore original material
