@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LineTrigger : MonoBehaviour
@@ -21,6 +22,8 @@ public class LineTrigger : MonoBehaviour
 
     public PartnerSkillManager partnerSkillManager;
 
+    private int currentHeroIndex = 0;
+
     void Start()
     {
         CursorManager.Instance.OnCursorChanged += Instance_OnCursorChanged;
@@ -28,12 +31,9 @@ public class LineTrigger : MonoBehaviour
 
     void Instance_OnCursorChanged(object sender, CursorManager.OnCursorChangedEventArgs e)
     {
-        if(e.cursorType == CursorManager.CursorType.Arrow)
+        if (e.cursorType == CursorManager.CursorType.Arrow && isInFusion)
         {
-            if (isInFusion)
-            {
-                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
-            }
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
         }
     }
 
@@ -45,44 +45,21 @@ public class LineTrigger : MonoBehaviour
 
     private void HandleMouseInput()
     {
+        // Check for middle mouse button click (button 2)
+        if (Input.GetMouseButtonDown(2)) // 2 is the button index for the middle mouse button
+        {
+            SwitchToNextHero();
+        }
+
         if (Input.GetMouseButtonDown(1) && Time.time >= lastFusionTime + fusionCooldown)
         {
             lastFusionTime = Time.time;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
 
-            float detectionRadius = 1f; // Increase radius to allow easier detection
-            Collider2D[] hits = Physics2D.OverlapCircleAll(mousePosition, detectionRadius);
+            Transform closestHero = FindClosestHero(mousePosition);
 
-            // Check for the closest hero in detected colliders
-            Transform closestHero = null;
-            float closestDistance = float.MaxValue;
-
-            foreach (Collider2D hit in hits)
-            {
-                if (hit.CompareTag("Hero"))
-                {
-                    float distance = Vector3.Distance(mousePosition, hit.transform.position);
-                    if (distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        closestHero = hit.transform;
-                    }
-                }
-            }
-
-            // If no hero is found, fall back to raycast precision
-            if (closestHero == null)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-                if (hit.collider != null && hit.collider.CompareTag("Hero"))
-                {
-                    closestHero = hit.transform;
-                }
-            }
-
-            // Handle linking or unlinking hero
-            if (closestHero != null && lineEffect != null)
+            if (closestHero != null)
             {
                 if (currentTarget == closestHero)
                 {
@@ -97,6 +74,39 @@ public class LineTrigger : MonoBehaviour
                     LinkHero(closestHero);
                 }
             }
+        }
+    }
+
+    private void SwitchToNextHero()
+    {
+        if (partnerSkillManager == null || partnerSkillManager.activePartners.Count == 0)
+        {
+            Debug.LogWarning("No active partners available for switching.");
+            return;
+        }
+
+        // Find the index of the current target hero
+        int currentHeroIndex = -1;
+        for (int i = 0; i < partnerSkillManager.partners.Count; i++)
+        {
+            if (partnerSkillManager.partners[i].partnerObject.transform == currentTarget)
+            {
+                currentHeroIndex = i;
+                break;
+            }
+        }
+
+        // Determine the next hero index (circular selection)
+        int nextHeroIndex = (currentHeroIndex + 1) % partnerSkillManager.activePartners.Count;
+        Transform nextHero = partnerSkillManager.partners[partnerSkillManager.activePartners[nextHeroIndex]].partnerObject.transform;
+
+        if (currentTarget != nextHero)
+        {
+            if (previousTarget != null && previousTarget != nextHero)
+            {
+                UnlinkHero(previousTarget);
+            }
+            LinkHero(nextHero);
         }
     }
 
@@ -117,6 +127,7 @@ public class LineTrigger : MonoBehaviour
             SelectHeroByOrder(2);
         }
     }
+
 
     private void SelectHeroByOrder(int orderIndex)
     {
@@ -152,37 +163,28 @@ public class LineTrigger : MonoBehaviour
         }
     }
 
-    public void UnlinkHero(Transform hero)
+    private Transform FindClosestHero(Vector3 position)
     {
-        if (!isInFusion) return;
+        float detectionRadius = 1f;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, detectionRadius);
 
-        lineEffect.StopHealing();
+        Transform closestHero = null;
+        float closestDistance = float.MaxValue;
 
-        if (hero.TryGetComponent(out KnightHeroAI knightHero))
+        foreach (Collider2D hit in hits)
         {
-            knightHero.selectedIndicator.SetActive(false);
-            knightHero.skillbutton1.SetActive(false);
-            knightHero.skillbutton2.SetActive(false);
-            knightHero.knightHeroSkill.DeFusionActivate();
-        }
-        else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
-        {
-            archerHero.selectedIndicator.SetActive(false);
-            archerHero.skillbutton1.SetActive(false);
-            archerHero.skillbutton2.SetActive(false);
-            archerHero.archerHeroSkill.DeFusionActivate();
-        }
-        else if (hero.TryGetComponent(out PriestessHeroAI priestessHero))
-        {
-            priestessHero.selectedIndicator.SetActive(false);
-            priestessHero.skillbutton1.SetActive(false);
-            priestessHero.skillbutton2.SetActive(false);
-            priestessHero.priestessHeroSkill.DeFusionActivate();
+            if (hit.CompareTag("Hero"))
+            {
+                float distance = Vector3.Distance(position, hit.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestHero = hit.transform;
+                }
+            }
         }
 
-        currentTarget = null;
-        isInFusion = false;
-        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
+        return closestHero;
     }
 
     private void LinkHero(Transform newHero)
@@ -192,27 +194,21 @@ public class LineTrigger : MonoBehaviour
         if (newHero.TryGetComponent(out KnightHeroAI knightHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
-            knightHero.selectedIndicator.SetActive(true);
-            knightHero.skillbutton1.SetActive(true);
-            knightHero.skillbutton2.SetActive(true);
+            SetupHero(knightHero.selectedIndicator, knightHero.skillbutton1, knightHero.skillbutton2);
             knightHero.knightHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Let's do this!", knightHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
         {
             SetupLineRenderer(Color.white, Color.green);
-            archerHero.selectedIndicator.SetActive(true);
-            archerHero.skillbutton1.SetActive(true);
-            archerHero.skillbutton2.SetActive(true);
+            SetupHero(archerHero.selectedIndicator, archerHero.skillbutton1, archerHero.skillbutton2);
             archerHero.archerHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Ready to strike!", archerHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out PriestessHeroAI priestessHero))
         {
             SetupLineRenderer(Color.white, Color.yellow);
-            priestessHero.selectedIndicator.SetActive(true);
-            priestessHero.skillbutton1.SetActive(true);
-            priestessHero.skillbutton2.SetActive(true);
+            SetupHero(priestessHero.selectedIndicator, priestessHero.skillbutton1, priestessHero.skillbutton2);
             priestessHero.priestessHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
@@ -224,22 +220,63 @@ public class LineTrigger : MonoBehaviour
         isInFusion = true;
     }
 
+    public void UnlinkHero(Transform hero)
+    {
+        if (!isInFusion) return;
+
+        lineEffect.StopHealing();
+
+        if (hero.TryGetComponent(out KnightHeroAI knightHero))
+        {
+            CleanupHero(knightHero.selectedIndicator, knightHero.skillbutton1, knightHero.skillbutton2);
+            knightHero.knightHeroSkill.DeFusionActivate();
+        }
+        else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
+        {
+            CleanupHero(archerHero.selectedIndicator, archerHero.skillbutton1, archerHero.skillbutton2);
+            archerHero.archerHeroSkill.DeFusionActivate();
+        }
+        else if (hero.TryGetComponent(out PriestessHeroAI priestessHero))
+        {
+            CleanupHero(priestessHero.selectedIndicator, priestessHero.skillbutton1, priestessHero.skillbutton2);
+            priestessHero.priestessHeroSkill.DeFusionActivate();
+        }
+
+        currentTarget = null;
+        isInFusion = false;
+        CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
+    }
+
+    private void SetupHero(GameObject indicator, GameObject skill1, GameObject skill2)
+    {
+        indicator.SetActive(true);
+        skill1.SetActive(true);
+        skill2.SetActive(true);
+    }
+
+    private void CleanupHero(GameObject indicator, GameObject skill1, GameObject skill2)
+    {
+        indicator.SetActive(false);
+        skill1.SetActive(false);
+        skill2.SetActive(false);
+    }
+
     private void SetupLineRenderer(Color startColor, Color endColor)
     {
+        if (lineEffect.lineRenderer == null) return;
+
         Gradient gradient = new Gradient();
-        GradientColorKey[] colorKey = new GradientColorKey[2];
-        colorKey[0].color = startColor;
-        colorKey[0].time = 0.0f;
-        colorKey[1].color = endColor;
-        colorKey[1].time = 1.0f;
+        gradient.SetKeys(
+            new GradientColorKey[] {
+            new GradientColorKey(startColor, 0f), // Start color at the beginning of the line
+            new GradientColorKey(endColor, 1f)    // End color at the end of the line
+            },
+            new GradientAlphaKey[] {
+            new GradientAlphaKey(1f, 0f), // Full opacity at the start
+            new GradientAlphaKey(1f, 1f)  // Full opacity at the end
+            }
+        );
 
-        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
-        alphaKey[0].alpha = 1.0f;
-        alphaKey[0].time = 0.0f;
-        alphaKey[1].alpha = 1.0f;
-        alphaKey[1].time = 1.0f;
-
-        gradient.SetKeys(colorKey, alphaKey);
         lineEffect.lineRenderer.colorGradient = gradient;
     }
 }
