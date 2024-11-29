@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        ScreenShakeManager.Instance.ShakeScreen();
+        ScreenShakeManager.Instance.ShakeOnEnemy();
         currentHealth -= damage;
         UpdateHpBar();
         knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);

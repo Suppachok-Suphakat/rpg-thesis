@@ -5,17 +5,35 @@ using Cinemachine;
 
 public class ScreenShakeManager : Singleton<ScreenShakeManager>
 {
-    private CinemachineImpulseSource source;
+    [SerializeField]
+    private CinemachineImpulseSource playerHitShakeSource; // For when the player is hit
+    [SerializeField]
+    private CinemachineImpulseSource enemyHitShakeSource; // For when the player hits an enemy
 
     protected override void Awake()
     {
         base.Awake();
 
-        source = GetComponent<CinemachineImpulseSource>();
+        // Ensure the sources are assigned or throw an error
+        if (!playerHitShakeSource || !enemyHitShakeSource)
+        {
+            Debug.LogError("Cinemachine Impulse Sources are not assigned in ScreenShakeManager!");
+        }
     }
 
-    public void ShakeScreen()
+    public void ShakeOnPlayer()
     {
-        source.GenerateImpulse();
+        if (playerHitShakeSource)
+        {
+            playerHitShakeSource.GenerateImpulse();
+        }
+    }
+
+    public void ShakeOnEnemy()
+    {
+        if (enemyHitShakeSource)
+        {
+            enemyHitShakeSource.GenerateImpulse();
+        }
     }
 }

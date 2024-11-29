@@ -194,7 +194,7 @@ public class Character : MonoBehaviour, IDamageable
     {
         if (!canTakeDamage) { return; }
 
-        ScreenShakeManager.Instance.ShakeScreen();
+        ScreenShakeManager.Instance.ShakeOnPlayer();
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
         canTakeDamage = false;
