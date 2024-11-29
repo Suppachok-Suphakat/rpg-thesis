@@ -28,6 +28,7 @@ public class PriestessHeroSkill : MonoBehaviour
     [Header("Skill")]
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
+    private bool isAnySkillActive = false;
 
     private bool fusionActivated = false;
 
@@ -77,7 +78,7 @@ public class PriestessHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
             {
                 if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
                 {
@@ -86,11 +87,16 @@ public class PriestessHeroSkill : MonoBehaviour
                         skill1PreviewInstance = Instantiate(skill1AreaPreview);
                     }
                     skill1PreviewInstance.SetActive(true);
-                    skill1PreviewInstance.transform.position = GetMouseWorldPosition(); // Follow the mouse position
+                    isAnySkillActive = true; // Lock activation for other skills
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.Q))
+            if (skill1PreviewInstance != null)
+            {
+                skill1PreviewInstance.transform.position = GetMouseWorldPosition();
+            }
+
+            if (Input.GetMouseButtonDown(0) && skill1PreviewInstance != null)
             {
                 if (skill1PreviewInstance != null)
                 {
@@ -107,7 +113,10 @@ public class PriestessHeroSkill : MonoBehaviour
 
                     Destroy(skillInstance, skill1ActiveTime);
                 }
+
+                isAnySkillActive = false; // Release lock after using the skill
             }
+
         }
 
         // Update cooldown over time
@@ -125,7 +134,7 @@ public class PriestessHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive)
             {
                 if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
                 {
@@ -134,26 +143,33 @@ public class PriestessHeroSkill : MonoBehaviour
                         skill2PreviewInstance = Instantiate(skill2AreaPreview);
                     }
                     skill2PreviewInstance.SetActive(true);
-                    skill2PreviewInstance.transform.position = GetMouseWorldPosition(); // Follow the mouse position
+                    isAnySkillActive = true; // Lock activation for other skills
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.E))
+            if (skill2PreviewInstance != null)
             {
-                if (skill2PreviewInstance != null)
-                {
-                    skill2PreviewInstance.SetActive(false); // Hide the preview when the button is released
-                    Destroy(skill2PreviewInstance); // Optionally destroy it after use
-                    skill2PreviewInstance = null;
-                }
+                skill2PreviewInstance.transform.position = GetMouseWorldPosition();
 
-                if (skill2CooldownTime <= 0) // Cooldown completed
+                if (Input.GetMouseButtonDown(0))
                 {
-                    GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
-                    isSkill2Active = true;
-                    skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+                    if (skill2PreviewInstance != null)
+                    {
+                        skill2PreviewInstance.SetActive(false); // Hide the preview when the button is released
+                        Destroy(skill2PreviewInstance); // Optionally destroy it after use
+                        skill2PreviewInstance = null;
+                    }
 
-                    Destroy(skillInstance, skill2ActiveTime);
+                    if (skill2CooldownTime <= 0) // Cooldown completed
+                    {
+                        GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
+                        isSkill2Active = true;
+                        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+
+                        Destroy(skillInstance, skill2ActiveTime);
+                    }
+
+                    isAnySkillActive = false; // Release lock after using the skill
                 }
             }
         }
