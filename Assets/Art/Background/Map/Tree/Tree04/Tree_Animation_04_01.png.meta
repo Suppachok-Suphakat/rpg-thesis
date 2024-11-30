@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_0"
+      name: Tree_Animation_04_01_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bea4c6df0f1e8140bf48440b35a8fab
-      internalID: 1123058002
+      spriteID: 42ec1c968e89d6142a507c3bf0bbad20
+      internalID: -710268967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_1"
+      name: Tree_Animation_04_01_1
       rect:
         serializedVersion: 2
         x: 128
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fae5875de5e81e04db30602f12fd89f2
-      internalID: 1615676149
+      spriteID: 7cad5bfdadde68b4f9aadb046278ac11
+      internalID: 1460953868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_2"
+      name: Tree_Animation_04_01_2
       rect:
         serializedVersion: 2
         x: 256
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7deb582a5f381ac469c73aba52afc80b
-      internalID: 631086709
+      spriteID: 113068257d480044dace64baba36e59d
+      internalID: 1011740104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_3"
+      name: Tree_Animation_04_01_3
       rect:
         serializedVersion: 2
         x: 384
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 437d5943c12a6b9469915c63c43b1414
-      internalID: -907424454
+      spriteID: be13d3c41b25d654b8046015df8461c8
+      internalID: 1130504212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_4"
+      name: Tree_Animation_04_01_4
       rect:
         serializedVersion: 2
         x: 512
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fad598d573b881c419b316d9b505418f
-      internalID: -1216109558
+      spriteID: 0a123917e07db8e4bbd5b2a5e9ecb12c
+      internalID: 1892812055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_5"
+      name: Tree_Animation_04_01_5
       rect:
         serializedVersion: 2
         x: 640
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a8ef0024b79ef84cbfb4f82fa3ace07
-      internalID: -2021336457
+      spriteID: 56da006da1e4f36469c276b90f554055
+      internalID: 1984609061
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_0": 1123058002
-      "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_1": 1615676149
-      "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_2": 631086709
-      "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_3": -907424454
-      "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_4": -1216109558
-      "\u0E15\u0E49\u0E19\u0E44\u0E21\u0E49 4-sheet_5": -2021336457
+      Tree_Animation_04_01_0: -710268967
+      Tree_Animation_04_01_1: 1460953868
+      Tree_Animation_04_01_2: 1011740104
+      Tree_Animation_04_01_3: 1130504212
+      Tree_Animation_04_01_4: 1892812055
+      Tree_Animation_04_01_5: 1984609061
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

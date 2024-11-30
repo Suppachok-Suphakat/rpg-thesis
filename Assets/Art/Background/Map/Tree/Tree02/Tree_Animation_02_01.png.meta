@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_0
+      name: Tree_Animation_02_01_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2a2e503636dff54f8c213bb97a7849f
-      internalID: -1369018305
+      spriteID: 1b9452af95c55fd4e9f5dd140983d15f
+      internalID: 217030482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_1
+      name: Tree_Animation_02_01_1
       rect:
         serializedVersion: 2
         x: 128
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9eb01de7840d204585f4bfef377cbd7
-      internalID: -975768270
+      spriteID: 48bd05863ab88204da9fdcf67bf76ce5
+      internalID: -1314306823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_2
+      name: Tree_Animation_02_01_2
       rect:
         serializedVersion: 2
         x: 256
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e5e9356c2e3396469101e2fd93d72b0
-      internalID: 1113004290
+      spriteID: a1beff1a4ce0b7d4b9c234cb879f9933
+      internalID: 1729588665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_3
+      name: Tree_Animation_02_01_3
       rect:
         serializedVersion: 2
         x: 384
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37b2c16954473e14abe01e4576dae9de
-      internalID: -815129737
+      spriteID: 2085c16c345b24a43925efd494ad22f8
+      internalID: -182269737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_4
+      name: Tree_Animation_02_01_4
       rect:
         serializedVersion: 2
         x: 512
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34a75faee0db05a4d8c915ccb426c85a
-      internalID: 1987877299
+      spriteID: 4c054e094f0e93244b6641c5973f4e9e
+      internalID: 611203933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_5
+      name: Tree_Animation_02_01_5
       rect:
         serializedVersion: 2
         x: 640
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3abb30d4b3d09064ca787e8acf45cd4b
-      internalID: 438300444
+      spriteID: 7a84c8fbe943b484ea600e70b5a2eea0
+      internalID: -1908391656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_6
+      name: Tree_Animation_02_01_6
       rect:
         serializedVersion: 2
         x: 768
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40f5abd73c3bbd64ebc72e34c526bb79
-      internalID: 2105897965
+      spriteID: b4cbf81eaa5e86142986c42511346d10
+      internalID: 1065898630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tree_Animation_02 (1)_7
+      name: Tree_Animation_02_01_7
       rect:
         serializedVersion: 2
         x: 896
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02d9d2e15c145214590129ff078bd757
-      internalID: 213358548
+      spriteID: 8c707a0d6667f4a44bad6c6dc524489b
+      internalID: -1659111162
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tree_Animation_02 (1)_0: -1369018305
-      Tree_Animation_02 (1)_1: -975768270
-      Tree_Animation_02 (1)_2: 1113004290
-      Tree_Animation_02 (1)_3: -815129737
-      Tree_Animation_02 (1)_4: 1987877299
-      Tree_Animation_02 (1)_5: 438300444
-      Tree_Animation_02 (1)_6: 2105897965
-      Tree_Animation_02 (1)_7: 213358548
+      Tree_Animation_02_01_0: 217030482
+      Tree_Animation_02_01_1: -1314306823
+      Tree_Animation_02_01_2: 1729588665
+      Tree_Animation_02_01_3: -182269737
+      Tree_Animation_02_01_4: 611203933
+      Tree_Animation_02_01_5: -1908391656
+      Tree_Animation_02_01_6: 1065898630
+      Tree_Animation_02_01_7: -1659111162
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
