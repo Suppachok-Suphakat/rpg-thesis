@@ -24,6 +24,9 @@ public class LineTrigger : MonoBehaviour
 
     private int currentHeroIndex = 0;
 
+    public AudioClip linkSound;
+    public AudioClip unlinkSound;
+
     void Start()
     {
         CursorManager.Instance.OnCursorChanged += Instance_OnCursorChanged;
@@ -213,6 +216,7 @@ public class LineTrigger : MonoBehaviour
             conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
 
+        SoundManager.instance.RandomizeSfx(linkSound);
         CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
         lineEffect.StartHealing(newHero);
         currentTarget = newHero;
@@ -242,6 +246,7 @@ public class LineTrigger : MonoBehaviour
             priestessHero.priestessHeroSkill.DeFusionActivate();
         }
 
+        SoundManager.instance.RandomizeSfx(unlinkSound);
         currentTarget = null;
         isInFusion = false;
         CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);

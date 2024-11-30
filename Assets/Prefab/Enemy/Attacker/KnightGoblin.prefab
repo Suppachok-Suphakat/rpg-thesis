@@ -392,6 +392,7 @@ MonoBehaviour:
   knockBackThrust: 1
   hpBar: {fileID: 1444901905197584768}
   arrow: {fileID: 5339104044626962236}
+  hitSound: {fileID: 8300000, guid: 4966069a884141843acfc6dceb850b41, type: 3}
 --- !u!50 &4038742072775554809
 Rigidbody2D:
   serializedVersion: 4

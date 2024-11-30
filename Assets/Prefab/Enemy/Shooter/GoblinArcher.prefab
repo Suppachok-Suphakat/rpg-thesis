@@ -565,6 +565,7 @@ MonoBehaviour:
   knockBackThrust: 1
   hpBar: {fileID: 7446802703141893645}
   arrow: {fileID: 6965289390390244256}
+  hitSound: {fileID: 8300000, guid: 4966069a884141843acfc6dceb850b41, type: 3}
 --- !u!114 &5558173840406602056
 MonoBehaviour:
   m_ObjectHideFlags: 0

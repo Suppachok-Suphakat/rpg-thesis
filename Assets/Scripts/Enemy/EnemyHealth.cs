@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] StatusBar hpBar;
     [SerializeField] GameObject arrow;
 
+    public AudioClip hitSound;
+
     private void Awake()
     {
         flash = GetComponent<Flash>();
@@ -40,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         ScreenShakeManager.Instance.ShakeOnEnemy();
+        SoundManager.instance.RandomizeSfx(hitSound);
         currentHealth -= damage;
         UpdateHpBar();
         knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);

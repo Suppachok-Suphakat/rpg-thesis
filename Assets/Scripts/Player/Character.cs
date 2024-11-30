@@ -88,6 +88,8 @@ public class Character : MonoBehaviour, IDamageable
     PlayerRespawn playerRespawn;
     PlayerController playerController;
 
+    public AudioClip hitSound;
+
     private void Awake()
     {
         instance = this;
@@ -195,6 +197,7 @@ public class Character : MonoBehaviour, IDamageable
         if (!canTakeDamage) { return; }
 
         ScreenShakeManager.Instance.ShakeOnPlayer();
+        SoundManager.instance.RandomizeSfx(hitSound);
         knockback.GetKnockedBack(hitTransform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
         canTakeDamage = false;
