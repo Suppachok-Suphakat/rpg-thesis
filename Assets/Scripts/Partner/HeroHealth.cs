@@ -15,6 +15,8 @@ public class HeroHealth : MonoBehaviour
     [SerializeField] StatusBar hpBar;
     public bool isDead { get; private set; }
 
+    public AudioClip hitSound;
+
     private void Awake()
     {
         flash = GetComponent<Flash>();
@@ -42,6 +44,7 @@ public class HeroHealth : MonoBehaviour
             CheckIfPartnerDeath();
         }
 
+        SoundManager.instance.RandomizeSfx(hitSound);
         UpdateHpBar();
         StartCoroutine(DamageRecoveryRoutine());
     }
@@ -64,7 +67,7 @@ public class HeroHealth : MonoBehaviour
         if (hp.currVal <= 0 && !isDead)
         {
             isDead = true;
-            Destroy(ActiveWeapon.Instance.gameObject);
+            //Destroy(ActiveWeapon.Instance.gameObject);
             hp.currVal = 0;
             //GetComponent<Animator>().SetTrigger(DEATH_HASH);
         }

@@ -49,7 +49,6 @@ public class CursorManager : MonoBehaviour
             frameTimer += cursorAnimation.frameRate;
             currentFrame = (currentFrame + 1) % frameCount;
             Cursor.SetCursor(cursorAnimation.textureArray[currentFrame], cursorAnimation.offset, CursorMode.Auto);
-
         }
     }
 
