@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -43,7 +43,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7242654368270624162}
-  - {fileID: 3615704161644933122}
   - {fileID: 4846054213895574878}
   - {fileID: 6156017179273714163}
   m_Father: {fileID: 0}
@@ -101,18 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f58f75921effba42a629f5e89354f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPrefab: {fileID: 371351925480119373, guid: 49afb12cfb1c55648b20598a813d4bd0, type: 3}
-  skill2Prefab: {fileID: 371351925480119373, guid: 5033be63cc9d5ec4b835ad5be6c58ca0, type: 3}
-  skill1CooldownTime: 0
-  skill1MaxCooldownTime: 20
-  skill1CurrentCooldownTime: 0
+  skill1Prefab: {fileID: 371351925480119373, guid: 49afb12cfb1c55648b20598a813d4bd0, type: 3}
+  skill1AreaPreview: {fileID: 7686837216217434397, guid: f4ce633c5e829b446a1704f6a506b7a7, type: 3}
   skill1ActiveTime: 5
-  currentSkill1ActiveTime: 5
-  skill2CooldownTime: 0
-  skill2MaxCooldownTime: 10
-  skill2CurrentCooldownTime: 0
+  skill2Prefab: {fileID: 371351925480119373, guid: 5033be63cc9d5ec4b835ad5be6c58ca0, type: 3}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: f4ce633c5e829b446a1704f6a506b7a7, type: 3}
   skill2ActiveTime: 5
-  currentSkill2ActiveTime: 5
+  skill1CooldownTime: 0
+  skill1MaxCooldownTime: 10
+  skill2CooldownTime: 0
+  skill2MaxCooldownTime: 20
   cooldownRecoveryTimer: 1
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
@@ -302,9 +299,10 @@ MonoBehaviour:
   damageRecoveryTime: 1
   knockBackThrustAmount: 2
   hp:
-    maxVal: 100
+    maxVal: 80
     currVal: 0
   hpBar: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 87b9083294e860b4e94a1070ea80f3c2, type: 3}
 --- !u!114 &2403942900922811183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,87 +375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorType: 1
---- !u!1 &1603878265584195838
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3615704161644933122}
-  - component: {fileID: 7520389595908704279}
-  - component: {fileID: 2783918537817592995}
-  m_Layer: 0
-  m_Name: Skill2 Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &3615704161644933122
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603878265584195838}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6115635253367551300}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7520389595908704279
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603878265584195838}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08180714}
-  serializedVersion: 2
-  m_Radius: 1.2
---- !u!114 &2783918537817592995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603878265584195838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666b76789a3e2ba44a6955ff4e6fe219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
 --- !u!1 &1831722024971556537
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,10 +548,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7242654368270624162}
-  - component: {fileID: 4409364339127931009}
-  - component: {fileID: 24808466850256951}
+  - component: {fileID: 1688698470206394960}
+  - component: {fileID: 4712497454473014700}
   m_Layer: 0
-  m_Name: Damage Collider
+  m_Name: Healing Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +572,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6115635253367551300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4409364339127931009
+--- !u!114 &1688698470206394960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -664,12 +581,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4727675698272787894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666b76789a3e2ba44a6955ff4e6fe219, type: 3}
+  m_Script: {fileID: 11500000, guid: ea7948c486c8c9a4f89dc3ad9729e1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 20
---- !u!61 &24808466850256951
-BoxCollider2D:
+  hpRecoveryRate: 10
+  hpRecoveryDelay: 0.1
+--- !u!70 &4712497454473014700
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -700,16 +618,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6609662, y: 0.05931747}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.89831275, y: 1.8304448}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.15002917, y: -0.2999015}
+  m_Size: {x: 4.087659, y: 0.77909255}
+  m_Direction: 1

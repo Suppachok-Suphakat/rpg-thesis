@@ -235,9 +235,9 @@ MonoBehaviour:
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
   skill1AreaPreview: {fileID: 7686837216217434397, guid: d6711fa96ba70db44814d0a2fef27cc3, type: 3}
   skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
-  skill2AreaPreview: {fileID: 7686837216217434397, guid: b04d5c8e413f3df4ebba4a4dde7980e6, type: 3}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: d6711fa96ba70db44814d0a2fef27cc3, type: 3}
   skill1CooldownTime: 0
-  skill1MaxCooldownTime: 12
+  skill1MaxCooldownTime: 10
   skill2CooldownTime: 0
   skill2MaxCooldownTime: 15
   skill1CurrentCooldownTime: 0
@@ -435,9 +435,10 @@ MonoBehaviour:
   damageRecoveryTime: 1
   knockBackThrustAmount: 2
   hp:
-    maxVal: 100
+    maxVal: 90
     currVal: 0
   hpBar: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 87b9083294e860b4e94a1070ea80f3c2, type: 3}
 --- !u!114 &6513540306045517653
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -205,6 +205,7 @@ public class KnightHeroSkill : MonoBehaviour
         Debug.Log("Partner Skill Activate");
         conversationManager.ShowConversation("Shield up!", knightHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
+        //knightHeroAI.SkillLogic();
 
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI

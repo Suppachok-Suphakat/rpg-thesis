@@ -267,12 +267,6 @@ public class ArcherHeroSkill : MonoBehaviour
         mousePosition.z = 0f;
         Instantiate(skill2Prefab, mousePosition, Quaternion.identity);
 
-        //if (toolbarSlot.weaponInfo != null)
-        //{
-        //    weaponChangeInfo = toolbarSlot.weaponInfo;
-        //}
-        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
-
         skill2CooldownTime = 0;  // Start cooldown for Skill 2
         UpdateCooldownUI();  // Update UI
     }

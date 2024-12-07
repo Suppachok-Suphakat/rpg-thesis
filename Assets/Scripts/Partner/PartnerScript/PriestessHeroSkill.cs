@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PriestessHeroSkill : MonoBehaviour
 {
     [Header("Hero Skill")]
+    public GameObject skillHeal;
     [SerializeField] private GameObject skill1Prefab;
     [SerializeField] private GameObject skill1AreaPreview;
     [SerializeField] private float skill1ActiveTime = 5f;
@@ -78,45 +79,22 @@ public class PriestessHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
+            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Block if another skill is active
             {
                 if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
                 {
-                    if (skill1PreviewInstance == null)
-                    {
-                        skill1PreviewInstance = Instantiate(skill1AreaPreview);
-                    }
-                    skill1PreviewInstance.SetActive(true);
                     isAnySkillActive = true; // Lock activation for other skills
-                }
-            }
-
-            if (skill1PreviewInstance != null)
-            {
-                skill1PreviewInstance.transform.position = GetMouseWorldPosition();
-            }
-
-            if (Input.GetMouseButtonDown(0) && skill1PreviewInstance != null)
-            {
-                if (skill1PreviewInstance != null)
-                {
-                    skill1PreviewInstance.SetActive(false); // Hide the preview when the button is released
-                    Destroy(skill1PreviewInstance); // Optionally destroy it after use
-                    skill1PreviewInstance = null;
                 }
 
                 if (skill1CooldownTime <= 0) // Cooldown completed
                 {
-                    GameObject skillInstance = Instantiate(skill1Prefab, GetMouseWorldPosition(), Quaternion.identity);
+                    Skill1Activate();
                     isSkill1Active = true;
                     skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
-
-                    Destroy(skillInstance, skill1ActiveTime);
                 }
 
                 isAnySkillActive = false; // Release lock after using the skill
             }
-
         }
 
         // Update cooldown over time
@@ -130,11 +108,77 @@ public class PriestessHeroSkill : MonoBehaviour
         }
     }
 
+    public void SkillHealOn()
+    {
+        skillHeal.SetActive(true);
+    }
+
+    public void SkillHealOff()
+    {
+        skillHeal.SetActive(false);
+    }
+
+    //private void HandleSkill1()
+    //{
+    //    if (lineTrigger.currentTarget == this.transform)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
+    //        {
+    //            if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
+    //            {
+    //                if (skill1PreviewInstance == null)
+    //                {
+    //                    skill1PreviewInstance = Instantiate(skill1AreaPreview);
+    //                }
+    //                skill1PreviewInstance.SetActive(true);
+    //                isAnySkillActive = true; // Lock activation for other skills
+    //            }
+    //        }
+
+    //        if (skill1PreviewInstance != null)
+    //        {
+    //            skill1PreviewInstance.transform.position = GetMouseWorldPosition();
+    //        }
+
+    //        if (Input.GetMouseButtonDown(0) && skill1PreviewInstance != null)
+    //        {
+    //            if (skill1PreviewInstance != null)
+    //            {
+    //                skill1PreviewInstance.SetActive(false); // Hide the preview when the button is released
+    //                Destroy(skill1PreviewInstance); // Optionally destroy it after use
+    //                skill1PreviewInstance = null;
+    //            }
+
+    //            if (skill1CooldownTime <= 0) // Cooldown completed
+    //            {
+    //                GameObject skillInstance = Instantiate(skill1Prefab, GetMouseWorldPosition(), Quaternion.identity);
+    //                isSkill1Active = true;
+    //                skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
+
+    //                Destroy(skillInstance, skill1ActiveTime);
+    //            }
+
+    //            isAnySkillActive = false; // Release lock after using the skill
+    //        }
+
+    //    }
+
+    //    // Update cooldown over time
+    //    if (skill1CooldownTime > 0)
+    //    {
+    //        skill1CooldownTime -= Time.deltaTime;
+    //    }
+    //    else
+    //    {
+    //        isSkill1Active = false; // Skill is ready again
+    //    }
+    //}
+
     private void HandleSkill2()
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive)
+            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
             {
                 if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
                 {
@@ -220,21 +264,11 @@ public class PriestessHeroSkill : MonoBehaviour
         skill2CooldownTime = Mathf.Min(skill2CooldownTime, skill2MaxCooldownTime);
     }
 
-    public void SkillActivate()
+    public void Skill1Activate()
     {
         Debug.Log("Partner Skill Activate");
         conversationManager.ShowConversation("Be restored in sacred light!", priestessHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill");
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
-        Instantiate(skill1Prefab, mousePosition, Quaternion.identity);
-
-        //if (toolbarSlot.weaponInfo != null)
-        //{
-        //    weaponChangeInfo = toolbarSlot.weaponInfo;
-        //}
-        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+        gameObject.GetComponent<Animator>().SetTrigger("skillHeal");
 
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI

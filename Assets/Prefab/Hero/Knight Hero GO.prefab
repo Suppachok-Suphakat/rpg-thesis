@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -107,11 +107,11 @@ MonoBehaviour:
   skill2CooldownTime: 0
   skill2MaxCooldownTime: 10
   skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 3
-  currentSkill1ActiveTime: 3
+  skill1ActiveTime: 1
+  currentSkill1ActiveTime: 1
   skill2CurrentCooldownTime: 0
-  skill2ActiveTime: 10
-  currentSkill2ActiveTime: 0
+  skill2ActiveTime: 5
+  currentSkill2ActiveTime: 5
   cooldownRecoveryTimer: 1
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
