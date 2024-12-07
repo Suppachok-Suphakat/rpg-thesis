@@ -84,7 +84,7 @@ public class ArcherHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive) // Block if another skill is active
+            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Block if another skill is active
             {
                 if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
                 {
@@ -100,22 +100,22 @@ public class ArcherHeroSkill : MonoBehaviour
             if (skill1PreviewInstance != null)
             {
                 skill1PreviewInstance.transform.position = GetMouseWorldPosition();
-            }
-
-            if (Input.GetMouseButtonDown(0) && skill1PreviewInstance != null)
-            {
-                skill1PreviewInstance.SetActive(false); // Hide the preview
-                Destroy(skill1PreviewInstance); // Optionally destroy it
-                skill1PreviewInstance = null;
-
-                if (skill1CooldownTime <= 0) // Cooldown completed
+                if (Input.GetMouseButtonDown(0))
                 {
-                    ActivateSkill(skillPrefab);
-                    isSkill1Active = true;
-                    skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
-                }
+                    skill1PreviewInstance.SetActive(false); // Hide the preview
+                    Destroy(skill1PreviewInstance); // Optionally destroy it
+                    skill1PreviewInstance = null;
 
-                isAnySkillActive = false; // Release lock after using the skill
+                    if (skill1CooldownTime <= 0) // Cooldown completed
+                    {
+                        GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
+                        ActivateSkill2(skillInstance);
+                        isSkill1Active = true;
+                        skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
+                    }
+
+                    isAnySkillActive = false; // Release lock after using the skill
+                }
             }
         }
 
@@ -134,7 +134,7 @@ public class ArcherHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Block if another skill is active
+            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive) // Block if another skill is active
             {
                 if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
                 {
@@ -150,22 +150,22 @@ public class ArcherHeroSkill : MonoBehaviour
             if (skill2PreviewInstance != null)
             {
                 skill2PreviewInstance.transform.position = GetMouseWorldPosition();
-                if (Input.GetMouseButtonDown(0))
+            }
+
+            if (Input.GetMouseButtonDown(0) && skill2PreviewInstance != null)
+            {
+                skill2PreviewInstance.SetActive(false); // Hide the preview
+                Destroy(skill2PreviewInstance); // Optionally destroy it
+                skill2PreviewInstance = null;
+
+                if (skill2CooldownTime <= 0) // Cooldown completed
                 {
-                    skill2PreviewInstance.SetActive(false); // Hide the preview
-                    Destroy(skill2PreviewInstance); // Optionally destroy it
-                    skill2PreviewInstance = null;
-
-                    if (skill2CooldownTime <= 0) // Cooldown completed
-                    {
-                        GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
-                        ActivateSkill2(skillInstance);
-                        isSkill2Active = true;
-                        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
-                    }
-
-                    isAnySkillActive = false; // Release lock after using the skill
+                    ActivateSkill(skillPrefab);
+                    isSkill2Active = true;
+                    skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
                 }
+
+                isAnySkillActive = false; // Release lock after using the skill
             }
         }
 
