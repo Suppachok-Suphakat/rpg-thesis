@@ -99,16 +99,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa88543bd8e6464d93f4e11980f6a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrier: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
-  barrierCircleInstance: {fileID: 0}
-  skillDamage: {fileID: 1603878265584195838}
+  skill1Damage: {fileID: 1603878265584195838}
+  skill2Prefab: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
+  skill2AreaPreview: {fileID: 371351925480119373, guid: b066460580e3aa3499678672d244a076, type: 3}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10
-  skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 10
-  currentSkill1ActiveTime: 10
   skill2CooldownTime: 0
   skill2MaxCooldownTime: 10
+  skill1CurrentCooldownTime: 0
+  skill1ActiveTime: 3
+  currentSkill1ActiveTime: 3
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 10
   currentSkill2ActiveTime: 0
@@ -301,9 +301,10 @@ MonoBehaviour:
   damageRecoveryTime: 1
   knockBackThrustAmount: 2
   hp:
-    maxVal: 100
+    maxVal: 120
     currVal: 0
   hpBar: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 87b9083294e860b4e94a1070ea80f3c2, type: 3}
 --- !u!114 &2733932613526100555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,7 +389,7 @@ GameObject:
   - component: {fileID: 7520389595908704279}
   - component: {fileID: 2783918537817592995}
   m_Layer: 0
-  m_Name: Skill2 Collider
+  m_Name: Skill1 Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

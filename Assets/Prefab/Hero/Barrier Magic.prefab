@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5492066578980424773}
   - component: {fileID: 3918924432365016873}
   - component: {fileID: -2474472422898358397}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Barrier Magic
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -141,9 +141,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0018823147}
+  m_Offset: {x: 0, y: -0.0018825531}
   serializedVersion: 2
-  m_Radius: 2.406485
+  m_Radius: 1.9604893
 --- !u!50 &3918924432365016873
 Rigidbody2D:
   serializedVersion: 4

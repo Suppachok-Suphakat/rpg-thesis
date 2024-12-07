@@ -6,28 +6,36 @@ using UnityEngine.UI;
 public class KnightHeroSkill : MonoBehaviour
 {
     [Header("Hero Skill")]
-    [SerializeField] private GameObject barrier;
-    public GameObject barrierCircleInstance;
-    public GameObject skillDamage;
+    public GameObject skill1Damage;
+    [SerializeField] private GameObject skill2Prefab;
+    [SerializeField] private GameObject skill2AreaPreview;
+    private GameObject skill2PreviewInstance;
+
+    private bool isSkill1Active = false;
+    private bool isSkill2Active = false;
+
+    [Header("Skill Settings")]
+    [SerializeField] float skill1CooldownTime;
+    [SerializeField] float skill1MaxCooldownTime;
+    [SerializeField] float skill2CooldownTime;
+    [SerializeField] float skill2MaxCooldownTime;
 
     [Header("Skill 1")]
-    [SerializeField] int skill1CooldownTime;
-    [SerializeField] int skill1MaxCooldownTime;
     [SerializeField] int skill1CurrentCooldownTime;
     [SerializeField] float skill1ActiveTime;
     [SerializeField] float currentSkill1ActiveTime;
 
     [Header("Skill 2")]
-    [SerializeField] int skill2CooldownTime;
-    [SerializeField] int skill2MaxCooldownTime;
     [SerializeField] int skill2CurrentCooldownTime;
     [SerializeField] float skill2ActiveTime;
     [SerializeField] float currentSkill2ActiveTime;
 
-    private bool fusionActivated = false;
-
+    [Header("Skill")]
     [SerializeField] float cooldownRecoveryTimer = 1;
     [SerializeField] float cooldownRecoveryDelay = 0.1f;
+    private bool isAnySkillActive = false;
+
+    private bool fusionActivated = false;
 
     [SerializeField] private StatusBar statusComponent;
     PartnerSkillManager partnerSkillManager;
@@ -50,25 +58,6 @@ public class KnightHeroSkill : MonoBehaviour
 
     public ConversationManager conversationManager;
 
-    enum AbilityState
-    {
-        ready,
-        active1,
-        active2,
-        fusion,
-        cooldown
-    }
-    AbilityState state = AbilityState.cooldown;
-
-    enum SkillState
-    {
-        Ready,
-        Active,
-        Cooldown
-    }
-    SkillState skill1State = SkillState.Cooldown;
-    SkillState skill2State = SkillState.Cooldown;
-
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
@@ -80,31 +69,7 @@ public class KnightHeroSkill : MonoBehaviour
     void Start()
     {
         partnerSkillManager = PartnerSkillManager.Instance;
-
-        //// Ensure these components are correctly set through the manager
-        //if (partnerSkillManager != null)
-        //{
-        //    foreach (var partner in partnerSkillManager.partners)
-        //    {
-        //        if (partner.partnerObject == gameObject)
-        //        {
-        //            statusComponent = partner.statusComponent;
-        //            statusComponent.gameObject.SetActive(false); // Ensure it's inactive initially
-
-        //            if (partner.skillBubble != null)
-        //            {
-        //                partner.skillBubble.SetActive(false); // Ensure it's inactive initially
-        //            }
-
-        //            break;
-        //        }
-        //    }
-        //}
-
-        skill1CurrentCooldownTime = skill1CooldownTime;
-        skill2CurrentCooldownTime = skill2CooldownTime;
-
-        skill1Image.fillAmount = 0;
+        //skill1Image.fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -117,147 +82,131 @@ public class KnightHeroSkill : MonoBehaviour
 
     private void HandleSkill1()
     {
-        switch (skill1State)
+        if (lineTrigger.currentTarget == this.transform)
         {
-            case SkillState.Ready:
-                if (lineTrigger.currentTarget == this.transform && Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Block if another skill is active
+            {
+                if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
                 {
-                    SkillActivate();
-                    skill1State = SkillState.Active;
-                    skill1ActiveTime = currentSkill1ActiveTime;
+                    isAnySkillActive = true; // Lock activation for other skills
                 }
-                break;
-            case SkillState.Active:
-                if (skill1ActiveTime > 0)
+
+                if (skill1CooldownTime <= 0) // Cooldown completed
                 {
-                    skill1ActiveTime -= Time.deltaTime;
+                    Skill1Activate();
+                    isSkill1Active = true;
+                    skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
                 }
-                else
-                {
-                    skill1State = SkillState.Cooldown;
-                    skill1CooldownTime = skill1CurrentCooldownTime;
-                }
-                break;
-            case SkillState.Cooldown:
-                if (barrierCircleInstance != null)
-                {
-                    knightHeroAI.isUsingSkill = false;
-                    knightHeroAI.currentState = KnightHeroAI.State.defence;
-                    DestroyMagicCircle();
-                }
-                Skill1CooldownOverTime();
-                if (skill1CooldownTime >= skill1MaxCooldownTime)
-                {
-                    skill1State = SkillState.Ready;
-                }
-                break;
+
+                isAnySkillActive = false; // Release lock after using the skill
+            }
+        }
+
+        // Update cooldown over time
+        if (skill1CooldownTime > 0)
+        {
+            skill1CooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            isSkill1Active = false; // Skill is ready again
         }
     }
 
     private void HandleSkill2()
     {
-        switch (skill2State)
+        if (lineTrigger.currentTarget == this.transform)
         {
-            case SkillState.Ready:
-                if (lineTrigger.currentTarget == this.transform && Input.GetKeyDown(KeyCode.E) && barrierCircleInstance == null)
+            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive) // Block if another skill is active
+            {
+                if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
                 {
-                    Skill2Activate();
-                    skill2State = SkillState.Active;
-                    skill2ActiveTime = currentSkill2ActiveTime;
+                    if (skill2PreviewInstance == null)
+                    {
+                        skill2PreviewInstance = Instantiate(skill2AreaPreview);
+                    }
+                    skill2PreviewInstance.SetActive(true);
+                    isAnySkillActive = true; // Lock activation for other skills
                 }
-                break;
-            case SkillState.Active:
-                if (skill2ActiveTime > 0)
-                {
-                    skill2ActiveTime -= Time.deltaTime;
-                }
-                else
-                {
-                    skill2State = SkillState.Cooldown;
-                    skill2CooldownTime = skill2CurrentCooldownTime;
-                }
-                break;
-            case SkillState.Cooldown:
-                Skill2CooldownOverTime();
-                if (skill2CooldownTime >= skill2MaxCooldownTime)
-                {
-                    skill2State = SkillState.Ready;
-                }
-                break;
-        }
-    }
+            }
 
-    public void Skill1CooldownOverTime()
-    {
-        if (cooldownRecoveryTimer <= 0)
+            if (skill2PreviewInstance != null)
+            {
+                skill2PreviewInstance.transform.position = GetMouseWorldPosition();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    skill2PreviewInstance.SetActive(false); // Hide the preview
+                    Destroy(skill2PreviewInstance); // Optionally destroy it
+                    skill2PreviewInstance = null;
+
+                    if (skill2CooldownTime <= 0) // Cooldown completed
+                    {
+                        GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
+                        ActivateSkill2(skillInstance);
+                        Skill2Activate();
+                        isSkill2Active = true;
+                        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+                    }
+
+                    isAnySkillActive = false; // Release lock after using the skill
+                }
+            }
+        }
+
+        // Update cooldown over time
+        if (skill2CooldownTime > 0)
         {
-            skill1CooldownTime += 1;
-            cooldownRecoveryTimer = cooldownRecoveryDelay;
+            skill2CooldownTime -= Time.deltaTime;
         }
         else
         {
-            cooldownRecoveryTimer -= Time.deltaTime;
+            isSkill2Active = false; // Skill is ready again
         }
-        skill1CooldownTime = Mathf.Min(skill1CooldownTime, skill1MaxCooldownTime);
     }
 
-    public void Skill2CooldownOverTime()
+    private void ActivateSkill2(GameObject skillInstance)
     {
-        if (cooldownRecoveryTimer <= 0)
-        {
-            skill2CooldownTime += 1;
-            cooldownRecoveryTimer = cooldownRecoveryDelay;
-        }
-        else
-        {
-            cooldownRecoveryTimer -= Time.deltaTime;
-        }
-        skill2CooldownTime = Mathf.Min(skill2CooldownTime, skill2MaxCooldownTime);
+        // Start a coroutine to handle the skill duration and exit animation
+        StartCoroutine(HandleSkill2Exit(skillInstance));
     }
 
-    public void SkillActivate()
+    private IEnumerator HandleSkill2Exit(GameObject skillInstance)
     {
-        Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("Shield up!", knightHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill");
-        knightHeroAI.SkillLogic();
+        // Wait for the active duration
+        yield return new WaitForSeconds(skill2ActiveTime);
 
-        //if (toolbarSlot.weaponInfo != null)
-        //{
-        //    weaponChangeInfo = toolbarSlot.weaponInfo;
-        //}
-        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+        // Trigger the exit animation
+        Animator animator = skillInstance.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Exit");
 
-        skill1CooldownTime = 0;  // Start cooldown
-        UpdateCooldownUI();  // Update UI
+            // Wait for the animation to complete
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            yield return new WaitForSeconds(stateInfo.length);
+        }
 
-        //if (partnerSkillManager != null)
-        //{
-        //    foreach (var partner in partnerSkillManager.partners)
-        //    {
-        //        if (partner.partnerObject == gameObject)
-        //        {
-        //            partner.statusComponent.gameObject.SetActive(true);
-        //            partner.skillBubble.SetActive(true);
-        //            break;
-        //        }
-        //    }
-        //}
+        // Destroy the skill instance
+        Destroy(skillInstance);
     }
 
-    public void Skill2Activate()
+    public void Skill1Activate()
     {
         Debug.Log("Partner Skill Activate");
         conversationManager.ShowConversation("I’ll clear a path!", knightHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
-        //if (toolbarSlot.weaponInfo != null)
-        //{
-        //    weaponChangeInfo = toolbarSlot.weaponInfo;
-        //}
-        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
-
         skill2CooldownTime = 0;  // Start cooldown
+        UpdateCooldownUI();  // Update UI
+    }
+
+    public void Skill2Activate()
+    {
+        Debug.Log("Partner Skill Activate");
+        conversationManager.ShowConversation("Shield up!", knightHeroAI.heroFaceSprite);
+        gameObject.GetComponent<Animator>().SetTrigger("skill");
+
+        skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI
     }
 
@@ -327,58 +276,27 @@ public class KnightHeroSkill : MonoBehaviour
         PlayerController.instance.GetComponent<Animator>().ResetTrigger("KnightFusionReturn");
     }
 
-    public void SpawnMagicCircle()
-    {
-        barrierCircleInstance = Instantiate(barrier, transform.position, Quaternion.identity);
-    }
-
-    public void UpdateMagicCirclePosition()
-    {
-        if (barrierCircleInstance != null)
-        {
-            Vector3 partnerPosition = transform.position;
-            partnerPosition.z = 0f;
-
-            barrierCircleInstance.transform.position = partnerPosition;
-        }
-    }
-
-    public void DestroyMagicCircle()
-    {
-        Debug.Log("Destroy");
-        Destroy(barrierCircleInstance);
-    }
-
     public void OnSkillDamage()
     {
-        skillDamage.SetActive(true);
+        skill1Damage.SetActive(true);
     }
 
     public void OffSkillDamage()
     {
-        skillDamage.SetActive(false);
+        skill1Damage.SetActive(false);
     }
 
     private void UpdateCooldownUI()
     {
-        // Update Skill 1 UI
-        if (skill1CooldownTime < skill1MaxCooldownTime)
-        {
-            skill1Image.fillAmount = skill1CooldownTime / (float)skill1MaxCooldownTime;
-        }
-        else
-        {
-            skill1Image.fillAmount = 1;
-        }
+        // Update skill cooldown UI
+        skill1Image.fillAmount = Mathf.Clamp01(1 - (skill1CooldownTime / skill1MaxCooldownTime));
+        skill2Image.fillAmount = Mathf.Clamp01(1 - (skill2CooldownTime / skill2MaxCooldownTime));
+    }
 
-        // Update Skill 2 UI
-        if (skill2CooldownTime < skill2MaxCooldownTime)
-        {
-            skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
-        }
-        else
-        {
-            skill2Image.fillAmount = 1;
-        }
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // Make sure it's on the same Z plane
+        return mousePosition;
     }
 }
