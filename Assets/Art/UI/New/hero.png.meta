@@ -126,10 +126,10 @@ TextureImporter:
       name: hero_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 84
-        width: 133
-        height: 248
+        x: 104
+        y: 83
+        width: 135
+        height: 250
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: hero_1
       rect:
         serializedVersion: 2
-        x: 286
-        y: 87
-        width: 133
-        height: 248
+        x: 285
+        y: 85
+        width: 135
+        height: 251
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,12 +168,12 @@ TextureImporter:
       name: hero_2
       rect:
         serializedVersion: 2
-        x: 474
-        y: 86
-        width: 133
-        height: 248
+        x: 473
+        y: 85
+        width: 135
+        height: 250
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
