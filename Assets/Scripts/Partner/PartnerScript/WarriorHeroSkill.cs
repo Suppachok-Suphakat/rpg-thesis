@@ -7,10 +7,16 @@ public class WarriorHeroSkill : MonoBehaviour
 {
     [Header("Hero Skill")]
     public GameObject skill1Damage;
-    [SerializeField] private GameObject skill2Prefab;
-    [SerializeField] private GameObject skill2AreaPreview;
+    public GameObject skill1Prefab; // Prefab for the skill projectile
+    public GameObject skill1Preview; // Visual for the preview (e.g., an arrow)
+    private GameObject skill1PreviewInstance;
+    public float skill1Range;
+    public LineRenderer lineRenderer; // Reference to the LineRenderer
+    public GameObject skill2Prefab;
+    public GameObject skill2AreaPreview;
     private GameObject skill2PreviewInstance;
 
+    private bool isSkill1PreviewActive = false;
     private bool isSkill1Active = false;
     private bool isSkill2Active = false;
 
@@ -54,7 +60,7 @@ public class WarriorHeroSkill : MonoBehaviour
 
     private LineTrigger lineTrigger;
     private Rigidbody2D rb;
-    public KnightHeroAI knightHeroAI;
+    public WarriorHeroAI warriorHeroAI;
 
     public ConversationManager conversationManager;
 
@@ -62,13 +68,15 @@ public class WarriorHeroSkill : MonoBehaviour
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
         rb = GetComponent<Rigidbody2D>();
-        knightHeroAI = GetComponent<KnightHeroAI>();
+        warriorHeroAI = GetComponent<WarriorHeroAI>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         partnerSkillManager = PartnerSkillManager.Instance;
+        //lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
         //skill1Image.fillAmount = 0;
     }
 
@@ -78,31 +86,41 @@ public class WarriorHeroSkill : MonoBehaviour
         HandleSkill1();
         HandleSkill2();
         UpdateCooldownUI();
+
+        if (isSkill1PreviewActive) // Ensure this only runs during the preview
+        {
+            // Set the start of the line to the hero's position
+            lineRenderer.SetPosition(0, transform.position);
+
+            // Set the end of the line to the mouse position
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0; // Ensure it stays on the 2D plane
+            lineRenderer.SetPosition(1, mousePosition);
+        }
     }
 
     private void HandleSkill1()
     {
-        if (lineTrigger.currentTarget == this.transform)
+        if (Input.GetKeyDown(KeyCode.E) && !isSkill1Active) // Activate preview on first press
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Block if another skill is active
+            if (!isSkill1PreviewActive)
             {
-                if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
-                {
-                    isAnySkillActive = true; // Lock activation for other skills
-                }
-
-                if (skill1CooldownTime <= 0) // Cooldown completed
-                {
-                    Skill1Activate();
-                    isSkill1Active = true;
-                    skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
-                }
-
-                isAnySkillActive = false; // Release lock after using the skill
+                EnableLineRenderer();
+                ActivateSkill1Preview();
+            }
+            else
+            {
+                DisableLineRenderer();
+                FireSkill1(); // Confirm and fire on second press
             }
         }
 
-        // Update cooldown over time
+        if (isSkill1PreviewActive)
+        {
+            UpdateSkill1Preview(); // Update preview position and rotation
+        }
+
+        // Cooldown handling
         if (skill1CooldownTime > 0)
         {
             skill1CooldownTime -= Time.deltaTime;
@@ -111,6 +129,70 @@ public class WarriorHeroSkill : MonoBehaviour
         {
             isSkill1Active = false; // Skill is ready again
         }
+    }
+
+    private void ActivateSkill1Preview()
+    {
+        skill1PreviewInstance = Instantiate(skill1Preview, transform.position, Quaternion.identity);
+        skill1PreviewInstance.transform.SetParent(transform); // Keep it relative to the hero
+        isSkill1PreviewActive = true;
+    }
+
+    private void UpdateSkill1Preview()
+    {
+        if (skill1PreviewInstance != null)
+        {
+            Vector3 mousePosition = GetMouseWorldPosition();
+            Vector3 direction = (mousePosition - transform.position).normalized;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            skill1PreviewInstance.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+    private void FireSkill1()
+    {
+        if (skill1PreviewInstance != null)
+        {
+            //Vector3 fireDirection = skill1PreviewInstance.transform.right; // Direction the arrow is pointing
+            //Vector3 spawnPosition = transform.position + fireDirection; // Spawn projectile slightly ahead
+
+            //// Instantiate the skill projectile
+            //GameObject skillInstance = Instantiate(skill1Prefab, spawnPosition, Quaternion.identity);
+            //Rigidbody2D skillRb = skillInstance.GetComponent<Rigidbody2D>();
+            //if (skillRb != null)
+            //{
+            //    skillRb.velocity = fireDirection * 10f; // Set projectile speed
+            //}
+
+            GameObject newArrow = Instantiate(skill1Prefab, transform.position,
+                ActiveWeapon.Instance.transform.rotation);
+            newArrow.GetComponent<ThruProjectile>().UpdateProjectileRange(skill1Range);
+
+            // Destroy preview
+            Destroy(skill1PreviewInstance);
+            DisableLineRenderer();
+            isSkill1PreviewActive = false;
+
+            // Start cooldown
+            isSkill1Active = true;
+            skill1CooldownTime = skill1MaxCooldownTime;
+        }
+    }
+
+    void EnableLineRenderer()
+    {
+        lineRenderer.enabled = true; // Enable the LineRenderer
+    }
+
+    void DisableLineRenderer()
+    {
+        lineRenderer.enabled = false; // Disable the LineRenderer
+    }
+
+    void ClearLineRenderer()
+    {
+        lineRenderer.positionCount = 0; // Clear all positions
     }
 
     private void HandleSkill2()
@@ -193,7 +275,7 @@ public class WarriorHeroSkill : MonoBehaviour
     public void Skill1Activate()
     {
         Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("I’ll clear a path!", knightHeroAI.heroFaceSprite);
+        conversationManager.ShowConversation("I’ll clear a path!", warriorHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
         skill2CooldownTime = 0;  // Start cooldown
@@ -203,7 +285,7 @@ public class WarriorHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("Shield up!", knightHeroAI.heroFaceSprite);
+        conversationManager.ShowConversation("Shield up!", warriorHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
         //knightHeroAI.SkillLogic();
 
@@ -213,7 +295,7 @@ public class WarriorHeroSkill : MonoBehaviour
 
     public void FusionActivate()
     {
-        PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusion");
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("warriorLink");
 
         if (toolbarSlot != null)
         {
@@ -250,7 +332,7 @@ public class WarriorHeroSkill : MonoBehaviour
     public void DeFusionActivate()
     {
         // Trigger return to normal state
-        PlayerController.instance.GetComponent<Animator>().SetTrigger("KnightFusionReturn");
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("warriorUnlink");
 
         // Handle weapon change back
         if (weaponChangeInfo != null)

@@ -18,8 +18,7 @@ public class WarriorHeroAI : MonoBehaviour
         chase = 1,
         attack = 2,
         skill = 3,
-        defence = 4,
-        death = 5,
+        death = 4,
     }
 
     public Transform player;
@@ -48,7 +47,7 @@ public class WarriorHeroAI : MonoBehaviour
     private float attackCooldown;
     [SerializeField] private bool isCooldown;
 
-    KnightHeroSkill skill;
+    WarriorHeroSkill skill;
     public bool isUsingSkill = false;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
@@ -65,7 +64,7 @@ public class WarriorHeroAI : MonoBehaviour
 
     public Sprite heroFaceSprite;
 
-    public KnightHeroSkill knightHeroSkill;
+    public WarriorHeroSkill warriorHeroSkill;
 
     private void Awake()
     {
@@ -77,9 +76,9 @@ public class WarriorHeroAI : MonoBehaviour
         animator = GetComponent<Animator>();
 
         attackCooldown = cooldownTime;
-        skill = gameObject.GetComponent<KnightHeroSkill>();
+        skill = gameObject.GetComponent<WarriorHeroSkill>();
 
-        knightHeroSkill = GetComponent<KnightHeroSkill>();
+        warriorHeroSkill = GetComponent<WarriorHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
@@ -126,9 +125,6 @@ public class WarriorHeroAI : MonoBehaviour
                 break;
             case State.skill:
                 SkillLogic();
-                break;
-            case State.defence:
-                DefenceLogic();
                 break;
             case State.death:
                 //Death logic
@@ -215,7 +211,6 @@ public class WarriorHeroAI : MonoBehaviour
 
         if (distancePlayer > 2f)
         {
-            animator.SetBool("isDefencing", false);
             animator.SetBool("isWalking", true);
             Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
             Vector2 directionToPlayer = (targetPosition - (Vector2)transform.position).normalized;
@@ -266,59 +261,14 @@ public class WarriorHeroAI : MonoBehaviour
         {
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
 
-            if (distanceToEnemy <= attackDistance)
-            {
-                currentState = State.defence;
-            }
-            else
-            {
-                Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
-                animator.SetBool("isDefencing", false);
-                animator.SetBool("isWalking", true);
-                FlipSprite(focusEnemy);
-                transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
-            }
+            Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
+            animator.SetBool("isWalking", true);
+            FlipSprite(focusEnemy);
+            transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
         }
         else
         {
             currentState = State.follow;
-        }
-    }
-
-    public void DefenceLogic()
-    {
-        if (isUsingSkill) return;
-        if (currentState == State.skill) return;
-
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        if (focusEnemy != null)
-        {
-            AggroEnemy();
-            float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
-
-            if (distanceToEnemy <= distanceToAttack)
-            {
-                AttackLogic();
-            }
-            else
-            {
-                animator.SetBool("isWalking", false);
-                animator.SetBool("isDefencing", true);
-                currentState = State.chase; // Go back to chasing if the enemy is not close enough to attack
-            }
-        }
-        else
-        {
-            currentState = State.follow; // Only return to follow if there is no enemy
-        }
-    }
-
-    void AggroEnemy()
-    {
-        AttackerEnemyAI enemyAI = enemyTransform.GetComponent<AttackerEnemyAI>();
-        if (enemyAI != null)
-        {
-            enemyAI.currentTarget = this.transform;
         }
     }
 
@@ -355,10 +305,6 @@ public class WarriorHeroAI : MonoBehaviour
                 animator.SetTrigger("attack");
                 StartCoroutine(AttackCooldown());
             }
-            else
-            {
-                currentState = State.defence;
-            }
         }
         else
         {
@@ -370,22 +316,12 @@ public class WarriorHeroAI : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         isAttacking = false;
-
-        currentState = State.defence;
     }
 
     IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
-        currentState = State.defence;
-    }
-
-    // Cooldown after defending
-    private IEnumerator DefenceCooldown()
-    {
-        yield return new WaitForSeconds(1.5f);
-        currentState = State.chase;
     }
 
     public void SkillLogic()

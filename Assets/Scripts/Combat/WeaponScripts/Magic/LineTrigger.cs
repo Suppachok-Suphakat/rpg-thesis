@@ -215,6 +215,13 @@ public class LineTrigger : MonoBehaviour
             priestessHero.priestessHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
         }
+        else if (newHero.TryGetComponent(out WarriorHeroAI warriorHero))
+        {
+            SetupLineRenderer(Color.white, Color.red);
+            SetupHero(warriorHero.selectedIndicator, warriorHero.skillbutton1, warriorHero.skillbutton2);
+            warriorHero.warriorHeroSkill.FusionActivate();
+            conversationManager.ShowConversation("Let's goooooo'.", warriorHero.heroFaceSprite);
+        }
 
         SoundManager.instance.RandomizeSfx(linkSound);
         CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
@@ -244,6 +251,11 @@ public class LineTrigger : MonoBehaviour
         {
             CleanupHero(priestessHero.selectedIndicator, priestessHero.skillbutton1, priestessHero.skillbutton2);
             priestessHero.priestessHeroSkill.DeFusionActivate();
+        }
+        else if (hero.TryGetComponent(out WarriorHeroAI warriorHero))
+        {
+            CleanupHero(warriorHero.selectedIndicator, warriorHero.skillbutton1, warriorHero.skillbutton2);
+            warriorHero.warriorHeroSkill.DeFusionActivate();
         }
 
         SoundManager.instance.RandomizeSfx(unlinkSound);
