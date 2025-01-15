@@ -118,62 +118,6 @@ public class PriestessHeroSkill : MonoBehaviour
         skillHeal.SetActive(false);
     }
 
-    //private void HandleSkill1()
-    //{
-    //    if (lineTrigger.currentTarget == this.transform)
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
-    //        {
-    //            if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
-    //            {
-    //                if (skill1PreviewInstance == null)
-    //                {
-    //                    skill1PreviewInstance = Instantiate(skill1AreaPreview);
-    //                }
-    //                skill1PreviewInstance.SetActive(true);
-    //                isAnySkillActive = true; // Lock activation for other skills
-    //            }
-    //        }
-
-    //        if (skill1PreviewInstance != null)
-    //        {
-    //            skill1PreviewInstance.transform.position = GetMouseWorldPosition();
-    //        }
-
-    //        if (Input.GetMouseButtonDown(0) && skill1PreviewInstance != null)
-    //        {
-    //            if (skill1PreviewInstance != null)
-    //            {
-    //                skill1PreviewInstance.SetActive(false); // Hide the preview when the button is released
-    //                Destroy(skill1PreviewInstance); // Optionally destroy it after use
-    //                skill1PreviewInstance = null;
-    //            }
-
-    //            if (skill1CooldownTime <= 0) // Cooldown completed
-    //            {
-    //                GameObject skillInstance = Instantiate(skill1Prefab, GetMouseWorldPosition(), Quaternion.identity);
-    //                isSkill1Active = true;
-    //                skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
-
-    //                Destroy(skillInstance, skill1ActiveTime);
-    //            }
-
-    //            isAnySkillActive = false; // Release lock after using the skill
-    //        }
-
-    //    }
-
-    //    // Update cooldown over time
-    //    if (skill1CooldownTime > 0)
-    //    {
-    //        skill1CooldownTime -= Time.deltaTime;
-    //    }
-    //    else
-    //    {
-    //        isSkill1Active = false; // Skill is ready again
-    //    }
-    //}
-
     private void HandleSkill2()
     {
         if (lineTrigger.currentTarget == this.transform)

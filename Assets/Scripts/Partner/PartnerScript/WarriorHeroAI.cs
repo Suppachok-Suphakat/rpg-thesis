@@ -204,7 +204,7 @@ public class WarriorHeroAI : MonoBehaviour
         }
     }
 
-    void FollowLogic()
+    public void FollowLogic()
     {
         FlipSprite(PlayerController.instance.transform);
         float distancePlayer = Vector3.Distance(transform.position, player.position);
@@ -252,10 +252,10 @@ public class WarriorHeroAI : MonoBehaviour
         }
     }
 
-    void ChaseLogic()
+    public void ChaseLogic()
     {
-        if (isUsingSkill) return;
-        if (currentState == State.skill) return;
+        //if (isUsingSkill) return;
+        //if (currentState == State.skill) return;
 
         if (focusEnemy != null)
         {
@@ -293,7 +293,7 @@ public class WarriorHeroAI : MonoBehaviour
         isSliding = false;
     }
 
-    void AttackLogic()
+    public void AttackLogic()
     {
         if (focusEnemy != null && !isAttacking)
         {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6115635253367551300}
   - component: {fileID: 6983385120269249668}
-  - component: {fileID: 684053487658825111}
+  - component: {fileID: 5395201244472929070}
   - component: {fileID: 3926950155357857189}
   - component: {fileID: 8436747515394760531}
   - component: {fileID: 1644655969559841425}
@@ -86,9 +86,9 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 21300000, guid: 49ddf7f4a11110b49ad7a52038045d9f, type: 3}
+  heroFaceSprite: {fileID: 21300000, guid: 0d7041703e3803e4bbe774d718cf00a8, type: 3}
   warriorHeroSkill: {fileID: 0}
---- !u!114 &684053487658825111
+--- !u!114 &5395201244472929070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,22 +97,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 645030252299325955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef5d02d8eeba30428b4f2bb632cba09, type: 3}
+  m_Script: {fileID: 11500000, guid: 072d7684262b3e240922f3d60e32bf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skill1Damage: {fileID: 1603878265584195838}
-  skill1Prefab: {fileID: 3554886383241864524, guid: 3a8a87217b2af434799d573ea5b2b7c1, type: 3}
+  skill1Prefab: {fileID: 3554886383241864524, guid: f74d55fd7f62ec84dbcf64fd35dd2c3a, type: 3}
   skill1Preview: {fileID: 7440079743910131395}
+  skill1Range: 10
   lineRenderer: {fileID: 2342251811816963609}
-  skill2Prefab: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
-  skill2AreaPreview: {fileID: 371351925480119373, guid: b066460580e3aa3499678672d244a076, type: 3}
+  skill2Prefab: {fileID: 3554886383241864524, guid: 6b858aa1a14f15b42ab2e3e6f64ac091, type: 3}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: b8709355726f9c649a5ec58859de45a2, type: 3}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 1
   skill2CooldownTime: 0
   skill2MaxCooldownTime: 1
   skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 1
-  currentSkill1ActiveTime: 1
+  skill1ActiveTime: 0
+  currentSkill1ActiveTime: 0
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
@@ -127,6 +128,46 @@ MonoBehaviour:
   skill2Image: {fileID: 0}
   warriorHeroAI: {fileID: 0}
   conversationManager: {fileID: 0}
+  duration: 2
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0041656494
+      value: -0.002357483
+      inSlope: 1.0283452
+      outSlope: 1.0283452
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49581406
+      value: 0.5032268
+      inSlope: 0.019812495
+      outSlope: 0.019812495
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0000122
+      value: 0.0047159735
+      inSlope: -0.98872024
+      outSlope: -0.98872024
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 5.5
+  splatterProjectileShadow: {fileID: 561078635120838229, guid: 0f2abdab586395a41b2224195ea9abb5, type: 3}
+  splatterPrefab: {fileID: 2136554603464929707, guid: a74b5098cafa1e84ca46711d0d020df1, type: 3}
+  landingShadowPrefab: {fileID: 561078635120838229, guid: 0fc2c02d231976146b6d163c6a2c3bb1, type: 3}
+  maxShadowScale: {x: 3, y: 3, z: 1}
+  shadow: {fileID: 1831722024971556537}
 --- !u!212 &3926950155357857189
 SpriteRenderer:
   m_ObjectHideFlags: 0

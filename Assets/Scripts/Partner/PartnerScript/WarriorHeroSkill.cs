@@ -64,6 +64,18 @@ public class WarriorHeroSkill : MonoBehaviour
 
     public ConversationManager conversationManager;
 
+    [SerializeField] private float duration = 1f;
+    [SerializeField] private AnimationCurve animCurve;
+    [SerializeField] private float heightY = 3f;
+    [SerializeField] private GameObject splatterProjectileShadow;
+    [SerializeField] private GameObject landingShadowPrefab; // Reference to the landing shadow prefab
+    [SerializeField] private Vector3 maxShadowScale = new Vector3(3f, 3f, 1f); // Maximum size for the shadow
+
+    private GameObject landingShadowInstance;
+    private Vector3 targetPosition;
+    private Vector3 ToLandPosition;
+    [SerializeField] private GameObject shadow;
+
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
@@ -176,77 +188,125 @@ public class WarriorHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive) // Block if another skill is active
+            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
             {
-                if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
+                if (skill2CooldownTime <= 0 && !isSkill2Active)
                 {
                     if (skill2PreviewInstance == null)
                     {
+                        shadow.SetActive(false);
                         skill2PreviewInstance = Instantiate(skill2AreaPreview);
                     }
                     skill2PreviewInstance.SetActive(true);
-                    isAnySkillActive = true; // Lock activation for other skills
+                    isAnySkillActive = true;
                 }
             }
 
             if (skill2PreviewInstance != null)
             {
-                skill2PreviewInstance.transform.position = GetMouseWorldPosition();
+                Vector3 mousePosition = GetMouseWorldPosition();
+                skill2PreviewInstance.transform.position = mousePosition;
+
                 if (Input.GetMouseButtonDown(0))
                 {
-                    skill2PreviewInstance.SetActive(false); // Hide the preview
-                    Destroy(skill2PreviewInstance); // Optionally destroy it
-                    skill2PreviewInstance = null;
-
-                    if (skill2CooldownTime <= 0) // Cooldown completed
+                    if (skill2PreviewInstance != null)
                     {
-                        GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
-                        ActivateSkill2(skillInstance);
-                        Skill2Activate();
-                        isSkill2Active = true;
-                        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+                        Destroy(skill2PreviewInstance);
+                        skill2PreviewInstance = null;
                     }
 
-                    isAnySkillActive = false; // Release lock after using the skill
+                    if (skill2CooldownTime <= 0)
+                    {
+                        isSkill2Active = true;
+                        StartCoroutine(JumpToPosition(mousePosition));
+                    }
+                    isAnySkillActive = false;
                 }
             }
-        }
 
-        // Update cooldown over time
-        if (skill2CooldownTime > 0)
-        {
-            skill2CooldownTime -= Time.deltaTime;
-        }
-        else
-        {
-            isSkill2Active = false; // Skill is ready again
+            if (skill2CooldownTime > 0)
+            {
+                skill2CooldownTime -= Time.deltaTime;
+            }
+            else
+            {
+                isSkill2Active = false;
+            }
         }
     }
 
-    private void ActivateSkill2(GameObject skillInstance)
+    private IEnumerator WaitForSeconds(float seconds)
     {
-        // Start a coroutine to handle the skill duration and exit animation
-        StartCoroutine(HandleSkill2Exit(skillInstance));
+        // First jump up
+        yield return new WaitForSeconds(seconds); // Adjust time as needed for the jump-up animation
     }
 
-    private IEnumerator HandleSkill2Exit(GameObject skillInstance)
+    private IEnumerator JumpToPosition(Vector3 targetPosition)
     {
-        // Wait for the active duration
-        yield return new WaitForSeconds(skill2ActiveTime);
+        conversationManager.ShowConversation("Fire kick!", warriorHeroAI.heroFaceSprite);
+        gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
-        // Trigger the exit animation
-        Animator animator = skillInstance.GetComponent<Animator>();
-        if (animator != null)
+        Vector3 mousePosition = GetMouseWorldPosition();
+        targetPosition = mousePosition;
+        ToLandPosition = targetPosition;
+
+        GameObject splatterShadow = Instantiate(splatterProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
+        landingShadowInstance = Instantiate(landingShadowPrefab, targetPosition, Quaternion.identity);
+        landingShadowInstance.transform.localScale = Vector3.zero; // Start with zero scale
+
+        StartCoroutine(ProjectileCurveRoutine(transform.position, targetPosition));
+        StartCoroutine(MoveSplatterShadowRoutine(splatterShadow, splatterShadow.transform.position, targetPosition));
+
+        transform.position = targetPosition;
+        yield return null;
+    }
+
+    private IEnumerator ProjectileCurveRoutine(Vector3 startPosition, Vector3 endPosition)
+    {
+        float timePassed = 0f;
+
+        while (timePassed < duration)
         {
-            animator.SetTrigger("Exit");
+            timePassed += Time.deltaTime;
+            float linearT = timePassed / duration;
+            float heightT = animCurve.Evaluate(linearT);
+            float height = Mathf.Lerp(0f, heightY, heightT);
 
-            // Wait for the animation to complete
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            yield return new WaitForSeconds(stateInfo.length);
+            // Update projectile position
+            transform.position = Vector2.Lerp(startPosition, endPosition, linearT) + new Vector2(0f, height);
+
+            // Scale the landing shadow proportionally to time
+            if (landingShadowInstance != null)
+            {
+                landingShadowInstance.transform.localScale = Vector3.Lerp(Vector3.zero, maxShadowScale, linearT);
+                gameObject.GetComponent<Animator>().SetTrigger("skill2Finish");
+            }
+
+            yield return null;
         }
 
-        // Destroy the skill instance
-        Destroy(skillInstance);
+        // Instantiate the splatter at the exact position of the landing shadow
+        GameObject skillInstance = Instantiate(skill2Prefab, landingShadowInstance.transform.position, Quaternion.identity);
+
+        Destroy(landingShadowInstance); // Remove shadow upon landing
+        //GameObject skillInstance = Instantiate(skill2Prefab, ToLandPosition, Quaternion.identity);
+        shadow.SetActive(true);
+        Destroy(skillInstance, skill2ActiveTime);
+    }
+
+    private IEnumerator MoveSplatterShadowRoutine(GameObject splatterShadow, Vector3 startPosition, Vector3 endPosition)
+    {
+        float timePassed = 0f;
+
+        while (timePassed < duration)
+        {
+            timePassed += Time.deltaTime;
+            float linearT = timePassed / duration;
+            splatterShadow.transform.position = Vector2.Lerp(startPosition, endPosition, linearT);
+            yield return null;
+        }
+
+        Destroy(splatterShadow);
     }
 
     public void Skill1Activate()
@@ -280,7 +340,7 @@ public class WarriorHeroSkill : MonoBehaviour
             isSkill1PreviewActive = false;
 
             // Show dialogue and play animation
-            conversationManager.ShowConversation("I’ll clear a path!", warriorHeroAI.heroFaceSprite);
+            conversationManager.ShowConversation("Fire fist!", warriorHeroAI.heroFaceSprite);
             gameObject.GetComponent<Animator>().SetTrigger("skill1");
 
             // Start cooldown
@@ -293,9 +353,11 @@ public class WarriorHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("Shield up!", warriorHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill2");
-        //knightHeroAI.SkillLogic();
+
+        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+
+        isSkill2Active = true;
+        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
 
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI
