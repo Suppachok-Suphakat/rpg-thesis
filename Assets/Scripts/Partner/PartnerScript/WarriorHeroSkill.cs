@@ -95,29 +95,36 @@ public class WarriorHeroSkill : MonoBehaviour
             // Set the end of the line to the mouse position
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0; // Ensure it stays on the 2D plane
-            lineRenderer.SetPosition(1, mousePosition);
+
+            Vector3 direction = (mousePosition - transform.position).normalized;
+            // Calculate the fixed endpoint based on the skill range
+            Vector3 fixedEndpoint = transform.position + direction * skill1Range;
+            lineRenderer.SetPosition(1, fixedEndpoint);
         }
     }
 
     private void HandleSkill1()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isSkill1Active) // Activate preview on first press
+        if (lineTrigger.currentTarget == this.transform)
         {
-            if (!isSkill1PreviewActive)
+            if (Input.GetKeyDown(KeyCode.E) && !isSkill1Active) // Activate preview on first press
             {
-                EnableLineRenderer();
-                ActivateSkill1Preview();
+                if (!isSkill1PreviewActive)
+                {
+                    EnableLineRenderer();
+                    ActivateSkill1Preview();
+                }
+                else
+                {
+                    DisableLineRenderer();
+                    Skill1Activate();
+                }
             }
-            else
-            {
-                DisableLineRenderer();
-                FireSkill1(); // Confirm and fire on second press
-            }
-        }
 
-        if (isSkill1PreviewActive)
-        {
-            UpdateSkill1Preview(); // Update preview position and rotation
+            if (isSkill1PreviewActive)
+            {
+                UpdateSkill1Preview(); // Update preview position and rotation
+            }
         }
 
         // Cooldown handling
@@ -147,36 +154,6 @@ public class WarriorHeroSkill : MonoBehaviour
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             skill1PreviewInstance.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-    }
-
-    private void FireSkill1()
-    {
-        if (skill1PreviewInstance != null)
-        {
-            //Vector3 fireDirection = skill1PreviewInstance.transform.right; // Direction the arrow is pointing
-            //Vector3 spawnPosition = transform.position + fireDirection; // Spawn projectile slightly ahead
-
-            //// Instantiate the skill projectile
-            //GameObject skillInstance = Instantiate(skill1Prefab, spawnPosition, Quaternion.identity);
-            //Rigidbody2D skillRb = skillInstance.GetComponent<Rigidbody2D>();
-            //if (skillRb != null)
-            //{
-            //    skillRb.velocity = fireDirection * 10f; // Set projectile speed
-            //}
-
-            GameObject newArrow = Instantiate(skill1Prefab, transform.position,
-                ActiveWeapon.Instance.transform.rotation);
-            newArrow.GetComponent<ThruProjectile>().UpdateProjectileRange(skill1Range);
-
-            // Destroy preview
-            Destroy(skill1PreviewInstance);
-            DisableLineRenderer();
-            isSkill1PreviewActive = false;
-
-            // Start cooldown
-            isSkill1Active = true;
-            skill1CooldownTime = skill1MaxCooldownTime;
         }
     }
 
@@ -274,19 +251,50 @@ public class WarriorHeroSkill : MonoBehaviour
 
     public void Skill1Activate()
     {
-        Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("I’ll clear a path!", warriorHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill2");
+        if (skill1PreviewInstance != null)
+        {
+            Vector3 mousePosition = GetMouseWorldPosition();
+            Vector3 direction = (mousePosition - transform.position).normalized;
 
-        skill2CooldownTime = 0;  // Start cooldown
-        UpdateCooldownUI();  // Update UI
+            // Calculate the rotation for the skill projectile
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+            // Instantiate the projectile at the hero's position
+            GameObject newArrow = Instantiate(skill1Prefab, transform.position, rotation);
+
+            // Flip the projectile if the mouse is on the left side of the screen
+            if (mousePosition.x < transform.position.x)
+            {
+                Vector3 scale = newArrow.transform.localScale;
+                scale.y *= -1; // Flip Y-axis
+                newArrow.transform.localScale = scale;
+            }
+
+            // Set projectile range and activate it
+            newArrow.GetComponent<ThruProjectile>().UpdateProjectileRange(skill1Range);
+
+            // Destroy the preview and disable the line renderer
+            Destroy(skill1PreviewInstance);
+            DisableLineRenderer();
+            isSkill1PreviewActive = false;
+
+            // Show dialogue and play animation
+            conversationManager.ShowConversation("I’ll clear a path!", warriorHeroAI.heroFaceSprite);
+            gameObject.GetComponent<Animator>().SetTrigger("skill1");
+
+            // Start cooldown
+            isSkill1Active = true;
+            skill1CooldownTime = skill1MaxCooldownTime;
+            UpdateCooldownUI(); // Update UI
+        }
     }
 
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
         conversationManager.ShowConversation("Shield up!", warriorHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill");
+        gameObject.GetComponent<Animator>().SetTrigger("skill2");
         //knightHeroAI.SkillLogic();
 
         skill1CooldownTime = 0;  // Start cooldown
