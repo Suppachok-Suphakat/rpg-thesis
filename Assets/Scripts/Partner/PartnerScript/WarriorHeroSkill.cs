@@ -119,17 +119,23 @@ public class WarriorHeroSkill : MonoBehaviour
     {
         if (lineTrigger.currentTarget == this.transform)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isSkill1Active) // Activate preview on first press
+            if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Activate preview on first press
             {
                 if (!isSkill1PreviewActive)
                 {
                     EnableLineRenderer();
                     ActivateSkill1Preview();
+                    isAnySkillActive = true;
                 }
-                else
+            }
+
+            if (lineRenderer.enabled)
+            {
+                if (Input.GetMouseButtonDown(0))
                 {
                     DisableLineRenderer();
                     Skill1Activate();
+                    isAnySkillActive = false;
                 }
             }
 
@@ -218,20 +224,20 @@ public class WarriorHeroSkill : MonoBehaviour
                     if (skill2CooldownTime <= 0)
                     {
                         isSkill2Active = true;
+                        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
                         StartCoroutine(JumpToPosition(mousePosition));
                     }
-                    isAnySkillActive = false;
                 }
             }
+        }
 
-            if (skill2CooldownTime > 0)
-            {
-                skill2CooldownTime -= Time.deltaTime;
-            }
-            else
-            {
-                isSkill2Active = false;
-            }
+        if (skill2CooldownTime > 0)
+        {
+            skill2CooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            isSkill2Active = false;
         }
     }
 
@@ -289,7 +295,7 @@ public class WarriorHeroSkill : MonoBehaviour
         GameObject skillInstance = Instantiate(skill2Prefab, landingShadowInstance.transform.position, Quaternion.identity);
 
         Destroy(landingShadowInstance); // Remove shadow upon landing
-        //GameObject skillInstance = Instantiate(skill2Prefab, ToLandPosition, Quaternion.identity);
+        isAnySkillActive = false;
         shadow.SetActive(true);
         Destroy(skillInstance, skill2ActiveTime);
     }

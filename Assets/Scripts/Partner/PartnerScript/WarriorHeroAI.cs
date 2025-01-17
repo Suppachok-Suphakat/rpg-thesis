@@ -8,7 +8,6 @@ public class WarriorHeroAI : MonoBehaviour
 {
     public float attackDistance = 5;
     public float distanceToAttack = 1;
-    public float distanceToDefence = 5;
     public float followSpeed = 2;
     public int chaseSpeed = 2;
 
@@ -17,8 +16,7 @@ public class WarriorHeroAI : MonoBehaviour
         follow = 0,
         chase = 1,
         attack = 2,
-        skill = 3,
-        death = 4,
+        death = 3,
     }
 
     public Transform player;
@@ -96,12 +94,6 @@ public class WarriorHeroAI : MonoBehaviour
             RepelHeroes();
         }
 
-        if (currentState == State.skill)
-        {
-            SkillLogic();
-            return;
-        }
-
         HandleMouseInput();
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -122,9 +114,6 @@ public class WarriorHeroAI : MonoBehaviour
                 break;
             case State.attack:
                 AttackLogic();
-                break;
-            case State.skill:
-                SkillLogic();
                 break;
             case State.death:
                 //Death logic
@@ -182,8 +171,6 @@ public class WarriorHeroAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
-
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
@@ -194,8 +181,6 @@ public class WarriorHeroAI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
-
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
@@ -254,12 +239,15 @@ public class WarriorHeroAI : MonoBehaviour
 
     public void ChaseLogic()
     {
-        //if (isUsingSkill) return;
-        //if (currentState == State.skill) return;
-
         if (focusEnemy != null)
         {
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
+
+            if (distanceToEnemy <= attackDistance)
+            {
+                currentState = State.attack;
+                return;
+            }
 
             Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
             animator.SetBool("isWalking", true);
@@ -308,7 +296,7 @@ public class WarriorHeroAI : MonoBehaviour
         }
         else
         {
-            //currentState = State.follow;
+            currentState = State.follow;
         }
     }
 
@@ -322,13 +310,6 @@ public class WarriorHeroAI : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
-    }
-
-    public void SkillLogic()
-    {
-        isUsingSkill = true;
-        currentState = State.skill;
-        rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
     public void Attack()

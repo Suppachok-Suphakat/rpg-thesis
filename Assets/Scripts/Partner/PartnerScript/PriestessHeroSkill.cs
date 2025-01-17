@@ -307,25 +307,6 @@ public class PriestessHeroSkill : MonoBehaviour
 
     private void UpdateCooldownUI()
     {
-        //// Update Skill 1 UI
-        //if (skill1CooldownTime < skill1MaxCooldownTime)
-        //{
-        //    skill1Image.fillAmount = skill1CooldownTime / (float)skill1MaxCooldownTime;
-        //}
-        //else
-        //{
-        //    skill1Image.fillAmount = 1;
-        //}
-
-        //// Update Skill 2 UI
-        //if (skill2CooldownTime < skill2MaxCooldownTime)
-        //{
-        //    skill2Image.fillAmount = skill2CooldownTime / (float)skill2MaxCooldownTime;
-        //}
-        //else
-        //{
-        //    skill2Image.fillAmount = 1;
-        //}
         skill1Image.fillAmount = Mathf.Clamp01(1 - (skill1CooldownTime / skill1MaxCooldownTime));
         skill2Image.fillAmount = Mathf.Clamp01(1 - (skill2CooldownTime / skill2MaxCooldownTime));
     }
