@@ -121,7 +121,7 @@ public class WarriorHeroSkill : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Activate preview on first press
             {
-                if (!isSkill1PreviewActive)
+                if (skill1CooldownTime <= 0 && !isSkill1PreviewActive)
                 {
                     EnableLineRenderer();
                     ActivateSkill1Preview();
@@ -252,8 +252,8 @@ public class WarriorHeroSkill : MonoBehaviour
         conversationManager.ShowConversation("Fire kick!", warriorHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
-        Vector3 mousePosition = GetMouseWorldPosition();
-        targetPosition = mousePosition;
+        //Vector3 mousePosition = GetMouseWorldPosition();
+        //targetPosition = mousePosition;
         ToLandPosition = targetPosition;
 
         GameObject splatterShadow = Instantiate(splatterProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
@@ -263,7 +263,7 @@ public class WarriorHeroSkill : MonoBehaviour
         StartCoroutine(ProjectileCurveRoutine(transform.position, targetPosition));
         StartCoroutine(MoveSplatterShadowRoutine(splatterShadow, splatterShadow.transform.position, targetPosition));
 
-        transform.position = targetPosition;
+        //transform.position = targetPosition;
         yield return null;
     }
 

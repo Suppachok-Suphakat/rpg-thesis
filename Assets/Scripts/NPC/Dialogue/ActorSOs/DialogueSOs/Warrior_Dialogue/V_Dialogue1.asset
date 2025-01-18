@@ -16,8 +16,8 @@ MonoBehaviour:
   randomActorName: 
   randomActorPortrait: {fileID: 0}
   dialogue:
-  - "Alright! The forest awaits us! I can already feel the rush of adventure pumping
-    through my veins! So, what\u2019s the game plan, Boss?"
+  - "I can already feel the rush of adventure pumping through my veins! So, what\u2019s
+    the game plan, Boss?"
   optionText:
   - Ready to burn some energy?
   - Stick close to me.
