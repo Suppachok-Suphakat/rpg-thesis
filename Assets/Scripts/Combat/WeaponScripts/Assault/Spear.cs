@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Spear : MonoBehaviour, IWeapon
 {
@@ -14,29 +15,7 @@ public class Spear : MonoBehaviour, IWeapon
     private Character character;
     private SpriteRenderer spriteRenderer;
 
-    //private GameObject slashAnim;
-
-    [Header("Weapon Skill")]
-    [SerializeField] float chargeTime;
-    [SerializeField] float activeTime;
-    [SerializeField] float currentChargeTime;
-    [SerializeField] float currentActiveTime;
-
-    public int chargeAmount;
-    public int maxChargeAmount;
-
-    [SerializeField] private GameObject sliderObject;
-    [SerializeField] private StatusBar statusComponent;
-
     public float rotation;
-
-    enum SkillState
-    {
-        ready,
-        active,
-        charge
-    }
-    SkillState state = SkillState.charge;
 
     private void Awake()
     {
@@ -51,63 +30,16 @@ public class Spear : MonoBehaviour, IWeapon
         weaponCollider.gameObject.GetComponent<SwordDamageSouce>().damageAmount = this.damageAmount;
         //slashAnimSpawnPoint = GameObject.Find("SlashSpawnPoint").transform;
         weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-        currentActiveTime = activeTime;
-
-        sliderObject = GameObject.Find("WeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<StatusBar>();
-
-        statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
     }
 
     private void OnDestroy()
     {
-        weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-        statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
+
     }
 
     private void Update()
     {
         MouseFollowWithOffset();
-
-        switch (state)
-        {
-            case SkillState.ready:
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    SkillActivate();
-                    statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
-                    state = SkillState.active;
-                    activeTime = currentActiveTime;
-                }
-                break;
-            case SkillState.active:
-                if (activeTime > 0)
-                {
-                    weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-                    activeTime -= Time.deltaTime;
-                }
-                else
-                {
-                    state = SkillState.charge;
-                    chargeTime = currentActiveTime;
-                }
-                break;
-            case SkillState.charge:
-                animator.ResetTrigger("Skill");
-                if (weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount < this.chargeAmount)
-                {
-                    statusComponent.Set(weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount, maxChargeAmount);
-                    //Charging
-                }
-                else
-                {
-                    weaponCollider.gameObject.GetComponent<SwordDamageSouce>().chargeAmount = 0;
-                    weaponCollider.gameObject.SetActive(false);
-                    statusComponent.Set(maxChargeAmount, maxChargeAmount);
-                    state = SkillState.ready;
-                }
-                break;
-        }
     }
 
     public WeaponInfo GetWeaponInfo()
@@ -126,21 +58,10 @@ public class Spear : MonoBehaviour, IWeapon
         }
     }
 
-    public void SkillActivate()
-    {
-        animator.SetTrigger("Skill");
-        weaponCollider.gameObject.SetActive(true);
-    }
-
     private IEnumerator ReduceStaminaRoutine()
     {
         character.ReduceStamina(staminaCost);
         yield return new WaitForSeconds(1f);
-    }
-
-    private IEnumerator SkillRoutine()
-    {
-        yield return new WaitForSeconds(5);
     }
 
     public void DoneAttackingAnimEvent()
@@ -177,11 +98,11 @@ public class Spear : MonoBehaviour, IWeapon
 
         if (mousePos.x < playerScreenPoint.x)
         {
-            
+
         }
         else
         {
-            
+
         }
     }
 }

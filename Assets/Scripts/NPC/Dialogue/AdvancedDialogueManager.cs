@@ -255,6 +255,8 @@ public enum DialogueActors
     Priestess_Smile,
     Priestess_Talk,
     Archer_Talk,
+    Valor_Smile,
+    Valor_Talk,
     Lunar,
     Random,
     Branch,

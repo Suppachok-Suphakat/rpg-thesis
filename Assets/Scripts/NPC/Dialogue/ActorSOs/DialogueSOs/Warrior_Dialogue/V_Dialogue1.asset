@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ac59e4438b49149aff42b632a8fd8c, type: 3}
+  m_Name: V_Dialogue1
+  m_EditorClassIdentifier: 
+  actors: 0500000009000000
+  randomActorName: 
+  randomActorPortrait: {fileID: 0}
+  dialogue:
+  - "Alright! The forest awaits us! I can already feel the rush of adventure pumping
+    through my veins! So, what\u2019s the game plan, Boss?"
+  optionText:
+  - Ready to burn some energy?
+  - Stick close to me.
+  - "Let\u2019s stay sharp."
+  option0: {fileID: 11400000, guid: ff98d3ce750d33e4abe6ebc6a91f1c87, type: 2}
+  option1: {fileID: 11400000, guid: 1ec0b1b8fa1fc28478ba267cd6dc0570, type: 2}
+  option2: {fileID: 11400000, guid: cc59d2751cbebc34891f178fc575e653, type: 2}
+  option3: {fileID: 0}
