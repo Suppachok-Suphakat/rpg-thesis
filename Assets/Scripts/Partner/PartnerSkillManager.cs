@@ -193,6 +193,7 @@ public class PartnerSkillManager : MonoBehaviour
 
     private void SetPartnerActive(int index, bool isActive)
     {
+        partners[index].partnerObject.transform.position = PlayerController.instance.transform.position;
         partners[index].partnerObject.SetActive(isActive);
         partners[index].statusBar.SetActive(isActive);
 
