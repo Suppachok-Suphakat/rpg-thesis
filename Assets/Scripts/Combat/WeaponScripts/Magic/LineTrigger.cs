@@ -194,12 +194,12 @@ public class LineTrigger : MonoBehaviour
     {
         if (isInFusion) return;
 
-        if (newHero.TryGetComponent(out KnightHeroAI knightHero))
+        if (newHero.TryGetComponent(out VirtueHeroAI virtueHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
-            SetupHero(knightHero.selectedIndicator, knightHero.skillbutton1, knightHero.skillbutton2);
-            knightHero.knightHeroSkill.FusionActivate();
-            conversationManager.ShowConversation("Let's do this!", knightHero.heroFaceSprite);
+            SetupHero(virtueHero.selectedIndicator, virtueHero.skillbutton1, virtueHero.skillbutton2);
+            virtueHero.virtueHeroSkill.FusionActivate();
+            conversationManager.ShowConversation("Let's do this!", virtueHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
         {
@@ -237,10 +237,10 @@ public class LineTrigger : MonoBehaviour
 
         lineEffect.StopHealing();
 
-        if (hero.TryGetComponent(out KnightHeroAI knightHero))
+        if (hero.TryGetComponent(out VirtueHeroAI virtueHero))
         {
-            CleanupHero(knightHero.selectedIndicator, knightHero.skillbutton1, knightHero.skillbutton2);
-            knightHero.knightHeroSkill.DeFusionActivate();
+            CleanupHero(virtueHero.selectedIndicator, virtueHero.skillbutton1, virtueHero.skillbutton2);
+            virtueHero.virtueHeroSkill.DeFusionActivate();
         }
         else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
         {
