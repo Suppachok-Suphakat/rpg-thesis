@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherHeroAI : MonoBehaviour
+public class ResoluteHeroAI : MonoBehaviour
 {
     [Header("Status")]
     public float attackDistance = 5f;
@@ -56,7 +56,7 @@ public class ArcherHeroAI : MonoBehaviour
     private float attackCooldown;
     [SerializeField] private bool isCooldown;
 
-    ArcherHeroSkill skill;
+    ResoluteHeroSkill skill;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
 
@@ -72,7 +72,7 @@ public class ArcherHeroAI : MonoBehaviour
 
     public Sprite heroFaceSprite;
 
-    public ArcherHeroSkill archerHeroSkill;
+    public ResoluteHeroSkill archerHeroSkill;
 
     private void Awake()
     {
@@ -82,9 +82,9 @@ public class ArcherHeroAI : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         attackCooldown = cooldownTime;
-        skill = gameObject.GetComponent<ArcherHeroSkill>();
+        skill = gameObject.GetComponent<ResoluteHeroSkill>();
 
-        archerHeroSkill = GetComponent<ArcherHeroSkill>();
+        archerHeroSkill = GetComponent<ResoluteHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 

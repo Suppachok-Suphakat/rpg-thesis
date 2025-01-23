@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ArcherHeroSkill : MonoBehaviour
+public class ResoluteHeroSkill : MonoBehaviour
 {
     [Header("Hero Skill")]
     [SerializeField] private GameObject skillPrefab;
@@ -54,7 +54,7 @@ public class ArcherHeroSkill : MonoBehaviour
     [SerializeField] public Image skill1Image;
     [SerializeField] public Image skill2Image;
 
-    public ArcherHeroAI archerHeroAI;
+    public ResoluteHeroAI archerHeroAI;
 
     private LineTrigger lineTrigger;
 
@@ -63,7 +63,7 @@ public class ArcherHeroSkill : MonoBehaviour
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
-        archerHeroAI = GetComponent<ArcherHeroAI>();
+        archerHeroAI = GetComponent<ResoluteHeroAI>();
     }
 
     // Start is called before the first frame update

@@ -201,7 +201,7 @@ public class LineTrigger : MonoBehaviour
             virtueHero.virtueHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Let's do this!", virtueHero.heroFaceSprite);
         }
-        else if (newHero.TryGetComponent(out ArcherHeroAI archerHero))
+        else if (newHero.TryGetComponent(out ResoluteHeroAI archerHero))
         {
             SetupLineRenderer(Color.white, Color.green);
             SetupHero(archerHero.selectedIndicator, archerHero.skillbutton1, archerHero.skillbutton2);
@@ -242,7 +242,7 @@ public class LineTrigger : MonoBehaviour
             CleanupHero(virtueHero.selectedIndicator, virtueHero.skillbutton1, virtueHero.skillbutton2);
             virtueHero.virtueHeroSkill.DeFusionActivate();
         }
-        else if (hero.TryGetComponent(out ArcherHeroAI archerHero))
+        else if (hero.TryGetComponent(out ResoluteHeroAI archerHero))
         {
             CleanupHero(archerHero.selectedIndicator, archerHero.skillbutton1, archerHero.skillbutton2);
             archerHero.archerHeroSkill.DeFusionActivate();

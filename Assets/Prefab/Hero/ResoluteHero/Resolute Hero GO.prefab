@@ -151,12 +151,12 @@ GameObject:
   - component: {fileID: 707302582671328874}
   - component: {fileID: 8760901581627027250}
   m_Layer: 3
-  m_Name: Archer Hero GO
+  m_Name: Resolute Hero GO
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4243921893850822989
 Transform:
   m_ObjectHideFlags: 0
@@ -233,9 +233,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
-  skill1AreaPreview: {fileID: 7686837216217434397, guid: d6711fa96ba70db44814d0a2fef27cc3, type: 3}
+  skill1AreaPreview: {fileID: 7686837216217434397, guid: 8e2419478001c2244b19451041271871, type: 3}
   skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
-  skill2AreaPreview: {fileID: 7686837216217434397, guid: d6711fa96ba70db44814d0a2fef27cc3, type: 3}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: 8e2419478001c2244b19451041271871, type: 3}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10
   skill2CooldownTime: 0
