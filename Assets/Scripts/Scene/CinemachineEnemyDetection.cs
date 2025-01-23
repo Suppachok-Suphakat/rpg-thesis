@@ -1,6 +1,4 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CinemachineEnemyDetection : MonoBehaviour
@@ -66,23 +64,23 @@ public class CinemachineEnemyDetection : MonoBehaviour
         }
     }
 
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Enemy"))
-    //    {
-    //        // When detecting an enemy, set the target field of view to zoom out
-    //        targetFieldOfView = expandedFieldOfView;
-    //        isManualZooming = false; // Disable manual zoom when auto zoom is triggered
-    //    }
-    //}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            // When detecting an enemy, set the target field of view to zoom out
+            targetFieldOfView = expandedFieldOfView;
+            isManualZooming = false; // Disable manual zoom when auto zoom is triggered
+        }
+    }
 
-    //void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Enemy"))
-    //    {
-    //        // When the enemy is no longer detected, return to the normal field of view
-    //        targetFieldOfView = normalFieldOfView;
-    //        isManualZooming = false; // Disable manual zoom when auto zoom is triggered
-    //    }
-    //}
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            // When the enemy is no longer detected, return to the normal field of view
+            targetFieldOfView = normalFieldOfView;
+            isManualZooming = false; // Disable manual zoom when auto zoom is triggered
+        }
+    }
 }
