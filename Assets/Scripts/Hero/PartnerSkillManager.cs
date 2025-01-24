@@ -29,6 +29,9 @@ public class PartnerSkillManager : MonoBehaviour
 
         public Sprite portraitImage;
         public Sprite spriteImage;
+        public Sprite lockedImage; // Image for locked state
+        public Sprite unlockedImage; // Image for locked state
+        public bool isUnlocked = false; // Tracks if the partner is unlocked
     }
     private Partner hoveredPartner = null;
 
@@ -42,6 +45,11 @@ public class PartnerSkillManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        InitializePartnerButtons();
     }
 
     private void Update()
@@ -119,6 +127,12 @@ public class PartnerSkillManager : MonoBehaviour
 
     public void SelectPartner(int index)
     {
+        if (!partners[index].isUnlocked)
+        {
+            Debug.Log($"Partner {partners[index].name} is locked!");
+            return;
+        }
+
         // Check if the partner is on cooldown
         if (cooldownTimers.ContainsKey(index) && Time.time < cooldownTimers[index])
         {
@@ -264,6 +278,36 @@ public class PartnerSkillManager : MonoBehaviour
             GameObject statusBar = partners[partnerIndex].statusBar;
             statusBar.SetActive(true);
             statusBar.transform.SetSiblingIndex(statusBarContainer.childCount - 1); // Move to the end
+        }
+    }
+
+    private void InitializePartnerButtons()
+    {
+        foreach (var partner in partners)
+        {
+            Image buttonImage = partner.buttonTransform.GetComponent<Image>();
+            if (buttonImage != null)
+            {
+                if (partner.isUnlocked)
+                {
+                    buttonImage.sprite = partner.unlockedImage; // Set unlocked image
+                    buttonImage.raycastTarget = true; // Allow interaction
+                }
+                else
+                {
+                    buttonImage.sprite = partner.lockedImage; // Set locked image (e.g., "???")
+                    buttonImage.raycastTarget = false; // Disable interaction
+                }
+            }
+        }
+    }
+
+    public void UnlockPartner(int index)
+    {
+        if (index >= 0 && index < partners.Count)
+        {
+            partners[index].isUnlocked = true;
+            InitializePartnerButtons(); // Refresh button states
         }
     }
 }
