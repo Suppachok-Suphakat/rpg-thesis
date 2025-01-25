@@ -49,6 +49,7 @@ public class PartnerSkillManager : MonoBehaviour
 
     private void Start()
     {
+        LoadPartnerUnlockStatus();
         InitializePartnerButtons();
     }
 
@@ -304,10 +305,24 @@ public class PartnerSkillManager : MonoBehaviour
 
     public void UnlockPartner(int index)
     {
-        if (index >= 0 && index < partners.Count)
+        if (index < 0 || index >= partners.Count) return;
+
+        partners[index].isUnlocked = true;
+
+        if (!HeroManager.Instance.unlockedPartners.Contains(index))
         {
-            partners[index].isUnlocked = true;
-            InitializePartnerButtons(); // Refresh button states
+            HeroManager.Instance.unlockedPartners.Add(index);
+            HeroManager.Instance.SaveUnlockedPartners();
         }
+
+        InitializePartnerButtons();
+    }
+
+    private void LoadPartnerUnlockStatus()
+    {
+        foreach (int index in HeroManager.Instance.unlockedPartners)
+            partners[index].isUnlocked = true;
+
+        InitializePartnerButtons();
     }
 }
