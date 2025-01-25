@@ -7,6 +7,8 @@ public class VirtueHeroSkill : MonoBehaviour
 {
     [Header("Hero Skill")]
     public GameObject skill1Damage;
+    public float pullRadius = 10f; // Adjust as needed
+    public float pullForce = 100f; // Adjust as needed
     [SerializeField] private GameObject skill2Prefab;
     [SerializeField] private GameObject skill2AreaPreview;
     private GameObject skill2PreviewInstance;
@@ -179,7 +181,7 @@ public class VirtueHeroSkill : MonoBehaviour
         Animator animator = skillInstance.GetComponent<Animator>();
         if (animator != null)
         {
-            animator.SetTrigger("Exit");
+            //animator.SetTrigger("Exit");
 
             // Wait for the animation to complete
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -192,19 +194,75 @@ public class VirtueHeroSkill : MonoBehaviour
 
     public void Skill1Activate()
     {
-        Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("I’ll clear a path!", virtueHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill2");
+        // Show conversation or animation
+        conversationManager.ShowConversation("Feel the pull of justice!", virtueHeroAI.heroFaceSprite);
+        gameObject.GetComponent<Animator>().SetTrigger("skill1");
 
-        skill2CooldownTime = 0;  // Start cooldown
-        UpdateCooldownUI();  // Update UI
+        // Define whirlpool parameters
+        Vector2 skillCenter = transform.position; // The origin of the pull
+
+        // Start the whirlpool effect coroutine
+        StartCoroutine(WhirlpoolEffectCoroutine(skillCenter));
+
+        // Start cooldown
+        isSkill1Active = true;
+        skill1CooldownTime = skill1MaxCooldownTime;
+
+        // Create a visual effect at the skill center
+        CreateWhirlpoolEffect(skillCenter);
+
+        // Update cooldown UI
+        UpdateCooldownUI();
+    }
+
+    private IEnumerator WhirlpoolEffectCoroutine(Vector2 center)
+    {
+        float duration = skill1ActiveTime; // Total duration of the whirlpool effect
+        float interval = 0.3f; // Time between pull waves
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            // Detect all enemies within the radius
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(center, pullRadius, LayerMask.GetMask("Enemy")); // Ensure enemies are on the "Enemy" layer
+
+            foreach (Collider2D enemy in enemies)
+            {
+                Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+                if (enemyRb != null)
+                {
+                    // Calculate direction towards the center and apply force
+                    Vector2 directionToCenter = (center - (Vector2)enemy.transform.position).normalized;
+                    enemyRb.AddForce(directionToCenter * pullForce, ForceMode2D.Force);
+                }
+            }
+
+            // Wait for the next pull wave
+            yield return new WaitForSeconds(interval);
+            elapsedTime += interval;
+        }
+    }
+
+    private void CreateWhirlpoolEffect(Vector2 position)
+    {
+        // Instantiate a whirlpool particle effect at the center
+        GameObject whirlpoolEffect = Instantiate(skill1Damage, position, Quaternion.identity);
+        Destroy(whirlpoolEffect, skill1ActiveTime); // Destroy after the effect duration
+    }
+
+    // Debugging: Visualize the pull radius in the editor
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 5f); // Use the same pullRadius
     }
 
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
         conversationManager.ShowConversation("Shield up!", virtueHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill");
+        gameObject.GetComponent<Animator>().SetTrigger("skill2");
         //knightHeroAI.SkillLogic();
 
         skill1CooldownTime = 0;  // Start cooldown

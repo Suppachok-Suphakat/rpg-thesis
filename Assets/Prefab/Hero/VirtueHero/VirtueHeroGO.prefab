@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa88543bd8e6464d93f4e11980f6a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill1Damage: {fileID: 1603878265584195838}
+  skill1Damage: {fileID: 371351925480119373, guid: 401728a2b07f86a4a8a738327f8b8491, type: 3}
+  pullRadius: 10
+  pullForce: 20
   skill2Prefab: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
   skill2AreaPreview: {fileID: 371351925480119373, guid: b066460580e3aa3499678672d244a076, type: 3}
   skill1CooldownTime: 0
@@ -107,8 +109,8 @@ MonoBehaviour:
   skill2CooldownTime: 0
   skill2MaxCooldownTime: 10
   skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 1
-  currentSkill1ActiveTime: 1
+  skill1ActiveTime: 2
+  currentSkill1ActiveTime: 2
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
@@ -116,8 +118,8 @@ MonoBehaviour:
   cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: 34ad963e94838f5449cd94e39c4976fb, type: 2}
-  itemSprite: {fileID: 1740457147, guid: daee16f8629839e4396595793eb10a79, type: 3}
+  weaponInfo: {fileID: 11400000, guid: f6346c628c613554899eac540776ef6a, type: 2}
+  itemSprite: {fileID: -1119895950, guid: 1840ac6b0974d1642aee747d2bbd2fae, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
