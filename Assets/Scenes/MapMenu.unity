@@ -1654,13 +1654,13 @@ MonoBehaviour:
       - m_Target: {fileID: 492024797}
         m_TargetAssemblyTypeName: MapMenu, Assembly-CSharp
         m_MethodName: LoadMap
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MapWarrior
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1598857079
@@ -1861,13 +1861,13 @@ MonoBehaviour:
       - m_Target: {fileID: 492024797}
         m_TargetAssemblyTypeName: MapMenu, Assembly-CSharp
         m_MethodName: LoadMap
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MapArcher
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1951515380

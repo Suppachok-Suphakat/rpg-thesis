@@ -17,8 +17,8 @@ public class MapMenu : MonoBehaviour
 
     }
 
-    public void LoadMap(int mapToLoad)
+    public void LoadMap(string sceneNameToTransition)
     {
-        SceneManager.LoadSceneAsync(mapToLoad);
+        SceneManager.LoadSceneAsync(sceneNameToTransition);
     }
 }
