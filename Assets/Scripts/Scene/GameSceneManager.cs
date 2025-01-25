@@ -27,4 +27,11 @@ public class GameSceneManager : MonoBehaviour
         Transform playerTransform = GameManager.instance.player.transform;
         playerTransform.position = new Vector3(transitionPosition.x, transitionPosition.y, playerTransform.position.z);
     }
+
+    public void SwitchMenuScene(string to)
+    {
+        SceneManager.LoadScene(to, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(currentScene);
+        currentScene = to;
+    }
 }
