@@ -435,7 +435,7 @@ MonoBehaviour:
   damageRecoveryTime: 1
   knockBackThrustAmount: 2
   hp:
-    maxVal: 90
+    maxVal: 750
     currVal: 0
   hpBar: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 87b9083294e860b4e94a1070ea80f3c2, type: 3}

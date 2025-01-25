@@ -248,7 +248,15 @@ public class VirtueHeroSkill : MonoBehaviour
     {
         // Instantiate a whirlpool particle effect at the center
         GameObject whirlpoolEffect = Instantiate(skill1Damage, position, Quaternion.identity);
-        Destroy(whirlpoolEffect, skill1ActiveTime); // Destroy after the effect duration
+
+        // Make the whirlpool a child of this hero's game object
+        whirlpoolEffect.transform.SetParent(transform);
+
+        // Optionally reset the local position to match the skill's position
+        whirlpoolEffect.transform.localPosition = Vector3.zero;
+
+        // Destroy the whirlpool after its active duration
+        Destroy(whirlpoolEffect, skill1ActiveTime);
     }
 
     // Debugging: Visualize the pull radius in the editor
