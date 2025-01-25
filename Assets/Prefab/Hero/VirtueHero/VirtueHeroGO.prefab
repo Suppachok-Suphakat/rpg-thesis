@@ -86,7 +86,7 @@ MonoBehaviour:
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
   heroFaceSprite: {fileID: 21300000, guid: 49ddf7f4a11110b49ad7a52038045d9f, type: 3}
-  knightHeroSkill: {fileID: 0}
+  virtueHeroSkill: {fileID: 0}
 --- !u!114 &8739522059059753338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
-  knightHeroAI: {fileID: 0}
+  virtueHeroAI: {fileID: 0}
   conversationManager: {fileID: 0}
 --- !u!212 &3926950155357857189
 SpriteRenderer:
@@ -301,7 +301,7 @@ MonoBehaviour:
   damageRecoveryTime: 1
   knockBackThrustAmount: 2
   hp:
-    maxVal: 120
+    maxVal: 1000
     currVal: 0
   hpBar: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 87b9083294e860b4e94a1070ea80f3c2, type: 3}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuSceneTransition : MonoBehaviour
 {
@@ -46,7 +47,8 @@ public class MenuSceneTransition : MonoBehaviour
 
     internal void InitiateTransition()
     {
-        GameSceneManager.instance.SwitchMenuScene(sceneNameToTransition);
+        SceneManager.LoadSceneAsync(sceneNameToTransition);
+        //GameSceneManager.instance.SwitchMenuScene(sceneNameToTransition);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
