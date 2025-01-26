@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill1Damage: {fileID: 371351925480119373, guid: 401728a2b07f86a4a8a738327f8b8491, type: 3}
-  pullRadius: 20
-  pullForce: 800
+  pullRadius: 10
+  pullForce: 20
   skill2Prefab: {fileID: 371351925480119373, guid: 2549c57d798e87b42bdb3fc653cdc3d5, type: 3}
   skill2AreaPreview: {fileID: 371351925480119373, guid: b066460580e3aa3499678672d244a076, type: 3}
   skill1CooldownTime: 0

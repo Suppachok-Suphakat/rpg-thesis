@@ -218,31 +218,73 @@ public class VirtueHeroSkill : MonoBehaviour
     private IEnumerator WhirlpoolEffectCoroutine(Vector2 center)
     {
         float duration = skill1ActiveTime; // Total duration of the whirlpool effect
-        float interval = 0.3f; // Time between pull waves
+        float interval = 0.1f; // Time between pull updates
 
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             // Detect all enemies within the radius
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(center, pullRadius, LayerMask.GetMask("Enemy")); // Ensure enemies are on the "Enemy" layer
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(center, pullRadius, LayerMask.GetMask("Enemy"));
 
             foreach (Collider2D enemy in enemies)
             {
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+
+                EnemyPathfinding enemyPathfinding = enemy.GetComponent<EnemyPathfinding>();
+                AttackerEnemyPathfinding attackerPathfinding = enemy.GetComponent<AttackerEnemyPathfinding>();
+
                 if (enemyRb != null)
                 {
-                    // Calculate direction towards the center and apply force
+                    // Disable pathfinding to avoid movement conflicts
+                    if (enemyPathfinding != null)
+                    {
+                        enemyPathfinding.isImmobilized = true;
+                    }
+                    else if (attackerPathfinding != null)
+                    {
+                        attackerPathfinding.isImmobilized = true;
+                    }
+
+                    // Smoothly move enemy towards the center
                     Vector2 directionToCenter = (center - (Vector2)enemy.transform.position).normalized;
-                    enemyRb.AddForce(directionToCenter * pullForce, ForceMode2D.Force);
+                    Vector2 targetPosition = (Vector2)enemy.transform.position + directionToCenter * pullForce * Time.deltaTime;
+
+                    // Use Lerp for smoother movement
+                    enemyRb.MovePosition(Vector2.Lerp(enemyRb.position, targetPosition, 0.5f));
+
+                    // Optional: Cap the velocity for smoother motion
+                    float maxSpeed = 5f;
+                    if (enemyRb.velocity.magnitude > maxSpeed)
+                    {
+                        enemyRb.velocity = enemyRb.velocity.normalized * maxSpeed;
+                    }
                 }
             }
 
-            // Wait for the next pull wave
+            // Wait for the next pull update
             yield return new WaitForSeconds(interval);
             elapsedTime += interval;
         }
+
+        // Re-enable pathfinding for all affected enemies
+        foreach (Collider2D enemy in Physics2D.OverlapCircleAll(center, pullRadius, LayerMask.GetMask("Enemy")))
+        {
+            EnemyPathfinding enemyPathfinding = enemy.GetComponent<EnemyPathfinding>();
+            AttackerEnemyPathfinding attackerPathfinding = enemy.GetComponent<AttackerEnemyPathfinding>();
+
+            if (enemyPathfinding != null)
+            {
+                enemyPathfinding.isImmobilized = false;
+            }
+            else if (attackerPathfinding != null)
+            {
+                attackerPathfinding.isImmobilized = false;
+            }
+        }
     }
+
+
 
     private void CreateWhirlpoolEffect(Vector2 position)
     {
