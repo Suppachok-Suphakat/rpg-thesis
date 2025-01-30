@@ -11,6 +11,9 @@ public class WarriorHeroAI : MonoBehaviour
     public float followSpeed = 2;
     public int chaseSpeed = 2;
 
+    private float followOverrideTimer = 0f;
+    private float followOverrideDuration = 2f;
+
     public enum State
     {
         follow = 0,
@@ -101,6 +104,12 @@ public class WarriorHeroAI : MonoBehaviour
             currentState = State.follow;
             focusEnemy = null;
             animator.SetBool("isWalking", false);
+            followOverrideTimer = followOverrideDuration;
+        }
+
+        if (followOverrideTimer > 0)
+        {
+            followOverrideTimer -= Time.deltaTime;
         }
 
         // Switch between states
@@ -110,7 +119,8 @@ public class WarriorHeroAI : MonoBehaviour
                 FollowLogic();
                 break;
             case State.chase:
-                ChaseLogic();
+                if (followOverrideTimer <= 0)
+                    ChaseLogic();
                 break;
             case State.attack:
                 AttackLogic();
@@ -171,6 +181,8 @@ public class WarriorHeroAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (followOverrideTimer > 0) return;
+
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
@@ -181,6 +193,8 @@ public class WarriorHeroAI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (followOverrideTimer > 0) return;
+
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;

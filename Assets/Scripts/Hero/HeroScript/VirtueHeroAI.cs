@@ -11,6 +11,8 @@ public class VirtueHeroAI : MonoBehaviour
     public float distanceToDefence = 5;
     public float followSpeed = 2;
     public int chaseSpeed = 2;
+    private float followOverrideTimer = 0f;
+    private float followOverrideDuration = 2f;
 
     public enum State
     {
@@ -92,7 +94,7 @@ public class VirtueHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == State.follow) //&& Vector3.Distance(transform.position, player.position) <= 3f)
+        if (currentState == State.follow)
         {
             RepelHeroes();
         }
@@ -110,6 +112,12 @@ public class VirtueHeroAI : MonoBehaviour
             currentState = State.follow;
             focusEnemy = null;
             animator.SetBool("isWalking", false);
+            followOverrideTimer = followOverrideDuration;
+        }
+
+        if (followOverrideTimer > 0)
+        {
+            followOverrideTimer -= Time.deltaTime;
         }
 
         // Switch between states
@@ -119,7 +127,8 @@ public class VirtueHeroAI : MonoBehaviour
                 FollowLogic();
                 break;
             case State.chase:
-                ChaseLogic();
+                if (followOverrideTimer <= 0)
+                    ChaseLogic();
                 break;
             case State.attack:
                 AttackLogic();
@@ -186,7 +195,7 @@ public class VirtueHeroAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
+        if (currentState == State.skill || followOverrideTimer > 0) return;
 
         if (other.CompareTag("Enemy"))
         {
@@ -198,7 +207,7 @@ public class VirtueHeroAI : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
+        if (currentState == State.skill || followOverrideTimer > 0) return;
 
         if (other.CompareTag("Enemy"))
         {

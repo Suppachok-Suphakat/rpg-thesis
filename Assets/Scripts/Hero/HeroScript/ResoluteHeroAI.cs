@@ -18,6 +18,9 @@ public class ResoluteHeroAI : MonoBehaviour
     public float maxChaseDistance = 10f;
     [SerializeField] private float stateSwitchBuffer = 0.5f;
 
+    private float followOverrideTimer = 0f;
+    private float followOverrideDuration = 2f;
+
     public enum State
     {
         follow = 0,
@@ -120,6 +123,12 @@ public class ResoluteHeroAI : MonoBehaviour
             currentState = State.follow;
             focusEnemy = null;
             animator.SetBool("isWalking", false);
+            followOverrideTimer = followOverrideDuration;
+        }
+
+        if (followOverrideTimer > 0)
+        {
+            followOverrideTimer -= Time.deltaTime;
         }
 
         switch (currentState)
@@ -128,7 +137,8 @@ public class ResoluteHeroAI : MonoBehaviour
                 FollowLogic();
                 break;
             case State.chase:
-                ChaseLogic();
+                if (followOverrideTimer <= 0)
+                    ChaseLogic();
                 break;
             case State.attack:
                 AttackLogic();
@@ -244,26 +254,24 @@ public class ResoluteHeroAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
+        if (currentState == State.skill || followOverrideTimer > 0) return;
 
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
-
             currentState = State.chase;
         }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (currentState == State.skill) return;
+        if (currentState == State.skill || followOverrideTimer > 0) return;
 
         if (other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
-
             currentState = State.chase;
         }
     }
