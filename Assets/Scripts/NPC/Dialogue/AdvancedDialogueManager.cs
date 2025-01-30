@@ -226,6 +226,13 @@ public class AdvancedDialogueManager : MonoBehaviour
         dialogueActivated = true;
     }
 
+    public void InitiateDialogue(CutsceneDialogue cutsceneDialogue)
+    {
+        currentConversation = cutsceneDialogue.conversation[0];
+
+        dialogueActivated = true;
+    }
+
     public void TurnOffDialogue()
     {
         stepNum = 0;
