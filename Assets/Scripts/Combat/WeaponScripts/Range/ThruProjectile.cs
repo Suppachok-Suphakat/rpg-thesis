@@ -20,6 +20,11 @@ public class ThruProjectile : MonoBehaviour
 
     private void Update()
     {
+        if (isEnemyProjectile)
+        {
+
+        }
+
         MoveProjectile();
         DetectFireDistance();
     }

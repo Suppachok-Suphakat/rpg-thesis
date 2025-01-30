@@ -22,7 +22,7 @@ public class LineTrigger : MonoBehaviour
 
     public PartnerSkillManager partnerSkillManager;
 
-    private int currentHeroIndex = 0;
+    //private int currentHeroIndex = 0;
 
     public AudioClip linkSound;
     public AudioClip unlinkSound;

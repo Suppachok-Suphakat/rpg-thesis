@@ -37,8 +37,8 @@ public class WarriorHeroSkill : MonoBehaviour
     [SerializeField] float currentSkill2ActiveTime;
 
     [Header("Skill")]
-    [SerializeField] float cooldownRecoveryTimer = 1;
-    [SerializeField] float cooldownRecoveryDelay = 0.1f;
+    //[SerializeField] float cooldownRecoveryTimer = 1;
+    //[SerializeField] float cooldownRecoveryDelay = 0.1f;
     private bool isAnySkillActive = false;
 
     private bool fusionActivated = false;
@@ -95,6 +95,16 @@ public class WarriorHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSkill1Active)
+        {
+
+        }
+
+        if (fusionActivated)
+        {
+
+        }
+
         HandleSkill1();
         HandleSkill2();
         UpdateCooldownUI();

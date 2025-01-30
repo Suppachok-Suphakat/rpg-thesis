@@ -33,8 +33,8 @@ public class VirtueHeroSkill : MonoBehaviour
     [SerializeField] float currentSkill2ActiveTime;
 
     [Header("Skill")]
-    [SerializeField] float cooldownRecoveryTimer = 1;
-    [SerializeField] float cooldownRecoveryDelay = 0.1f;
+    //[SerializeField] float cooldownRecoveryTimer = 1;
+    //[SerializeField] float cooldownRecoveryDelay = 0.1f;
     private bool isAnySkillActive = false;
 
     private bool fusionActivated = false;
@@ -77,6 +77,11 @@ public class VirtueHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (fusionActivated)
+        {
+
+        }
+
         HandleSkill1();
         HandleSkill2();
         UpdateCooldownUI();

@@ -9,7 +9,7 @@ public class PriestessHeroSkill : MonoBehaviour
     public GameObject skillHeal;
     [SerializeField] private GameObject skill1Prefab;
     [SerializeField] private GameObject skill1AreaPreview;
-    [SerializeField] private float skill1ActiveTime = 5f;
+    //[SerializeField] private float skill1ActiveTime = 5f;
     [SerializeField] private GameObject skill2Prefab;
     [SerializeField] private GameObject skill2AreaPreview;
     [SerializeField] private float skill2ActiveTime = 5f;
@@ -70,6 +70,11 @@ public class PriestessHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (fusionActivated)
+        {
+
+        }
+
         HandleSkill1();
         HandleSkill2();
         UpdateCooldownUI();

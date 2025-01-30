@@ -9,8 +9,8 @@ public class TransparentDetection : MonoBehaviour
     [SerializeField] private float transparencyAmount = 0.8f;
     [SerializeField] private float fadeTime = .4f;
 
-    [SerializeField] private string changeSortingLayer = "Highground";
-    [SerializeField] private string originalSortingLayer = "Foreground";
+    //[SerializeField] private string changeSortingLayer = "Highground";
+    //[SerializeField] private string originalSortingLayer = "Foreground";
 
     private SpriteRenderer spriteRenderer;
     private Tilemap tilemap;
