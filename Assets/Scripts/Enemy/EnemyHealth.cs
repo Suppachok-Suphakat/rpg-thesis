@@ -45,9 +45,12 @@ public class EnemyHealth : MonoBehaviour
         SoundManager.instance.RandomizeSfx(hitSound);
         currentHealth -= damage;
         UpdateHpBar();
-        knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);
         StartCoroutine(flash.FlashRoutine());
-        StartCoroutine(CheckDetectDeathRoutine());
+        FindObjectOfType<HitStop>().Stop(0.1f);
+        knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);
+        StartCoroutine(WaitForStop());
+
+
     }
 
     public void TakeDamageNoCamShake(int damage)
@@ -114,5 +117,12 @@ public class EnemyHealth : MonoBehaviour
             Debug.Log("Hiding arrow on: " + gameObject.name);  // Add this log
             arrow.SetActive(false);
         }
+    }
+    
+    IEnumerator WaitForStop()
+    {
+        while(Time.timeScale != 1.0f)
+            yield return null;
+        StartCoroutine(CheckDetectDeathRoutine());
     }
 }
