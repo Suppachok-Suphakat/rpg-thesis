@@ -8,14 +8,14 @@ public class CutsceneDialogue : MonoBehaviour
 
     private AdvancedDialogueManager advancedDialogueManager;
 
-    private bool dialogueInitiated;
+    //private bool dialogueInitiated;
 
     // Start is called before the first frame update
     void Start()
     {
         advancedDialogueManager = GameObject.Find("DialogueManager").GetComponent<AdvancedDialogueManager>();
         advancedDialogueManager.InitiateDialogue(this);
-        dialogueInitiated = true;
+        //dialogueInitiated = true;
     }
 
     // Update is called once per frame
