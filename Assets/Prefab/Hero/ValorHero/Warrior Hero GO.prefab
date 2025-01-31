@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -116,12 +116,11 @@ MonoBehaviour:
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
-  cooldownRecoveryTimer: 1
-  cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: f95c688617010ac42bef1c66105691e2, type: 2}
   itemSprite: {fileID: 21300000, guid: a6673fffe39512149b4f49b8bbbe0628, type: 3}
+  avatar: {fileID: 0}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
@@ -207,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1871671869, guid: 87b5d458b64b2b1428b737107075870d, type: 3}
+  m_Sprite: {fileID: 1185249274, guid: 194bdf08f8af97a4888f5904fb8404bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
