@@ -186,7 +186,7 @@ public class VirtueHeroSkill : MonoBehaviour
         Animator animator = skillInstance.GetComponent<Animator>();
         if (animator != null)
         {
-            //animator.SetTrigger("Exit");
+            animator.SetTrigger("exit");
 
             // Wait for the animation to complete
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);

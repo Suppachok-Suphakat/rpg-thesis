@@ -57,6 +57,7 @@ public class Arrow : MonoBehaviour
         }
         else if (barrier && isEnemyProjectile)
         {
+            barrier.animator.SetTrigger("hit");
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
