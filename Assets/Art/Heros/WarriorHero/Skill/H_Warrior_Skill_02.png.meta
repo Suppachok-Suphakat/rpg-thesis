@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a0541a511a7e40e46ae8a8ecbcbc1496
+guid: 926959b8a90b0d14885b9da74138dcc1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: H_Priest_Skill_02_0
+      name: skill02 (1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99f7ab0074bddcf4ea83f1f473a0ede4
-      internalID: -1596620013
+      spriteID: 2390f622feb54cc4e8cdaf368242d41a
+      internalID: 433210827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_1
+      name: skill02 (1)_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10b5ac4ca11fe5d45ba522e86481532d
-      internalID: 245642816
+      spriteID: 2e5ab7372d0cc704193f00854fdbde90
+      internalID: -857118927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_2
+      name: skill02 (1)_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fd3348d1fabe2846a40d4c99cc16167
-      internalID: 1569929676
+      spriteID: 1996d61b73e120043ab3215a24b7e383
+      internalID: -2055477873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_3
+      name: skill02 (1)_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d96f448535c4dcb4fb1048bea1847657
-      internalID: -1593648541
+      spriteID: 57822fbf922ce144e98764a809011e9d
+      internalID: -947512514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_4
+      name: skill02 (1)_4
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50f88417475acb741bbd50a6daaba960
-      internalID: -996353363
+      spriteID: 1edb59b812ed47b46bbd5f0f979f5492
+      internalID: -1845255269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_5
+      name: skill02 (1)_5
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 207346b817c481540bb9148140200bdb
-      internalID: -25860777
+      spriteID: d00aa1dce3ec7124aa8ca32a75cc1132
+      internalID: 1441478362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_6
+      name: skill02 (1)_6
       rect:
         serializedVersion: 2
         x: 384
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 082e6d2903b169c4f8689e22b36640f5
-      internalID: -1169244216
+      spriteID: 3b9d12a602e726a439b2982e25d0788f
+      internalID: 409940266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_7
+      name: skill02 (1)_7
       rect:
         serializedVersion: 2
         x: 448
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6850b533557568543bf27a9c29575f2a
-      internalID: 1626715246
+      spriteID: f402dcbc2b7673248a6ab9f32b09987d
+      internalID: -488469149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_8
+      name: skill02 (1)_8
       rect:
         serializedVersion: 2
         x: 512
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19cf7a8715a5a0a46ab525944b64877b
-      internalID: -1194329402
+      spriteID: 5c9a2009a4171684e86c52ce3abbf364
+      internalID: 448852078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_9
+      name: skill02 (1)_9
       rect:
         serializedVersion: 2
         x: 576
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,20 +326,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbef57bbcbe120e498c06e2aeb7b753d
-      internalID: -1618461962
+      spriteID: 183e8013e80d01843a63ad971df8ab82
+      internalID: 537402213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_10
+      name: skill02 (1)_10
       rect:
         serializedVersion: 2
         x: 640
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +347,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bebc39e9ba791e4895929d023798149
-      internalID: 1674402628
+      spriteID: b0ee14ee54239c64c87869d8a3dde919
+      internalID: 2090987980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_11
+      name: skill02 (1)_11
       rect:
         serializedVersion: 2
         x: 704
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,20 +368,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b91f79e52304ce458e079ae50ed94b1
-      internalID: -1975916351
+      spriteID: 0c7b9397d68b3d84cb35b5bcfab4d7fc
+      internalID: 1260335454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_12
+      name: skill02 (1)_12
       rect:
         serializedVersion: 2
         x: 768
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,20 +389,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4228a06dd1de81a4dafa92f8bf998ce7
-      internalID: -1900889917
+      spriteID: d6476a40c4f032840bf5c81002d685c1
+      internalID: 896780637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Priest_Skill_02_13
+      name: skill02 (1)_13
       rect:
         serializedVersion: 2
         x: 832
         y: 0
         width: 64
-        height: 128
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -410,8 +410,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3051ba9823986af449a40412c6000b25
-      internalID: 348427053
+      spriteID: 4a692fddc36de414e92b4318e4c4e7ad
+      internalID: 1210262672
       vertices: []
       indices: 
       edges: []
@@ -427,20 +427,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      H_Priest_Skill_02_0: -1596620013
-      H_Priest_Skill_02_1: 245642816
-      H_Priest_Skill_02_10: 1674402628
-      H_Priest_Skill_02_11: -1975916351
-      H_Priest_Skill_02_12: -1900889917
-      H_Priest_Skill_02_13: 348427053
-      H_Priest_Skill_02_2: 1569929676
-      H_Priest_Skill_02_3: -1593648541
-      H_Priest_Skill_02_4: -996353363
-      H_Priest_Skill_02_5: -25860777
-      H_Priest_Skill_02_6: -1169244216
-      H_Priest_Skill_02_7: 1626715246
-      H_Priest_Skill_02_8: -1194329402
-      H_Priest_Skill_02_9: -1618461962
+      skill02 (1)_0: 433210827
+      skill02 (1)_1: -857118927
+      skill02 (1)_10: 2090987980
+      skill02 (1)_11: 1260335454
+      skill02 (1)_12: 896780637
+      skill02 (1)_13: 1210262672
+      skill02 (1)_2: -2055477873
+      skill02 (1)_3: -947512514
+      skill02 (1)_4: -1845255269
+      skill02 (1)_5: 1441478362
+      skill02 (1)_6: 409940266
+      skill02 (1)_7: -488469149
+      skill02 (1)_8: 448852078
+      skill02 (1)_9: 537402213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
