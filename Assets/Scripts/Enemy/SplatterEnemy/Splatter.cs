@@ -9,6 +9,8 @@ public class Splatter : MonoBehaviour, IEnemy
     private Animator myAnimator;
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private Transform projectileSpawnPoint;
+
     readonly int ATTACK_HASH = Animator.StringToHash("Attack");
 
     private void Awake()
@@ -33,6 +35,6 @@ public class Splatter : MonoBehaviour, IEnemy
 
     public void SpawnProjectileAnimEvent()
     {
-        Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
     }
 }
