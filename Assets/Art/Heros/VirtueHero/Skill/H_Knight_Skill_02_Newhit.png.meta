@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d97c40bed84a3c94d8f321a656f5d81b
+guid: abc0a9e988bcac448b12710306fe5d4c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_0
+      name: H_Knight_Skill_02_Newhit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a22c6871e65258041b731ad8900b2798
-      internalID: 716494080
+      spriteID: 87652e561ef2e7c46a657e06d5737054
+      internalID: 1142365562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_1
+      name: H_Knight_Skill_02_Newhit_1
       rect:
         serializedVersion: 2
         x: 128
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54f4ffd55a5e9014b8b31509eca8f8b9
-      internalID: -1829790435
+      spriteID: e9d80c0af69f8e2489edf57a17341a9a
+      internalID: -1208820456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_2
+      name: H_Knight_Skill_02_Newhit_2
       rect:
         serializedVersion: 2
         x: 256
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fe52ebbae15a534c9f0a0d2f744a07d
-      internalID: -1990680249
+      spriteID: ce77ffff42470e14ab601d8ccf751bd2
+      internalID: 945010086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_3
+      name: H_Knight_Skill_02_Newhit_3
       rect:
         serializedVersion: 2
         x: 384
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea8e65f4026df164eb4a880276dbec20
-      internalID: -559934297
+      spriteID: 12bb520f367b35d44a14a5c1c2794969
+      internalID: -685670394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_4
+      name: H_Knight_Skill_02_Newhit_4
       rect:
         serializedVersion: 2
         x: 512
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1316db54d6f7fb4db9c8633e0c79c54
-      internalID: -1688352935
+      spriteID: 5dc09d9dc5ff9204ab611660e333ed46
+      internalID: -339356215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_5
+      name: H_Knight_Skill_02_Newhit_5
       rect:
         serializedVersion: 2
         x: 640
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36e782b5969610049b1341ba2c9a27ed
-      internalID: -783573855
+      spriteID: 0c52a246bfa25144a9d4692ba1cae033
+      internalID: -933589701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: H_Knight_Skill_02_Hit_6
+      name: H_Knight_Skill_02_Newhit_6
       rect:
         serializedVersion: 2
         x: 768
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2fd36dd5483cfc48ae59b1f5a2f7821
-      internalID: 1293967489
+      spriteID: 4a4f2315ed43a814f9a49415cc2282c8
+      internalID: 1928100789
       vertices: []
       indices: 
       edges: []
@@ -280,13 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      H_Knight_Skill_02_Hit_0: 716494080
-      H_Knight_Skill_02_Hit_1: -1829790435
-      H_Knight_Skill_02_Hit_2: -1990680249
-      H_Knight_Skill_02_Hit_3: -559934297
-      H_Knight_Skill_02_Hit_4: -1688352935
-      H_Knight_Skill_02_Hit_5: -783573855
-      H_Knight_Skill_02_Hit_6: 1293967489
+      H_Knight_Skill_02_Newhit_0: 1142365562
+      H_Knight_Skill_02_Newhit_1: -1208820456
+      H_Knight_Skill_02_Newhit_2: 945010086
+      H_Knight_Skill_02_Newhit_3: -685670394
+      H_Knight_Skill_02_Newhit_4: -339356215
+      H_Knight_Skill_02_Newhit_5: -933589701
+      H_Knight_Skill_02_Newhit_6: 1928100789
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
