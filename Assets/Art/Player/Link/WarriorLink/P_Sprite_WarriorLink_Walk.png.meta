@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: af4f75bc34192c34aa2b66c41968cbb4
+guid: 7941061747e133949b2827fd12096468
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Idle_0
+      name: P_Sprite_WarriorLink_Walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c36fdcde39be5f4d8ff4516f8ca14a8
-      internalID: -355810164
+      spriteID: ec420a9cc85654e4fa3956a240807e13
+      internalID: 403578621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Idle_1
+      name: P_Sprite_WarriorLink_Walk_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a4b980020b087c45b4793dd58b85721
-      internalID: -1180076916
+      spriteID: cef15435bbe16804f9aca844d5071e5d
+      internalID: -1761672471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Idle_2
+      name: P_Sprite_WarriorLink_Walk_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37edaa8e43b3df24387631c966e90619
-      internalID: -1744543918
+      spriteID: e530602d0d4339643b47ac255ac3b222
+      internalID: -329682196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Idle_3
+      name: P_Sprite_WarriorLink_Walk_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ff26381009849f45b9734d5150f5db4
-      internalID: 1240061077
+      spriteID: 0cef7d9b91aa0c449937c46b16b3f4ed
+      internalID: -1871528435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Idle_4
+      name: P_Sprite_WarriorLink_Walk_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36d16379fd3a49a40825dff6590a4d79
-      internalID: -335787251
+      spriteID: 81c32aa57f50e644fb205381509de796
+      internalID: 623937417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Idle_5
+      name: P_Sprite_WarriorLink_Walk_5
       rect:
         serializedVersion: 2
         x: 320
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67b2873327f9e1447a54b7623004a31f
-      internalID: 1528616956
+      spriteID: 5b76a5cc17c788143ae64e8c83be70e5
+      internalID: -611649345
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NP_Sprite_WarriorFusion_Idle_0: -355810164
-      NP_Sprite_WarriorFusion_Idle_1: -1180076916
-      NP_Sprite_WarriorFusion_Idle_2: -1744543918
-      NP_Sprite_WarriorFusion_Idle_3: 1240061077
-      NP_Sprite_WarriorFusion_Idle_4: -335787251
-      NP_Sprite_WarriorFusion_Idle_5: 1528616956
+      P_Sprite_WarriorLink_Walk_0: 403578621
+      P_Sprite_WarriorLink_Walk_1: -1761672471
+      P_Sprite_WarriorLink_Walk_2: -329682196
+      P_Sprite_WarriorLink_Walk_3: -1871528435
+      P_Sprite_WarriorLink_Walk_4: 623937417
+      P_Sprite_WarriorLink_Walk_5: -611649345
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

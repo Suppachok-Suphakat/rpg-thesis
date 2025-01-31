@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d6f1b492cb2045f43a4310c169833827
+guid: af6edd790a1204b49894192944ad6d63
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Backwalk_0
+      name: P_Sprite_WarriorLink_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e45f6bbac8331d49b649b0c324be444
-      internalID: 1290480435
+      spriteID: 5cbc9857d78a18843b57d2736294adc2
+      internalID: 1728367317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Backwalk_1
+      name: P_Sprite_WarriorLink_Idle_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 726bc97bcf2bd94468492cb7e7a0391e
-      internalID: -1643751993
+      spriteID: 589d5af769f90704baaab068ab60b766
+      internalID: 2089473658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Backwalk_2
+      name: P_Sprite_WarriorLink_Idle_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebe137c4e74860f4abf99fd1b04f6cf0
-      internalID: 738258769
+      spriteID: 671a77ec251a0ad4c89fb52c6d70b0df
+      internalID: 896877734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Backwalk_3
+      name: P_Sprite_WarriorLink_Idle_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2df8f43a10e18e047942c3558fa76b67
-      internalID: 1904000672
+      spriteID: c537428926335874685556eef4ed230b
+      internalID: -1216560513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Backwalk_4
+      name: P_Sprite_WarriorLink_Idle_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f0fb76f12fc89c49bca74e4382cc743
-      internalID: -1390510057
+      spriteID: 9cb6ec67849245343a4b0288308a64ef
+      internalID: 2106187441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Backwalk_5
+      name: P_Sprite_WarriorLink_Idle_5
       rect:
         serializedVersion: 2
         x: 320
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83b88ac4cd75e054e9ea9e4a5bc70228
-      internalID: 96456983
+      spriteID: 68ebac7a2cb7f59419e3b42083c7d0e7
+      internalID: 406384145
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NP_Sprite_WarriorFusion_Backwalk_0: 1290480435
-      NP_Sprite_WarriorFusion_Backwalk_1: -1643751993
-      NP_Sprite_WarriorFusion_Backwalk_2: 738258769
-      NP_Sprite_WarriorFusion_Backwalk_3: 1904000672
-      NP_Sprite_WarriorFusion_Backwalk_4: -1390510057
-      NP_Sprite_WarriorFusion_Backwalk_5: 96456983
+      P_Sprite_WarriorLink_Idle_0: 1728367317
+      P_Sprite_WarriorLink_Idle_1: 2089473658
+      P_Sprite_WarriorLink_Idle_2: 896877734
+      P_Sprite_WarriorLink_Idle_3: -1216560513
+      P_Sprite_WarriorLink_Idle_4: 2106187441
+      P_Sprite_WarriorLink_Idle_5: 406384145
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

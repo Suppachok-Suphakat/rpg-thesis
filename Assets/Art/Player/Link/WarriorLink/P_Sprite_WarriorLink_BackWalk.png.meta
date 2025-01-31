@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa518f6010a27694ab0de21f51fcc5a0
+guid: c43d5b5e89c4671479be4c3853fc8d46
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Walk_0
+      name: P_Sprite_WarriorLink_BackWalk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce4e7f800a7cb8c41bd6e5721b4c1c0a
-      internalID: 53882184
+      spriteID: d019dc0ad2dabac4ea3ce05e9d5ad807
+      internalID: -67924469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Walk_1
+      name: P_Sprite_WarriorLink_BackWalk_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d648fdbf85cd77439c74b1fbf7b56c8
-      internalID: -1699335258
+      spriteID: b894f446ae7fab34b800c13c6251b9e2
+      internalID: -1597180668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Walk_2
+      name: P_Sprite_WarriorLink_BackWalk_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31266d4912d8dc842a427f4a1095014e
-      internalID: 1768457421
+      spriteID: 25755eeac0a023a42b4180152c6bceb8
+      internalID: -589958546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Walk_3
+      name: P_Sprite_WarriorLink_BackWalk_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30c86a146b21fff4eb97b79d13a750e0
-      internalID: -1013226698
+      spriteID: 0c4c32373c1487a45a874e6b8b32edcd
+      internalID: 591792290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Walk_4
+      name: P_Sprite_WarriorLink_BackWalk_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 925f162a6284d5e48a7c18e9fd5066f3
-      internalID: 139937388
+      spriteID: 1d3741c2de784394f97104eba2ba35f2
+      internalID: 44347721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NP_Sprite_WarriorFusion_Walk_5
+      name: P_Sprite_WarriorLink_BackWalk_5
       rect:
         serializedVersion: 2
         x: 320
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7de706fb3536b8f408a0e36fc28b2c2a
-      internalID: 1083128916
+      spriteID: adeea04f419d4b040906e8ef7c37a376
+      internalID: -1280805503
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NP_Sprite_WarriorFusion_Walk_0: 53882184
-      NP_Sprite_WarriorFusion_Walk_1: -1699335258
-      NP_Sprite_WarriorFusion_Walk_2: 1768457421
-      NP_Sprite_WarriorFusion_Walk_3: -1013226698
-      NP_Sprite_WarriorFusion_Walk_4: 139937388
-      NP_Sprite_WarriorFusion_Walk_5: 1083128916
+      P_Sprite_WarriorLink_BackWalk_0: -67924469
+      P_Sprite_WarriorLink_BackWalk_1: -1597180668
+      P_Sprite_WarriorLink_BackWalk_2: -589958546
+      P_Sprite_WarriorLink_BackWalk_3: 591792290
+      P_Sprite_WarriorLink_BackWalk_4: 44347721
+      P_Sprite_WarriorLink_BackWalk_5: -1280805503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
