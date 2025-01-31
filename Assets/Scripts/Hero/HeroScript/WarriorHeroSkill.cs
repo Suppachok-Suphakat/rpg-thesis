@@ -50,6 +50,8 @@ public class WarriorHeroSkill : MonoBehaviour
     [SerializeField] public ToolbarSlot toolbarSlot;
     [SerializeField] public WeaponInfo weaponInfo;
     [SerializeField] public Sprite itemSprite;
+    [SerializeField] public GameObject avatar;
+    private GameObject avatarInstance;
 
     WeaponInfo weaponChangeInfo;
     Sprite weaponChangeSprite;
@@ -383,21 +385,27 @@ public class WarriorHeroSkill : MonoBehaviour
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("warriorLink");
 
-        if (toolbarSlot != null)
-        {
-            toolbarSlot.gameObject.SetActive(true); // Ensure toolbarSlot is active
-            StartCoroutine(EnsureUIUpdate()); // Ensure UI is updated
-        }
+        Transform avatarSpawnPoint = PlayerController.instance.avatarSpawnPoint;
 
-        if (toolbarSlot.weaponInfo != null)
-        {
-            weaponChangeInfo = toolbarSlot.weaponInfo;
-        }
-        weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+        GameObject avatarGO = Instantiate(avatar, avatarSpawnPoint.position, Quaternion.identity);
+        avatarGO.transform.SetParent(avatarSpawnPoint);
+        avatarInstance = avatarGO;
 
-        toolbarSlot.weaponInfo = weaponInfo;
-        toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
-        activeToolbar.ChangeActiveWeapon();
+        //if (toolbarSlot != null)
+        //{
+        //    toolbarSlot.gameObject.SetActive(true); // Ensure toolbarSlot is active
+        //    StartCoroutine(EnsureUIUpdate()); // Ensure UI is updated
+        //}
+
+        //if (toolbarSlot.weaponInfo != null)
+        //{
+        //    weaponChangeInfo = toolbarSlot.weaponInfo;
+        //}
+        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
+
+        //toolbarSlot.weaponInfo = weaponInfo;
+        //toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
+        //activeToolbar.ChangeActiveWeapon();
 
         fusionActivated = true;
     }
@@ -420,19 +428,21 @@ public class WarriorHeroSkill : MonoBehaviour
         // Trigger return to normal state
         PlayerController.instance.GetComponent<Animator>().SetTrigger("warriorUnlink");
 
-        // Handle weapon change back
-        if (weaponChangeInfo != null)
-        {
-            toolbarSlot.weaponInfo = weaponChangeInfo;
-            toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-        }
-        else
-        {
-            toolbarSlot.weaponInfo = null;
-            toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
-        }
+        Destroy(avatarInstance);
 
-        activeToolbar.ChangeActiveWeapon();
+        // Handle weapon change back
+        //if (weaponChangeInfo != null)
+        //{
+        //    toolbarSlot.weaponInfo = weaponChangeInfo;
+        //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+        //}
+        //else
+        //{
+        //    toolbarSlot.weaponInfo = null;
+        //    toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
+        //}
+
+        //activeToolbar.ChangeActiveWeapon();
 
         StartCoroutine(ResetFusionTrigger());
 
@@ -442,7 +452,7 @@ public class WarriorHeroSkill : MonoBehaviour
     IEnumerator ResetFusionTrigger()
     {
         yield return new WaitForSeconds(0.1f);
-        PlayerController.instance.GetComponent<Animator>().ResetTrigger("KnightFusionReturn");
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("WarriorFusionReturn");
     }
 
     public void OnSkillDamage()

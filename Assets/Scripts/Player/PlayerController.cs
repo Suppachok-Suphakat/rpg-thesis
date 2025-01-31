@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public bool isMenuActive = false;
 
     private Character character;
+    public Transform avatarSpawnPoint;
 
     private void Awake()
     {
