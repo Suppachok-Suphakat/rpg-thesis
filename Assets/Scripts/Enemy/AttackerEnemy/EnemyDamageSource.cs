@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDamageSource : MonoBehaviour
@@ -9,10 +8,24 @@ public class EnemyDamageSource : MonoBehaviour
 
     private bool canTakeDamage = true;
     private float damageCooldown = 0.5f;
+    private Collider2D damageCollider;
 
-    private void Start()
+    private void Awake()
     {
-        
+        damageCollider = GetComponent<Collider2D>();
+    }
+
+    private void OnEnable()
+    {
+        if (damageCollider != null)
+        {
+            // Check for overlapping objects when collider is enabled
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(damageCollider.bounds.center, damageCollider.bounds.size, 0f);
+            foreach (var collider in colliders)
+            {
+                ApplyDamage(collider);
+            }
+        }
     }
 
     private IEnumerator DamageCooldownRoutine()
@@ -25,46 +38,27 @@ public class EnemyDamageSource : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!canTakeDamage) return;
-
-        Character playerHealth = other.gameObject.GetComponent<Character>();
-        if (playerHealth != null)
-        {
-            Debug.Log("HitPlayer");
-            playerHealth.TakeDamage(damageAmount, transform);
-            StartCoroutine(DamageCooldownRoutine());
-        }
-
-        HeroHealth partnerHealth = other.gameObject.GetComponent<HeroHealth>();
-        if (partnerHealth != null)
-        {
-            partnerHealth.TakeDamage(damageAmount, transform);
-            StartCoroutine(DamageCooldownRoutine());
-        }
+        ApplyDamage(other);
+        StartCoroutine(DamageCooldownRoutine());
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Collision detected with: " + other.name);
+        ApplyDamage(other);
+    }
 
+    private void ApplyDamage(Collider2D other)
+    {
         Character playerHealth = other.gameObject.GetComponent<Character>();
         if (playerHealth != null)
         {
-            Debug.Log("HitPlayer");
             playerHealth.TakeDamage(damageAmount, transform);
-        }
-        else
-        {
-            Debug.Log("Character component not found on " + other.name);
         }
 
         HeroHealth partnerHealth = other.gameObject.GetComponent<HeroHealth>();
         if (partnerHealth != null)
         {
             partnerHealth.TakeDamage(damageAmount, transform);
-        }
-        else
-        {
-            Debug.Log("HeroHealth component not found on " + other.name);
         }
     }
 }

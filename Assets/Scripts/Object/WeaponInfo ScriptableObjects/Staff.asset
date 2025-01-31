@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3b5bf77e920d546ab0b4bc96acb64f, type: 3}
   m_Name: Staff
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 3220196008529797064, guid: 48ee49c47171588459637a8ce4eaf845, type: 3}
+  weaponPrefab: {fileID: 3220196008529797064, guid: 397c092fa3a2c304489b927a94a7b154, type: 3}
   weaponCooldown: 2
   weaponDamage: 30
   weaponRange: 8

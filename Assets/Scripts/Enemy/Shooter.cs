@@ -13,6 +13,7 @@ public class Shooter : MonoBehaviour, IEnemy
     [SerializeField] private float timeBetweenBursts;
     [SerializeField] private float restTime = 1f;
     [SerializeField] private float animationDelay = 0.5f; // Delay before shooting for animation sync
+    [SerializeField] private Transform bulletSpawnpoint; // Delay before shooting for animation sync
 
     private bool isShooting = false;
 
@@ -41,10 +42,13 @@ public class Shooter : MonoBehaviour, IEnemy
 
             for (int j = 0; j < projectilesPerBurst; j++)
             {
-                Vector2 pos = FindBulletSpawnPos(currentAngle);
+                //Vector2 pos = FindBulletSpawnPos(currentAngle);
 
-                GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
-                newBullet.transform.right = newBullet.transform.position - transform.position;
+                //GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
+                //newBullet.transform.right = newBullet.transform.position - transform.position;
+
+                Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
+                GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnpoint.position, rotation);
 
                 if (newBullet.TryGetComponent(out Projectile projectile))
                 {
@@ -99,5 +103,28 @@ public class Shooter : MonoBehaviour, IEnemy
             transform.localScale = new Vector3(1, 1, 1);
         else
             transform.localScale = new Vector3(-1, 1, 1);
+    }
+
+    public void MagicAttackEvent()
+    {
+        if (!isShooting)
+        {
+            StartCoroutine(MagicRoutine());
+        }
+    }
+
+    private IEnumerator MagicRoutine()
+    {
+        isShooting = true;
+
+        // Flip to face the player at the start of shooting
+        FlipSprite(PlayerController.instance.transform);
+
+        yield return new WaitForSeconds(animationDelay); // Add delay for animation
+
+        GameObject newMagic = Instantiate(bulletPrefab, PlayerController.instance.transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(restTime);
+        isShooting = false;
     }
 }
