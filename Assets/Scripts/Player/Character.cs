@@ -63,7 +63,7 @@ public class Character : MonoBehaviour, IDamageable
 
     [SerializeField] private float knockBackThrustAmount = 10f;
 
-    [SerializeField] private float damageRecoveryTime = 1f;
+    [SerializeField] private float damageRecoveryTime = 0.5f;
 
     [SerializeField] private int staminaRecoveryRate = 2;
     [SerializeField] private float staminaRecoveryDelay = 0.1f;
