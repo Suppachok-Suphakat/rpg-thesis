@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 5558173840406602056}
   - component: {fileID: 9109020172715979319}
   - component: {fileID: 122299241523337521}
+  - component: {fileID: 1796149270605607977}
   m_Layer: 10
   m_Name: SkeletionMarksman
   m_TagString: Enemy
@@ -561,6 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  stopMovingTime: 2
   isImmobilized: 0
 --- !u!114 &2681166522991857370
 MonoBehaviour:
@@ -638,9 +640,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa32f976773a0944bb2cd9b951d1128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4817170322715767019, guid: 894c221e984158d40a2f3ab9a21cfaec, type: 3}
+  bulletPrefab: {fileID: 3554886383241864524, guid: 5f32c6e6dc440854d889d5631e161491, type: 3}
   bulletMoveSpeed: 6
-  burstCount: 1
+  burstCount: 2
   projectilesPerBurst: 1
   angleSpread: 0
   startingDistance: 0.1
@@ -648,6 +650,18 @@ MonoBehaviour:
   restTime: 0
   animationDelay: 0.75
   bulletSpawnpoint: {fileID: 3311986687970650229}
+--- !u!114 &1796149270605607977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417106477297603239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

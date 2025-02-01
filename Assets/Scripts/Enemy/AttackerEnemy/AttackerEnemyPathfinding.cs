@@ -11,6 +11,7 @@ public class AttackerEnemyPathfinding : MonoBehaviour
     private Knockback knockback;
     private SpriteRenderer spriteRenderer;
 
+    public float stopMovingTime;
     public bool isImmobilized = false;
 
     private AttackerEnemyAI attackerEnemyAI;
@@ -50,6 +51,22 @@ public class AttackerEnemyPathfinding : MonoBehaviour
 
     public void StopMoving()
     {
-        moveDir = Vector3.zero;
+        isImmobilized = true;
+        moveDir = Vector2.zero;
+
+        // Make Rigidbody2D Kinematic to prevent physics interactions
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        StartCoroutine(StopMovingForSeconds());
+    }
+
+    IEnumerator StopMovingForSeconds()
+    {
+        yield return new WaitForSeconds(stopMovingTime);
+
+        // Restore Rigidbody2D to Dynamic so it can move again
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
+        isImmobilized = false;
     }
 }

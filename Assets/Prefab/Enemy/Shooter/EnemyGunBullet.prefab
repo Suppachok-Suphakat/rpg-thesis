@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 578799564013354577}
   - component: {fileID: 8754934958245518921}
   - component: {fileID: 3739314828890627869}
-  - component: {fileID: 6565318797561181286}
-  - component: {fileID: 4811383344133619106}
-  - component: {fileID: 5695162421592465759}
+  - component: {fileID: 7543375901313438432}
+  - component: {fileID: 478831989371973017}
+  - component: {fileID: 6853845938071372572}
   m_Layer: 0
-  m_Name: GunBullet
+  m_Name: EnemyGunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,11 +76,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1206999469
+  m_SortingLayer: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e083296d4db4ea84ba30759d9281598e, type: 3}
-  m_Color: {r: 1, g: 0.514151, b: 0.514151, a: 1}
+  m_Color: {r: 1, g: 0.5801887, b: 0.5801887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,8 +122,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004838682, y: -0.013494091}
-  m_Size: {x: 0.2226182, y: 0.119158626}
+  m_Offset: {x: 0.007242515, y: -0.012007834}
+  m_Size: {x: 0.24901286, y: 0.14400257}
   m_Direction: 1
 --- !u!50 &8754934958245518921
 Rigidbody2D:
@@ -225,8 +225,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.95294124, b: 0.003921569, a: 1}
-      key1: {r: 0, g: 0.9529412, b: 0.003921569, a: 1}
+      key0: {r: 1, g: 0, b: 0, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -265,7 +265,19 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &6565318797561181286
+--- !u!210 &7543375901313438432
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3554886383241864524}
+  m_Enabled: 1
+  m_SortingLayerID: -1206999469
+  m_SortingLayer: -1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!114 &478831989371973017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,30 +286,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3554886383241864524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5efd0af366d094d4e9c4673857ac27b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 522ed6fb0dcb91a4da1fb6f4b4a6bcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0
---- !u!114 &4811383344133619106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3554886383241864524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb841944fc251543981156bd83e4b68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  moveSpeed: 20
+  damage: 10
+  moveSpeed: 30
   particleOnHitPrefabVFX: {fileID: 3626922010709504189, guid: d632d51825fea4e4aa4c41406f90ebb2, type: 3}
-  isEnemyProjectile: 0
+  isEnemyProjectile: 1
   projectileRange: 10
-  sliderObject: {fileID: 0}
-  chargeAmount: 0
---- !u!114 &5695162421592465759
+--- !u!114 &6853845938071372572
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,6 +303,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3554886383241864524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Script: {fileID: 11500000, guid: eb996c433c58d0448ace71303697fc36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 15
+  knockBackThrust: 0

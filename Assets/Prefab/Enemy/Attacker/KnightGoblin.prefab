@@ -135,7 +135,7 @@ RectTransform:
   m_Father: {fileID: 3111100644696775289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00000011920929, y: 0.000000044703484}
   m_SizeDelta: {x: -0.00000023842, y: -0.000000029802}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -302,13 +302,14 @@ GameObject:
   - component: {fileID: 5629509125484015226}
   - component: {fileID: 8019490650374748383}
   - component: {fileID: 8655666232419251723}
+  - component: {fileID: -5566299265758330141}
   m_Layer: 10
   m_Name: KnightGoblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4100660503886856127
 Transform:
   m_ObjectHideFlags: 0
@@ -360,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  stopMovingTime: 1
   isImmobilized: 0
 --- !u!114 &2905894672231633956
 MonoBehaviour:
@@ -604,6 +606,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs: []
+--- !u!114 &-5566299265758330141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629653595643336442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4975459596118953980
 GameObject:
   m_ObjectHideFlags: 0

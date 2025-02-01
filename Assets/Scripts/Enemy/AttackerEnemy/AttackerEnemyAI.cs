@@ -117,12 +117,10 @@ public class AttackerEnemyAI : MonoBehaviour
 
         if (stopMovingWhileAttacking && distanceToTarget <= damageRange)
         {
-            // Stop moving during attack if flag is true
             attackerEnemyPathfinding.StopMoving();
         }
         else
         {
-            // Only move if stopMovingWhileAttacking is false
             attackerEnemyPathfinding.MoveTo(directionToTarget);
         }
 

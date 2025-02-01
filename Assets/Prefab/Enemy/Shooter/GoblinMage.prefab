@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 5558173840406602056}
   - component: {fileID: 9109020172715979319}
   - component: {fileID: 122299241523337521}
+  - component: {fileID: -3361929717986210230}
   m_Layer: 10
   m_Name: GoblinMage
   m_TagString: Enemy
@@ -648,6 +649,18 @@ MonoBehaviour:
   restTime: 1
   animationDelay: 0.5
   bulletSpawnpoint: {fileID: 0}
+--- !u!114 &-3361929717986210230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417106477297603239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

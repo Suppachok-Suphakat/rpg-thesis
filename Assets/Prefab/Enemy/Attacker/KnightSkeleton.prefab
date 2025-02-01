@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 5629509125484015226}
   - component: {fileID: 8019490650374748383}
   - component: {fileID: 8655666232419251723}
+  - component: {fileID: 3200456652372288692}
   m_Layer: 10
   m_Name: KnightSkeleton
   m_TagString: Enemy
@@ -360,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  stopMovingTime: 2
   isImmobilized: 0
 --- !u!114 &2905894672231633956
 MonoBehaviour:
@@ -604,6 +606,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs: []
+--- !u!114 &3200456652372288692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629653595643336442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4975459596118953980
 GameObject:
   m_ObjectHideFlags: 0
