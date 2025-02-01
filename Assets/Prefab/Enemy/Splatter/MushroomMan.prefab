@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  stopMovingTime: 0
   isImmobilized: 0
 --- !u!212 &8061802504375978587
 SpriteRenderer:
@@ -655,7 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1d38aefd56eb946935e82620b31e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4817170322715767019, guid: 55696ae986fdd314a9fc194571cdbc6d, type: 3}
+  projectilePrefab: {fileID: 4817170322715767019, guid: dafe4bcef7b4d6d489a2241e9c784895, type: 3}
   projectileSpawnPoint: {fileID: 3793425579948947079}
 --- !u!114 &-8779028804146107492
 MonoBehaviour:

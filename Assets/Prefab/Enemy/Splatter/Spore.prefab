@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -375266883
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2058434931, guid: a1e844fa6a27ff14b9687f356f58f38a, type: 3}
+  m_Sprite: {fileID: 751993492, guid: cad1a556fd8ae2c4ea402c0e3d432668, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 4817170322715767019}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eab25a78231508a41950693b2faf411b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 43d3e31febfdc2c419a63ece404f1e3a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -168,9 +168,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.051725805, y: -0.37948486}
+  m_Offset: {x: 0.051725775, y: 0.102298975}
   serializedVersion: 2
-  m_Radius: 0.28666505
+  m_Radius: 0.43252623
 --- !u!114 &3341946045170991300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +210,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   heightY: 5.5
   splatterProjectileShadow: {fileID: 561078635120838229, guid: 0f2abdab586395a41b2224195ea9abb5, type: 3}
-  splatterPrefab: {fileID: 2136554603464929707, guid: a74b5098cafa1e84ca46711d0d020df1, type: 3}
+  splatterPrefab: {fileID: 2136554603464929707, guid: b56cfc5860e2a2748ab6bd90264920a4, type: 3}
   landingShadowPrefab: {fileID: 561078635120838229, guid: 0fc2c02d231976146b6d163c6a2c3bb1, type: 3}
   maxShadowScale: {x: 3, y: 3, z: 1}
