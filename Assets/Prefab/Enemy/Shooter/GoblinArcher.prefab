@@ -395,7 +395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6257524702997511821
 Transform:
   m_ObjectHideFlags: 0
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8fc565a02b64e408ea41ac33e94f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   currentHealth: 0
   deathVFXPrefab: {fileID: 3626922010709504189, guid: 6edd3c2e4fc54a647b47a1663decdf66, type: 3}
   knockBackThrust: 1
@@ -770,7 +770,7 @@ RectTransform:
   m_Father: {fileID: 746768966851204728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.00000011920929, y: 0.000000044703484}
   m_SizeDelta: {x: -0.00000023842, y: -0.000000029802}
   m_Pivot: {x: 0.5, y: 0.5}
