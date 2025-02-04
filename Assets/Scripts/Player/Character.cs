@@ -50,7 +50,7 @@ public class Character : MonoBehaviour, IDamageable
     public static Character instance;
 
     public bool isDead { get; private set; }
-    const string TOWN_TEXT = "Map01";
+    const string TOWN_TEXT = "";
     readonly int DEATH_HASH = Animator.StringToHash("Death");
 
     public Stat hp;
@@ -228,8 +228,9 @@ public class Character : MonoBehaviour, IDamageable
     private IEnumerator DeathLoadSceneRoutine()
     {
         yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
-        SceneManager.LoadScene(TOWN_TEXT);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Destroy(gameObject);
+        //SceneManager.LoadScene(TOWN_TEXT);
     }
 
     public void ReduceHP(int amount)

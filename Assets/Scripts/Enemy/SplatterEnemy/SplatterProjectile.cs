@@ -69,7 +69,16 @@ public class SplatterProjectile : MonoBehaviour
         {
             timePassed += Time.deltaTime;
             float linearT = timePassed / duration;
+            float heightT = animCurve.Evaluate(linearT);
+            float height = Mathf.Lerp(0f, heightY, heightT);
+
+            // Move the shadow along the ground
             splatterShadow.transform.position = Vector2.Lerp(startPosition, endPosition, linearT);
+
+            // Scale the shadow inversely to height (higher projectile = smaller shadow)
+            float scaleFactor = Mathf.Lerp(2f, 0.5f, heightT); // Shadow shrinks when projectile is high
+            splatterShadow.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1f);
+
             yield return null;
         }
 
