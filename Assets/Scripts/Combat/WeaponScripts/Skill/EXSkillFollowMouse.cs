@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
-public class EXSkillFollowMouse : MonoBehaviour
+public class EXSkillFollowMouse : MonoBehaviour, IWeapon
 {
     public int damage;
 
@@ -10,26 +11,31 @@ public class EXSkillFollowMouse : MonoBehaviour
     [SerializeField] private GameObject particleOnHitPrefabVFX;
     [SerializeField] private bool isEnemyProjectile = false;
     [SerializeField] private float projectileRange = 10f;
+    [SerializeField] private WeaponInfo weaponInfo;
 
     private Vector3 startPosition;
-
-    [SerializeField] private GameObject sliderObject;
-    [SerializeField] private SkillStatusBar statusComponent;
-    public int chargeAmount;
 
     private Vector3 initialDirection;
 
     private void Start()
     {
         startPosition = transform.position;
-        sliderObject = GameObject.Find("WeaponSkillBar");
-        statusComponent = sliderObject.GetComponent<SkillStatusBar>();
     }
 
     private void Update()
     {
         MoveProjectileFollowMouse();
-        DetectFireDistance();
+    }
+
+
+    public WeaponInfo GetWeaponInfo()
+    {
+        return weaponInfo;
+    }
+
+    public void Attack()
+    {
+        
     }
 
     public void UpdateProjectileRange(float projectileRange)
@@ -46,33 +52,18 @@ public class EXSkillFollowMouse : MonoBehaviour
     {
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         Indestructible indestructible = other.gameObject.GetComponent<Indestructible>();
-        Character player = other.gameObject.GetComponent<Character>();
-        Barrier barrier = other.gameObject.GetComponent<Barrier>();
 
-        if (!other.isTrigger && (enemyHealth || indestructible || player))
+        if (!other.isTrigger && (enemyHealth || indestructible))
         {
-            if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
+            if (enemyHealth)
             {
-                player?.TakeDamage(damage, transform);
+                enemyHealth.TakeDamage(damage);
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             }
             else if (!other.isTrigger && indestructible)
             {
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             }
-        }
-        else if (barrier)
-        {
-            Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
-    }
-
-    private void DetectFireDistance()
-    {
-        if (Vector3.Distance(transform.position, startPosition) > projectileRange)
-        {
-            Destroy(gameObject);
         }
     }
 

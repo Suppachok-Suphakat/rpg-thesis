@@ -45,6 +45,11 @@ public class AegisHeroSkill : MonoBehaviour
     [Header("Skill Change")]
     [SerializeField] public ToolbarSlot toolbarSlot;
     [SerializeField] public WeaponInfo weaponInfo;
+    [SerializeField] private GameObject weaponGO;
+    [SerializeField] private GameObject weaponInstance;
+    [SerializeField] private GameObject droneInstance;
+    [SerializeField] private GameObject droneGO;
+    [SerializeField] private Transform dronePoint;
     [SerializeField] public Sprite itemSprite;
 
     WeaponInfo weaponChangeInfo;
@@ -294,7 +299,11 @@ public class AegisHeroSkill : MonoBehaviour
 
         toolbarSlot.weaponInfo = weaponInfo;
         toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
-        activeToolbar.ChangeActiveWeapon();
+        //activeToolbar.ChangeActiveWeapon();
+
+        Destroy(droneInstance);
+
+        weaponInstance = Instantiate(weaponGO, dronePoint.position, Quaternion.identity);
 
         fusionActivated = true;
     }
@@ -317,6 +326,11 @@ public class AegisHeroSkill : MonoBehaviour
         // Trigger return to normal state
         PlayerController.instance.GetComponent<Animator>().SetTrigger("ArcherFusionReturn");
 
+        if (weaponInstance != null)
+        {
+            StartCoroutine(ReturnWeaponToDronePoint());
+        }
+
         // Handle weapon change back
         if (weaponChangeInfo != null)
         {
@@ -329,7 +343,7 @@ public class AegisHeroSkill : MonoBehaviour
             toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
         }
 
-        activeToolbar.ChangeActiveWeapon();
+        //activeToolbar.ChangeActiveWeapon();
 
         StartCoroutine(ResetFusionTrigger());
 
@@ -340,6 +354,37 @@ public class AegisHeroSkill : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         PlayerController.instance.GetComponent<Animator>().ResetTrigger("ArcherFusionReturn");
+    }
+
+
+    private IEnumerator ReturnWeaponToDronePoint()
+    {
+        float duration = 0.5f; // Adjust speed as needed
+        float elapsedTime = 0f;
+        Vector3 startPosition = weaponInstance.transform.position;
+        Vector3 targetPosition = dronePoint.position;
+
+        while (elapsedTime < duration)
+        {
+            weaponInstance.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure it reaches the exact position
+        weaponInstance.transform.position = targetPosition;
+        weaponInstance.transform.rotation = Quaternion.identity;
+
+        // Parent it to the dronePoint to stop unintended movement
+        weaponInstance.transform.SetParent(dronePoint);
+
+        Destroy(weaponInstance);
+
+        // Instantiate droneGO back at the same position
+        droneInstance = Instantiate(droneGO, dronePoint.position, Quaternion.identity);
+        droneInstance.transform.position = targetPosition;
+        droneInstance.transform.rotation = Quaternion.identity;
+        droneInstance.transform.SetParent(dronePoint);
     }
 
     private void UpdateCooldownUI()

@@ -213,14 +213,21 @@ public class LineTrigger : MonoBehaviour
             SetupLineRenderer(Color.white, Color.yellow);
             SetupHero(priestessHero.selectedIndicator, priestessHero.skillbutton1, priestessHero.skillbutton2);
             priestessHero.priestessHeroSkill.FusionActivate();
-            conversationManager.ShowConversation("Let the light guide us.", priestessHero.heroFaceSprite);
+            conversationManager.ShowConversation("Let the light guide us!", priestessHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out WarriorHeroAI warriorHero))
         {
             SetupLineRenderer(Color.white, Color.red);
             SetupHero(warriorHero.selectedIndicator, warriorHero.skillbutton1, warriorHero.skillbutton2);
             warriorHero.warriorHeroSkill.FusionActivate();
-            conversationManager.ShowConversation("Let's goooooo'.", warriorHero.heroFaceSprite);
+            conversationManager.ShowConversation("Alright!", warriorHero.heroFaceSprite);
+        }
+        else if (newHero.TryGetComponent(out AegisHeroAI aegisHero))
+        {
+            SetupLineRenderer(Color.white, Color.cyan);
+            SetupHero(aegisHero.selectedIndicator, aegisHero.skillbutton1, aegisHero.skillbutton2);
+            aegisHero.aegisHeroSkill.FusionActivate();
+            conversationManager.ShowConversation("Link activated", aegisHero.heroFaceSprite);
         }
 
         SoundManager.instance.RandomizeSfx(linkSound);
@@ -256,6 +263,11 @@ public class LineTrigger : MonoBehaviour
         {
             CleanupHero(warriorHero.selectedIndicator, warriorHero.skillbutton1, warriorHero.skillbutton2);
             warriorHero.warriorHeroSkill.DeFusionActivate();
+        }
+        else if (hero.TryGetComponent(out AegisHeroAI aegisHero))
+        {
+            CleanupHero(aegisHero.selectedIndicator, aegisHero.skillbutton1, aegisHero.skillbutton2);
+            aegisHero.aegisHeroSkill.DeFusionActivate();
         }
 
         SoundManager.instance.RandomizeSfx(unlinkSound);

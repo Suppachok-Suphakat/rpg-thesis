@@ -10,6 +10,12 @@ public class AegisHeroAI : MonoBehaviour
     public float followSpeed = 2f;
     public int chaseSpeed = 2;
     public float maxChaseDistance = 10f;
+    public int retreatSpeed = 3;
+    public float retreatDistance = 3f;
+    public float retreatDuration = 1f;
+    private float retreatTimer = 0f;
+    public float safeDistance = 6f;
+    public float stateSwitchBuffer = 0.5f;
 
     private float followOverrideTimer = 0f;
     private float followOverrideDuration = 2f;
@@ -20,7 +26,8 @@ public class AegisHeroAI : MonoBehaviour
         chase = 1,
         attack = 2,
         skill = 3,
-        death = 4,
+        retreat = 4,
+        death = 5,
     }
 
     public Transform player;
@@ -104,6 +111,11 @@ public class AegisHeroAI : MonoBehaviour
 
         HandleMouseInput();
 
+        if (ShouldRetreat())
+        {
+            currentState = State.retreat;
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             currentState = State.follow;
@@ -128,6 +140,9 @@ public class AegisHeroAI : MonoBehaviour
                 break;
             case State.attack:
                 AttackLogic();
+                break;
+            case State.retreat:
+                RetreatLogic();
                 break;
             case State.skill:
                 SkillLogic();
@@ -192,7 +207,7 @@ public class AegisHeroAI : MonoBehaviour
         FlipSprite(PlayerController.instance.transform);
         float distancePlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distancePlayer > 2.5f)
+        if (distancePlayer > 2f)
         {
             animator.SetBool("isWalking", true);
             Vector2 targetPosition = new Vector2(player.transform.position.x, player.transform.position.y);
@@ -341,6 +356,52 @@ public class AegisHeroAI : MonoBehaviour
         else if (distanceToEnemy > attackDistance)
         {
             currentState = State.chase; // Return to chasing if out of range
+        }
+    }
+
+    bool ShouldRetreat()
+    {
+        if (enemyTransform != null)
+        {
+            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+            return distanceToEnemy < retreatDistance;  // Retreat if the enemy is very close
+        }
+        return false;
+    }
+
+    void RetreatLogic()
+    {
+        if (enemyTransform != null)
+        {
+            float distanceToEnemy = Vector2.Distance(transform.position, enemyTransform.position);
+
+            // Start or continue retreating
+            if (distanceToEnemy < retreatDistance)
+            {
+                // Reset retreat timer if too close to enemy
+                retreatTimer = retreatDuration;
+            }
+
+            // Countdown retreat timer
+            if (retreatTimer > 0)
+            {
+                retreatTimer -= Time.deltaTime;
+
+                // Move away from the enemy
+                Vector3 directionAwayFromEnemy = (transform.position - enemyTransform.position).normalized;
+                transform.Translate(directionAwayFromEnemy * retreatSpeed * Time.deltaTime);
+                animator.SetBool("isWalking", true);
+            }
+            else if (distanceToEnemy > safeDistance + stateSwitchBuffer)
+            {
+                // Only switch back to attack if we are beyond the safe distance plus buffer
+                currentState = State.attack;
+            }
+            else
+            {
+                // Prevent rapid switching; stay in retreat until the timer ends
+                retreatTimer = retreatDuration;
+            }
         }
     }
 

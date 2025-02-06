@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5508842164584371104}
   - component: {fileID: 7891349837090379620}
   - component: {fileID: 8754934958245518921}
-  - component: {fileID: 7543375901313438432}
   - component: {fileID: 6565318797561181286}
   - component: {fileID: 4191157614280006782}
   - component: {fileID: 8533547332046533551}
   - component: {fileID: 4324625932609888832}
+  - component: {fileID: 7279187311301902874}
   m_Layer: 0
   m_Name: AegisWeapon
   m_TagString: Untagged
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
-  m_Sprite: {fileID: 1520078262, guid: 7629791eeeb23b643925c38ac992371f, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 599948888, guid: 81cf7d26c457a3945afbb7bf3f26f9f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,18 +117,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!210 &7543375901313438432
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3554886383241864524}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 100
-  m_SortAtRoot: 0
 --- !u!114 &6565318797561181286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +140,7 @@ Animator:
   m_GameObject: {fileID: 3554886383241864524}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 74fca069d0114894eb6956fafc9d5d2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 50b01750b46197447883289be12a7da1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -195,8 +183,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 9.40453e-10, y: 0.007889093}
-  m_Size: {x: 1.3333336, y: 0.64427406}
+  m_Offset: {x: -0.0066299248, y: 0.16701056}
+  m_Size: {x: 0.8957529, y: 0.49399686}
   m_Direction: 1
 --- !u!114 &4324625932609888832
 MonoBehaviour:
@@ -215,6 +203,16 @@ MonoBehaviour:
   particleOnHitPrefabVFX: {fileID: 3626922010709504189, guid: d632d51825fea4e4aa4c41406f90ebb2, type: 3}
   isEnemyProjectile: 0
   projectileRange: 10
-  sliderObject: {fileID: 0}
-  statusComponent: {fileID: 0}
-  chargeAmount: 0
+  weaponInfo: {fileID: 11400000, guid: d5c11f16e8eafe849b38dc083e8af19c, type: 2}
+--- !u!114 &7279187311301902874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3554886383241864524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
