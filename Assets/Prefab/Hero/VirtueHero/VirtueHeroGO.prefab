@@ -85,7 +85,7 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 21300000, guid: 49ddf7f4a11110b49ad7a52038045d9f, type: 3}
+  heroFaceSprite: {fileID: 21300000, guid: 85e94c7dc7fedff4aad18ac1eb04392c, type: 3}
   virtueHeroSkill: {fileID: 0}
 --- !u!114 &8739522059059753338
 MonoBehaviour:
@@ -114,8 +114,6 @@ MonoBehaviour:
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
-  cooldownRecoveryTimer: 1
-  cooldownRecoveryDelay: 0.1
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: f6346c628c613554899eac540776ef6a, type: 2}

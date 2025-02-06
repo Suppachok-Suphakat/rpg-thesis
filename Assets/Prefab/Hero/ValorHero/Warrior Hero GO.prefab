@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   player: {fileID: 0}
   currentState: 0
   minDistance: 1
-  repulsionStrength: 2
+  repulsionStrength: 1
   focus:
     serializedVersion: 2
     m_Bits: 1024
@@ -120,7 +120,7 @@ MonoBehaviour:
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: f95c688617010ac42bef1c66105691e2, type: 2}
   itemSprite: {fileID: 21300000, guid: a6673fffe39512149b4f49b8bbbe0628, type: 3}
-  avatar: {fileID: 0}
+  avatar: {fileID: 355568368277826251, guid: 37326c8bd2d9b2e4f9589fd7f92d0e77, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}

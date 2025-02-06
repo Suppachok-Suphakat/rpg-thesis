@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 21300000, guid: ec27e8f74aeb02a438fdc56d028a0716, type: 3}
+  heroFaceSprite: {fileID: 21300000, guid: 5772e6b4237506c4a80747b0951c6ffd, type: 3}
   priestessHeroSkill: {fileID: 0}
 --- !u!114 &3979085936879950760
 MonoBehaviour:
@@ -100,12 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f58f75921effba42a629f5e89354f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillHeal: {fileID: 0}
+  skillHeal: {fileID: 4727675698272787894}
   skill1Prefab: {fileID: 371351925480119373, guid: 49afb12cfb1c55648b20598a813d4bd0, type: 3}
-  skill1AreaPreview: {fileID: 7686837216217434397, guid: f4ce633c5e829b446a1704f6a506b7a7, type: 3}
-  skill1ActiveTime: 5
+  skill1AreaPreview: {fileID: 8110565958528884612, guid: b2ead6349b4fbfd42aa6d6c3637a920f, type: 3}
   skill2Prefab: {fileID: 371351925480119373, guid: 5033be63cc9d5ec4b835ad5be6c58ca0, type: 3}
-  skill2AreaPreview: {fileID: 7686837216217434397, guid: f4ce633c5e829b446a1704f6a506b7a7, type: 3}
+  skill2AreaPreview: {fileID: 8110565958528884612, guid: b2ead6349b4fbfd42aa6d6c3637a920f, type: 3}
   skill2ActiveTime: 5
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10

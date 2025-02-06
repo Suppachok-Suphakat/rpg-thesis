@@ -7,7 +7,6 @@ public class AegisHeroAI : MonoBehaviour
     [Header("Status")]
     public float attackDistance = 5f;
     public float distanceToAttack = 1f;
-    public float distanceToDefence = 5f;
     public float followSpeed = 2f;
     public int chaseSpeed = 2;
     public float maxChaseDistance = 10f;
@@ -52,7 +51,7 @@ public class AegisHeroAI : MonoBehaviour
     private float attackCooldown;
     [SerializeField] private bool isCooldown;
 
-    ResoluteHeroSkill skill;
+    AegisHeroSkill skill;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
 
@@ -68,7 +67,7 @@ public class AegisHeroAI : MonoBehaviour
 
     public Sprite heroFaceSprite;
 
-    public ResoluteHeroSkill archerHeroSkill;
+    public AegisHeroSkill aegisHeroSkill;
 
     private void Awake()
     {
@@ -78,9 +77,9 @@ public class AegisHeroAI : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         attackCooldown = cooldownTime;
-        skill = gameObject.GetComponent<ResoluteHeroSkill>();
+        skill = gameObject.GetComponent<AegisHeroSkill>();
 
-        archerHeroSkill = GetComponent<ResoluteHeroSkill>();
+        aegisHeroSkill = GetComponent<AegisHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 

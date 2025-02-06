@@ -54,7 +54,7 @@ public class AegisHeroSkill : MonoBehaviour
     [SerializeField] public Image skill1Image;
     [SerializeField] public Image skill2Image;
 
-    public ResoluteHeroAI archerHeroAI;
+    public AegisHeroAI aegisHeroAI;
 
     private LineTrigger lineTrigger;
 
@@ -63,7 +63,7 @@ public class AegisHeroSkill : MonoBehaviour
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
-        archerHeroAI = GetComponent<ResoluteHeroAI>();
+        aegisHeroAI = GetComponent<AegisHeroAI>();
     }
 
     // Start is called before the first frame update
@@ -245,7 +245,7 @@ public class AegisHeroSkill : MonoBehaviour
     public void SkillActivate()
     {
         Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("Nature strikes with me!", archerHeroAI.heroFaceSprite);
+        conversationManager.ShowConversation("Nature strikes with me!", aegisHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -265,7 +265,7 @@ public class AegisHeroSkill : MonoBehaviour
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill 2 Activate");
-        conversationManager.ShowConversation("Caught you in my sights!", archerHeroAI.heroFaceSprite);
+        conversationManager.ShowConversation("Caught you in my sights!", aegisHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill");
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

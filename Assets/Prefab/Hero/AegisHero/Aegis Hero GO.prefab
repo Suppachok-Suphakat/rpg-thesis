@@ -139,8 +139,6 @@ GameObject:
   - component: {fileID: 4243921893850822989}
   - component: {fileID: 7700752091006941001}
   - component: {fileID: 4106131208546084167}
-  - component: {fileID: 7899333738544592247}
-  - component: {fileID: 6467919669117534607}
   - component: {fileID: 4926665258290011330}
   - component: {fileID: 7744288584819377846}
   - component: {fileID: 7248933730686363343}
@@ -191,91 +189,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 5
   distanceToAttack: 1
-  distanceToDefence: 5
   followSpeed: 2
   chaseSpeed: 2
   maxChaseDistance: 10
-  stateSwitchBuffer: 0.5
-  player: {fileID: 0}
-  currentState: 0
-  minDistance: 1
-  repulsionStrength: 2
-  focus:
-    serializedVersion: 2
-    m_Bits: 0
-  arrowPrefab: {fileID: 0}
-  arrowSpawnPoint: {fileID: 0}
-  isAttacking: 0
-  enemyTransform: {fileID: 0}
-  focusEnemy: {fileID: 0}
-  cooldownTime: 0
-  isCooldown: 0
-  currentEnemyHealth: {fileID: 0}
-  slideDuration: 0.5
-  skillBar: {fileID: 0}
-  selectedIndicator: {fileID: 0}
-  skillbutton1: {fileID: 0}
-  skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 0}
-  archerHeroSkill: {fileID: 0}
---- !u!114 &4106131208546084167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7121556042380603943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28720ae996210874db42632efd5fe5e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillPrefab: {fileID: 0}
-  skill1AreaPreview: {fileID: 0}
-  skill2Prefab: {fileID: 0}
-  skill2AreaPreview: {fileID: 0}
-  skill1CooldownTime: 0
-  skill1MaxCooldownTime: 0
-  skill2CooldownTime: 0
-  skill2MaxCooldownTime: 0
-  skill1CurrentCooldownTime: 0
-  skill1ActiveTime: 0
-  currentSkill1ActiveTime: 0
-  skill2CurrentCooldownTime: 0
-  skill2ActiveTime: 0
-  currentSkill2ActiveTime: 0
-  statusComponent: {fileID: 0}
-  toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 0}
-  itemSprite: {fileID: 0}
-  activeToolbar: {fileID: 0}
-  skill1Image: {fileID: 0}
-  skill2Image: {fileID: 0}
-  archerHeroAI: {fileID: 0}
-  conversationManager: {fileID: 0}
---- !u!114 &7899333738544592247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7121556042380603943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4ba037ac61035448a058b5c3ef318c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDistance: 5
-  distanceToAttack: 1
-  distanceToDefence: 5
-  followSpeed: 1.5
-  chaseSpeed: 5
-  retreatSpeed: 5
-  retreatDistance: 3
-  retreatDuration: 1
-  safeDistance: 6
-  maxChaseDistance: 10
-  stateSwitchBuffer: 0.5
   player: {fileID: 0}
   currentState: 0
   minDistance: 1
@@ -296,9 +212,9 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 21300000, guid: 86a8624f383bc4d44a77fbc49d08273e, type: 3}
-  archerHeroSkill: {fileID: 0}
---- !u!114 &6467919669117534607
+  heroFaceSprite: {fileID: 21300000, guid: 7d4fd776ca0dfde42a1ad9353a28676e, type: 3}
+  aegisHeroSkill: {fileID: 0}
+--- !u!114 &4106131208546084167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,7 +223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7121556042380603943}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8b7852b00d8d42478741ddf031b9282, type: 3}
+  m_Script: {fileID: 11500000, guid: 28720ae996210874db42632efd5fe5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
@@ -326,12 +242,12 @@ MonoBehaviour:
   currentSkill2ActiveTime: 5
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: 44ae3bed7a3280c4cbcb4a397822484c, type: 2}
-  itemSprite: {fileID: 21300000, guid: 99bd61632676e6d4f91f9b0794a6e1a4, type: 3}
+  weaponInfo: {fileID: 0}
+  itemSprite: {fileID: 0}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
-  archerHeroAI: {fileID: 0}
+  aegisHeroAI: {fileID: 0}
   conversationManager: {fileID: 0}
 --- !u!212 &4926665258290011330
 SpriteRenderer:
@@ -374,7 +290,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1603171407, guid: 377aee973dd16f544a86042708ec997e, type: 3}
+  m_Sprite: {fileID: -1897851101, guid: e8cbfc5aed922cb43ba6984e2a82d848, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -395,7 +311,7 @@ Animator:
   m_GameObject: {fileID: 7121556042380603943}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9089d58c2098c04c9c826a8798d8c3e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 26f3085e6ce7f08419b2c3fb4f9fc1a9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
