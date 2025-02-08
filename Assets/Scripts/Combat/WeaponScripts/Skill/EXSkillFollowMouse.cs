@@ -12,6 +12,8 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
     [SerializeField] private bool isEnemyProjectile = false;
     [SerializeField] private float projectileRange = 10f;
     [SerializeField] private WeaponInfo weaponInfo;
+    private Animator animator;
+    [SerializeField] private GameObject damageCollider;
 
     private Vector3 startPosition;
 
@@ -20,6 +22,7 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
     private void Start()
     {
         startPosition = transform.position;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -70,16 +73,37 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
     private void MoveProjectileFollowMouse()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // Ensure the same z-coordinate as your 2D scene
+        mousePosition.z = 0; // Keep it 2D
 
-        // Calculate direction from the projectile to the mouse position
+        // Determine direction
         Vector3 direction = (mousePosition - transform.position).normalized;
 
-        // Rotate the projectile to face the direction
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        // Flip the sprite only on the X-axis
+        if (direction.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1); // Facing right
+        }
+        else if (direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); // Facing left
+        }
 
-        // Move the projectile forward in the direction it's facing
-        transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+        // Move toward the mouse
+        transform.position = Vector3.MoveTowards(transform.position, mousePosition, moveSpeed * Time.deltaTime);
+    }
+
+    public void WeaponSkillActivate()
+    {
+        animator.SetTrigger("skill01");
+    }
+
+    public void DamageColliderOn()
+    {
+        damageCollider.SetActive(true);
+    }
+
+    public void DamageColliderOff()
+    {
+        damageCollider.SetActive(false);
     }
 }

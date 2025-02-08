@@ -98,34 +98,26 @@ public class AegisHeroSkill : MonoBehaviour
             {
                 if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
                 {
-                    if (skill1PreviewInstance == null)
-                    {
-                        skill1PreviewInstance = Instantiate(skill1AreaPreview);
-                    }
-                    skill1PreviewInstance.SetActive(true);
+                    //if (skill1PreviewInstance == null)
+                    //{
+                    //    skill1PreviewInstance = Instantiate(skill1AreaPreview);
+                    //}
+                    //skill1PreviewInstance.SetActive(true);
+
+                    weaponInstance.GetComponent<EXSkillFollowMouse>().WeaponSkillActivate();
                     isAnySkillActive = true; // Lock activation for other skills
                 }
-            }
 
-            if (skill1PreviewInstance != null)
-            {
-                skill1PreviewInstance.transform.position = GetMouseWorldPosition();
-                if (Input.GetMouseButtonDown(0))
+
+                if (skill1CooldownTime <= 0) // Cooldown completed
                 {
-                    skill1PreviewInstance.SetActive(false); // Hide the preview
-                    Destroy(skill1PreviewInstance); // Optionally destroy it
-                    skill1PreviewInstance = null;
-
-                    if (skill1CooldownTime <= 0) // Cooldown completed
-                    {
-                        GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
-                        ActivateSkill2(skillInstance);
-                        isSkill1Active = true;
-                        skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
-                    }
-
-                    isAnySkillActive = false; // Release lock after using the skill
+                    //GameObject skillInstance = Instantiate(skill2Prefab, GetMouseWorldPosition(), Quaternion.identity);
+                    //ActivateSkill1(skillInstance);
+                    isSkill1Active = true;
+                    skill1CooldownTime = skill1MaxCooldownTime; // Reset cooldown
                 }
+
+                isAnySkillActive = false; // Release lock after using the skill
             }
         }
 
@@ -257,12 +249,6 @@ public class AegisHeroSkill : MonoBehaviour
         mousePosition.z = 0f;
         Instantiate(skillPrefab, mousePosition, Quaternion.identity);
 
-        //if (toolbarSlot.weaponInfo != null)
-        //{
-        //    weaponChangeInfo = toolbarSlot.weaponInfo;
-        //}
-        //weaponChangeSprite = toolbarSlot.slotSprite.GetComponent<Image>().sprite;
-
         skill1CooldownTime = 0;  // Start cooldown
         UpdateCooldownUI();  // Update UI
     }
@@ -299,9 +285,8 @@ public class AegisHeroSkill : MonoBehaviour
 
         toolbarSlot.weaponInfo = weaponInfo;
         toolbarSlot.slotSprite.GetComponent<Image>().sprite = itemSprite;
-        //activeToolbar.ChangeActiveWeapon();
 
-        Destroy(droneInstance);
+        droneInstance.SetActive(false);
 
         weaponInstance = Instantiate(weaponGO, dronePoint.position, Quaternion.identity);
 
@@ -343,8 +328,6 @@ public class AegisHeroSkill : MonoBehaviour
             toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
         }
 
-        //activeToolbar.ChangeActiveWeapon();
-
         StartCoroutine(ResetFusionTrigger());
 
         fusionActivated = false;
@@ -380,11 +363,7 @@ public class AegisHeroSkill : MonoBehaviour
 
         Destroy(weaponInstance);
 
-        // Instantiate droneGO back at the same position
-        droneInstance = Instantiate(droneGO, dronePoint.position, Quaternion.identity);
-        droneInstance.transform.position = targetPosition;
-        droneInstance.transform.rotation = Quaternion.identity;
-        droneInstance.transform.SetParent(dronePoint);
+        droneInstance.SetActive(true);
     }
 
     private void UpdateCooldownUI()
@@ -397,7 +376,7 @@ public class AegisHeroSkill : MonoBehaviour
     private Vector3 GetMouseWorldPosition()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // Make sure it's on the same Z plane
+        mousePosition.z = 0;
         return mousePosition;
     }
 }
