@@ -384,7 +384,7 @@ MonoBehaviour:
   focus:
     serializedVersion: 2
     m_Bits: 1024
-  arrowPrefab: {fileID: 3554886383241864524, guid: 3a8a87217b2af434799d573ea5b2b7c1, type: 3}
+  arrowPrefab: {fileID: 3554886383241864524, guid: 573502cfa7463f741b2fabfda56bd82a, type: 3}
   arrowSpawnPoint: {fileID: 7153042684854541932}
   isAttacking: 0
   enemyTransform: {fileID: 0}

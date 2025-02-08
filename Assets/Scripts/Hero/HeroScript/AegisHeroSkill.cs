@@ -132,29 +132,13 @@ public class AegisHeroSkill : MonoBehaviour
             {
                 if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
                 {
-                    if (skill2PreviewInstance == null)
-                    {
-                        skill2PreviewInstance = Instantiate(skill2AreaPreview);
-                    }
-                    skill2PreviewInstance.SetActive(true);
+                    weaponInstance.GetComponent<EXSkillFollowMouse>().TriggerTurret();
                     isAnySkillActive = true; // Lock activation for other skills
                 }
-            }
 
-            if (skill2PreviewInstance != null)
-            {
-                skill2PreviewInstance.transform.position = GetMouseWorldPosition();
-            }
-
-            if (Input.GetMouseButtonDown(0) && skill2PreviewInstance != null)
-            {
-                skill2PreviewInstance.SetActive(false); // Hide the preview
-                Destroy(skill2PreviewInstance); // Optionally destroy it
-                skill2PreviewInstance = null;
 
                 if (skill2CooldownTime <= 0) // Cooldown completed
                 {
-                    ActivateSkill(skillPrefab);
                     isSkill2Active = true;
                     skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
                 }
@@ -172,91 +156,6 @@ public class AegisHeroSkill : MonoBehaviour
         {
             isSkill2Active = false; // Skill is ready again
         }
-    }
-
-    private void ActivateSkill2(GameObject skillInstance)
-    {
-        // Start a coroutine to handle the skill duration and exit animation
-        StartCoroutine(HandleSkill2Exit(skillInstance));
-    }
-
-    private IEnumerator HandleSkill2Exit(GameObject skillInstance)
-    {
-        // Wait for the active duration
-        yield return new WaitForSeconds(skill2ActiveTime);
-
-        // Trigger the exit animation
-        Animator animator = skillInstance.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetTrigger("Exit");
-
-            // Wait for the animation to complete
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            yield return new WaitForSeconds(stateInfo.length);
-        }
-
-        // Destroy the skill instance
-        Destroy(skillInstance);
-    }
-
-    private void ShowSkillPreview(GameObject skillPreview)
-    {
-        skillPreview.SetActive(true);
-        // Optionally update the preview's position based on the mouse or player aim.
-        skillPreview.transform.position = GetMouseWorldPosition();
-    }
-
-    private void HideSkillPreview(GameObject skillPreview)
-    {
-        skillPreview.SetActive(false);
-    }
-
-    private void ActivateSkill(GameObject skillPrefab)
-    {
-        Vector3 mousePosition = GetMouseWorldPosition();
-        Instantiate(skillPrefab, mousePosition, Quaternion.identity);
-        Debug.Log("Skill Activated");
-    }
-
-    private void SkillCooldown(ref float currentCooldown, float maxCooldown, ref bool isActive)
-    {
-        if (currentCooldown < maxCooldown)
-        {
-            currentCooldown += Time.deltaTime; // Smooth increment
-        }
-        else
-        {
-            isActive = false;
-        }
-    }
-
-    public void SkillActivate()
-    {
-        Debug.Log("Partner Skill Activate");
-        conversationManager.ShowConversation("Nature strikes with me!", aegisHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill");
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
-        Instantiate(skillPrefab, mousePosition, Quaternion.identity);
-
-        skill1CooldownTime = 0;  // Start cooldown
-        UpdateCooldownUI();  // Update UI
-    }
-
-    public void Skill2Activate()
-    {
-        Debug.Log("Partner Skill 2 Activate");
-        conversationManager.ShowConversation("Caught you in my sights!", aegisHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill");
-
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0f;
-        Instantiate(skill2Prefab, mousePosition, Quaternion.identity);
-
-        skill2CooldownTime = 0;  // Start cooldown for Skill 2
-        UpdateCooldownUI();  // Update UI
     }
 
     public void FusionActivate()

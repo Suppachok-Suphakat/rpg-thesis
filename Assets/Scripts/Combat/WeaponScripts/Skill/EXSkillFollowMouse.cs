@@ -9,11 +9,12 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
 
     [SerializeField] private float moveSpeed = 22f;
     [SerializeField] private GameObject particleOnHitPrefabVFX;
-    [SerializeField] private bool isEnemyProjectile = false;
     [SerializeField] private float projectileRange = 10f;
     [SerializeField] private WeaponInfo weaponInfo;
     private Animator animator;
     [SerializeField] private GameObject damageCollider;
+    [SerializeField] private GameObject turretGO;
+    [SerializeField] private GameObject turretSpawnPoint;
 
     private Vector3 startPosition;
 
@@ -105,5 +106,15 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
     public void DamageColliderOff()
     {
         damageCollider.SetActive(false);
+    }
+
+    public void TriggerTurret()
+    {
+        animator.SetTrigger("skill02");
+    }
+
+    public void SpawnTurret()
+    {
+        Instantiate(turretGO, turretSpawnPoint.transform.position, Quaternion.identity);
     }
 }
