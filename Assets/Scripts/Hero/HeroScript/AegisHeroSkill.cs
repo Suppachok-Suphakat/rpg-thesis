@@ -132,13 +132,29 @@ public class AegisHeroSkill : MonoBehaviour
             {
                 if (skill2CooldownTime <= 0 && !isSkill2Active) // Cooldown completed
                 {
-                    weaponInstance.GetComponent<EXSkillFollowMouse>().TriggerTurret();
+                    if (skill2PreviewInstance == null)
+                    {
+                        skill2PreviewInstance = Instantiate(skill2AreaPreview);
+                    }
+                    skill2PreviewInstance.SetActive(true);
                     isAnySkillActive = true; // Lock activation for other skills
                 }
+            }
 
+            if (skill2PreviewInstance != null)
+            {
+                skill2PreviewInstance.transform.position = GetMouseWorldPosition();
+            }
+
+            if (Input.GetMouseButtonDown(0) && skill2PreviewInstance != null)
+            {
+                skill2PreviewInstance.SetActive(false); // Hide the preview
+                Destroy(skill2PreviewInstance); // Optionally destroy it
+                skill2PreviewInstance = null;
 
                 if (skill2CooldownTime <= 0) // Cooldown completed
                 {
+                    weaponInstance.GetComponent<EXSkillFollowMouse>().TriggerTurret();
                     isSkill2Active = true;
                     skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
                 }
@@ -227,7 +243,7 @@ public class AegisHeroSkill : MonoBehaviour
     IEnumerator ResetFusionTrigger()
     {
         yield return new WaitForSeconds(0.1f);
-        PlayerController.instance.GetComponent<Animator>().ResetTrigger("ArcherFusionReturn");
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("aegisUnlink");
     }
 
 

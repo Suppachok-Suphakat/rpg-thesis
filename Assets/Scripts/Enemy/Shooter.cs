@@ -128,3 +128,4 @@ public class Shooter : MonoBehaviour, IEnemy
         isShooting = false;
     }
 }
+

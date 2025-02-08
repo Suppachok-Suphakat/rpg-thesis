@@ -414,7 +414,7 @@ MonoBehaviour:
   skillPrefab: {fileID: 371351925480119373, guid: d4e1b6ec877f6444d81c9efabcf30b3d, type: 3}
   skill1AreaPreview: {fileID: 7686837216217434397, guid: 8e2419478001c2244b19451041271871, type: 3}
   skill2Prefab: {fileID: 371351925480119373, guid: 7f78b8278f584fa44a52167d1d8f4253, type: 3}
-  skill2AreaPreview: {fileID: 7686837216217434397, guid: 8e2419478001c2244b19451041271871, type: 3}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: ba2b28537171b5b4cb67a0d39eeb3cee, type: 3}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10
   skill2CooldownTime: 0

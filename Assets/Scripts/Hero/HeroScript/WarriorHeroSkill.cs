@@ -452,7 +452,7 @@ public class WarriorHeroSkill : MonoBehaviour
     IEnumerator ResetFusionTrigger()
     {
         yield return new WaitForSeconds(0.1f);
-        PlayerController.instance.GetComponent<Animator>().ResetTrigger("WarriorFusionReturn");
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("warriorUnlink");
     }
 
     public void OnSkillDamage()

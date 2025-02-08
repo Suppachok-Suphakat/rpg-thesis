@@ -208,6 +208,8 @@ public class LineTrigger : MonoBehaviour
     {
         if (isInFusion) return;
 
+        StartCoroutine(StopMovementForSeconds(0.5f)); // Stop movement for 0.5 seconds
+
         if (newHero.TryGetComponent(out VirtueHeroAI virtueHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
@@ -257,6 +259,8 @@ public class LineTrigger : MonoBehaviour
         if (!isInFusion) return;
 
         lineEffect.StopHealing();
+
+        StartCoroutine(StopMovementForSeconds(0.5f)); // Stop movement for 0.5 seconds
 
         if (hero.TryGetComponent(out VirtueHeroAI virtueHero))
         {
@@ -322,5 +326,15 @@ public class LineTrigger : MonoBehaviour
 
         lineEffect.lineRenderer.colorGradient = gradient;
         lineEffect.lineRenderer.SetPosition(1, new Vector3(linkLength, 0, 0));
+    }
+
+    private IEnumerator StopMovementForSeconds(float duration)
+    {
+        if (hero.TryGetComponent(out PlayerController playerController)) // Replace with your movement script
+        {
+            playerController.enabled = false;  // Disable movement
+            yield return new WaitForSeconds(duration);
+            playerController.enabled = true;   // Re-enable movement
+        }
     }
 }

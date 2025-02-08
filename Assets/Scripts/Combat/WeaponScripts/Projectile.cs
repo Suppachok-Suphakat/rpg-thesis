@@ -75,4 +75,9 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
     }
+
+    public void SetDirection(Vector2 direction)
+    {
+        GetComponent<Rigidbody2D>().velocity = direction * moveSpeed;
+    }
 }
