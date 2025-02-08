@@ -1029,6 +1029,8 @@ MonoBehaviour:
   partnerSkillManager: {fileID: 0}
   linkSound: {fileID: 8300000, guid: f11584a52dc0ddc499ab8ac00fd4688e, type: 3}
   unlinkSound: {fileID: 8300000, guid: b66a77e517f606849b5eec35622fe4f6, type: 3}
+  linkDistance: 15
+  linkLength: 1
 --- !u!114 &472730000382241895
 MonoBehaviour:
   m_ObjectHideFlags: 0

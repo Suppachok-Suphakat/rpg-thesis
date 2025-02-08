@@ -69,7 +69,7 @@ public class WarriorHeroAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = FindObjectOfType<PlayerController>().transform;    
 
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();

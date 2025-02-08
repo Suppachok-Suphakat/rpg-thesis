@@ -27,9 +27,14 @@ public class LineTrigger : MonoBehaviour
     public AudioClip linkSound;
     public AudioClip unlinkSound;
 
+    [Header("Link Distance Settings")]
+    public float linkDistance = 5f;  // Distance to break the link if the hero moves too far
+    public float linkLength = 1f;    // Adjustable length for the line effect
+
     void Start()
     {
         CursorManager.Instance.OnCursorChanged += Instance_OnCursorChanged;
+        hero = this.transform;
     }
 
     void Instance_OnCursorChanged(object sender, CursorManager.OnCursorChangedEventArgs e)
@@ -44,6 +49,15 @@ public class LineTrigger : MonoBehaviour
     {
         HandleMouseInput();
         HandleKeyboardInput();
+
+        if (isInFusion && currentTarget != null)
+        {
+            float distanceToTarget = Vector3.Distance(hero.position, currentTarget.position);
+            if (distanceToTarget > linkDistance)
+            {
+                UnlinkHero(currentTarget); // Unlink if the target is too far
+            }
+        }
     }
 
     private void HandleMouseInput()
@@ -307,5 +321,6 @@ public class LineTrigger : MonoBehaviour
         );
 
         lineEffect.lineRenderer.colorGradient = gradient;
+        lineEffect.lineRenderer.SetPosition(1, new Vector3(linkLength, 0, 0));
     }
 }
