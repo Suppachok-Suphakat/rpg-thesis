@@ -8,6 +8,10 @@ public class LineEffect : MonoBehaviour
     public Transform target;
     public float lineSpeed = 10f;
 
+    public float maxWidth = 1f;  // Thickest width when close
+    public float minWidth = 0.5f; // Thinnest width when far
+    public float maxDistance = 10f; // Distance at which the line becomes the thinnest
+
     private Vector3 initialPosition;
     private bool isHealing;
 
@@ -27,11 +31,15 @@ public class LineEffect : MonoBehaviour
     {
         if (isHealing && target != null)
         {
-            // Continuously update the line's start position
+            // Update line positions
             lineRenderer.SetPosition(0, transform.position);
-
-            // Directly set the line's end position to the target's position
             lineRenderer.SetPosition(1, target.position);
+
+            // Adjust line width based on distance
+            float distance = Vector3.Distance(transform.position, target.position);
+            float newWidth = Mathf.Lerp(maxWidth, minWidth, distance / maxDistance);
+            lineRenderer.startWidth = newWidth;
+            lineRenderer.endWidth = newWidth;
         }
     }
 
@@ -44,7 +52,6 @@ public class LineEffect : MonoBehaviour
     public void StopHealing()
     {
         isHealing = false;
-        // Optionally, reset the line renderer or perform other cleanup actions here
-        lineRenderer.SetPosition(1, transform.position); // Reset the end position if needed
+        lineRenderer.SetPosition(1, transform.position); // Reset end position
     }
 }

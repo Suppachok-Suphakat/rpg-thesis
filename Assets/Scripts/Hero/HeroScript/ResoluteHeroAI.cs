@@ -100,6 +100,12 @@ public class ResoluteHeroAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(transform.position, player.position) > 30f) // Adjust distance as needed
+        {
+            transform.position = player.position; // Instantly teleport to player
+            currentState = State.follow;
+        }
+
         if (currentState == State.follow) //&& Vector3.Distance(transform.position, player.position) <= 3f)
         {
             RepelHeroes();

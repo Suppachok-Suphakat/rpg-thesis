@@ -286,6 +286,8 @@ public class LineTrigger : MonoBehaviour
         {
             CleanupHero(aegisHero.selectedIndicator, aegisHero.skillbutton1, aegisHero.skillbutton2);
             aegisHero.aegisHeroSkill.DeFusionActivate();
+            Destroy(aegisHero.aegisHeroSkill.weaponInstance);
+            aegisHero.aegisHeroSkill.droneInstance.SetActive(true);
         }
 
         SoundManager.instance.RandomizeSfx(unlinkSound);

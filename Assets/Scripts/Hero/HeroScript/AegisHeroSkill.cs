@@ -46,8 +46,8 @@ public class AegisHeroSkill : MonoBehaviour
     [SerializeField] public ToolbarSlot toolbarSlot;
     [SerializeField] public WeaponInfo weaponInfo;
     [SerializeField] private GameObject weaponGO;
-    [SerializeField] private GameObject weaponInstance;
-    [SerializeField] private GameObject droneInstance;
+    [SerializeField] public GameObject weaponInstance;
+    [SerializeField] public GameObject droneInstance;
     [SerializeField] private GameObject droneGO;
     [SerializeField] private Transform dronePoint;
     [SerializeField] public Sprite itemSprite;

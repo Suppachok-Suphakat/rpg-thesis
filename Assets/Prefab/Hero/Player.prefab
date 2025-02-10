@@ -1241,6 +1241,9 @@ MonoBehaviour:
   lineRenderer: {fileID: 0}
   target: {fileID: 0}
   lineSpeed: 10
+  maxWidth: 1
+  minWidth: 0.5
+  maxDistance: 10
 --- !u!114 &4738166647276238454
 MonoBehaviour:
   m_ObjectHideFlags: 0
