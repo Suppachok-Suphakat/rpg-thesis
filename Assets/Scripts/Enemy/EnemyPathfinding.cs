@@ -50,7 +50,16 @@ public class EnemyPathfinding : MonoBehaviour
 
     public void MoveTo(Vector2 targetPosition)
     {
-        moveDir = targetPosition;
+        // Calculate the direction towards the target
+        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+
+        // Set the move direction
+        moveDir = direction;
+    }
+
+    public bool IsMoving()
+    {
+        return moveDir != Vector2.zero && !isImmobilized;
     }
 
     public void StopMoving()

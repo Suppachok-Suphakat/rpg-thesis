@@ -15,8 +15,20 @@ public class LockShooter : MonoBehaviour, IEnemy
     [SerializeField] private float animationDelay = 0.5f; // Delay before shooting for animation sync
     [SerializeField] private Transform bulletSpawnpoint; // Delay before shooting for animation sync
     [SerializeField] private float coneAngle = 45f;
+    [SerializeField] public bool canShoot;
 
     private bool isShooting = false;
+
+    public bool CanShootPlayer()
+    {
+        float startAngle, currentAngle, angleStep;
+        bool canShoot;
+
+        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
+
+        return canShoot;
+    }
+
 
     public void Attack()
     {

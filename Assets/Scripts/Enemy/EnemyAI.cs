@@ -45,6 +45,19 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         MovementStateControl();
+        UpdateAnimationState();
+    }
+
+    private void UpdateAnimationState()
+    {
+        if (enemyPathfinding.IsMoving())
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 
     private void MovementStateControl()
@@ -84,13 +97,21 @@ public class EnemyAI : MonoBehaviour
         if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) > attackRange)
         {
             state = State.Roaming;
+            return;
         }
 
-        if (attackRange != 0 && canAttack)
-        {
+        LockShooter shooter = enemyType as LockShooter;
 
+        if (shooter != null && !shooter.CanShootPlayer())
+        {
+            FindBetterShootingPosition();
+            return;
+        }
+
+        if (canAttack)
+        {
             canAttack = false;
-            (enemyType as IEnemy).Attack();
+            shooter.Attack();
 
             if (stopMovingWhileAttacking)
             {
@@ -105,6 +126,27 @@ public class EnemyAI : MonoBehaviour
             StartCoroutine(AttackCooldownRoutine());
         }
     }
+
+    private void FindBetterShootingPosition()
+    {
+        Vector2 playerPos = PlayerController.instance.transform.position;
+        Vector2 enemyPos = transform.position;
+        Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
+
+        float bestDistance = 3f; // Adjust this based on your needs
+        float angleStep = 15f; // How much to adjust the angle per check
+        int maxAttempts = 12; // How many different positions to check
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            float angleOffset = (i % 2 == 0 ? 1 : -1) * (angleStep * (i / 2));
+            Vector2 testDirection = Quaternion.Euler(0, 0, angleOffset) * directionToPlayer;
+            Vector2 testPosition = (Vector2)playerPos - (testDirection * bestDistance);
+
+            enemyPathfinding.MoveTo(testPosition);
+        }
+    }
+
 
     private IEnumerator AttackCooldownRoutine()
     {
