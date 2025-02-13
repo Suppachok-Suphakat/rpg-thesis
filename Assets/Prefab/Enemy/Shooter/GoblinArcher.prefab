@@ -387,8 +387,8 @@ GameObject:
   - component: {fileID: 2630914338215195644}
   - component: {fileID: 5558173840406602056}
   - component: {fileID: 9109020172715979319}
-  - component: {fileID: 122299241523337521}
   - component: {fileID: -1076354272687066304}
+  - component: {fileID: 4954682757579057324}
   m_Layer: 10
   m_Name: GoblinArcher
   m_TagString: Enemy
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
   attackRange: 5
-  enemyType: {fileID: 122299241523337521}
+  enemyType: {fileID: 4954682757579057324}
   attackCooldown: 2
   stopMovingWhileAttacking: 1
 --- !u!114 &2630914338215195644
@@ -628,28 +628,6 @@ MonoBehaviour:
   whiteFlashMat: {fileID: 2100000, guid: 2dfd1fb67a3520241a6ba463545b8721, type: 2}
   redFlashMat: {fileID: 2100000, guid: 1775b57b5dca0fd4c968374e0ee5b79d, type: 2}
   restoreDefaultMatTime: 0.2
---- !u!114 &122299241523337521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417106477297603239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa32f976773a0944bb2cd9b951d1128f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3554886383241864524, guid: c48e35a8a8eb53d49946bececffbc8fc, type: 3}
-  bulletMoveSpeed: 6
-  burstCount: 1
-  projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  timeBetweenBursts: 0
-  restTime: 0
-  animationDelay: 0.75
-  bulletSpawnpoint: {fileID: 622484665742738085}
 --- !u!114 &-1076354272687066304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +640,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4954682757579057324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417106477297603239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57c7d9c2e3b3aa4ca31bc7c785900bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3554886383241864524, guid: c48e35a8a8eb53d49946bececffbc8fc, type: 3}
+  bulletMoveSpeed: 6
+  burstCount: 1
+  projectilesPerBurst: 1
+  angleSpread: 0
+  startingDistance: 0.1
+  timeBetweenBursts: 0
+  restTime: 0
+  animationDelay: 0.75
+  bulletSpawnpoint: {fileID: 622484665742738085}
+  coneAngle: 45
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

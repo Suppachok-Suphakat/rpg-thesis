@@ -6,7 +6,6 @@ using UnityEngine.TextCore.Text;
 public class EXSkillFollowMouse : MonoBehaviour, IWeapon
 {
     public int damage;
-
     [SerializeField] private float moveSpeed = 22f;
     [SerializeField] private GameObject particleOnHitPrefabVFX;
     [SerializeField] private float projectileRange = 10f;
@@ -17,8 +16,10 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
     [SerializeField] private GameObject turretSpawnPoint;
 
     private Vector3 startPosition;
-
     private Vector3 initialDirection;
+
+    private Dictionary<GameObject, float> damageCooldowns = new Dictionary<GameObject, float>();
+    [SerializeField] private float damageCooldown = 1.0f; // Delay before hitting the same enemy again
 
     private void Start()
     {
@@ -31,7 +32,6 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
         MoveProjectileFollowMouse();
     }
 
-
     public WeaponInfo GetWeaponInfo()
     {
         return weaponInfo;
@@ -39,7 +39,7 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        
+
     }
 
     public void UpdateProjectileRange(float projectileRange)
@@ -61,14 +61,33 @@ public class EXSkillFollowMouse : MonoBehaviour, IWeapon
         {
             if (enemyHealth)
             {
-                enemyHealth.TakeDamage(damage);
-                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+                if (CanDamage(other.gameObject))
+                {
+                    enemyHealth.TakeDamage(damage);
+                    Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+                    damageCooldowns[other.gameObject] = Time.time + damageCooldown;
+                }
             }
             else if (!other.isTrigger && indestructible)
             {
                 Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             }
         }
+    }
+
+    private bool CanDamage(GameObject enemy)
+    {
+        if (!damageCooldowns.ContainsKey(enemy))
+        {
+            return true; // If enemy was never hit before, allow damage
+        }
+
+        if (Time.time >= damageCooldowns[enemy])
+        {
+            return true; // If cooldown has passed, allow damage
+        }
+
+        return false; // Otherwise, prevent continuous damage
     }
 
     private void MoveProjectileFollowMouse()

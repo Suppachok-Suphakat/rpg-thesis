@@ -14,6 +14,7 @@ public class LockShooter : MonoBehaviour, IEnemy
     [SerializeField] private float restTime = 1f;
     [SerializeField] private float animationDelay = 0.5f; // Delay before shooting for animation sync
     [SerializeField] private Transform bulletSpawnpoint; // Delay before shooting for animation sync
+    [SerializeField] private float coneAngle = 45f;
 
     private bool isShooting = false;
 
@@ -73,28 +74,41 @@ public class LockShooter : MonoBehaviour, IEnemy
         Vector2 targetDirection = PlayerController.instance.transform.position - transform.position;
         float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 
-        // Determine enemy's facing direction
-        float facingAngle = transform.localScale.x > 0 ? 0f : 180f; // 0 when facing right, 180 when facing left
-        float angleLimit = -45f;
+        // Determine facing direction
+        bool isFacingLeft = transform.localScale.x > 0; // Left = true, Right = false
 
-        // Clamp the target angle to stay within the valid forward-facing range
-        targetAngle = Mathf.Clamp(targetAngle, facingAngle - angleLimit, facingAngle + angleLimit);
+        float forwardAngle = isFacingLeft ? 180f : 0f;
 
-        startAngle = targetAngle;
-        float endAngle = targetAngle;
-        currentAngle = targetAngle;
-        float halfAngleSpread = 0f;
-        angleStep = 0;
-
-        if (angleSpread != 0)
+        // Fix clamping for left side
+        float minAngle, maxAngle;
+        if (isFacingLeft)
         {
-            angleStep = angleSpread / (projectilesPerBurst - 1);
-            halfAngleSpread = angleSpread / 2f;
-            startAngle = Mathf.Clamp(targetAngle - halfAngleSpread, facingAngle - angleLimit, facingAngle + angleLimit);
-            endAngle = Mathf.Clamp(targetAngle + halfAngleSpread, facingAngle - angleLimit, facingAngle + angleLimit);
-            currentAngle = startAngle;
+            minAngle = forwardAngle - coneAngle;
+            maxAngle = forwardAngle + coneAngle;
+
+            // Normalize the target angle to be within [135, 225]
+            if (targetAngle < minAngle) targetAngle += 360f;
+            if (targetAngle > maxAngle) targetAngle -= 360f;
         }
+        else
+        {
+            minAngle = forwardAngle - coneAngle;
+            maxAngle = forwardAngle + coneAngle;
+        }
+
+        // Clamp target angle within shooting arc
+        targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
+
+        // Calculate projectile spread
+        float halfAngleSpread = angleSpread / 2f;
+        startAngle = targetAngle - halfAngleSpread;
+        float endAngle = targetAngle + halfAngleSpread;
+
+        // Ensure at least 1 projectile
+        angleStep = projectilesPerBurst > 1 ? (endAngle - startAngle) / (projectilesPerBurst - 1) : 0;
+        currentAngle = startAngle;
     }
+
 
     private Vector2 FindBulletSpawnPos(float currentAngle)
     {
@@ -108,10 +122,8 @@ public class LockShooter : MonoBehaviour, IEnemy
 
     private void FlipSprite(Transform flipTo)
     {
-        if (flipTo.position.x < transform.position.x)
-            transform.localScale = new Vector3(1, 1, 1);
-        else
-            transform.localScale = new Vector3(-1, 1, 1);
+        float direction = flipTo.position.x < transform.position.x ? 1 : -1;
+        transform.localScale = new Vector3(direction, 1, 1);
     }
 
     public void MagicAttackEvent()

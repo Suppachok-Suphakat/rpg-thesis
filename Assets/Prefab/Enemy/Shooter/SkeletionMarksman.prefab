@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 5008408035329819834}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.105, y: -0.194, z: 0}
+  m_LocalPosition: {x: -0.009, y: -0.194, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,8 +387,8 @@ GameObject:
   - component: {fileID: 2630914338215195644}
   - component: {fileID: 5558173840406602056}
   - component: {fileID: 9109020172715979319}
-  - component: {fileID: 122299241523337521}
   - component: {fileID: 1796149270605607977}
+  - component: {fileID: 1185213084287227527}
   m_Layer: 10
   m_Name: SkeletionMarksman
   m_TagString: Enemy
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
   attackRange: 5
-  enemyType: {fileID: 122299241523337521}
+  enemyType: {fileID: 1185213084287227527}
   attackCooldown: 2
   stopMovingWhileAttacking: 1
 --- !u!114 &2630914338215195644
@@ -628,28 +628,6 @@ MonoBehaviour:
   whiteFlashMat: {fileID: 2100000, guid: 2dfd1fb67a3520241a6ba463545b8721, type: 2}
   redFlashMat: {fileID: 2100000, guid: 1775b57b5dca0fd4c968374e0ee5b79d, type: 2}
   restoreDefaultMatTime: 0.2
---- !u!114 &122299241523337521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417106477297603239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa32f976773a0944bb2cd9b951d1128f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3554886383241864524, guid: 5f32c6e6dc440854d889d5631e161491, type: 3}
-  bulletMoveSpeed: 6
-  burstCount: 2
-  projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  timeBetweenBursts: 0
-  restTime: 0
-  animationDelay: 0.75
-  bulletSpawnpoint: {fileID: 3311986687970650229}
 --- !u!114 &1796149270605607977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +640,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1185213084287227527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417106477297603239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57c7d9c2e3b3aa4ca31bc7c785900bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3554886383241864524, guid: 5f32c6e6dc440854d889d5631e161491, type: 3}
+  bulletMoveSpeed: 6
+  burstCount: 2
+  projectilesPerBurst: 1
+  angleSpread: 0
+  startingDistance: 0.1
+  timeBetweenBursts: 0
+  restTime: 0
+  animationDelay: 0.7
+  bulletSpawnpoint: {fileID: 3311986687970650229}
+  coneAngle: 25
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0
