@@ -34,8 +34,15 @@ public class LockShooter : MonoBehaviour, IEnemy
         FlipSprite(PlayerController.instance.transform);
 
         float startAngle, currentAngle, angleStep;
+        bool canShoot;
 
-        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
+
+        if (!canShoot) // Prevent shooting if player is out of range
+        {
+            isShooting = false;
+            yield break;
+        }
 
         for (int i = 0; i < burstCount; i++)
         {
@@ -43,11 +50,6 @@ public class LockShooter : MonoBehaviour, IEnemy
 
             for (int j = 0; j < projectilesPerBurst; j++)
             {
-                //Vector2 pos = FindBulletSpawnPos(currentAngle);
-
-                //GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
-                //newBullet.transform.right = newBullet.transform.position - transform.position;
-
                 Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
                 GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnpoint.position, rotation);
 
@@ -62,14 +64,20 @@ public class LockShooter : MonoBehaviour, IEnemy
             currentAngle = startAngle;
 
             yield return new WaitForSeconds(timeBetweenBursts);
-            TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+            TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
+
+            if (!canShoot) // Stop shooting if player moves out of range mid-burst
+            {
+                isShooting = false;
+                yield break;
+            }
         }
 
         yield return new WaitForSeconds(restTime);
         isShooting = false;
     }
 
-    private void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep)
+    private void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out bool canShoot)
     {
         Vector2 targetDirection = PlayerController.instance.transform.position - transform.position;
         float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
@@ -79,21 +87,33 @@ public class LockShooter : MonoBehaviour, IEnemy
 
         float forwardAngle = isFacingLeft ? 180f : 0f;
 
+        // Define cone range dynamically
+        float halfAngleLimit = coneAngle / 2f;
+
         // Fix clamping for left side
         float minAngle, maxAngle;
         if (isFacingLeft)
         {
-            minAngle = forwardAngle - coneAngle;
-            maxAngle = forwardAngle + coneAngle;
+            minAngle = forwardAngle - halfAngleLimit;
+            maxAngle = forwardAngle + halfAngleLimit;
 
-            // Normalize the target angle to be within [135, 225]
+            // Normalize target angle for left side
             if (targetAngle < minAngle) targetAngle += 360f;
             if (targetAngle > maxAngle) targetAngle -= 360f;
         }
         else
         {
-            minAngle = forwardAngle - coneAngle;
-            maxAngle = forwardAngle + coneAngle;
+            minAngle = forwardAngle - halfAngleLimit;
+            maxAngle = forwardAngle + halfAngleLimit;
+        }
+
+        // Check if player is within valid shooting range
+        canShoot = targetAngle >= minAngle && targetAngle <= maxAngle;
+
+        if (!canShoot)
+        {
+            startAngle = currentAngle = angleStep = 0; // No shooting
+            return;
         }
 
         // Clamp target angle within shooting arc
@@ -108,6 +128,7 @@ public class LockShooter : MonoBehaviour, IEnemy
         angleStep = projectilesPerBurst > 1 ? (endAngle - startAngle) / (projectilesPerBurst - 1) : 0;
         currentAngle = startAngle;
     }
+
 
 
     private Vector2 FindBulletSpawnPos(float currentAngle)
