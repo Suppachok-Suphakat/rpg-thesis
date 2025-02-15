@@ -17,7 +17,6 @@ public class ShooterEnemyAI : MonoBehaviour
     [SerializeField] private float bulletMoveSpeed = 5f;
     [SerializeField] private int burstCount = 3;
     [SerializeField] private int projectilesPerBurst = 1;
-    [SerializeField][Range(0, 359)] private float angleSpread = 10f;
     [SerializeField] private float timeBetweenBursts = 0.2f;
     [SerializeField] private float restTime = 1f;
     [SerializeField] private float animationDelay = 0.5f;

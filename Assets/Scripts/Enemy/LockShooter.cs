@@ -16,8 +16,14 @@ public class LockShooter : MonoBehaviour, IEnemy
     [SerializeField] private Transform bulletSpawnpoint; // Delay before shooting for animation sync
     [SerializeField] private float coneAngle = 45f;
     [SerializeField] public bool canShoot;
+    private Animator animator;
 
     private bool isShooting = false;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public bool CanShootPlayer()
     {
@@ -50,7 +56,7 @@ public class LockShooter : MonoBehaviour, IEnemy
 
         TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
 
-        if (!canShoot) // Prevent shooting if player is out of range
+        if (!canShoot) // Prevent shooting if player is out of range at the start
         {
             isShooting = false;
             yield break;
@@ -76,13 +82,6 @@ public class LockShooter : MonoBehaviour, IEnemy
             currentAngle = startAngle;
 
             yield return new WaitForSeconds(timeBetweenBursts);
-            TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
-
-            if (!canShoot) // Stop shooting if player moves out of range mid-burst
-            {
-                isShooting = false;
-                yield break;
-            }
         }
 
         yield return new WaitForSeconds(restTime);
@@ -182,4 +181,5 @@ public class LockShooter : MonoBehaviour, IEnemy
         isShooting = false;
     }
 }
+
 

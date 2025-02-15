@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         MovementStateControl();
-        UpdateAnimationState();
+        //UpdateAnimationState();
     }
 
     private void UpdateAnimationState()
@@ -146,7 +146,6 @@ public class EnemyAI : MonoBehaviour
             enemyPathfinding.MoveTo(testPosition);
         }
     }
-
 
     private IEnumerator AttackCooldownRoutine()
     {
