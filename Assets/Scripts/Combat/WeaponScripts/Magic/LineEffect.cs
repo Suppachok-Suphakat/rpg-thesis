@@ -8,9 +8,9 @@ public class LineEffect : MonoBehaviour
     public Transform target;
     public float lineSpeed = 10f;
 
-    public float maxWidth = 1f;  // Thickest width when close
-    public float minWidth = 0.5f; // Thinnest width when far
-    public float maxDistance = 10f; // Distance at which the line becomes the thinnest
+    public float maxOpacity = 1f;  // Maximum opacity when close
+    public float minOpacity = 0.1f; // Minimum opacity when far
+    public float maxDistance = 10f; // Distance at which the opacity becomes the minimum
 
     private Vector3 initialPosition;
     private bool isHealing;
@@ -25,6 +25,20 @@ public class LineEffect : MonoBehaviour
         lineRenderer.SetPosition(0, initialPosition);
         lineRenderer.SetPosition(1, initialPosition);
         isHealing = false;
+
+        // Ensure the LineRenderer uses a material with transparency
+        var material = lineRenderer.material;
+        if (material != null && material.HasProperty("_Color"))
+        {
+            material.SetFloat("_Mode", 3); // Set to Transparent mode (assuming the shader supports it)
+            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            material.SetInt("_ZWrite", 0);
+            material.DisableKeyword("_ALPHATEST_ON");
+            material.EnableKeyword("_ALPHABLEND_ON");
+            material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            material.renderQueue = 3000;
+        }
     }
 
     void Update()
@@ -35,11 +49,19 @@ public class LineEffect : MonoBehaviour
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, target.position);
 
-            // Adjust line width based on distance
+            // Adjust line opacity based on distance
             float distance = Vector3.Distance(transform.position, target.position);
-            float newWidth = Mathf.Lerp(maxWidth, minWidth, distance / maxDistance);
-            lineRenderer.startWidth = newWidth;
-            lineRenderer.endWidth = newWidth;
+            float newOpacity = Mathf.Lerp(maxOpacity, minOpacity, distance / maxDistance);
+
+            Color startColor = lineRenderer.startColor;
+            Color endColor = lineRenderer.endColor;
+
+            // Update opacity (alpha value)
+            startColor.a = newOpacity;
+            endColor.a = newOpacity;
+
+            lineRenderer.startColor = startColor;
+            lineRenderer.endColor = endColor;
         }
     }
 

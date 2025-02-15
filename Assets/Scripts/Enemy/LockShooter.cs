@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LockShooter : MonoBehaviour, IEnemy
@@ -8,17 +7,16 @@ public class LockShooter : MonoBehaviour, IEnemy
     [SerializeField] private float bulletMoveSpeed;
     [SerializeField] private int burstCount;
     [SerializeField] private int projectilesPerBurst;
-    [SerializeField][Range(0, 359)] private float angleSpread;
-    [SerializeField] private float startingDistance = 0.1f;
-    [SerializeField] private float timeBetweenBursts;
-    [SerializeField] private float restTime = 1f;
-    [SerializeField] private float animationDelay = 0.5f; // Delay before shooting for animation sync
-    [SerializeField] private Transform bulletSpawnpoint; // Delay before shooting for animation sync
+    [SerializeField] private Transform bulletSpawnpoint;
     [SerializeField] private float coneAngle = 45f;
     [SerializeField] public bool canShoot;
-    private Animator animator;
 
-    private bool isShooting = false;
+    [Header("Attack Settings")]
+    [SerializeField] private float attackDelay = 1f; // Delay before attacking, adjustable in the Inspector
+
+    private Animator animator;
+    private bool isFirstShot = true;  // Flag to track the first shot
+    private bool isSearchingForPlayer = false; // Flag to track if enemy is searching for a better spot
 
     private void Start()
     {
@@ -27,159 +25,110 @@ public class LockShooter : MonoBehaviour, IEnemy
 
     public bool CanShootPlayer()
     {
-        float startAngle, currentAngle, angleStep;
-        bool canShoot;
-
-        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
-
-        return canShoot;
+        return TargetConeOfInfluence(out _, out _, out _, out bool canShoot) && canShoot;
     }
-
 
     public void Attack()
     {
-        if (!isShooting)
-        {
-            StartCoroutine(ShootRoutine());
-        }
+        StartCoroutine(AttackWithDelay()); // Start the coroutine to handle the attack delay
     }
 
-    private IEnumerator ShootRoutine()
+    private IEnumerator AttackWithDelay()
     {
-        isShooting = true;
+        // Wait for the specified delay
+        yield return new WaitForSeconds(attackDelay);
 
-        // Flip to face the player at the start of shooting
-        FlipSprite(PlayerController.instance.transform);
-
-        float startAngle, currentAngle, angleStep;
-        bool canShoot;
-
-        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out canShoot);
-
-        if (!canShoot) // Prevent shooting if player is out of range at the start
+        // Once the delay is over, proceed with the attack
+        if (isFirstShot)
         {
-            isShooting = false;
-            yield break;
+            animator.SetTrigger("Attack"); // Trigger the first attack animation
+        }
+        else
+        {
+            animator.SetTrigger("AttackSecond"); // Trigger the second attack animation
+        }
+        isFirstShot = !isFirstShot;  // Toggle the shot flag for the next attack
+    }
+
+    // This method will be called from an Animation Event
+    public void Shoot()
+    {
+        if (!TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out bool canShoot) || !canShoot)
+        {
+            // If we can't shoot, stop attacking and search for a better spot
+            if (!isSearchingForPlayer)
+            {
+                StopAttackAndSearch();
+            }
+            return;
         }
 
-        for (int i = 0; i < burstCount; i++)
+        // Continue shooting if the player is in range
+        FireShot(ref currentAngle, ref angleStep);
+    }
+
+    private void FireShot(ref float currentAngle, ref float angleStep)
+    {
+        for (int j = 0; j < projectilesPerBurst; j++)
         {
-            yield return new WaitForSeconds(animationDelay); // Add delay for animation
-
-            for (int j = 0; j < projectilesPerBurst; j++)
+            // Before firing each shot, check if the player is still in range
+            if (!TargetConeOfInfluence(out _, out _, out _, out bool canShootInRange) || !canShootInRange)
             {
-                Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
-                GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnpoint.position, rotation);
-
-                if (newBullet.TryGetComponent(out Projectile projectile))
-                {
-                    projectile.UpdateMoveSpeed(bulletMoveSpeed);
-                }
-
-                currentAngle += angleStep;
+                Debug.Log("Player is out of range for this shot. Bullet will not fire.");
+                continue; // Skip this shot if the player is out of range
             }
 
-            currentAngle = startAngle;
+            Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
+            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnpoint.position, rotation);
 
-            yield return new WaitForSeconds(timeBetweenBursts);
+            // Calculate direction to the player
+            Vector2 direction = (PlayerController.instance.transform.position - bulletSpawnpoint.position).normalized;
+
+            if (newBullet.TryGetComponent(out EnemyBullet projectile))
+            {
+                projectile.UpdateMoveSpeed(bulletMoveSpeed);
+                projectile.SetDirection(direction); // Set the bullet direction
+            }
+
+            currentAngle += angleStep;
         }
-
-        yield return new WaitForSeconds(restTime);
-        isShooting = false;
     }
 
-    private void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out bool canShoot)
+    private void StopAttackAndSearch()
+    {
+        // Stop attacking
+        animator.SetTrigger("Idle"); // Transition to idle or searching state in your animator
+    }
+
+    private bool TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out bool canShoot)
     {
         Vector2 targetDirection = PlayerController.instance.transform.position - transform.position;
         float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 
-        // Determine facing direction
-        bool isFacingLeft = transform.localScale.x > 0; // Left = true, Right = false
-
+        bool isFacingLeft = transform.localScale.x > 0;
         float forwardAngle = isFacingLeft ? 180f : 0f;
-
-        // Define cone range dynamically
         float halfAngleLimit = coneAngle / 2f;
 
-        // Fix clamping for left side
-        float minAngle, maxAngle;
-        if (isFacingLeft)
-        {
-            minAngle = forwardAngle - halfAngleLimit;
-            maxAngle = forwardAngle + halfAngleLimit;
+        float minAngle = forwardAngle - halfAngleLimit;
+        float maxAngle = forwardAngle + halfAngleLimit;
 
-            // Normalize target angle for left side
-            if (targetAngle < minAngle) targetAngle += 360f;
-            if (targetAngle > maxAngle) targetAngle -= 360f;
-        }
-        else
-        {
-            minAngle = forwardAngle - halfAngleLimit;
-            maxAngle = forwardAngle + halfAngleLimit;
-        }
-
-        // Check if player is within valid shooting range
+        // Determine whether the player is within the shooting cone
         canShoot = targetAngle >= minAngle && targetAngle <= maxAngle;
 
         if (!canShoot)
         {
-            startAngle = currentAngle = angleStep = 0; // No shooting
-            return;
+            startAngle = currentAngle = angleStep = 0;
+            return false; // Exit early if not within range
         }
 
-        // Clamp target angle within shooting arc
         targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
 
-        // Calculate projectile spread
-        float halfAngleSpread = angleSpread / 2f;
+        float halfAngleSpread = coneAngle / 2f;
         startAngle = targetAngle - halfAngleSpread;
         float endAngle = targetAngle + halfAngleSpread;
-
-        // Ensure at least 1 projectile
         angleStep = projectilesPerBurst > 1 ? (endAngle - startAngle) / (projectilesPerBurst - 1) : 0;
         currentAngle = startAngle;
-    }
 
-
-
-    private Vector2 FindBulletSpawnPos(float currentAngle)
-    {
-        float x = transform.position.x + startingDistance * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
-        float y = transform.position.y + startingDistance * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
-
-        Vector2 pos = new Vector2(x, y);
-
-        return pos;
-    }
-
-    private void FlipSprite(Transform flipTo)
-    {
-        float direction = flipTo.position.x < transform.position.x ? 1 : -1;
-        transform.localScale = new Vector3(direction, 1, 1);
-    }
-
-    public void MagicAttackEvent()
-    {
-        if (!isShooting)
-        {
-            StartCoroutine(MagicRoutine());
-        }
-    }
-
-    private IEnumerator MagicRoutine()
-    {
-        isShooting = true;
-
-        // Flip to face the player at the start of shooting
-        FlipSprite(PlayerController.instance.transform);
-
-        yield return new WaitForSeconds(animationDelay); // Add delay for animation
-
-        GameObject newMagic = Instantiate(bulletPrefab, PlayerController.instance.transform.position, Quaternion.identity);
-
-        yield return new WaitForSeconds(restTime);
-        isShooting = false;
+        return true;
     }
 }
-
-

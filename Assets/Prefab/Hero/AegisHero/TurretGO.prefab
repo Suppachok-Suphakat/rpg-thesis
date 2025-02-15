@@ -338,7 +338,8 @@ MonoBehaviour:
   - {fileID: 5414523398985342355}
   - {fileID: 5664750777232863466}
   animator: {fileID: 0}
-  exitTime: 1000000
+  fireRate: 1
+  exitTime: 10
   exitAnimationDuration: 0.45
 --- !u!58 &8083942113285356235
 CircleCollider2D:

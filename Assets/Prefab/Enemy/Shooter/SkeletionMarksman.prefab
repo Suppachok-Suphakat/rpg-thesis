@@ -653,16 +653,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3554886383241864524, guid: 5f32c6e6dc440854d889d5631e161491, type: 3}
-  bulletMoveSpeed: 6
+  bulletMoveSpeed: 10
   burstCount: 2
   projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  timeBetweenBursts: 0
-  restTime: 0
-  animationDelay: 0.7
   bulletSpawnpoint: {fileID: 3311986687970650229}
-  coneAngle: 25
+  coneAngle: 45
+  canShoot: 0
+  attackDelay: 0.5
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private float projectileRange = 10f;
 
     private Vector3 startPosition;
+    private Vector2 direction; // Direction the bullet should travel in
 
     private void Start()
     {
@@ -32,6 +33,11 @@ public class EnemyBullet : MonoBehaviour
     public void UpdateMoveSpeed(float moveSpeed)
     {
         this.moveSpeed = moveSpeed;
+    }
+
+    public void SetDirection(Vector2 newDirection)
+    {
+        direction = newDirection; // Set the direction vector
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,6 +79,8 @@ public class EnemyBullet : MonoBehaviour
 
     private void MoveProjectile()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * moveSpeed, Space.Self);
+        // Move the bullet in the calculated direction
+        transform.Translate(direction * Time.deltaTime * moveSpeed, Space.World);
     }
 }
+

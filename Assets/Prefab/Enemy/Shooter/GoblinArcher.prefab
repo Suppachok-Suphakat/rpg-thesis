@@ -261,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 5223006630152060827}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.448, y: 0, z: 0}
+  m_LocalPosition: {x: -0.448, y: 0.129, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 5558173840406602056}
   - component: {fileID: 9109020172715979319}
   - component: {fileID: -1076354272687066304}
-  - component: {fileID: 4954682757579057324}
+  - component: {fileID: 4888552601494549126}
   m_Layer: 10
   m_Name: GoblinArcher
   m_TagString: Enemy
@@ -578,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
   attackRange: 5
-  enemyType: {fileID: 4954682757579057324}
+  enemyType: {fileID: 4888552601494549126}
   attackCooldown: 2
   stopMovingWhileAttacking: 1
 --- !u!114 &2630914338215195644
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f09039998d859840ace27d90b696757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4954682757579057324
+--- !u!114 &4888552601494549126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -649,20 +649,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6417106477297603239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57c7d9c2e3b3aa4ca31bc7c785900bd, type: 3}
+  m_Script: {fileID: 11500000, guid: be160e13da60b6d4ab1b2d352beeed49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3554886383241864524, guid: c48e35a8a8eb53d49946bececffbc8fc, type: 3}
-  bulletMoveSpeed: 6
+  bulletPrefab: {fileID: 3554886383241864524, guid: 99bc0a0b5d185ac48924a9f772ea0f38, type: 3}
+  bulletMoveSpeed: 8
   burstCount: 1
   projectilesPerBurst: 1
-  angleSpread: 0
-  startingDistance: 0.1
-  timeBetweenBursts: 0
-  restTime: 0
-  animationDelay: 0.75
   bulletSpawnpoint: {fileID: 622484665742738085}
   coneAngle: 45
+  canShoot: 0
+  attackDelay: 0.5
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         MovementStateControl();
-        //UpdateAnimationState();
+        UpdateAnimationState();
     }
 
     private void UpdateAnimationState()
@@ -101,8 +101,15 @@ public class EnemyAI : MonoBehaviour
         }
 
         LockShooter shooter = enemyType as LockShooter;
+        OneAnimLockShooter oneAnimShooter = enemyType as OneAnimLockShooter;
 
         if (shooter != null && !shooter.CanShootPlayer())
+        {
+            FindBetterShootingPosition();
+            return;
+        }
+
+        if (oneAnimShooter != null && !oneAnimShooter.CanShootPlayer())
         {
             FindBetterShootingPosition();
             return;
@@ -111,11 +118,19 @@ public class EnemyAI : MonoBehaviour
         if (canAttack)
         {
             canAttack = false;
-            shooter.Attack();
+            if (shooter != null)
+            {
+                shooter.Attack();
+            }
+
+            if (oneAnimShooter != null)
+            {
+                oneAnimShooter.Attack();
+            }
 
             if (stopMovingWhileAttacking)
             {
-                animator.SetTrigger("Attack");
+                //animator.SetTrigger("Attack");
                 enemyPathfinding.StopMoving();
             }
             else
@@ -133,7 +148,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 enemyPos = transform.position;
         Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
 
-        float bestDistance = 3f; // Adjust this based on your needs
+        float bestDistance = 5f; // Adjust this based on your needs
         float angleStep = 15f; // How much to adjust the angle per check
         int maxAttempts = 12; // How many different positions to check
 
