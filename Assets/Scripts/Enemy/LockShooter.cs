@@ -55,7 +55,8 @@ public class LockShooter : MonoBehaviour, IEnemy
         float startAngle, currentAngle, angleStep;
         if (!TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out bool canShoot))
         {
-            FireBullet(//???);
+            Vector2 defaultDirection = transform.localScale.x > 0 ? Vector2.left : Vector2.right;
+            FireBullet(defaultDirection);
             return;
         }
 
