@@ -55,9 +55,7 @@ public class LockShooter : MonoBehaviour, IEnemy
         float startAngle, currentAngle, angleStep;
         if (!TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out bool canShoot))
         {
-            // If player is out of range, shoot at their last known position
-            Vector2 lastKnownDirection = (PlayerController.instance.transform.position - transform.position).normalized;
-            FireBullet(lastKnownDirection);
+            FireBullet(//???);
             return;
         }
 
@@ -114,7 +112,7 @@ public class LockShooter : MonoBehaviour, IEnemy
 
         targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
 
-        float halfAngleSpread = coneAngle / 2f;
+        float halfAngleSpread = coneAngle;
         startAngle = targetAngle - halfAngleSpread;
         float endAngle = targetAngle + halfAngleSpread;
         angleStep = projectilesPerBurst > 1 ? (endAngle - startAngle) / (projectilesPerBurst - 1) : 0;

@@ -148,9 +148,9 @@ public class EnemyAI : MonoBehaviour
         Vector2 enemyPos = transform.position;
         Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
 
-        float bestDistance = 5f;
-        float angleStep = 15f;
-        int maxAttempts = 12;
+        float bestDistance = 5f; // Adjust this based on your needs
+        float angleStep = 15f; // How much to adjust the angle per check
+        int maxAttempts = 12; // How many different positions to check
 
         for (int i = 0; i < maxAttempts; i++)
         {
@@ -158,10 +158,7 @@ public class EnemyAI : MonoBehaviour
             Vector2 testDirection = Quaternion.Euler(0, 0, angleOffset) * directionToPlayer;
             Vector2 testPosition = (Vector2)playerPos - (testDirection * bestDistance);
 
-            if (!stopMovingWhileAttacking) // Ensure movement is only applied when allowed
-            {
-                enemyPathfinding.MoveTo(testPosition);
-            }
+            enemyPathfinding.MoveTo(testPosition);
         }
     }
 

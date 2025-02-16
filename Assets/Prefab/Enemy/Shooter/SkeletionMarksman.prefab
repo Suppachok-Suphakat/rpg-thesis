@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamChangeDirFloat: 2
-  attackRange: 5
+  attackRange: 8
   enemyType: {fileID: 1185213084287227527}
   attackCooldown: 2
   stopMovingWhileAttacking: 1
@@ -659,9 +659,8 @@ MonoBehaviour:
   bulletSpawnpoint: {fileID: 3311986687970650229}
   coneAngle: 45
   canShoot: 0
-  attackDelay: 0.5
-  hasFirstAttackFinished: 0
-  hasSecondAttackFinished: 0
+  hasAttackFinished: 0
+  isShooting: 0
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0
