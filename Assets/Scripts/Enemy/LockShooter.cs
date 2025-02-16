@@ -10,16 +10,11 @@ public class LockShooter : MonoBehaviour, IEnemy
     [SerializeField] private Transform bulletSpawnpoint;
     [SerializeField] private float coneAngle = 45f;
     [SerializeField] public bool canShoot;
+    [SerializeField] public bool hasAttackFinished = false;
+    [SerializeField] public bool isShooting = false;
 
-    [Header("Attack Settings")]
-    [SerializeField] private float attackDelay = 1f; // Delay before attacking, adjustable in the Inspector
     private bool isAttacking = false;
-
     private Animator animator;
-    private bool isFirstShot = true;  // Flag to track the first shot
-    private bool isSearchingForPlayer = false; // Flag to track if enemy is searching for a better spot
-    public bool hasFirstAttackFinished = false;
-    public bool hasSecondAttackFinished = false;
 
     private void Start()
     {
@@ -33,41 +28,19 @@ public class LockShooter : MonoBehaviour, IEnemy
 
     public void Attack()
     {
-        StartCoroutine(AttackWithDelay()); // Start the coroutine to handle the attack delay
+        if (!isShooting)
+        {
+            isShooting = true; // Mark as shooting
+            hasAttackFinished = false;
+            FlipSprite(PlayerController.instance.transform);
+            animator.SetTrigger("Attack"); // Ensure the attack animation is triggered
+        }
     }
 
-    private IEnumerator AttackWithDelay()
+    public void OnAttackAnimationEnd()
     {
-        // Wait for the specified delay
-        yield return new WaitForSeconds(attackDelay);
-
-        // Trigger the attack animation
-        if (isFirstShot)
-        {
-            animator.SetTrigger("Attack");
-        }
-        else
-        {
-            animator.SetTrigger("AttackSecond");
-        }
-
-        isAttacking = true;
-
-        isFirstShot = !isFirstShot;
-
-        // Wait for the attack animation to finish before continuing
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-        if (isFirstShot)
-        {
-            hasFirstAttackFinished = true;  // Set the first attack flag
-        }
-        else
-        {
-            hasSecondAttackFinished = true;  // Set the second attack flag
-        }
-
-        isAttacking = false;  // Reset attacking flag
+        isShooting = false; // Mark shooting as finished
+        hasAttackFinished = true;
     }
 
     public bool IsAttacking()
@@ -78,52 +51,45 @@ public class LockShooter : MonoBehaviour, IEnemy
     // This method will be called from an Animation Event
     public void Shoot()
     {
-        if (!TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out bool canShoot) || !canShoot)
+        FlipSprite(PlayerController.instance.transform);
+        float startAngle, currentAngle, angleStep;
+        if (!TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out bool canShoot))
         {
-            // If we can't shoot, stop attacking and search for a better spot
-            if (!isSearchingForPlayer)
-            {
-                StopAttackAndSearch();
-            }
+            // If player is out of range, shoot at their last known position
+            Vector2 lastKnownDirection = (PlayerController.instance.transform.position - transform.position).normalized;
+            FireBullet(lastKnownDirection);
             return;
         }
 
-        // Continue shooting if the player is in range
-        FireShot(ref currentAngle, ref angleStep);
+        StartCoroutine(ShootBurst(startAngle, angleStep));
     }
 
-    private void FireShot(ref float currentAngle, ref float angleStep)
+    private IEnumerator ShootBurst(float startAngle, float angleStep)
     {
-        for (int j = 0; j < projectilesPerBurst; j++)
+        for (int i = 0; i < burstCount; i++)
         {
-            // Before firing each shot, check if the player is still in range
-            if (!TargetConeOfInfluence(out _, out _, out _, out bool canShootInRange) || !canShootInRange)
+            float angle = startAngle;
+            for (int j = 0; j < projectilesPerBurst; j++)
             {
-                Debug.Log("Player is out of range for this shot. Bullet will not fire.");
-                continue; // Skip this shot if the player is out of range
+                Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+                FireBullet(direction);
+                angle += angleStep;
             }
 
-            Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
-            GameObject newBullet = Instantiate(bulletPrefab, bulletSpawnpoint.position, rotation);
-
-            // Calculate direction to the player
-            Vector2 direction = (PlayerController.instance.transform.position - bulletSpawnpoint.position).normalized;
-
-            if (newBullet.TryGetComponent(out EnemyBullet projectile))
-            {
-                projectile.UpdateMoveSpeed(bulletMoveSpeed);
-                projectile.SetDirection(direction); // Set the bullet direction
-            }
-
-            currentAngle += angleStep;
+            yield return new WaitForSeconds(0.2f); // Small delay between bursts
         }
     }
 
-    private void StopAttackAndSearch()
+    private void FireBullet(Vector2 direction)
     {
-        // Stop attacking
-        animator.SetTrigger("Idle"); // Transition to idle or searching state in your animator
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnpoint.position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = direction * bulletMoveSpeed;
+        }
     }
+
 
     private bool TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out bool canShoot)
     {
@@ -155,5 +121,13 @@ public class LockShooter : MonoBehaviour, IEnemy
         currentAngle = startAngle;
 
         return true;
+    }
+
+    private void FlipSprite(Transform flipTo)
+    {
+        if (flipTo.position.x < transform.position.x)
+            transform.localScale = new Vector3(1, 1, 1);
+        else
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 }
