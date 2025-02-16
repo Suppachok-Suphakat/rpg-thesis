@@ -13,10 +13,13 @@ public class LockShooter : MonoBehaviour, IEnemy
 
     [Header("Attack Settings")]
     [SerializeField] private float attackDelay = 1f; // Delay before attacking, adjustable in the Inspector
+    private bool isAttacking = false;
 
     private Animator animator;
     private bool isFirstShot = true;  // Flag to track the first shot
     private bool isSearchingForPlayer = false; // Flag to track if enemy is searching for a better spot
+    public bool hasFirstAttackFinished = false;
+    public bool hasSecondAttackFinished = false;
 
     private void Start()
     {
@@ -38,16 +41,38 @@ public class LockShooter : MonoBehaviour, IEnemy
         // Wait for the specified delay
         yield return new WaitForSeconds(attackDelay);
 
-        // Once the delay is over, proceed with the attack
+        // Trigger the attack animation
         if (isFirstShot)
         {
-            animator.SetTrigger("Attack"); // Trigger the first attack animation
+            animator.SetTrigger("Attack");
         }
         else
         {
-            animator.SetTrigger("AttackSecond"); // Trigger the second attack animation
+            animator.SetTrigger("AttackSecond");
         }
-        isFirstShot = !isFirstShot;  // Toggle the shot flag for the next attack
+
+        isAttacking = true;
+
+        isFirstShot = !isFirstShot;
+
+        // Wait for the attack animation to finish before continuing
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        if (isFirstShot)
+        {
+            hasFirstAttackFinished = true;  // Set the first attack flag
+        }
+        else
+        {
+            hasSecondAttackFinished = true;  // Set the second attack flag
+        }
+
+        isAttacking = false;  // Reset attacking flag
+    }
+
+    public bool IsAttacking()
+    {
+        return isAttacking;
     }
 
     // This method will be called from an Animation Event

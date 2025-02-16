@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  stopMovingTime: 2
+  stopMovingTime: 3
   isImmobilized: 0
 --- !u!114 &2681166522991857370
 MonoBehaviour:
@@ -660,6 +660,8 @@ MonoBehaviour:
   coneAngle: 45
   canShoot: 0
   attackDelay: 0.5
+  hasFirstAttackFinished: 0
+  hasSecondAttackFinished: 0
 --- !u!1 &6965289390390244256
 GameObject:
   m_ObjectHideFlags: 0

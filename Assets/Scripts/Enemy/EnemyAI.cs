@@ -105,8 +105,12 @@ public class EnemyAI : MonoBehaviour
 
         if (shooter != null && !shooter.CanShootPlayer())
         {
-            FindBetterShootingPosition();
-            return;
+            // Check if attack animations are complete
+            if (shooter.hasFirstAttackFinished && shooter.hasSecondAttackFinished)
+            {
+                FindBetterShootingPosition();
+                return;
+            }
         }
 
         if (oneAnimShooter != null && !oneAnimShooter.CanShootPlayer())
@@ -130,7 +134,6 @@ public class EnemyAI : MonoBehaviour
 
             if (stopMovingWhileAttacking)
             {
-                //animator.SetTrigger("Attack");
                 enemyPathfinding.StopMoving();
             }
             else
