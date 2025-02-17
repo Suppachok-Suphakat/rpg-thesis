@@ -45,12 +45,13 @@ public class LockShooterEnemyAI : MonoBehaviour
         float horizontalDistance = Mathf.Abs(player.position.x - transform.position.x);
         float verticalDistance = Mathf.Abs(player.position.y - transform.position.y);
 
-        if (distanceFromPlayer < lineOfSight && verticalDistance <= 2.0f)
+        // Update last known position when the player is within range and in line of sight
+        if (distanceFromPlayer < lineOfSight)//&& verticalDistance <= 2.0f
         {
+            lastKnownPosition = player.position;
             FlipSprite(player);
             animator.SetBool("isMoving", true);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.position.x, transform.position.y), speed * Time.deltaTime);
-            lastKnownPosition = player.position;
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.position.x, player.position.y), speed * Time.deltaTime);
         }
         else
         {
@@ -75,6 +76,21 @@ public class LockShooterEnemyAI : MonoBehaviour
         }
     }
 
+    public void Shoot()
+    {
+        Vector2 targetPosition = lastKnownPosition;
+
+        // Check if player is in range and update last known position
+        if (Mathf.Abs(player.position.y - transform.position.y) <= 2.0f && Vector2.Distance(player.position, transform.position) < lineOfSight)
+        {
+            lastKnownPosition = player.position;
+        }
+
+        // Calculate the shooting direction using last known position
+        Vector2 shootDirection = (targetPosition - (Vector2)transform.position).normalized;
+        FireBullet(shootDirection);
+    }
+
     private bool CanShootAtPlayer()
     {
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
@@ -82,20 +98,6 @@ public class LockShooterEnemyAI : MonoBehaviour
 
         // Limit shooting to 60 degrees in front (adjust as needed)
         return angle < 60f || angle > 120f;
-    }
-
-    public void Shoot()
-    {
-        Vector2 targetPosition = lastKnownPosition;
-
-        // If the player is still in range, update target position
-        if (Mathf.Abs(player.position.y - transform.position.y) <= 2.0f)
-        {
-            lastKnownPosition = player.position;
-        }
-
-        Vector2 shootDirection = (targetPosition - (Vector2)transform.position).normalized;
-        FireBullet(shootDirection);
     }
 
     private void FireBullet(Vector2 shootDirection)
