@@ -22,7 +22,13 @@ public class LockShooterEnemyAI : MonoBehaviour
     private bool isImmobilized = false;
     [SerializeField] private bool stopMovingWhileAttacking = true;
 
-    private Vector2 lastKnownPosition; // Store last detected position
+    private Vector2 lastKnownPosition;
+
+    // Roaming Variables
+    public float roamRadius = 3f;
+    public float roamDelay = 2f;
+    private Vector2 roamTarget;
+    private bool isRoaming = false;
 
     void Start()
     {
@@ -31,6 +37,8 @@ public class LockShooterEnemyAI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         knockback = GetComponent<Knockback>();
         rb = GetComponent<Rigidbody2D>();
+
+        StartCoroutine(Roam());
     }
 
     void Update()
@@ -45,25 +53,23 @@ public class LockShooterEnemyAI : MonoBehaviour
         float horizontalDistance = Mathf.Abs(player.position.x - transform.position.x);
         float verticalDistance = Mathf.Abs(player.position.y - transform.position.y);
 
-        // Update last known position when the player is within range and in line of sight
-        if (distanceFromPlayer < lineOfSight)//&& verticalDistance <= 2.0f
+        if (distanceFromPlayer < lineOfSight)
         {
             lastKnownPosition = player.position;
-            FlipSprite(player);
+            FlipSprite(player.position.x - transform.position.x);
             animator.SetBool("isMoving", true);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(player.position.x, player.position.y), speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
-        else
+        else if (!isRoaming)
         {
             animator.SetBool("isMoving", false);
         }
 
-        // **Prevent shooting if the player is directly above or below**
         if (horizontalDistance < 6.0f && verticalDistance <= 2.0f && CanShootAtPlayer())
         {
             if (Time.time > nextFireTime)
             {
-                FlipSprite(player);
+                FlipSprite(player.position.x - transform.position.x);
                 animator.SetTrigger("Attack");
 
                 if (stopMovingWhileAttacking)
@@ -76,17 +82,40 @@ public class LockShooterEnemyAI : MonoBehaviour
         }
     }
 
+    private IEnumerator Roam()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(roamDelay);
+
+            if (!isImmobilized && player != null && Vector2.Distance(player.position, transform.position) >= lineOfSight)
+            {
+                isRoaming = true;
+                roamTarget = (Vector2)transform.position + new Vector2(Random.Range(-roamRadius, roamRadius), Random.Range(-roamRadius, roamRadius));
+                animator.SetBool("isMoving", true);
+
+                while (Vector2.Distance(transform.position, roamTarget) > 0.1f)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, roamTarget, speed * Time.deltaTime);
+                    FlipSprite(roamTarget.x - transform.position.x);
+                    yield return null;
+                }
+
+                animator.SetBool("isMoving", false);
+                isRoaming = false;
+            }
+        }
+    }
+
     public void Shoot()
     {
         Vector2 targetPosition = lastKnownPosition;
 
-        // Check if player is in range and update last known position
         if (Mathf.Abs(player.position.y - transform.position.y) <= 2.0f && Vector2.Distance(player.position, transform.position) < lineOfSight)
         {
             lastKnownPosition = player.position;
         }
 
-        // Calculate the shooting direction using last known position
         Vector2 shootDirection = (targetPosition - (Vector2)transform.position).normalized;
         FireBullet(shootDirection);
     }
@@ -96,7 +125,6 @@ public class LockShooterEnemyAI : MonoBehaviour
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
         float angle = Vector2.Angle(transform.right, directionToPlayer);
 
-        // Limit shooting to 60 degrees in front (adjust as needed)
         return angle < 60f || angle > 120f;
     }
 
@@ -114,11 +142,11 @@ public class LockShooterEnemyAI : MonoBehaviour
         }
     }
 
-    private void FlipSprite(Transform target)
+    private void FlipSprite(float direction)
     {
-        if (target.position.x < transform.position.x)
+        if (direction < 0)
             transform.localScale = new Vector3(1, 1, 1);
-        else
+        else if (direction > 0)
             transform.localScale = new Vector3(-1, 1, 1);
     }
 
@@ -126,6 +154,9 @@ public class LockShooterEnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, roamRadius);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position + new Vector3(-6, -2, 0), transform.position + new Vector3(-6, 2, 0));
@@ -151,3 +182,5 @@ public class LockShooterEnemyAI : MonoBehaviour
         isImmobilized = false;
     }
 }
+
+
