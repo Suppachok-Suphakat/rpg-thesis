@@ -181,4 +181,20 @@ public class LockShooterEnemyAI : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         isImmobilized = false;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyWall")) // Make sure walls have the "Wall" tag
+        {
+            // Reverse direction by subtracting current position from the roam target
+            Vector2 bounceDirection = (Vector2)transform.position - roamTarget;
+            roamTarget = (Vector2)transform.position + bounceDirection.normalized * roamRadius;
+
+            // Move enemy back slightly
+            transform.position += (Vector3)bounceDirection.normalized * 0.5f;
+
+            // Flip sprite accordingly
+            FlipSprite(bounceDirection.x);
+        }
+    }
 }
