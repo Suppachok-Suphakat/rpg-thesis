@@ -46,7 +46,9 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         UpdateHpBar();
         StartCoroutine(flash.FlashRoutine());
+
         FindObjectOfType<HitStop>().Stop(0.1f);
+
         knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);
         StartCoroutine(CheckDetectDeathRoutine());
     }
@@ -57,6 +59,7 @@ public class EnemyHealth : MonoBehaviour
         UpdateHpBar();
         knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);
         StartCoroutine(flash.FlashRoutine());
+        FindObjectOfType<HitStop>().Stop(0.1f);
         StartCoroutine(CheckDetectDeathRoutine());
     }
 
@@ -65,6 +68,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         UpdateHpBar();
         StartCoroutine(flash.FlashRoutine());
+        FindObjectOfType<HitStop>().Stop(0.1f);
         StartCoroutine(CheckDetectDeathRoutine());
     }
 

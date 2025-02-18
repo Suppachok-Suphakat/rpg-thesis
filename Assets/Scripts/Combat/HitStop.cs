@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HitStop : MonoBehaviour
@@ -8,17 +7,32 @@ public class HitStop : MonoBehaviour
 
     public void Stop(float duration)
     {
-        if(waiting)
+        if (waiting)
             return;
-        Time.timeScale = 0.0f;
-        StartCoroutine(Wait(duration));
+        StartCoroutine(StopEnemyForDuration(duration));
     }
 
-    IEnumerator Wait(float duration)
+    IEnumerator StopEnemyForDuration(float duration)
     {
         waiting = true;
-        yield return new WaitForSecondsRealtime(duration);
-        Time.timeScale = 1.0f;
+
+        // Store the current time scale (for restoring after the hit stop)
+        float originalTimeScale = Time.timeScale;
+
+        // Freeze the time only for the enemy, using Time.timeScale for global time freezing
+        Time.timeScale = 0.0f;
+
+        // Run through a custom time step without affecting the whole world
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;  // Use unscaled time to avoid affecting other systems
+            yield return null;
+        }
+
+        // Restore normal time scale
+        Time.timeScale = originalTimeScale;
+
         waiting = false;
     }
 }
