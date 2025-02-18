@@ -53,7 +53,7 @@ public class LockShooterEnemyAI : MonoBehaviour
         float horizontalDistance = Mathf.Abs(player.position.x - transform.position.x);
         float verticalDistance = Mathf.Abs(player.position.y - transform.position.y);
 
-        if (distanceFromPlayer < lineOfSight)
+        if (distanceFromPlayer < lineOfSight && !isImmobilized)
         {
             lastKnownPosition = player.position;
             FlipSprite(player.position.x - transform.position.x);
@@ -69,7 +69,7 @@ public class LockShooterEnemyAI : MonoBehaviour
         {
             if (Time.time > nextFireTime)
             {
-                FlipSprite(player.position.x - transform.position.x);
+                //FlipSprite(player.position.x - transform.position.x);
                 animator.SetTrigger("Attack");
 
                 if (stopMovingWhileAttacking)
@@ -110,6 +110,7 @@ public class LockShooterEnemyAI : MonoBehaviour
     public void Shoot()
     {
         Vector2 targetPosition = lastKnownPosition;
+        FlipSprite(lastKnownPosition.x - transform.position.x);
 
         if (Mathf.Abs(player.position.y - transform.position.y) <= 2.0f && Vector2.Distance(player.position, transform.position) < lineOfSight)
         {
@@ -182,19 +183,27 @@ public class LockShooterEnemyAI : MonoBehaviour
         isImmobilized = false;
     }
 
+    private IEnumerator FlipDelay()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("EnemyWall")) // Make sure walls have the "Wall" tag
+        if (collision.gameObject.CompareTag("EnemyWall")) // Ensure walls have this tag
         {
-            // Reverse direction by subtracting current position from the roam target
-            Vector2 bounceDirection = (Vector2)transform.position - roamTarget;
-            roamTarget = (Vector2)transform.position + bounceDirection.normalized * roamRadius;
+            if (isRoaming)
+            {
+                // Reverse direction when roaming
+                Vector2 bounceDirection = (Vector2)transform.position - roamTarget;
+                roamTarget = (Vector2)transform.position + bounceDirection.normalized * roamRadius;
 
-            // Move enemy back slightly
-            transform.position += (Vector3)bounceDirection.normalized * 0.5f;
+                // Move enemy back slightly
+                transform.position += (Vector3)bounceDirection.normalized * 0.5f;
 
-            // Flip sprite accordingly
-            FlipSprite(bounceDirection.x);
+                // Flip sprite accordingly
+                FlipSprite(bounceDirection.x);
+            }
         }
     }
 }
