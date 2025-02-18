@@ -45,19 +45,6 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         MovementStateControl();
-        UpdateAnimationState();
-    }
-
-    private void UpdateAnimationState()
-    {
-        if (enemyPathfinding.IsMoving())
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
     }
 
     private void MovementStateControl()
@@ -97,68 +84,25 @@ public class EnemyAI : MonoBehaviour
         if (Vector2.Distance(transform.position, PlayerController.instance.transform.position) > attackRange)
         {
             state = State.Roaming;
-            return;
         }
 
-        LockShooter shooter = enemyType as LockShooter;
-        OneAnimLockShooter oneAnimShooter = enemyType as OneAnimLockShooter;
-
-        if (canAttack)
+        if (attackRange != 0 && canAttack)
         {
+
             canAttack = false;
+            (enemyType as IEnemy).Attack();
 
             if (stopMovingWhileAttacking)
             {
+                animator.SetTrigger("Attack");
                 enemyPathfinding.StopMoving();
             }
-
-            if (shooter != null)
+            else
             {
-                shooter.Attack();
+                enemyPathfinding.MoveTo(roamPosition);
             }
-
-            if (oneAnimShooter != null)
-            {
-                oneAnimShooter.Attack();
-            }
-
-            animator.SetTrigger("Attack");
 
             StartCoroutine(AttackCooldownRoutine());
-        }
-
-        if ((shooter != null && !shooter.CanShootPlayer() && !shooter.isShooting && shooter.hasAttackFinished) ||
-            (oneAnimShooter != null && !oneAnimShooter.CanShootPlayer()))
-        {
-            if (!stopMovingWhileAttacking) // Only reposition if movement is allowed
-            {
-                FindBetterShootingPosition();
-            }
-        }
-    }
-
-    private void FindBetterShootingPosition()
-    {
-        if (stopMovingWhileAttacking)
-        {
-            return; // Prevents movement while attacking
-        }
-
-        Vector2 playerPos = PlayerController.instance.transform.position;
-        Vector2 enemyPos = transform.position;
-        Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
-
-        float bestDistance = 5f; // Adjust this based on your needs
-        float angleStep = 15f; // How much to adjust the angle per check
-        int maxAttempts = 12; // How many different positions to check
-
-        for (int i = 0; i < maxAttempts; i++)
-        {
-            float angleOffset = (i % 2 == 0 ? 1 : -1) * (angleStep * (i / 2));
-            Vector2 testDirection = Quaternion.Euler(0, 0, angleOffset) * directionToPlayer;
-            Vector2 testPosition = (Vector2)playerPos - (testDirection * bestDistance);
-
-            enemyPathfinding.MoveTo(testPosition);
         }
     }
 
