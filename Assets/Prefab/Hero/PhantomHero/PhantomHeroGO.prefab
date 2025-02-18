@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 4657268490591000878}
   - component: {fileID: 8908471081138827872}
   m_Layer: 3
-  m_Name: Warrior Hero GO
+  m_Name: PhantomHeroGO
   m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1185249274, guid: 194bdf08f8af97a4888f5904fb8404bb, type: 3}
+  m_Sprite: {fileID: 2003975587, guid: 2008947d28ff3a94f883917046bca963, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -769,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3758322016831297392, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Parameters.textureScale.y
