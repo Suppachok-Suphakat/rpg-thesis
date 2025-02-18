@@ -7,12 +7,14 @@ public class ImmobilizingEffect : MonoBehaviour
 
     private AttackerEnemyPathfinding attackerEnemyMovement;
     private EnemyPathfinding enemyMovement;
+    private LockShooterEnemyAI lockShooterEnemyMovement;
 
     void Start()
     {
         // Find movement components on the parent (the enemy)
         attackerEnemyMovement = GetComponentInParent<AttackerEnemyPathfinding>();
         enemyMovement = GetComponentInParent<EnemyPathfinding>();
+        lockShooterEnemyMovement = GetComponent<LockShooterEnemyAI>();
 
         // Immobilize the enemy
         if (attackerEnemyMovement != null)
@@ -22,6 +24,10 @@ public class ImmobilizingEffect : MonoBehaviour
         if (enemyMovement != null)
         {
             enemyMovement.isImmobilized = true;
+        }
+        if (lockShooterEnemyMovement != null)
+        {
+            lockShooterEnemyMovement.isImmobilized = true;
         }
 
         // Start the timer to re-enable movement and destroy this effect
@@ -41,6 +47,10 @@ public class ImmobilizingEffect : MonoBehaviour
         if (enemyMovement != null)
         {
             enemyMovement.isImmobilized = false;
+        }
+        if (lockShooterEnemyMovement != null)
+        {
+            lockShooterEnemyMovement.isImmobilized = false;
         }
 
         // Destroy this GameObject

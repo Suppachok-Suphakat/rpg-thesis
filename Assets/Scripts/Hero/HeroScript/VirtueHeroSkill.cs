@@ -238,6 +238,7 @@ public class VirtueHeroSkill : MonoBehaviour
 
                 EnemyPathfinding enemyPathfinding = enemy.GetComponent<EnemyPathfinding>();
                 AttackerEnemyPathfinding attackerPathfinding = enemy.GetComponent<AttackerEnemyPathfinding>();
+                LockShooterEnemyAI lockShooterEnemyAI = enemy.GetComponent<LockShooterEnemyAI>();
 
                 if (enemyRb != null)
                 {
@@ -249,6 +250,10 @@ public class VirtueHeroSkill : MonoBehaviour
                     else if (attackerPathfinding != null)
                     {
                         attackerPathfinding.isImmobilized = true;
+                    }
+                    else if (lockShooterEnemyAI != null)
+                    {
+                        lockShooterEnemyAI.isImmobilized = false;
                     }
 
                     // Smoothly move enemy towards the center
@@ -277,6 +282,7 @@ public class VirtueHeroSkill : MonoBehaviour
         {
             EnemyPathfinding enemyPathfinding = enemy.GetComponent<EnemyPathfinding>();
             AttackerEnemyPathfinding attackerPathfinding = enemy.GetComponent<AttackerEnemyPathfinding>();
+            LockShooterEnemyAI lockShooterEnemyAI = enemy.GetComponent<LockShooterEnemyAI>();
 
             if (enemyPathfinding != null)
             {
@@ -285,6 +291,10 @@ public class VirtueHeroSkill : MonoBehaviour
             else if (attackerPathfinding != null)
             {
                 attackerPathfinding.isImmobilized = false;
+            }
+            else if (lockShooterEnemyAI != null)
+            {
+                lockShooterEnemyAI.isImmobilized = false;
             }
         }
     }

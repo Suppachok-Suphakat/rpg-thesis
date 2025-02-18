@@ -19,7 +19,7 @@ public class LockShooterEnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveDir;
     public float stopMovingTime;
-    private bool isImmobilized = false;
+    public bool isImmobilized = false;
     [SerializeField] private bool stopMovingWhileAttacking = true;
 
     private Vector2 lastKnownPosition;
