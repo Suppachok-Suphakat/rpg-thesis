@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6115635253367551300}
-  - component: {fileID: 6983385120269249668}
-  - component: {fileID: 5395201244472929070}
+  - component: {fileID: 4763785237448542359}
+  - component: {fileID: 3235512404218838576}
   - component: {fileID: 3926950155357857189}
   - component: {fileID: 8436747515394760531}
   - component: {fileID: 1644655969559841425}
@@ -49,7 +49,7 @@ Transform:
   - {fileID: 289602927601821782}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6983385120269249668
+--- !u!114 &4763785237448542359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,13 +58,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 645030252299325955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600e7918a636fef4cb70480252e29520, type: 3}
+  m_Script: {fileID: 11500000, guid: 19bd386d5e4c1f74d988edd8901397f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 1
   distanceToAttack: 1
   followSpeed: 2
-  chaseSpeed: 4
+  chaseSpeed: 5
   player: {fileID: 0}
   currentState: 0
   minDistance: 1
@@ -85,9 +85,9 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 21300000, guid: 0d7041703e3803e4bbe774d718cf00a8, type: 3}
+  heroFaceSprite: {fileID: 21300000, guid: 3eb534aa6c0fe9c4bbcc0eb966f57ba3, type: 3}
   warriorHeroSkill: {fileID: 0}
---- !u!114 &5395201244472929070
+--- !u!114 &3235512404218838576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,75 +96,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 645030252299325955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 072d7684262b3e240922f3d60e32bf3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8474d0dad5445c14c86f579626d070ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill1Damage: {fileID: 1603878265584195838}
-  skill1Prefab: {fileID: 3554886383241864524, guid: f74d55fd7f62ec84dbcf64fd35dd2c3a, type: 3}
-  skill1Preview: {fileID: 371351925480119373, guid: eb36f304d3f34864996f734fe46b2912, type: 3}
-  skill1Range: 10
-  lineRenderer: {fileID: 1225751640091083324}
-  skill2Prefab: {fileID: 3554886383241864524, guid: 6b858aa1a14f15b42ab2e3e6f64ac091, type: 3}
-  skill2AreaPreview: {fileID: 7686837216217434397, guid: b8709355726f9c649a5ec58859de45a2, type: 3}
+  skill1Damage: {fileID: 0}
+  skill1Prefab: {fileID: 0}
+  skill1Preview: {fileID: 0}
+  skill1Range: 0
+  lineRenderer: {fileID: 0}
+  skill2Prefab: {fileID: 0}
+  skill2AreaPreview: {fileID: 0}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10
   skill2CooldownTime: 0
   skill2MaxCooldownTime: 20
   skill1CurrentCooldownTime: 0
   skill1ActiveTime: 1
-  currentSkill1ActiveTime: 0
+  currentSkill1ActiveTime: 1
   skill2CurrentCooldownTime: 0
   skill2ActiveTime: 5
   currentSkill2ActiveTime: 5
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: f95c688617010ac42bef1c66105691e2, type: 2}
-  itemSprite: {fileID: 21300000, guid: a6673fffe39512149b4f49b8bbbe0628, type: 3}
-  avatar: {fileID: 355568368277826251, guid: 37326c8bd2d9b2e4f9589fd7f92d0e77, type: 3}
+  weaponInfo: {fileID: 0}
+  itemSprite: {fileID: 0}
+  avatar: {fileID: 0}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
   warriorHeroAI: {fileID: 0}
   conversationManager: {fileID: 0}
-  duration: 2
+  duration: 1
   animCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0041656494
-      value: -0.002357483
-      inSlope: 1.0283452
-      outSlope: 1.0283452
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.49581406
-      value: 0.5032268
-      inSlope: 0.019812495
-      outSlope: 0.019812495
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0000122
-      value: 0.0047159735
-      inSlope: -0.98872024
-      outSlope: -0.98872024
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  heightY: 5.5
-  splatterProjectileShadow: {fileID: 561078635120838229, guid: 8bdf6b99c71e95c4fbc21259cd8ab66f, type: 3}
-  landingShadowPrefab: {fileID: 561078635120838229, guid: 0fc2c02d231976146b6d163c6a2c3bb1, type: 3}
+  heightY: 3
+  splatterProjectileShadow: {fileID: 0}
+  landingShadowPrefab: {fileID: 0}
   maxShadowScale: {x: 3, y: 3, z: 1}
-  shadow: {fileID: 1831722024971556537}
+  shadow: {fileID: 0}
 --- !u!212 &3926950155357857189
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -206,12 +179,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2003975587, guid: 2008947d28ff3a94f883917046bca963, type: 3}
+  m_Sprite: {fileID: 1319024093, guid: 6479db60e76ff0c48987279be23f5bae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6875, y: 1.2708334}
+  m_Size: {x: 2.6666667, y: 2.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -227,7 +200,7 @@ Animator:
   m_GameObject: {fileID: 645030252299325955}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 527ccef79689ef041a49b9cbcd935250, type: 2}
+  m_Controller: {fileID: 9100000, guid: 31b293351eb0b834592d4046509ed384, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -823,10 +796,5 @@ PrefabInstance:
 --- !u!4 &289602927601821782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8126670056700751330, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
-  m_PrefabInstance: {fileID: 8413668619211048372}
-  m_PrefabAsset: {fileID: 0}
---- !u!120 &1225751640091083324 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
   m_PrefabInstance: {fileID: 8413668619211048372}
   m_PrefabAsset: {fileID: 0}

@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3649497a006a0024f9374bb76f3002dc
-      internalID: 994964738
+      spriteID: ccb00df598c2e914e870ceb88f7c9ba0
+      internalID: 208188459
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a62fa8c5771ceb4c9243cf869abc7af
-      internalID: -333760277
+      spriteID: 89236a6c379487f47a33ec88812a0409
+      internalID: 451063888
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87b26abba91775a48bc9c51274b4a781
-      internalID: -1230903555
+      spriteID: f013a20be280b954bb5297a245b85150
+      internalID: 1481248606
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fd93bc64e86b3d4a8d96f338ac81fc6
-      internalID: -1331302306
+      spriteID: 68c151d5d9f87a24599886125bef29e8
+      internalID: 406848271
       vertices: []
       indices: 
       edges: []
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afc0ce2c3ebc8324597b1b5edc62f0c0
-      internalID: 1020439717
+      spriteID: 9eb2709aa10fa5440a89f6a4b5be9862
+      internalID: 1781113628
       vertices: []
       indices: 
       edges: []
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3516b20e2a7bdd14ea6274d00ba4c41b
-      internalID: 1196797699
+      spriteID: 5a359ffe170bd2b4283da975dea88372
+      internalID: -552951481
       vertices: []
       indices: 
       edges: []
@@ -259,12 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      H_Phantom_Sprite_Walk_0: 994964738
-      H_Phantom_Sprite_Walk_1: -333760277
-      H_Phantom_Sprite_Walk_2: -1230903555
-      H_Phantom_Sprite_Walk_3: -1331302306
-      H_Phantom_Sprite_Walk_4: 1020439717
-      H_Phantom_Sprite_Walk_5: 1196797699
+      H_Phantom_Sprite_Walk_0: 208188459
+      H_Phantom_Sprite_Walk_1: 451063888
+      H_Phantom_Sprite_Walk_2: 1481248606
+      H_Phantom_Sprite_Walk_3: 406848271
+      H_Phantom_Sprite_Walk_4: 1781113628
+      H_Phantom_Sprite_Walk_5: -552951481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd82803d50252e345a5a13964a9e6419
-      internalID: -338317521
+      spriteID: 1d387c65fe39b86439cfdfef84311b5d
+      internalID: 655373517
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e24a9e0cf6e8704da4b08d38e7601d8
-      internalID: -1280198875
+      spriteID: 3c2ed188596b92249859fd620172dd27
+      internalID: 367284599
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4ee934ca820b98479d613c5a0a1dd71
-      internalID: -1589848135
+      spriteID: 437622886d012ce4e87d7ea8ebb13674
+      internalID: 1462434506
       vertices: []
       indices: 
       edges: []
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42b5511e50e5e8942b86550d02a10170
-      internalID: 680073539
+      spriteID: 18cbbc6cc02744848960d77df6a55c6b
+      internalID: -1757138946
       vertices: []
       indices: 
       edges: []
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a7a2c1805896c64ba9da773fd866f88
-      internalID: -899197334
+      spriteID: 8268a71e32fe00a4dab45dce5448c818
+      internalID: -1981114017
       vertices: []
       indices: 
       edges: []
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39a6d65c2c9c23a4a8828a2c1d0007bd
-      internalID: -1576620242
+      spriteID: 0f5879c485a80144d944a768039c8f2f
+      internalID: 1975047009
       vertices: []
       indices: 
       edges: []
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d89207c897b3689429ce172bcd951c10
-      internalID: -1273676602
+      spriteID: 424abc38550c25d4a96d5ef9f4fb90ae
+      internalID: -1682143132
       vertices: []
       indices: 
       edges: []
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7f3adff258e8cf4994c4009909fcf50
-      internalID: 133116377
+      spriteID: b3f029e0f5ca65749a21b624246289b1
+      internalID: 1503986871
       vertices: []
       indices: 
       edges: []
@@ -305,8 +305,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 701fb9c0e9dab5541ad5f305567833af
-      internalID: 493604677
+      spriteID: 2e8cb0b9669c6144f9a7af216b29482b
+      internalID: 1400811105
       vertices: []
       indices: 
       edges: []
@@ -326,8 +326,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e29d0e349d81784590dfadbf6168e88
-      internalID: 887590037
+      spriteID: ffc935b3d22ee94469b7d1f132d3b73b
+      internalID: 1217674291
       vertices: []
       indices: 
       edges: []
@@ -347,8 +347,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98186c88122c95842a619cc80e362d06
-      internalID: -484879282
+      spriteID: d361a0fba3c42fc478bda23c1d3819fd
+      internalID: -1143820911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: H_Phantom_Sprite_Skill_01_11
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ee5ec551df5b845bca75e07cb696ba
+      internalID: -949422822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: H_Phantom_Sprite_Skill_01_12
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc7d758e3c06eef418660f769f21c8a3
+      internalID: -251448301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: H_Phantom_Sprite_Skill_01_13
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4fba3935cb7fd948808b78e36c4a787
+      internalID: -151241631
       vertices: []
       indices: 
       edges: []
@@ -364,17 +427,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      H_Phantom_Sprite_Skill_01_0: -338317521
-      H_Phantom_Sprite_Skill_01_1: -1280198875
-      H_Phantom_Sprite_Skill_01_10: -484879282
-      H_Phantom_Sprite_Skill_01_2: -1589848135
-      H_Phantom_Sprite_Skill_01_3: 680073539
-      H_Phantom_Sprite_Skill_01_4: -899197334
-      H_Phantom_Sprite_Skill_01_5: -1576620242
-      H_Phantom_Sprite_Skill_01_6: -1273676602
-      H_Phantom_Sprite_Skill_01_7: 133116377
-      H_Phantom_Sprite_Skill_01_8: 493604677
-      H_Phantom_Sprite_Skill_01_9: 887590037
+      H_Phantom_Sprite_Skill_01_0: 655373517
+      H_Phantom_Sprite_Skill_01_1: 367284599
+      H_Phantom_Sprite_Skill_01_10: -1143820911
+      H_Phantom_Sprite_Skill_01_11: -949422822
+      H_Phantom_Sprite_Skill_01_12: -251448301
+      H_Phantom_Sprite_Skill_01_13: -151241631
+      H_Phantom_Sprite_Skill_01_2: 1462434506
+      H_Phantom_Sprite_Skill_01_3: -1757138946
+      H_Phantom_Sprite_Skill_01_4: -1981114017
+      H_Phantom_Sprite_Skill_01_5: 1975047009
+      H_Phantom_Sprite_Skill_01_6: -1682143132
+      H_Phantom_Sprite_Skill_01_7: 1503986871
+      H_Phantom_Sprite_Skill_01_8: 1400811105
+      H_Phantom_Sprite_Skill_01_9: 1217674291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
