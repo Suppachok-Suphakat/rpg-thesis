@@ -62,7 +62,7 @@ public class PhantomHeroSkill : MonoBehaviour
 
     private LineTrigger lineTrigger;
     private Rigidbody2D rb;
-    public WarriorHeroAI warriorHeroAI;
+    public PhantomHeroAI phantomHeroAI;
 
     public ConversationManager conversationManager;
 
@@ -82,7 +82,7 @@ public class PhantomHeroSkill : MonoBehaviour
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
         rb = GetComponent<Rigidbody2D>();
-        warriorHeroAI = GetComponent<WarriorHeroAI>();
+        phantomHeroAI = GetComponent<PhantomHeroAI>();
     }
 
     // Start is called before the first frame update
@@ -261,7 +261,7 @@ public class PhantomHeroSkill : MonoBehaviour
 
     private IEnumerator JumpToPosition(Vector3 targetPosition)
     {
-        conversationManager.ShowConversation("Fire kick!", warriorHeroAI.heroFaceSprite);
+        conversationManager.ShowConversation("Fire kick!", phantomHeroAI.heroFaceSprite);
         gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
         //Vector3 mousePosition = GetMouseWorldPosition();
@@ -358,7 +358,7 @@ public class PhantomHeroSkill : MonoBehaviour
             isSkill1PreviewActive = false;
 
             // Show dialogue and play animation
-            conversationManager.ShowConversation("Fire fist!", warriorHeroAI.heroFaceSprite);
+            conversationManager.ShowConversation("Fire fist!", phantomHeroAI.heroFaceSprite);
             gameObject.GetComponent<Animator>().SetTrigger("skill1");
 
             // Start cooldown
@@ -383,7 +383,7 @@ public class PhantomHeroSkill : MonoBehaviour
 
     public void FusionActivate()
     {
-        PlayerController.instance.GetComponent<Animator>().SetTrigger("warriorLink");
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("phantomLink");
 
         Transform avatarSpawnPoint = PlayerController.instance.avatarSpawnPoint;
 
@@ -426,7 +426,7 @@ public class PhantomHeroSkill : MonoBehaviour
     public void DeFusionActivate()
     {
         // Trigger return to normal state
-        PlayerController.instance.GetComponent<Animator>().SetTrigger("warriorUnlink");
+        PlayerController.instance.GetComponent<Animator>().SetTrigger("phantomUnlink");
 
         Destroy(avatarInstance);
 
@@ -451,7 +451,7 @@ public class PhantomHeroSkill : MonoBehaviour
     IEnumerator ResetFusionTrigger()
     {
         yield return new WaitForSeconds(0.1f);
-        PlayerController.instance.GetComponent<Animator>().ResetTrigger("warriorUnlink");
+        PlayerController.instance.GetComponent<Animator>().ResetTrigger("phantomUnlink");
     }
 
     public void OnSkillDamage()

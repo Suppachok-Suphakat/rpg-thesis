@@ -48,7 +48,7 @@ public class PhantomHeroAI : MonoBehaviour
     private float attackCooldown;
     [SerializeField] private bool isCooldown;
 
-    WarriorHeroSkill skill;
+    PhantomHeroSkill skill;
     public bool isUsingSkill = false;
 
     [SerializeField] private EnemyHealth currentEnemyHealth;
@@ -65,7 +65,7 @@ public class PhantomHeroAI : MonoBehaviour
 
     public Sprite heroFaceSprite;
 
-    public WarriorHeroSkill warriorHeroSkill;
+    public PhantomHeroSkill phantomHeroSkill;
 
     private void Awake()
     {
@@ -77,9 +77,9 @@ public class PhantomHeroAI : MonoBehaviour
         animator = GetComponent<Animator>();
 
         attackCooldown = cooldownTime;
-        skill = gameObject.GetComponent<WarriorHeroSkill>();
+        skill = gameObject.GetComponent<PhantomHeroSkill>();
 
-        warriorHeroSkill = GetComponent<WarriorHeroSkill>();
+        phantomHeroSkill = GetComponent<PhantomHeroSkill>();
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
     }
 
