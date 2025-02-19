@@ -83,6 +83,7 @@ public class PhantomHeroSkill : MonoBehaviour
         //lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         //skill1Image.fillAmount = 0;
+        DisableLineRenderer();
     }
 
     // Update is called once per frame
@@ -259,6 +260,8 @@ public class PhantomHeroSkill : MonoBehaviour
 
     public void Skill2Activate()
     {
+        if (isSkill2Active) return;
+
         Debug.Log("Partner Skill Activate");
 
         skill2CooldownTime = skill2MaxCooldownTime;

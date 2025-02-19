@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Knockback knockback;
 
     private bool isDashing;
+    private bool isSkillDashing;
 
     private Vector2 input;
 
@@ -217,71 +218,30 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
     }
 
-    public void MouseDash()
+    public void SkillDash()
     {
-        if (!isDashing)
+        if (!isSkillDashing && !isMenuActive)
         {
-            Vector3 dashDirection = GetMouseDirection();
-            if (dashDirection != Vector3.zero)
-            {
-                isDashing = true;
-                movement = playerControls.Movement.Move.ReadValue<Vector2>();
-                animator.SetFloat("moveX", movement.x);
-                animator.SetFloat("moveY", movement.y);
-                StartCoroutine(SkillDashRoutine(dashDirection));
-            }
+            isSkillDashing = true;
+            moveSpeed *= dashSpeed;
+            trailRenderer.emitting = true;
+            StartCoroutine(EndSkillDashRoutine());
         }
     }
 
-    public void StopDash()
+    private IEnumerator EndSkillDashRoutine()
     {
-        isDashing = false;
-        moveSpeed = startingMoveSpeed;
+        float dashTime = .2f;
+        yield return new WaitForSeconds(dashTime);
+        if (character.isLeftShiftPressed)
+        {
+            moveSpeed = runSpeed;
+        }
+        else
+        {
+            moveSpeed = startingMoveSpeed;
+        }
         trailRenderer.emitting = false;
-        rb.velocity = Vector2.zero;
-    }
-
-    private Vector3 GetMouseDirection()
-    {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = Camera.main.nearClipPlane;
-        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3 dashDirection = (worldMousePosition - transform.position).normalized;
-        dashDirection.z = 0; // Ensure z is 0
-        return dashDirection;
-    }
-
-    private IEnumerator SkillDashRoutine(Vector3 dashDirection)
-    {
-        float dashTime = 0.5f;
-        float dashCD = 0.25f;
-        float dashDistance = moveSpeed * dashSpeed * dashTime;
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, dashDirection, out hit, dashDistance))
-        {
-            dashDistance = hit.distance; // Limit dash distance to the collision point
-        }
-
-        float dashEndTime = Time.time + dashTime;
-        trailRenderer.emitting = true;
-
-        while (Time.time < dashEndTime)
-        {
-            float distanceToMove = Mathf.Min(dashDistance, moveSpeed * dashSpeed * Time.deltaTime);
-            Vector3 newPosition = transform.position + dashDirection * distanceToMove;
-            newPosition.z = 0; // Ensure z is 0
-            transform.position = newPosition;
-            dashDistance -= distanceToMove;
-
-            if (dashDistance <= 0)
-                break;
-
-            yield return null;
-        }
-
-        trailRenderer.emitting = false;
-        yield return new WaitForSeconds(dashCD);
-        isDashing = false;
+        isSkillDashing = false;
     }
 }

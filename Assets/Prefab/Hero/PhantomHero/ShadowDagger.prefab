@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891328868100530254}
-  - component: {fileID: 7778728524008466881}
   - component: {fileID: 8832431551636047117}
+  - component: {fileID: 1297415669740977631}
   m_Layer: 0
   m_Name: WeaponCollider
   m_TagString: Untagged
@@ -33,20 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8079504509136952475}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7778728524008466881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7359588797862152715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3cb255569b255347a12e2d4cccd2928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
-  chargeAmount: 0
 --- !u!60 &8832431551636047117
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -76,7 +62,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -91,18 +77,29 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.55044127, y: 0.5751605}
-      - {x: 0.48954707, y: 0.5971309}
-      - {x: 0.23419958, y: 0.2532241}
-      - {x: 0.012641981, y: 0.17358872}
-      - {x: -0.14982697, y: -0.080989674}
-      - {x: -0.021737397, y: -0.19372436}
-      - {x: 0.22104427, y: -0.056201905}
-      - {x: 0.37996852, y: 0.106767684}
-      - {x: 0.3996636, y: 0.2509701}
-      - {x: 0.44516256, y: 0.32204017}
-      - {x: 0.55169535, y: 0.48889217}
+    - - {x: 0.3025626, y: 0.22057539}
+      - {x: 0.2653479, y: 0.3477283}
+      - {x: 0.08305545, y: 0.14806442}
+      - {x: -0.0200181, y: 0.1116024}
+      - {x: -0.10204966, y: -0.005570356}
+      - {x: -0.07148507, y: -0.12831874}
+      - {x: 0.0668574, y: -0.10288088}
+      - {x: 0.22935891, y: 0.065353}
   m_UseDelaunayMesh: 0
+--- !u!114 &1297415669740977631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359588797862152715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3cb255569b255347a12e2d4cccd2928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 50
+  chargeAmount: 0
 --- !u!1 &9173177442540303044
 GameObject:
   m_ObjectHideFlags: 0

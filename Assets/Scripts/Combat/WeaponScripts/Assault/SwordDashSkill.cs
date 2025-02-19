@@ -56,13 +56,7 @@ public class SwordDashSkill : MonoBehaviour, IWeapon
     private IEnumerator SwordDashAttackRoutine()
     {
         // Start Dash
-        playerController.MouseDash();
-
-        // Wait for dash duration before attacking
-        yield return new WaitForSeconds(0.15f);
-
-        // Stop Dash
-        playerController.StopDash();
+        playerController.SkillDash();
 
         // Perform Attack
         animator.SetTrigger("Attack");
@@ -77,9 +71,8 @@ public class SwordDashSkill : MonoBehaviour, IWeapon
         {
             phantomHeroSkill.OnPlayerAttack(enemyTarget); // Call OnPlayerAttack with the enemy
         }
-
-        // Stamina Reduction
-        StartCoroutine(ReduceStaminaRoutine());
+        // Wait for dash duration before attacking
+        yield return new WaitForSeconds(0.4f);
     }
 
     private IEnumerator ReduceStaminaRoutine()
