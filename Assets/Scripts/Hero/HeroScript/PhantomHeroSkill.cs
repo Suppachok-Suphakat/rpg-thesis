@@ -62,6 +62,9 @@ public class PhantomHeroSkill : MonoBehaviour
     private Rigidbody2D rb;
     public PhantomHeroAI phantomHeroAI;
 
+    private bool isWaitingForAttack = false;
+    private Transform targetEnemy; // The enemy to teleport to
+
     public ConversationManager conversationManager;
 
     private void Awake()
@@ -121,25 +124,11 @@ public class PhantomHeroSkill : MonoBehaviour
             {
                 if (skill1CooldownTime <= 0 && !isSkill1PreviewActive)
                 {
-                    EnableLineRenderer();
-                    ActivateSkill1Preview();
-                    isAnySkillActive = true;
+                    //Enter a shadow state and wait for player to attack and teleport to the enemy that player just attack
+                    isAnySkillActive = true; //cannot use skill 2 or any skill
                 }
-            }
-
-            if (lineRenderer.enabled)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    DisableLineRenderer();
-                    Skill1Activate();
-                    isAnySkillActive = false;
-                }
-            }
-
-            if (isSkill1PreviewActive)
-            {
-                UpdateSkill1Preview(); // Update preview position and rotation
+                Skill1Activate(); //skill 1
+                isAnySkillActive = false; // this mean can now use skill do this after attacked enemy
             }
         }
 
@@ -152,40 +141,6 @@ public class PhantomHeroSkill : MonoBehaviour
         {
             isSkill1Active = false; // Skill is ready again
         }
-    }
-
-    private void ActivateSkill1Preview()
-    {
-        skill1PreviewInstance = Instantiate(skill1Preview, transform.position, Quaternion.identity);
-        skill1PreviewInstance.transform.SetParent(transform); // Keep it relative to the hero
-        isSkill1PreviewActive = true;
-    }
-
-    private void UpdateSkill1Preview()
-    {
-        if (skill1PreviewInstance != null)
-        {
-            Vector3 mousePosition = GetMouseWorldPosition();
-            Vector3 direction = (mousePosition - transform.position).normalized;
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            skill1PreviewInstance.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-    }
-
-    void EnableLineRenderer()
-    {
-        lineRenderer.enabled = true; // Enable the LineRenderer
-    }
-
-    void DisableLineRenderer()
-    {
-        lineRenderer.enabled = false; // Disable the LineRenderer
-    }
-
-    void ClearLineRenderer()
-    {
-        lineRenderer.positionCount = 0; // Clear all positions
     }
 
     private void HandleSkill2()
@@ -238,43 +193,56 @@ public class PhantomHeroSkill : MonoBehaviour
 
     public void Skill1Activate()
     {
-        if (skill1PreviewInstance != null)
+        if (isSkill1Active) return; // Prevent activation while skill is running
+
+        isSkill1Active = true;
+        isWaitingForAttack = true; // Start waiting for an attack
+        skill1CooldownTime = skill1MaxCooldownTime;
+
+        // Enter Shadow State (Lower opacity)
+        Color heroColor = GetComponent<SpriteRenderer>().color;
+        heroColor.a = 0.5f; // Lower opacity
+        GetComponent<SpriteRenderer>().color = heroColor;
+
+        // Show message
+        conversationManager.ShowConversation("Waiting to strike...", phantomHeroAI.heroFaceSprite);
+
+        // Start cooldown
+        isSkill1Active = true;
+        skill1CooldownTime = skill1MaxCooldownTime;
+        UpdateCooldownUI(); // Update UI
+    }
+
+    // This should be called when the player attacks an enemy
+    public void OnPlayerAttack(Transform enemy)
+    {
+        if (isWaitingForAttack && enemy != null)
         {
-            Vector3 mousePosition = GetMouseWorldPosition();
-            Vector3 direction = (mousePosition - transform.position).normalized;
-
-            // Calculate the rotation for the skill projectile
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-            // Instantiate the projectile at the hero's position
-            GameObject newArrow = Instantiate(skill1Prefab, transform.position, rotation);
-
-            // Flip the projectile if the mouse is on the left side of the screen
-            if (mousePosition.x < transform.position.x)
-            {
-                Vector3 scale = newArrow.transform.localScale;
-                scale.y *= -1; // Flip Y-axis
-                newArrow.transform.localScale = scale;
-            }
-
-            // Set projectile range and activate it
-            newArrow.GetComponent<ThruProjectile>().UpdateProjectileRange(skill1Range);
-
-            // Destroy the preview and disable the line renderer
-            Destroy(skill1PreviewInstance);
-            DisableLineRenderer();
-            isSkill1PreviewActive = false;
-
-            // Show dialogue and play animation
-            conversationManager.ShowConversation("Fire fist!", phantomHeroAI.heroFaceSprite);
-            gameObject.GetComponent<Animator>().SetTrigger("skill1");
-
-            // Start cooldown
-            isSkill1Active = true;
-            skill1CooldownTime = skill1MaxCooldownTime;
-            UpdateCooldownUI(); // Update UI
+            isWaitingForAttack = false;
+            targetEnemy = enemy;
+            StartCoroutine(ExecuteSkill1());
         }
+    }
+
+    private IEnumerator ExecuteSkill1()
+    {
+        if (targetEnemy == null) yield break;
+
+        // Teleport to enemy
+        transform.position = targetEnemy.position;
+
+        // Play skill animation
+        GetComponent<Animator>().SetTrigger("skill1");
+
+        // Wait for animation to complete
+        yield return new WaitForSeconds(0.5f); // Adjust timing if necessary
+
+        // Exit Shadow State (Restore opacity)
+        Color heroColor = GetComponent<SpriteRenderer>().color;
+        heroColor.a = 1f; // Restore full opacity
+        GetComponent<SpriteRenderer>().color = heroColor;
+
+        isSkill1Active = false;
     }
 
     public void Skill2Activate()
@@ -345,10 +313,29 @@ public class PhantomHeroSkill : MonoBehaviour
 
         activeToolbar.ChangeActiveWeapon();
 
+        // Stop Skill 1
+        isSkill1Active = false;
+        isWaitingForAttack = false;
+        skill1CooldownTime = 0; // Reset cooldown
+        targetEnemy = null; // Clear the target
+
+        // Reset opacity (Exit Shadow State)
+        Color heroColor = GetComponent<SpriteRenderer>().color;
+        heroColor.a = 1f; // Restore full opacity
+        GetComponent<SpriteRenderer>().color = heroColor;
+
+        // Destroy skill preview if active
+        if (skill1PreviewInstance != null)
+        {
+            Destroy(skill1PreviewInstance);
+            skill1PreviewInstance = null;
+        }
+
         StartCoroutine(ResetFusionTrigger());
 
         fusionActivated = false;
     }
+
 
     IEnumerator ResetFusionTrigger()
     {

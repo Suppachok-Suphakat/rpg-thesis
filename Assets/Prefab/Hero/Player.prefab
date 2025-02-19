@@ -916,8 +916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp:
-    maxVal: 100
-    currVal: 100
+    maxVal: 10000
+    currVal: 10000
   hpBar: {fileID: 0}
   stamina:
     maxVal: 100
@@ -1241,8 +1241,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 0}
   target: {fileID: 0}
   lineSpeed: 10
-  maxWidth: 1
-  minWidth: 0.5
+  maxOpacity: 1
+  minOpacity: 0.35
   maxDistance: 10
 --- !u!114 &4738166647276238454
 MonoBehaviour:

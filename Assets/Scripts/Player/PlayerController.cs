@@ -225,9 +225,20 @@ public class PlayerController : MonoBehaviour
             if (dashDirection != Vector3.zero)
             {
                 isDashing = true;
-                StartCoroutine(DashRoutine(dashDirection));
+                movement = playerControls.Movement.Move.ReadValue<Vector2>();
+                animator.SetFloat("moveX", movement.x);
+                animator.SetFloat("moveY", movement.y);
+                StartCoroutine(SkillDashRoutine(dashDirection));
             }
         }
+    }
+
+    public void StopDash()
+    {
+        isDashing = false;
+        moveSpeed = startingMoveSpeed;
+        trailRenderer.emitting = false;
+        rb.velocity = Vector2.zero;
     }
 
     private Vector3 GetMouseDirection()
@@ -240,9 +251,9 @@ public class PlayerController : MonoBehaviour
         return dashDirection;
     }
 
-    private IEnumerator DashRoutine(Vector3 dashDirection)
+    private IEnumerator SkillDashRoutine(Vector3 dashDirection)
     {
-        float dashTime = 0.3f;
+        float dashTime = 0.5f;
         float dashCD = 0.25f;
         float dashDistance = moveSpeed * dashSpeed * dashTime;
 

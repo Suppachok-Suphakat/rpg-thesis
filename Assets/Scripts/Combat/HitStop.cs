@@ -4,6 +4,16 @@ using UnityEngine;
 public class HitStop : MonoBehaviour
 {
     bool waiting;
+    EnemyHealth enemyHealth;
+    Rigidbody2D rb;
+    Animator animator;
+
+    private void Awake()
+    {
+        enemyHealth = GetComponent<EnemyHealth>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
 
     public void Stop(float duration)
     {
@@ -16,22 +26,19 @@ public class HitStop : MonoBehaviour
     {
         waiting = true;
 
-        // Store the current time scale (for restoring after the hit stop)
-        float originalTimeScale = Time.timeScale;
+        // Stop enemy movement
+        if (rb != null)
+            rb.velocity = Vector2.zero;
 
-        // Freeze the time only for the enemy, using Time.timeScale for global time freezing
-        Time.timeScale = 0.0f;
+        // Stop enemy animations
+        if (animator != null)
+            animator.speed = 0;
 
-        // Run through a custom time step without affecting the whole world
-        float elapsed = 0f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.unscaledDeltaTime;  // Use unscaled time to avoid affecting other systems
-            yield return null;
-        }
+        yield return new WaitForSeconds(duration);
 
-        // Restore normal time scale
-        Time.timeScale = originalTimeScale;
+        // Resume enemy animations
+        if (animator != null)
+            animator.speed = 1;
 
         waiting = false;
     }

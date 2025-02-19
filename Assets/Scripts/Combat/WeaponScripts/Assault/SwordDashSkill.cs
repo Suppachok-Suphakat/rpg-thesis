@@ -19,12 +19,14 @@ public class SwordDashSkill : MonoBehaviour, IWeapon
     private GameObject slashAnim;
 
     private PlayerController playerController;
+    private PhantomHeroSkill phantomHeroSkill;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         character = FindObjectOfType<Character>();
-        playerController = GetComponent<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
+        phantomHeroSkill = FindObjectOfType<PhantomHeroSkill>();
     }
 
     private void Start()
@@ -47,14 +49,37 @@ public class SwordDashSkill : MonoBehaviour, IWeapon
     {
         if (character.stamina.currVal >= staminaCost && !PlayerController.instance.isMenuActive)
         {
-            animator.SetTrigger("Attack");
-            weaponCollider.gameObject.SetActive(true);
-            slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
-            slashAnim.transform.parent = this.transform.parent;
-            weaponCollider.gameObject.GetComponent<DamageSouce>();
-            playerController.MouseDash();
-            StartCoroutine(ReduceStaminaRoutine());
+            StartCoroutine(SwordDashAttackRoutine());
         }
+    }
+
+    private IEnumerator SwordDashAttackRoutine()
+    {
+        // Start Dash
+        playerController.MouseDash();
+
+        // Wait for dash duration before attacking
+        yield return new WaitForSeconds(0.15f);
+
+        // Stop Dash
+        playerController.StopDash();
+
+        // Perform Attack
+        animator.SetTrigger("Attack");
+        weaponCollider.gameObject.SetActive(true);
+        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
+        slashAnim.transform.parent = this.transform.parent;
+        weaponCollider.gameObject.GetComponent<DamageSouce>();
+
+        // Find the closest enemy
+        Transform enemyTarget = FindClosestEnemy();
+        if (enemyTarget != null)
+        {
+            phantomHeroSkill.OnPlayerAttack(enemyTarget); // Call OnPlayerAttack with the enemy
+        }
+
+        // Stamina Reduction
+        StartCoroutine(ReduceStaminaRoutine());
     }
 
     private IEnumerator ReduceStaminaRoutine()
@@ -108,5 +133,24 @@ public class SwordDashSkill : MonoBehaviour, IWeapon
         {
             ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
+    }
+
+    private Transform FindClosestEnemy()
+    {
+        float closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assuming enemies have the tag "Enemy"
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy.transform;
+            }
+        }
+
+        return closestEnemy;
     }
 }

@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
         UpdateHpBar();
         StartCoroutine(flash.FlashRoutine());
 
-        FindObjectOfType<HitStop>().Stop(0.1f);
+        FindObjectOfType<HitStop>().Stop(0.25f);
 
         knockback.GetKnockedBack(PlayerController.instance.transform, knockBackThrust);
         StartCoroutine(CheckDetectDeathRoutine());
