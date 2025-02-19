@@ -66,18 +66,6 @@ public class PhantomHeroSkill : MonoBehaviour
 
     public ConversationManager conversationManager;
 
-    [SerializeField] private float duration = 1f;
-    [SerializeField] private AnimationCurve animCurve;
-    [SerializeField] private float heightY = 3f;
-    [SerializeField] private GameObject splatterProjectileShadow;
-    [SerializeField] private GameObject landingShadowPrefab; // Reference to the landing shadow prefab
-    [SerializeField] private Vector3 maxShadowScale = new Vector3(3f, 3f, 1f); // Maximum size for the shadow
-
-    private GameObject landingShadowInstance;
-    private Vector3 targetPosition;
-    private Vector3 ToLandPosition;
-    [SerializeField] private GameObject shadow;
-
     private void Awake()
     {
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
@@ -90,7 +78,7 @@ public class PhantomHeroSkill : MonoBehaviour
     {
         partnerSkillManager = PartnerSkillManager.Instance;
         //lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
+        //lineRenderer.positionCount = 2;
         //skill1Image.fillAmount = 0;
     }
 
@@ -212,7 +200,6 @@ public class PhantomHeroSkill : MonoBehaviour
                 {
                     if (skill2PreviewInstance == null)
                     {
-                        shadow.SetActive(false);
                         skill2PreviewInstance = Instantiate(skill2AreaPreview);
                     }
                     skill2PreviewInstance.SetActive(true);
@@ -235,9 +222,7 @@ public class PhantomHeroSkill : MonoBehaviour
 
                     if (skill2CooldownTime <= 0)
                     {
-                        isSkill2Active = true;
-                        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
-                        StartCoroutine(JumpToPosition(mousePosition));
+                        Skill2Activate();
                     }
                 }
             }
@@ -251,80 +236,6 @@ public class PhantomHeroSkill : MonoBehaviour
         {
             isSkill2Active = false;
         }
-    }
-
-    private IEnumerator WaitForSeconds(float seconds)
-    {
-        // First jump up
-        yield return new WaitForSeconds(seconds); // Adjust time as needed for the jump-up animation
-    }
-
-    private IEnumerator JumpToPosition(Vector3 targetPosition)
-    {
-        conversationManager.ShowConversation("Fire kick!", phantomHeroAI.heroFaceSprite);
-        gameObject.GetComponent<Animator>().SetTrigger("skill2");
-
-        //Vector3 mousePosition = GetMouseWorldPosition();
-        //targetPosition = mousePosition;
-        ToLandPosition = targetPosition;
-
-        GameObject splatterShadow = Instantiate(splatterProjectileShadow, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
-        landingShadowInstance = Instantiate(landingShadowPrefab, targetPosition, Quaternion.identity);
-        landingShadowInstance.transform.localScale = Vector3.zero; // Start with zero scale
-
-        StartCoroutine(ProjectileCurveRoutine(transform.position, targetPosition));
-        StartCoroutine(MoveSplatterShadowRoutine(splatterShadow, splatterShadow.transform.position, targetPosition));
-
-        //transform.position = targetPosition;
-        yield return null;
-    }
-
-    private IEnumerator ProjectileCurveRoutine(Vector3 startPosition, Vector3 endPosition)
-    {
-        float timePassed = 0f;
-
-        while (timePassed < duration)
-        {
-            timePassed += Time.deltaTime;
-            float linearT = timePassed / duration;
-            float heightT = animCurve.Evaluate(linearT);
-            float height = Mathf.Lerp(0f, heightY, heightT);
-
-            // Update projectile position
-            transform.position = Vector2.Lerp(startPosition, endPosition, linearT) + new Vector2(0f, height);
-
-            // Scale the landing shadow proportionally to time
-            if (landingShadowInstance != null)
-            {
-                landingShadowInstance.transform.localScale = Vector3.Lerp(Vector3.zero, maxShadowScale, linearT);
-                gameObject.GetComponent<Animator>().SetTrigger("skill2Finish");
-            }
-
-            yield return null;
-        }
-
-        // Instantiate the splatter at the exact position of the landing shadow
-        GameObject skillInstance = Instantiate(skill2Prefab, landingShadowInstance.transform.position, Quaternion.identity);
-
-        Destroy(landingShadowInstance); // Remove shadow upon landing
-        isAnySkillActive = false;
-        shadow.SetActive(true);
-        Destroy(skillInstance, skill2ActiveTime);
-    }
-
-    private IEnumerator MoveSplatterShadowRoutine(GameObject splatterShadow, Vector3 startPosition, Vector3 endPosition)
-    {
-        float timePassed = 0f;
-
-        while (timePassed < duration)
-        {
-            timePassed += Time.deltaTime;
-            float linearT = timePassed / duration;
-            splatterShadow.transform.position = Vector2.Lerp(startPosition, endPosition, linearT);
-            yield return null;
-        }
-
-        Destroy(splatterShadow);
     }
 
     public void Skill1Activate()

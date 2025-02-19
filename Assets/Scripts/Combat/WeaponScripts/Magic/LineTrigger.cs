@@ -245,6 +245,13 @@ public class LineTrigger : MonoBehaviour
             aegisHero.aegisHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Link activated", aegisHero.heroFaceSprite);
         }
+        else if (newHero.TryGetComponent(out PhantomHeroAI phantomHero))
+        {
+            SetupLineRenderer(Color.white, Color.magenta);
+            SetupHero(phantomHero.selectedIndicator, phantomHero.skillbutton1, phantomHero.skillbutton2);
+            phantomHero.phantomHeroSkill.FusionActivate();
+            conversationManager.ShowConversation("Link activated", phantomHero.heroFaceSprite);
+        }
 
         SoundManager.instance.RandomizeSfx(linkSound);
         CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
@@ -288,6 +295,11 @@ public class LineTrigger : MonoBehaviour
             aegisHero.aegisHeroSkill.DeFusionActivate();
             Destroy(aegisHero.aegisHeroSkill.weaponInstance);
             aegisHero.aegisHeroSkill.droneInstance.SetActive(true);
+        }
+        else if (hero.TryGetComponent(out PhantomHeroAI phantomHero))
+        {
+            CleanupHero(phantomHero.selectedIndicator, phantomHero.skillbutton1, phantomHero.skillbutton2);
+            phantomHero.phantomHeroSkill.DeFusionActivate();
         }
 
         SoundManager.instance.RandomizeSfx(unlinkSound);
