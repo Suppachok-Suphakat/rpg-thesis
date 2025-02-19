@@ -7,16 +7,18 @@ public class PhantomHeroSkill : MonoBehaviour
 {
     [Header("Hero Skill")]
     public GameObject skill1Damage;
-    public GameObject skill1Prefab; // Prefab for the skill projectile
-    public GameObject skill1Preview; // Visual for the preview (e.g., an arrow)
+    public GameObject skill1Prefab;
     private GameObject skill1PreviewInstance;
-    public float skill1Range;
-    public LineRenderer lineRenderer; // Reference to the LineRenderer
+    public float skill2Range;
+    public LineRenderer lineRenderer;
     public GameObject skill2Prefab;
+    public GameObject skill2Preview;
     public GameObject skill2AreaPreview;
     private GameObject skill2PreviewInstance;
+    public GameObject skill1Collider;
+    public GameObject skill2Collider;
 
-    private bool isSkill1PreviewActive = false;
+    private bool isSkill2PreviewActive = false;
     private bool isSkill1Active = false;
     private bool isSkill2Active = false;
 
@@ -79,7 +81,7 @@ public class PhantomHeroSkill : MonoBehaviour
     {
         partnerSkillManager = PartnerSkillManager.Instance;
         //lineRenderer = GetComponent<LineRenderer>();
-        //lineRenderer.positionCount = 2;
+        lineRenderer.positionCount = 2;
         //skill1Image.fillAmount = 0;
     }
 
@@ -100,7 +102,7 @@ public class PhantomHeroSkill : MonoBehaviour
         HandleSkill2();
         UpdateCooldownUI();
 
-        if (isSkill1PreviewActive) // Ensure this only runs during the preview
+        if (isSkill2PreviewActive) // Ensure this only runs during the preview
         {
             // Set the start of the line to the hero's position
             lineRenderer.SetPosition(0, transform.position);
@@ -111,7 +113,7 @@ public class PhantomHeroSkill : MonoBehaviour
 
             Vector3 direction = (mousePosition - transform.position).normalized;
             // Calculate the fixed endpoint based on the skill range
-            Vector3 fixedEndpoint = transform.position + direction * skill1Range;
+            Vector3 fixedEndpoint = transform.position + direction * skill2Range;
             lineRenderer.SetPosition(1, fixedEndpoint);
         }
     }
@@ -122,7 +124,7 @@ public class PhantomHeroSkill : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && !isAnySkillActive) // Activate preview on first press
             {
-                if (skill1CooldownTime <= 0 && !isSkill1PreviewActive)
+                if (skill1CooldownTime <= 0)
                 {
                     //Enter a shadow state and wait for player to attack and teleport to the enemy that player just attack
                     isAnySkillActive = true; //cannot use skill 2 or any skill
@@ -143,74 +145,21 @@ public class PhantomHeroSkill : MonoBehaviour
         }
     }
 
-    private void HandleSkill2()
-    {
-        if (lineTrigger.currentTarget == this.transform)
-        {
-            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive)
-            {
-                if (skill2CooldownTime <= 0 && !isSkill2Active)
-                {
-                    if (skill2PreviewInstance == null)
-                    {
-                        skill2PreviewInstance = Instantiate(skill2AreaPreview);
-                    }
-                    skill2PreviewInstance.SetActive(true);
-                    isAnySkillActive = true;
-                }
-            }
-
-            if (skill2PreviewInstance != null)
-            {
-                Vector3 mousePosition = GetMouseWorldPosition();
-                skill2PreviewInstance.transform.position = mousePosition;
-
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if (skill2PreviewInstance != null)
-                    {
-                        Destroy(skill2PreviewInstance);
-                        skill2PreviewInstance = null;
-                    }
-
-                    if (skill2CooldownTime <= 0)
-                    {
-                        Skill2Activate();
-                    }
-                }
-            }
-        }
-
-        if (skill2CooldownTime > 0)
-        {
-            skill2CooldownTime -= Time.deltaTime;
-        }
-        else
-        {
-            isSkill2Active = false;
-        }
-    }
-
     public void Skill1Activate()
     {
-        if (isSkill1Active) return; // Prevent activation while skill is running
+        if (isSkill1Active) return;
 
         isSkill1Active = true;
-        isWaitingForAttack = true; // Start waiting for an attack
+        isWaitingForAttack = true;
         skill1CooldownTime = skill1MaxCooldownTime;
+        skill1Collider.SetActive(true); // Activate skill1 collider
 
-        // Enter Shadow State (Lower opacity)
         Color heroColor = GetComponent<SpriteRenderer>().color;
-        heroColor.a = 0.5f; // Lower opacity
+        heroColor.a = 0.5f;
         GetComponent<SpriteRenderer>().color = heroColor;
 
-        // Show message
         conversationManager.ShowConversation("Waiting to strike...", phantomHeroAI.heroFaceSprite);
-
-        // Start cooldown
-        isSkill1Active = true;
-        skill1CooldownTime = skill1MaxCooldownTime;
-        UpdateCooldownUI(); // Update UI
+        UpdateCooldownUI();
     }
 
     // This should be called when the player attacks an enemy
@@ -220,6 +169,13 @@ public class PhantomHeroSkill : MonoBehaviour
         {
             isWaitingForAttack = false;
             targetEnemy = enemy;
+
+            if (phantomHeroAI == null)
+            {
+                phantomHeroAI.focusEnemy = enemy;
+                phantomHeroAI.enemyTransform = enemy;
+                phantomHeroAI.currentState = PhantomHeroAI.State.chase;
+            }
             StartCoroutine(ExecuteSkill1());
         }
     }
@@ -228,34 +184,126 @@ public class PhantomHeroSkill : MonoBehaviour
     {
         if (targetEnemy == null) yield break;
 
-        // Teleport to enemy
         transform.position = targetEnemy.position;
-
-        // Play skill animation
         GetComponent<Animator>().SetTrigger("skill1");
 
-        // Wait for animation to complete
-        yield return new WaitForSeconds(0.5f); // Adjust timing if necessary
+        yield return new WaitForSeconds(0.5f);
 
-        // Exit Shadow State (Restore opacity)
         Color heroColor = GetComponent<SpriteRenderer>().color;
-        heroColor.a = 1f; // Restore full opacity
+        heroColor.a = 1f;
         GetComponent<SpriteRenderer>().color = heroColor;
 
         isSkill1Active = false;
+        skill1Collider.SetActive(false); // Deactivate skill1 collider
+    }
+
+    private void HandleSkill2()
+    {
+        if (lineTrigger.currentTarget == this.transform)
+        {
+            if (Input.GetKeyDown(KeyCode.Q) && !isAnySkillActive) // Activate preview on first press
+            {
+                if (skill2CooldownTime <= 0 && !isSkill2PreviewActive)
+                {
+                    EnableLineRenderer();
+                    ActivateSkill2Preview();
+                    isAnySkillActive = true;
+                }
+            }
+
+            if (lineRenderer.enabled)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    DisableLineRenderer();
+                    Skill2Activate();
+                    isAnySkillActive = false;
+                }
+            }
+
+            if (isSkill2PreviewActive)
+            {
+                UpdateSkill2Preview(); // Update preview position and rotation
+            }
+        }
+
+        // Cooldown handling
+        if (skill2CooldownTime > 0)
+        {
+            skill2CooldownTime -= Time.deltaTime;
+        }
+        else
+        {
+            isSkill2Active = false; // Skill is ready again
+        }
+    }
+
+    private void ActivateSkill2Preview()
+    {
+        skill2PreviewInstance = Instantiate(skill2Preview, transform.position, Quaternion.identity);
+        skill2PreviewInstance.transform.SetParent(transform); // Keep it relative to the hero
+        isSkill2PreviewActive = true;
+    }
+
+    private void UpdateSkill2Preview()
+    {
+        if (skill2PreviewInstance != null)
+        {
+            Vector3 mousePosition = GetMouseWorldPosition();
+            Vector3 direction = (mousePosition - transform.position).normalized;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            skill2PreviewInstance.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     public void Skill2Activate()
     {
         Debug.Log("Partner Skill Activate");
 
-        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
-
+        skill2CooldownTime = skill2MaxCooldownTime;
         isSkill2Active = true;
-        skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
+        skill2Collider.SetActive(true); // Activate skill2 collider
 
-        skill1CooldownTime = 0;  // Start cooldown
-        UpdateCooldownUI();  // Update UI
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+        Vector3 direction = (mousePosition - transform.position).normalized;
+
+        GetComponent<Animator>().SetTrigger("skill2");
+        StartCoroutine(ChargeForward(direction));
+        UpdateCooldownUI();
+    }
+
+    private IEnumerator ChargeForward(Vector3 direction)
+    {
+        float chargeTime = 0.3f;
+        float elapsedTime = 0f;
+        float chargeSpeed = 15f;
+
+        while (elapsedTime < chargeTime)
+        {
+            transform.position += direction * chargeSpeed * Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isSkill2Active = false;
+        skill2Collider.SetActive(false); // Deactivate skill2 collider
+    }
+
+    void EnableLineRenderer()
+    {
+        lineRenderer.enabled = true; // Enable the LineRenderer
+    }
+
+    void DisableLineRenderer()
+    {
+        lineRenderer.enabled = false; // Disable the LineRenderer
+    }
+
+    void ClearLineRenderer()
+    {
+        lineRenderer.positionCount = 0; // Clear all positions
     }
 
     public void FusionActivate()
