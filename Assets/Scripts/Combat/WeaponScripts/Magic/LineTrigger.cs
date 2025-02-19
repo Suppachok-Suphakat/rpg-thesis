@@ -13,7 +13,7 @@ public class LineTrigger : MonoBehaviour
     public Transform currentTarget;
     private Transform previousTarget;
 
-    private float fusionCooldown = 1f;
+    private float fusionCooldown = 1.5f;
     private float lastFusionTime = 0f;
 
     public bool isInFusion = false;
@@ -207,6 +207,12 @@ public class LineTrigger : MonoBehaviour
     private void LinkHero(Transform newHero)
     {
         if (isInFusion) return;
+
+        float distanceToTarget = Vector3.Distance(hero.position, newHero.position);
+        if (distanceToTarget > 10f)
+        {
+            return;
+        }
 
         StartCoroutine(StopMovementForSeconds(0.5f)); // Stop movement for 0.5 seconds
 
