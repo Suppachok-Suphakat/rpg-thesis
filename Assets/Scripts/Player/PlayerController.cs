@@ -216,4 +216,61 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
     }
+
+    public void MouseDash()
+    {
+        if (!isDashing)
+        {
+            Vector3 dashDirection = GetMouseDirection();
+            if (dashDirection != Vector3.zero)
+            {
+                isDashing = true;
+                StartCoroutine(DashRoutine(dashDirection));
+            }
+        }
+    }
+
+    private Vector3 GetMouseDirection()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Camera.main.nearClipPlane;
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 dashDirection = (worldMousePosition - transform.position).normalized;
+        dashDirection.z = 0; // Ensure z is 0
+        return dashDirection;
+    }
+
+    private IEnumerator DashRoutine(Vector3 dashDirection)
+    {
+        float dashTime = 0.3f;
+        float dashCD = 0.25f;
+        float dashDistance = moveSpeed * dashSpeed * dashTime;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dashDirection, out hit, dashDistance))
+        {
+            dashDistance = hit.distance; // Limit dash distance to the collision point
+        }
+
+        float dashEndTime = Time.time + dashTime;
+        trailRenderer.emitting = true;
+
+        while (Time.time < dashEndTime)
+        {
+            float distanceToMove = Mathf.Min(dashDistance, moveSpeed * dashSpeed * Time.deltaTime);
+            Vector3 newPosition = transform.position + dashDirection * distanceToMove;
+            newPosition.z = 0; // Ensure z is 0
+            transform.position = newPosition;
+            dashDistance -= distanceToMove;
+
+            if (dashDistance <= 0)
+                break;
+
+            yield return null;
+        }
+
+        trailRenderer.emitting = false;
+        yield return new WaitForSeconds(dashCD);
+        isDashing = false;
+    }
 }

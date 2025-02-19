@@ -50,8 +50,6 @@ public class PhantomHeroSkill : MonoBehaviour
     [SerializeField] public ToolbarSlot toolbarSlot;
     [SerializeField] public WeaponInfo weaponInfo;
     [SerializeField] public Sprite itemSprite;
-    [SerializeField] public GameObject avatar;
-    private GameObject avatarInstance;
 
     WeaponInfo weaponChangeInfo;
     Sprite weaponChangeSprite;
@@ -296,12 +294,6 @@ public class PhantomHeroSkill : MonoBehaviour
     {
         PlayerController.instance.GetComponent<Animator>().SetTrigger("phantomLink");
 
-        Transform avatarSpawnPoint = PlayerController.instance.avatarSpawnPoint;
-
-        GameObject avatarGO = Instantiate(avatar, avatarSpawnPoint.position, Quaternion.identity);
-        avatarGO.transform.SetParent(avatarSpawnPoint);
-        avatarInstance = avatarGO;
-
         if (toolbarSlot != null)
         {
             toolbarSlot.gameObject.SetActive(true); // Ensure toolbarSlot is active
@@ -339,8 +331,7 @@ public class PhantomHeroSkill : MonoBehaviour
         // Trigger return to normal state
         PlayerController.instance.GetComponent<Animator>().SetTrigger("phantomUnlink");
 
-        Destroy(avatarInstance);
-
+        // Handle weapon change back
         if (weaponChangeInfo != null)
         {
             toolbarSlot.weaponInfo = weaponChangeInfo;

@@ -250,7 +250,7 @@ public class LineTrigger : MonoBehaviour
             SetupLineRenderer(Color.white, Color.magenta);
             SetupHero(phantomHero.selectedIndicator, phantomHero.skillbutton1, phantomHero.skillbutton2);
             phantomHero.phantomHeroSkill.FusionActivate();
-            conversationManager.ShowConversation("Link activated", phantomHero.heroFaceSprite);
+            conversationManager.ShowConversation("Alright", phantomHero.heroFaceSprite);
         }
 
         SoundManager.instance.RandomizeSfx(linkSound);

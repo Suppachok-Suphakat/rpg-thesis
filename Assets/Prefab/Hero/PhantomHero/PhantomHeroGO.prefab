@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
   heroFaceSprite: {fileID: 21300000, guid: 3eb534aa6c0fe9c4bbcc0eb966f57ba3, type: 3}
-  warriorHeroSkill: {fileID: 0}
+  phantomHeroSkill: {fileID: 0}
 --- !u!114 &3235512404218838576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,13 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8474d0dad5445c14c86f579626d070ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill1Damage: {fileID: 0}
-  skill1Prefab: {fileID: 0}
-  skill1Preview: {fileID: 0}
-  skill1Range: 0
-  lineRenderer: {fileID: 0}
-  skill2Prefab: {fileID: 0}
-  skill2AreaPreview: {fileID: 0}
+  skill1Damage: {fileID: 1603878265584195838}
+  skill1Prefab: {fileID: 3554886383241864524, guid: f74d55fd7f62ec84dbcf64fd35dd2c3a, type: 3}
+  skill1Preview: {fileID: 371351925480119373, guid: eb36f304d3f34864996f734fe46b2912, type: 3}
+  skill1Range: 10
+  lineRenderer: {fileID: 1225751640091083324}
+  skill2Prefab: {fileID: 3554886383241864524, guid: 6b858aa1a14f15b42ab2e3e6f64ac091, type: 3}
+  skill2AreaPreview: {fileID: 7686837216217434397, guid: b8709355726f9c649a5ec58859de45a2, type: 3}
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10
   skill2CooldownTime: 0
@@ -118,26 +118,13 @@ MonoBehaviour:
   currentSkill2ActiveTime: 5
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 0}
-  itemSprite: {fileID: 0}
-  avatar: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: f6346c628c613554899eac540776ef6a, type: 2}
+  itemSprite: {fileID: 21300000, guid: e93b3825278cbca45aa17c5c60f29c76, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
-  warriorHeroAI: {fileID: 0}
+  phantomHeroAI: {fileID: 0}
   conversationManager: {fileID: 0}
-  duration: 1
-  animCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  heightY: 3
-  splatterProjectileShadow: {fileID: 0}
-  landingShadowPrefab: {fileID: 0}
-  maxShadowScale: {x: 3, y: 3, z: 1}
-  shadow: {fileID: 0}
 --- !u!212 &3926950155357857189
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -473,6 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  damageCooldown: 1
 --- !u!1 &1831722024971556537
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  damageCooldown: 1
 --- !u!61 &24808466850256951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -796,5 +785,10 @@ PrefabInstance:
 --- !u!4 &289602927601821782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8126670056700751330, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
+  m_PrefabInstance: {fileID: 8413668619211048372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!120 &1225751640091083324 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
   m_PrefabInstance: {fileID: 8413668619211048372}
   m_PrefabAsset: {fileID: 0}
