@@ -67,9 +67,14 @@ public class LineEffect : MonoBehaviour
 
     public void StartHealing(Transform newTarget)
     {
-        target = newTarget;
+        target = newTarget; // Assign the new target first
         isHealing = true;
+
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, target.position);
     }
+
 
     public void StopHealing()
     {
