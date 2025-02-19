@@ -189,7 +189,7 @@ public class PhantomHeroAI : MonoBehaviour
     {
         if (followOverrideTimer > 0) return;
 
-        if (other.CompareTag("Enemy"))
+        if (focusEnemy == null && other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
@@ -201,7 +201,7 @@ public class PhantomHeroAI : MonoBehaviour
     {
         if (followOverrideTimer > 0) return;
 
-        if (other.CompareTag("Enemy"))
+        if (focusEnemy == null && other.CompareTag("Enemy"))
         {
             focusEnemy = other.transform;
             enemyTransform = focusEnemy;
@@ -274,10 +274,6 @@ public class PhantomHeroAI : MonoBehaviour
             FlipSprite(focusEnemy);
             transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
         }
-        else
-        {
-            currentState = State.follow;
-        }
     }
 
     private bool CanMove(Vector2 direction)
@@ -303,15 +299,19 @@ public class PhantomHeroAI : MonoBehaviour
 
     public void AttackLogic()
     {
-        if (focusEnemy != null && !isAttacking)
+        if (focusEnemy != null)
         {
             float distanceToEnemy = Vector2.Distance(transform.position, focusEnemy.position);
 
-            if (distanceToEnemy <= distanceToAttack)
+            if (distanceToEnemy <= distanceToAttack && !isAttacking)
             {
                 isAttacking = true;
                 animator.SetTrigger("attack");
                 StartCoroutine(AttackCooldown());
+            }
+            else if (distanceToEnemy > attackDistance)
+            {
+                currentState = State.chase;
             }
         }
         else

@@ -21,6 +21,7 @@ public class PhantomHeroSkill : MonoBehaviour
     private bool isSkill2PreviewActive = false;
     private bool isSkill1Active = false;
     private bool isSkill2Active = false;
+    public bool isReady = false;
 
     [Header("Skill Settings")]
     [SerializeField] float skill1CooldownTime;
@@ -128,10 +129,10 @@ public class PhantomHeroSkill : MonoBehaviour
                 if (skill1CooldownTime <= 0)
                 {
                     //Enter a shadow state and wait for player to attack and teleport to the enemy that player just attack
+                    Skill1Activate(); //skill 1
+                    isReady = true;
                     isAnySkillActive = true; //cannot use skill 2 or any skill
                 }
-                Skill1Activate(); //skill 1
-                isAnySkillActive = false; // this mean can now use skill do this after attacked enemy
             }
         }
 
@@ -152,8 +153,6 @@ public class PhantomHeroSkill : MonoBehaviour
 
         isSkill1Active = true;
         isWaitingForAttack = true;
-        skill1CooldownTime = skill1MaxCooldownTime;
-        skill1Collider.SetActive(true); // Activate skill1 collider
 
         Color heroColor = GetComponent<SpriteRenderer>().color;
         heroColor.a = 0.5f;
@@ -170,13 +169,6 @@ public class PhantomHeroSkill : MonoBehaviour
         {
             isWaitingForAttack = false;
             targetEnemy = enemy;
-
-            if (phantomHeroAI == null)
-            {
-                phantomHeroAI.focusEnemy = enemy;
-                phantomHeroAI.enemyTransform = enemy;
-                phantomHeroAI.currentState = PhantomHeroAI.State.chase;
-            }
             StartCoroutine(ExecuteSkill1());
         }
     }
@@ -187,6 +179,14 @@ public class PhantomHeroSkill : MonoBehaviour
 
         transform.position = targetEnemy.position;
         GetComponent<Animator>().SetTrigger("skill1");
+        skill1CooldownTime = skill1MaxCooldownTime;
+        skill1Collider.SetActive(true); // Activate skill1 collider
+
+        if (phantomHeroAI != null)
+        {
+            phantomHeroAI.focusEnemy = targetEnemy;
+            phantomHeroAI.enemyTransform = targetEnemy;
+        }
 
         yield return new WaitForSeconds(0.5f);
 
@@ -195,6 +195,8 @@ public class PhantomHeroSkill : MonoBehaviour
         GetComponent<SpriteRenderer>().color = heroColor;
 
         isSkill1Active = false;
+        isAnySkillActive = false;
+        isReady = false;
         skill1Collider.SetActive(false); // Deactivate skill1 collider
     }
 

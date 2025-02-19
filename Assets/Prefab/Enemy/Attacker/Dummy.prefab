@@ -290,9 +290,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4100660503886856127}
-  - component: {fileID: 3768077183173335789}
-  - component: {fileID: 3536736226815985751}
-  - component: {fileID: 2905894672231633956}
   - component: {fileID: -8792102464452077135}
   - component: {fileID: 4038742072775554809}
   - component: {fileID: 2372663518051937475}
@@ -328,53 +325,6 @@ Transform:
   - {fileID: 1117370018345302018}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3768077183173335789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4629653595643336442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68586f1b24b21b7448e832f2ff21673e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roamChangeDirFloat: 2
-  attackRange: 5
-  damageRange: 1.5
-  enemyType: {fileID: 2905894672231633956}
-  attackCooldown: 2
-  stopMovingWhileAttacking: 1
-  currentTarget: {fileID: 0}
---- !u!114 &3536736226815985751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4629653595643336442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f020a563685644e99ee71886cd3182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 2
-  stopMovingTime: 0
-  isImmobilized: 1
---- !u!114 &2905894672231633956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4629653595643336442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7295523c4b981ad4f8090aa4c4aa52e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageCollider: {fileID: 4125252639932647868}
 --- !u!114 &-8792102464452077135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8fc565a02b64e408ea41ac33e94f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  maxHealth: 100000000
   currentHealth: 0
   deathVFXPrefab: {fileID: 3626922010709504189, guid: 6edd3c2e4fc54a647b47a1663decdf66, type: 3}
   knockBackThrust: 1
@@ -553,7 +503,7 @@ Animator:
   m_GameObject: {fileID: 4629653595643336442}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9695f26896011940a6900381c028cae, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53ce423cfbe0a8c4493ea4747d485228, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

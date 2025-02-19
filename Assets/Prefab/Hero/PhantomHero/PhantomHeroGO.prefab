@@ -109,6 +109,7 @@ MonoBehaviour:
   skill2AreaPreview: {fileID: 7686837216217434397, guid: b8709355726f9c649a5ec58859de45a2, type: 3}
   skill1Collider: {fileID: 1603878265584195838}
   skill2Collider: {fileID: 6479396900168634744}
+  isReady: 0
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10
   skill2CooldownTime: 0
@@ -428,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 50
+  knockBackThrust: 0
   damageCooldown: 0.5
 --- !u!61 &4717027442942191671
 BoxCollider2D:
@@ -684,6 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  knockBackThrust: 0
   damageCooldown: 1
 --- !u!61 &24808466850256951
 BoxCollider2D:
@@ -776,7 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 50
-  damageCooldown: 1
+  knockBackThrust: 0
+  damageCooldown: 0.5
 --- !u!61 &8530404721157508626
 BoxCollider2D:
   m_ObjectHideFlags: 0

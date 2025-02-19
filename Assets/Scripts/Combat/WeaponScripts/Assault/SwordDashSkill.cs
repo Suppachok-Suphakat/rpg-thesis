@@ -65,9 +65,10 @@ public class SwordDashSkill : MonoBehaviour, IWeapon
         slashAnim.transform.parent = this.transform.parent;
         weaponCollider.gameObject.GetComponent<DamageSouce>();
 
+
         // Find the closest enemy
         Transform enemyTarget = FindClosestEnemy();
-        if (enemyTarget != null)
+        if (enemyTarget != null && phantomHeroSkill.isReady)
         {
             phantomHeroSkill.OnPlayerAttack(enemyTarget); // Call OnPlayerAttack with the enemy
         }
