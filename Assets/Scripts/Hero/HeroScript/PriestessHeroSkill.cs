@@ -299,8 +299,6 @@ public class PriestessHeroSkill : MonoBehaviour
 
         activeToolbar.ChangeActiveWeapon();
 
-        StartCoroutine(ResetFusionTrigger());
-
         fusionActivated = false;
     }
 

@@ -235,8 +235,6 @@ public class AegisHeroSkill : MonoBehaviour
             toolbarSlot.slotSprite.GetComponent<Image>().sprite = weaponChangeSprite;
         }
 
-        StartCoroutine(ResetFusionTrigger());
-
         fusionActivated = false;
     }
 

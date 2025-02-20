@@ -331,8 +331,6 @@ public class ResoluteHeroSkill : MonoBehaviour
 
         activeToolbar.ChangeActiveWeapon();
 
-        StartCoroutine(ResetFusionTrigger());
-
         fusionActivated = false;
     }
 

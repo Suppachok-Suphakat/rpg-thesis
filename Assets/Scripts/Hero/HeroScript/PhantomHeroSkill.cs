@@ -384,8 +384,6 @@ public class PhantomHeroSkill : MonoBehaviour
             skill1PreviewInstance = null;
         }
 
-        StartCoroutine(ResetFusionTrigger());
-
         fusionActivated = false;
     }
 

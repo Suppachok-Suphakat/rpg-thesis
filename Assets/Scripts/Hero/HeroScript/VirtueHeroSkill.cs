@@ -389,8 +389,6 @@ public class VirtueHeroSkill : MonoBehaviour
 
         activeToolbar.ChangeActiveWeapon();
 
-        StartCoroutine(ResetFusionTrigger());
-
         fusionActivated = false;
     }
 

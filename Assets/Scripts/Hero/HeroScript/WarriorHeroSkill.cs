@@ -444,8 +444,6 @@ public class WarriorHeroSkill : MonoBehaviour
 
         //activeToolbar.ChangeActiveWeapon();
 
-        StartCoroutine(ResetFusionTrigger());
-
         fusionActivated = false;
     }
 
