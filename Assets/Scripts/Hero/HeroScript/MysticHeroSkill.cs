@@ -242,7 +242,7 @@ public class MysticHeroSkill : MonoBehaviour
             }
 
             // Set projectile range and activate it
-            newArrow.GetComponent<ThruProjectile>().UpdateProjectileRange(skill2Range);
+            newArrow.GetComponent<MysticSkillProjectile>().UpdateProjectileRange(skill2Range);
 
             // Destroy the preview and disable the line renderer
             Destroy(skill2PreviewInstance);

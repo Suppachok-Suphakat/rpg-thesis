@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3739314828890627869}
   - component: {fileID: 7543375901313438432}
   - component: {fileID: -5320512341577430892}
-  - component: {fileID: 6936227933630175496}
+  - component: {fileID: 823966735296276083}
   m_Layer: 0
   m_Name: MysticSkill2
   m_TagString: Untagged
@@ -315,7 +315,7 @@ MonoBehaviour:
   damageAmount: 20
   knockBackThrust: 0
   damageCooldown: 0.5
---- !u!114 &6936227933630175496
+--- !u!114 &823966735296276083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3554886383241864524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af17cf1b9e48aad4aa8ccbe9c71d3430, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f32dc51f0575d64ca080a9ab0c4818d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
@@ -332,6 +332,9 @@ MonoBehaviour:
   particleOnHitPrefabVFX: {fileID: 3626922010709504189, guid: d632d51825fea4e4aa4c41406f90ebb2, type: 3}
   isEnemyProjectile: 0
   projectileRange: 10
+  pullRadius: 10
+  pullForce: 20
+  pullInterval: 0.1
 --- !u!1 &8052311070165005168
 GameObject:
   m_ObjectHideFlags: 0

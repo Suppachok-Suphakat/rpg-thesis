@@ -375,8 +375,6 @@ public class MysticHeroAI : MonoBehaviour
 
     public void FlipSpriteOverride(Vector3 targetPosition)
     {
-        Debug.Log("Flipping override to target at: " + targetPosition);
-
         if (targetPosition.x < transform.position.x)
             transform.localScale = new Vector3(-1, 1, 1); // Face left
         else
