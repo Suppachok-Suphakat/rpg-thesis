@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 public class MysticHeroSkill : MonoBehaviour
 {
-    [Header("Hero Skill")]
-    public GameObject skill1Damage;
-    public GameObject skill1Prefab;
-    private GameObject skill1PreviewInstance;
+    [Header("Skill 01")]
+    [SerializeField] private GameObject weaponGO;
+    [SerializeField] public GameObject weaponInstance;
+    [SerializeField] private Transform swordPoint;
+    [Header("Skill 02")]
     public float skill2Range;
     public LineRenderer lineRenderer;
     public GameObject skill2Prefab;
     public GameObject skill2Preview;
     public GameObject skill2AreaPreview;
     public GameObject skill2PreviewInstance;
-    public GameObject skill1Collider;
-    public GameObject skill2Collider;
+    Vector3 mousePosition;
+    Vector3 direction;
 
     public bool isSkill2PreviewActive = false;
     private bool isSkill1Active = false;
@@ -68,6 +69,8 @@ public class MysticHeroSkill : MonoBehaviour
     private bool isWaitingForAttack = false;
     private Transform targetEnemy; // The enemy to teleport to
 
+    private Animator animator;
+
     public ConversationManager conversationManager;
 
     private void Awake()
@@ -75,6 +78,7 @@ public class MysticHeroSkill : MonoBehaviour
         lineTrigger = GameObject.Find("Player").GetComponent<LineTrigger>();
         rb = GetComponent<Rigidbody2D>();
         mysticHeroAI = GetComponent<MysticHeroAI>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -118,9 +122,7 @@ public class MysticHeroSkill : MonoBehaviour
             {
                 if (skill1CooldownTime <= 0)
                 {
-                    //Enter a shadow state and wait for player to attack and teleport to the enemy that player just attack
-                    Skill1Activate(); //skill 1
-                    isReady = true;
+                    Skill1Activate();
                     isAnySkillActive = true; //cannot use skill 2 or any skill
                 }
             }
@@ -142,14 +144,52 @@ public class MysticHeroSkill : MonoBehaviour
         if (isSkill1Active) return;
 
         isSkill1Active = true;
-        isWaitingForAttack = true;
+        isAnySkillActive = true; // Prevent other skills
 
-        Color heroColor = GetComponent<SpriteRenderer>().color;
-        heroColor.a = 0.5f;
-        GetComponent<SpriteRenderer>().color = heroColor;
+        animator.SetTrigger("skill1");
 
-        conversationManager.ShowConversation("Waiting to strike...", mysticHeroAI.heroFaceSprite);
+        // Start the coroutine and wait before proceeding
+        StartCoroutine(ActivateSkill1AfterAnimation());
+    }
+
+    private IEnumerator ActivateSkill1AfterAnimation()
+    {
+        yield return StartCoroutine(WaitForAnimation("Mystic_Skill_01")); // Wait for animation to finish
+
+        // Now instantiate the weapon after the animation completes
+        weaponInstance = Instantiate(weaponGO, swordPoint.position, Quaternion.identity);
+        StartCoroutine(DeactivateSkill1AfterTime(5f)); // Wait for destruction
+
+        conversationManager.ShowConversation("Spirit Sword!", mysticHeroAI.heroFaceSprite);
         UpdateCooldownUI();
+    }
+
+    private IEnumerator WaitForAnimation(string animationName)
+    {
+        // Ensure the animation is playing before checking its progress
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        {
+            yield return null;
+        }
+
+        // Wait for the animation to finish
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator DeactivateSkill1AfterTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (weaponInstance != null)
+        {
+            Destroy(weaponInstance);
+        }
+
+        isSkill1Active = false;
+        isAnySkillActive = false;
     }
 
     private void HandleSkill2()
@@ -218,45 +258,51 @@ public class MysticHeroSkill : MonoBehaviour
         {
             // Show dialogue and play animation
             conversationManager.ShowConversation("Spirit of dragon!", mysticHeroAI.heroFaceSprite);
-            gameObject.GetComponent<Animator>().SetTrigger("skill2");
+            animator.SetTrigger("skill2");
+            StartCoroutine(ActivateSkill2AfterAnimation());
 
-            Vector3 mousePosition = GetMouseWorldPosition();
-            Vector3 direction = (mousePosition - transform.position).normalized;
+            mousePosition = GetMouseWorldPosition();
+            direction = (mousePosition - transform.position).normalized;
 
             mysticHeroAI.SetFlipOverride(true, mousePosition);
             mysticHeroAI.FlipSpriteOverride(mousePosition); // <-- Explicitly call flip
-
-            // Calculate the rotation for the skill projectile
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-            // Instantiate the projectile at the hero's position
-            GameObject newArrow = Instantiate(skill2Prefab, transform.position, rotation);
-
-            // Flip the projectile if the mouse is on the left side of the screen
-            if (mousePosition.x < transform.position.x)
-            {
-                Vector3 scale = newArrow.transform.localScale;
-                scale.y *= -1; // Flip Y-axis
-                newArrow.transform.localScale = scale;
-            }
-
-            // Set projectile range and activate it
-            newArrow.GetComponent<MysticSkillProjectile>().UpdateProjectileRange(skill2Range);
-
-            // Destroy the preview and disable the line renderer
-            Destroy(skill2PreviewInstance);
-            DisableLineRenderer();
-            isSkill2PreviewActive = false;
-
-            // Start cooldown
-            isSkill2Active = true;
-            skill2CooldownTime = skill2MaxCooldownTime;
-            UpdateCooldownUI(); // Update UI
-
-            // Reset flip override after a delay
-            StartCoroutine(ResetFlipAfterDelay(1.0f)); // Adjust delay as needed
         }
+    }
+
+    private IEnumerator ActivateSkill2AfterAnimation()
+    {
+        yield return StartCoroutine(WaitForAnimation("Mystic_Skill_02")); // Wait for animation to finish
+
+        // Calculate the rotation for the skill projectile
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        // Instantiate the projectile at the hero's position
+        GameObject newArrow = Instantiate(skill2Prefab, transform.position, rotation);
+
+        // Flip the projectile if the mouse is on the left side of the screen
+        if (mousePosition.x < transform.position.x)
+        {
+            Vector3 scale = newArrow.transform.localScale;
+            scale.y *= -1; // Flip Y-axis
+            newArrow.transform.localScale = scale;
+        }
+
+        // Set projectile range and activate it
+        newArrow.GetComponent<MysticSkillProjectile>().UpdateProjectileRange(skill2Range);
+
+        // Destroy the preview and disable the line renderer
+        Destroy(skill2PreviewInstance);
+        DisableLineRenderer();
+        isSkill2PreviewActive = false;
+
+        // Start cooldown
+        isSkill2Active = true;
+        skill2CooldownTime = skill2MaxCooldownTime;
+        UpdateCooldownUI(); // Update UI
+
+        // Reset flip override after a delay
+        StartCoroutine(ResetFlipAfterDelay(0.45f)); // Adjust delay as needed
     }
 
     private IEnumerator ResetFlipAfterDelay(float delay)
@@ -341,18 +387,6 @@ public class MysticHeroSkill : MonoBehaviour
         skill1CooldownTime = 0; // Reset cooldown
         targetEnemy = null; // Clear the target
 
-        // Reset opacity (Exit Shadow State)
-        Color heroColor = GetComponent<SpriteRenderer>().color;
-        heroColor.a = 1f; // Restore full opacity
-        GetComponent<SpriteRenderer>().color = heroColor;
-
-        // Destroy skill preview if active
-        if (skill1PreviewInstance != null)
-        {
-            Destroy(skill1PreviewInstance);
-            skill1PreviewInstance = null;
-        }
-
         fusionActivated = false;
     }
 
@@ -361,16 +395,6 @@ public class MysticHeroSkill : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         PlayerController.instance.GetComponent<Animator>().ResetTrigger("mysticUnlink");
-    }
-
-    public void OnSkillDamage()
-    {
-        skill1Damage.SetActive(true);
-    }
-
-    public void OffSkillDamage()
-    {
-        skill1Damage.SetActive(false);
     }
 
     private void UpdateCooldownUI()

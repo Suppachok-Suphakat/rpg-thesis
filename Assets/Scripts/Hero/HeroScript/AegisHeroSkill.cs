@@ -99,6 +99,8 @@ public class AegisHeroSkill : MonoBehaviour
                 if (skill1CooldownTime <= 0 && !isSkill1Active) // Cooldown completed
                 {
                     weaponInstance.GetComponent<EXSkillFollowMouse>().WeaponSkillActivate();
+                    conversationManager.ShowConversation("Thunder strike", aegisHeroAI.heroFaceSprite);
+                    gameObject.GetComponent<Animator>().SetTrigger("skill1");
                     isAnySkillActive = true; // Lock activation for other skills
                 }
 
@@ -158,6 +160,9 @@ public class AegisHeroSkill : MonoBehaviour
                     isSkill2Active = true;
                     skill2CooldownTime = skill2MaxCooldownTime; // Reset cooldown
                 }
+
+                conversationManager.ShowConversation("Turret deploy", aegisHeroAI.heroFaceSprite);
+                gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
                 isAnySkillActive = false; // Release lock after using the skill
             }

@@ -100,15 +100,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5e2109e59fed544b5d496c54fea4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill1Damage: {fileID: 1603878265584195838}
-  skill1Prefab: {fileID: 3554886383241864524, guid: f74d55fd7f62ec84dbcf64fd35dd2c3a, type: 3}
+  weaponGO: {fileID: 3554886383241864524, guid: d0300500ab718b54098d2c13e01e6e64, type: 3}
+  weaponInstance: {fileID: 0}
+  swordPoint: {fileID: 6115635253367551300}
   skill2Range: 15
   lineRenderer: {fileID: 1225751640091083324}
   skill2Prefab: {fileID: 3554886383241864524, guid: f86141d80278cf945af3800fd01e4834, type: 3}
   skill2Preview: {fileID: 371351925480119373, guid: eb36f304d3f34864996f734fe46b2912, type: 3}
   skill2AreaPreview: {fileID: 7686837216217434397, guid: b8709355726f9c649a5ec58859de45a2, type: 3}
+  skill2PreviewInstance: {fileID: 0}
   skill1Collider: {fileID: 1603878265584195838}
   skill2Collider: {fileID: 6479396900168634744}
+  isSkill2PreviewActive: 0
   isReady: 0
   skill1CooldownTime: 0
   skill1MaxCooldownTime: 10

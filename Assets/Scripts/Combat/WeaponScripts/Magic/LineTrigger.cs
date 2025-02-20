@@ -216,6 +216,9 @@ public class LineTrigger : MonoBehaviour
 
         StartCoroutine(StopMovementForSeconds(0.5f)); // Stop movement for 0.5 seconds
 
+        Color blueGreen = new Color(0.0f, 0.7f, 0.6f);  // Teal-like Blue-Green
+        Color purplePink = new Color(0.7f, 0.2f, 0.8f); // Vibrant Purple-Pink
+
         if (newHero.TryGetComponent(out VirtueHeroAI virtueHero))
         {
             SetupLineRenderer(Color.white, Color.blue);
@@ -246,21 +249,21 @@ public class LineTrigger : MonoBehaviour
         }
         else if (newHero.TryGetComponent(out AegisHeroAI aegisHero))
         {
-            SetupLineRenderer(Color.white, Color.cyan);
+            SetupLineRenderer(Color.white, Color.grey);
             SetupHero(aegisHero.selectedIndicator, aegisHero.skillbutton1, aegisHero.skillbutton2);
             aegisHero.aegisHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Link activated", aegisHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out PhantomHeroAI phantomHero))
         {
-            SetupLineRenderer(Color.white, Color.magenta);
+            SetupLineRenderer(Color.white, purplePink);
             SetupHero(phantomHero.selectedIndicator, phantomHero.skillbutton1, phantomHero.skillbutton2);
             phantomHero.phantomHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Alright", phantomHero.heroFaceSprite);
         }
         else if (newHero.TryGetComponent(out MysticHeroAI mysticHero))
         {
-            SetupLineRenderer(Color.white, Color.magenta);
+            SetupLineRenderer(Color.white, blueGreen);
             SetupHero(mysticHero.selectedIndicator, mysticHero.skillbutton1, mysticHero.skillbutton2);
             mysticHero.mysticHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Let the wind lead", mysticHero.heroFaceSprite);
