@@ -258,6 +258,13 @@ public class LineTrigger : MonoBehaviour
             phantomHero.phantomHeroSkill.FusionActivate();
             conversationManager.ShowConversation("Alright", phantomHero.heroFaceSprite);
         }
+        else if (newHero.TryGetComponent(out MysticHeroAI mysticHero))
+        {
+            SetupLineRenderer(Color.white, Color.magenta);
+            SetupHero(mysticHero.selectedIndicator, mysticHero.skillbutton1, mysticHero.skillbutton2);
+            mysticHero.mysticHeroSkill.FusionActivate();
+            conversationManager.ShowConversation("Let the wind lead", mysticHero.heroFaceSprite);
+        }
 
         SoundManager.instance.RandomizeSfx(linkSound);
         CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Aim);
@@ -306,6 +313,11 @@ public class LineTrigger : MonoBehaviour
         {
             CleanupHero(phantomHero.selectedIndicator, phantomHero.skillbutton1, phantomHero.skillbutton2);
             phantomHero.phantomHeroSkill.DeFusionActivate();
+        }
+        else if (hero.TryGetComponent(out MysticHeroAI mysticHero))
+        {
+            CleanupHero(mysticHero.selectedIndicator, mysticHero.skillbutton1, mysticHero.skillbutton2);
+            mysticHero.mysticHeroSkill.DeFusionActivate();
         }
 
         SoundManager.instance.RandomizeSfx(unlinkSound);

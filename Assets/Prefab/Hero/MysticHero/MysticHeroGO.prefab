@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6115635253367551300}
-  - component: {fileID: 4763785237448542359}
-  - component: {fileID: 3235512404218838576}
+  - component: {fileID: 7250977307861447768}
+  - component: {fileID: 568993568296185142}
   - component: {fileID: 3926950155357857189}
   - component: {fileID: 8436747515394760531}
   - component: {fileID: 1644655969559841425}
@@ -50,7 +50,7 @@ Transform:
   - {fileID: 289602927601821782}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4763785237448542359
+--- !u!114 &7250977307861447768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,20 +59,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 645030252299325955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19bd386d5e4c1f74d988edd8901397f4, type: 3}
+  m_Script: {fileID: 11500000, guid: d2d34a1d9ac8c954397f3ca40b56a167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 1
+  attackDistance: 5
   distanceToAttack: 1
   followSpeed: 2
-  chaseSpeed: 5
+  chaseSpeed: 2
   player: {fileID: 0}
   currentState: 0
   minDistance: 1
-  repulsionStrength: 1
+  repulsionStrength: 2
   focus:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   enemyTransform: {fileID: 0}
   focusEnemy: {fileID: 0}
   damageCollider: {fileID: 7242654368270624162}
@@ -86,9 +86,9 @@ MonoBehaviour:
   selectedIndicator: {fileID: 0}
   skillbutton1: {fileID: 0}
   skillbutton2: {fileID: 0}
-  heroFaceSprite: {fileID: 21300000, guid: 3eb534aa6c0fe9c4bbcc0eb966f57ba3, type: 3}
-  phantomHeroSkill: {fileID: 0}
---- !u!114 &3235512404218838576
+  heroFaceSprite: {fileID: 21300000, guid: 00769dffadf3fa74cafb69efe664509e, type: 3}
+  mysticHeroSkill: {fileID: 0}
+--- !u!114 &568993568296185142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 645030252299325955}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8474d0dad5445c14c86f579626d070ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c5e2109e59fed544b5d496c54fea4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skill1Damage: {fileID: 1603878265584195838}
@@ -123,11 +123,11 @@ MonoBehaviour:
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
   weaponInfo: {fileID: 11400000, guid: a85a5b145e805ac49a22b927c7f143d7, type: 2}
-  itemSprite: {fileID: 21300000, guid: e93b3825278cbca45aa17c5c60f29c76, type: 3}
+  itemSprite: {fileID: 836023515, guid: 53076a1988e368a46bf2bee4f7eafcec, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
   skill2Image: {fileID: 0}
-  phantomHeroAI: {fileID: 0}
+  mysticHeroAI: {fileID: 0}
   conversationManager: {fileID: 0}
 --- !u!212 &3926950155357857189
 SpriteRenderer:
@@ -840,7 +840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3758322016831297392, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
