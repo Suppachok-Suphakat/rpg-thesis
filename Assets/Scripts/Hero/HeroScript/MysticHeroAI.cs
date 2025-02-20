@@ -65,6 +65,9 @@ public class MysticHeroAI : MonoBehaviour
 
     public Sprite heroFaceSprite;
 
+    private bool isFlippingOverridden = false;
+    private Vector3 overrideFlipTarget;
+
     public MysticHeroSkill mysticHeroSkill;
 
     private void Awake()
@@ -211,7 +214,12 @@ public class MysticHeroAI : MonoBehaviour
 
     public void FollowLogic()
     {
-        FlipSprite(PlayerController.instance.transform);
+
+        if (!isFlippingOverridden)
+        {
+            FlipSprite(PlayerController.instance.transform);
+        }
+
         float distancePlayer = Vector3.Distance(transform.position, player.position);
 
         if (distancePlayer > 2f)
@@ -271,7 +279,10 @@ public class MysticHeroAI : MonoBehaviour
 
             Vector3 directionToEnemy = (focusEnemy.position - transform.position).normalized;
             animator.SetBool("isWalking", true);
-            FlipSprite(focusEnemy);
+            if (!isFlippingOverridden)
+            {
+                FlipSprite(focusEnemy);
+            }
             transform.Translate(directionToEnemy * chaseSpeed * Time.deltaTime);
         }
     }
@@ -306,6 +317,10 @@ public class MysticHeroAI : MonoBehaviour
             if (distanceToEnemy <= distanceToAttack && !isAttacking)
             {
                 isAttacking = true;
+                if (!isFlippingOverridden)
+                {
+                    FlipSprite(focusEnemy);
+                }
                 animator.SetTrigger("attack");
                 StartCoroutine(AttackCooldown());
             }
@@ -344,11 +359,33 @@ public class MysticHeroAI : MonoBehaviour
         damageCollider.gameObject.SetActive(false);
     }
 
-    void FlipSprite(Transform flipTo)
+    public void FlipSprite(Transform flipTo)
     {
+        if (isFlippingOverridden)
+        {
+            FlipSpriteOverride(overrideFlipTarget);
+            return;
+        }
+
         if (flipTo.transform.position.x < transform.position.x)
             transform.localScale = new Vector3(-1, 1, 1);
         else
             transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    public void FlipSpriteOverride(Vector3 targetPosition)
+    {
+        Debug.Log("Flipping override to target at: " + targetPosition);
+
+        if (targetPosition.x < transform.position.x)
+            transform.localScale = new Vector3(-1, 1, 1); // Face left
+        else
+            transform.localScale = new Vector3(1, 1, 1); // Face right
+    }
+
+    public void SetFlipOverride(bool state, Vector3 target)
+    {
+        isFlippingOverridden = state;
+        overrideFlipTarget = target;
     }
 }

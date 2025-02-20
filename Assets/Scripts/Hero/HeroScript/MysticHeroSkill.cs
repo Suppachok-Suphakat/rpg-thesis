@@ -14,11 +14,11 @@ public class MysticHeroSkill : MonoBehaviour
     public GameObject skill2Prefab;
     public GameObject skill2Preview;
     public GameObject skill2AreaPreview;
-    private GameObject skill2PreviewInstance;
+    public GameObject skill2PreviewInstance;
     public GameObject skill1Collider;
     public GameObject skill2Collider;
 
-    private bool isSkill2PreviewActive = false;
+    public bool isSkill2PreviewActive = false;
     private bool isSkill1Active = false;
     private bool isSkill2Active = false;
     public bool isReady = false;
@@ -90,16 +90,6 @@ public class MysticHeroSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSkill1Active)
-        {
-
-        }
-
-        if (fusionActivated)
-        {
-
-        }
-
         HandleSkill1();
         HandleSkill2();
         UpdateCooldownUI();
@@ -160,44 +150,6 @@ public class MysticHeroSkill : MonoBehaviour
 
         conversationManager.ShowConversation("Waiting to strike...", mysticHeroAI.heroFaceSprite);
         UpdateCooldownUI();
-    }
-
-    // This should be called when the player attacks an enemy
-    public void OnPlayerAttack(Transform enemy)
-    {
-        if (isWaitingForAttack && enemy != null)
-        {
-            isWaitingForAttack = false;
-            targetEnemy = enemy;
-            StartCoroutine(ExecuteSkill1());
-        }
-    }
-
-    private IEnumerator ExecuteSkill1()
-    {
-        if (targetEnemy == null) yield break;
-
-        transform.position = targetEnemy.position;
-        GetComponent<Animator>().SetTrigger("skill1");
-        skill1CooldownTime = skill1MaxCooldownTime;
-        skill1Collider.SetActive(true); // Activate skill1 collider
-
-        if (mysticHeroAI != null)
-        {
-            mysticHeroAI.focusEnemy = targetEnemy;
-            mysticHeroAI.enemyTransform = targetEnemy;
-        }
-
-        yield return new WaitForSeconds(0.5f);
-
-        Color heroColor = GetComponent<SpriteRenderer>().color;
-        heroColor.a = 1f;
-        GetComponent<SpriteRenderer>().color = heroColor;
-
-        isSkill1Active = false;
-        isAnySkillActive = false;
-        isReady = false;
-        skill1Collider.SetActive(false); // Deactivate skill1 collider
     }
 
     private void HandleSkill2()
@@ -262,38 +214,55 @@ public class MysticHeroSkill : MonoBehaviour
 
     public void Skill2Activate()
     {
-        if (isSkill2Active) return;
+        if (skill2PreviewInstance != null)
+        {
+            // Show dialogue and play animation
+            conversationManager.ShowConversation("Spirit of dragon!", mysticHeroAI.heroFaceSprite);
+            gameObject.GetComponent<Animator>().SetTrigger("skill2");
 
-        Debug.Log("Partner Skill Activate");
+            Vector3 mousePosition = GetMouseWorldPosition();
+            Vector3 direction = (mousePosition - transform.position).normalized;
 
-        skill2CooldownTime = skill2MaxCooldownTime;
-        isSkill2Active = true;
-        skill2Collider.SetActive(true); // Activate skill2 collider
+            mysticHeroAI.SetFlipOverride(true, mousePosition);
+            mysticHeroAI.FlipSpriteOverride(mousePosition); // <-- Explicitly call flip
 
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
-        Vector3 direction = (mousePosition - transform.position).normalized;
+            // Calculate the rotation for the skill projectile
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        GetComponent<Animator>().SetTrigger("skill2");
-        StartCoroutine(ChargeForward(direction));
-        UpdateCooldownUI();
+            // Instantiate the projectile at the hero's position
+            GameObject newArrow = Instantiate(skill2Prefab, transform.position, rotation);
+
+            // Flip the projectile if the mouse is on the left side of the screen
+            if (mousePosition.x < transform.position.x)
+            {
+                Vector3 scale = newArrow.transform.localScale;
+                scale.y *= -1; // Flip Y-axis
+                newArrow.transform.localScale = scale;
+            }
+
+            // Set projectile range and activate it
+            newArrow.GetComponent<ThruProjectile>().UpdateProjectileRange(skill2Range);
+
+            // Destroy the preview and disable the line renderer
+            Destroy(skill2PreviewInstance);
+            DisableLineRenderer();
+            isSkill2PreviewActive = false;
+
+            // Start cooldown
+            isSkill2Active = true;
+            skill2CooldownTime = skill2MaxCooldownTime;
+            UpdateCooldownUI(); // Update UI
+
+            // Reset flip override after a delay
+            StartCoroutine(ResetFlipAfterDelay(1.0f)); // Adjust delay as needed
+        }
     }
 
-    private IEnumerator ChargeForward(Vector3 direction)
+    private IEnumerator ResetFlipAfterDelay(float delay)
     {
-        float chargeTime = 0.3f;
-        float elapsedTime = 0f;
-        float chargeSpeed = 15f;
-
-        while (elapsedTime < chargeTime)
-        {
-            transform.position += direction * chargeSpeed * Time.deltaTime;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        isSkill2Active = false;
-        skill2Collider.SetActive(false); // Deactivate skill2 collider
+        yield return new WaitForSeconds(delay);
+        mysticHeroAI.SetFlipOverride(false, Vector3.zero);
     }
 
     void EnableLineRenderer()
@@ -416,5 +385,21 @@ public class MysticHeroSkill : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; // Make sure it's on the same Z plane
         return mousePosition;
+    }
+
+    void NoYellowKEKW()
+    {
+        if (isSkill1Active)
+
+        if (fusionActivated)
+
+        if (isWaitingForAttack)
+
+        if (isSkill2Active)
+
+        if(targetEnemy == null)
+        {
+
+        }
     }
 }

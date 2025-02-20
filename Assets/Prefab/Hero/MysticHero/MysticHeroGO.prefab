@@ -28,7 +28,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115635253367551300
 Transform:
   m_ObjectHideFlags: 0
@@ -62,17 +62,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d34a1d9ac8c954397f3ca40b56a167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 5
-  distanceToAttack: 1
+  attackDistance: 1.5
+  distanceToAttack: 2
   followSpeed: 2
   chaseSpeed: 2
   player: {fileID: 0}
   currentState: 0
   minDistance: 1
-  repulsionStrength: 2
+  repulsionStrength: 1
   focus:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   enemyTransform: {fileID: 0}
   focusEnemy: {fileID: 0}
   damageCollider: {fileID: 7242654368270624162}
@@ -102,9 +102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skill1Damage: {fileID: 1603878265584195838}
   skill1Prefab: {fileID: 3554886383241864524, guid: f74d55fd7f62ec84dbcf64fd35dd2c3a, type: 3}
-  skill2Range: 10
+  skill2Range: 15
   lineRenderer: {fileID: 1225751640091083324}
-  skill2Prefab: {fileID: 3554886383241864524, guid: 6b858aa1a14f15b42ab2e3e6f64ac091, type: 3}
+  skill2Prefab: {fileID: 3554886383241864524, guid: f86141d80278cf945af3800fd01e4834, type: 3}
   skill2Preview: {fileID: 371351925480119373, guid: eb36f304d3f34864996f734fe46b2912, type: 3}
   skill2AreaPreview: {fileID: 7686837216217434397, guid: b8709355726f9c649a5ec58859de45a2, type: 3}
   skill1Collider: {fileID: 1603878265584195838}
@@ -122,7 +122,7 @@ MonoBehaviour:
   currentSkill2ActiveTime: 5
   statusComponent: {fileID: 0}
   toolbarSlot: {fileID: 0}
-  weaponInfo: {fileID: 11400000, guid: a85a5b145e805ac49a22b927c7f143d7, type: 2}
+  weaponInfo: {fileID: 11400000, guid: f95c688617010ac42bef1c66105691e2, type: 2}
   itemSprite: {fileID: 836023515, guid: 53076a1988e368a46bf2bee4f7eafcec, type: 3}
   activeToolbar: {fileID: 0}
   skill1Image: {fileID: 0}
@@ -720,7 +720,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6609662, y: 0.05931747}
+  m_Offset: {x: 0.85073984, y: 0.2538395}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -731,7 +731,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.89831275, y: 1.8304448}
+  m_Size: {x: 1.2778599, y: 1.5742455}
   m_EdgeRadius: 0
 --- !u!1 &6479396900168634744
 GameObject:
@@ -845,22 +845,22 @@ PrefabInstance:
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fc9f9fc365290e94882d2d650ed34b09, type: 2}
+      objectReference: {fileID: 2100000, guid: 72429220e37fcc341a1d03c37a23561f, type: 2}
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Parameters.textureScale.y
       value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0.9058824
+      value: 0.56078434
       objectReference: {fileID: 0}
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0.34509805
+      value: 0.7607844
       objectReference: {fileID: 0}
     - target: {fileID: 7332394106306840456, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_Parameters.colorGradient.key1.r
-      value: 0.7019608
+      value: 0.121568635
       objectReference: {fileID: 0}
     - target: {fileID: 8126670056700751330, guid: 9d4a8acb2e3289d4382a23f94d177c3b, type: 3}
       propertyPath: m_LocalPosition.x
