@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8077814146220555893}
   - component: {fileID: 6761197984265071040}
   - component: {fileID: 5857298609134333650}
+  - component: {fileID: 7761902502641404393}
+  - component: {fileID: 8693304141008576538}
   m_Layer: 0
   m_Name: Blue Slash
   m_TagString: Untagged
@@ -119,3 +121,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40a2217841f47249a4367de080fe56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &7761902502641404393
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946816441893005725}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 2.6666667, y: 2.6666667}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.9943175, y: 0.665038}
+      - {x: 1.361011, y: 1.4363685}
+      - {x: 0.48865986, y: 1.8555467}
+      - {x: 0.47587693, y: 1.6868213}
+      - {x: 1.254333, y: 1.1682395}
+      - {x: 1.615586, y: -0.09304705}
+      - {x: 1.0586243, y: -1.1893924}
+      - {x: 0.30054364, y: -1.622685}
+      - {x: 0.4848247, y: -1.8287878}
+      - {x: 1.0911977, y: -1.8307962}
+      - {x: 2.0032015, y: -0.51131463}
+  m_UseDelaunayMesh: 0
+--- !u!114 &8693304141008576538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946816441893005725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666b76789a3e2ba44a6955ff4e6fe219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+  knockBackThrust: 0
+  damageCooldown: 0.5
