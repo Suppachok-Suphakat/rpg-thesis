@@ -15,6 +15,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] StatusBar hpBar;
     [SerializeField] GameObject arrow;
 
+    public delegate void EnemyDeath();
+    public event EnemyDeath OnEnemyDeath;
+
     public AudioClip hitSound;
 
     private void Awake()
@@ -82,16 +85,22 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-
             if (GetComponent<PickupSpawner>())
             {
                 GetComponent<PickupSpawner>().DropItems();
+            }
+
+            if (OnEnemyDeath != null)
+            {
+                Debug.Log("OnDeath");
+                OnEnemyDeath.Invoke(); // Notify EnemyArea before destroying
             }
 
             Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
+
 
     private void OnDestroy()
     {
